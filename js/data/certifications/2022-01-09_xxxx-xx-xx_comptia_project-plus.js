@@ -39,16 +39,55 @@ const cert20220109ComptiaProjectPlus = {
     "Business Analyst",
     "Systems Administrator",
     "Support Engineer",
-    "Team Lead"
+    "Team Lead",
+    "Technical Lead",
+    "IT Operations Specialist"
   ],
 
   skillTags: [
+    { category: "Project Management", name: "project management fundamentals" },
     { category: "Project Management", name: "project lifecycle" },
-    { category: "Project Management", name: "project roles and responsibilities" },
+    { category: "Project Management", name: "project initiation" },
+    { category: "Project Management", name: "project planning" },
+    { category: "Project Management", name: "project execution" },
+    { category: "Project Management", name: "monitoring and controlling" },
+    { category: "Project Management", name: "project closure" },
+    { category: "Project Management", name: "project charter" },
+    { category: "Project Management", name: "statement of work" },
+    { category: "Project Management", name: "stakeholder management" },
+    { category: "Project Management", name: "scope management" },
+    { category: "Project Management", name: "work breakdown structure" },
+    { category: "Project Management", name: "activity planning" },
     { category: "Project Management", name: "project scheduling" },
+    { category: "Project Management", name: "critical path" },
+    { category: "Project Management", name: "cost planning" },
+    { category: "Project Management", name: "quality management" },
+    { category: "Project Management", name: "communications planning" },
     { category: "Project Management", name: "risk management" },
+    { category: "Project Management", name: "procurement planning" },
+    { category: "Project Management", name: "change control" },
+    { category: "Project Management", name: "transition planning" },
+    { category: "Project Management", name: "vendor management" },
+    { category: "Project Management", name: "performance reporting" },
+    { category: "Project Management", name: "lessons learned" },
     { category: "Project Management", name: "Agile fundamentals" },
-    { category: "Project Management", name: "project communication" },
-    { category: "Project Management", name: "project documentation" }
+    { category: "Project Management", name: "Scrum fundamentals" },
+    { category: "Documentation", name: "project documentation" },
+    { category: "Productivity", name: "Microsoft Office" }
+  ],
+
+  objectiveDomains: [
+    { name: "Project Management Fundamentals", weight: "" },
+    { name: "Project Initiation", weight: "" },
+    { name: "Project Planning", weight: "" },
+    { name: "Project Execution", weight: "" },
+    { name: "Monitoring and Controlling", weight: "" },
+    { name: "Project Closure", weight: "" }
+  ],
+
+  sourceNotes: [
+    "Certificate confirms earned date and non-expiring status.",
+    "Score report confirms PK0-004 exam version.",
+    "Official CompTIA Project+ student guide used to derive resume-safe skill tags."
   ]
 };

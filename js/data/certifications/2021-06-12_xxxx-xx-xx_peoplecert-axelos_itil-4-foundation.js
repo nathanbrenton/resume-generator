@@ -41,19 +41,47 @@ const cert20210612PeoplecertAxelosItil4Foundation = {
     "Technical Support Specialist",
     "IT Operations Specialist",
     "Platform Engineer",
-    "IT Project Coordinator"
+    "IT Project Coordinator",
+    "Change Coordinator"
   ],
 
   skillTags: [
     { category: "IT Service Management", name: "IT service management" },
     { category: "IT Service Management", name: "ITIL 4 Foundation" },
+    { category: "IT Service Management", name: "service management framework" },
     { category: "IT Service Management", name: "service value system" },
+    { category: "IT Service Management", name: "service value chain" },
+    { category: "IT Service Management", name: "service relationships" },
+    { category: "IT Service Management", name: "service level management" },
+    { category: "IT Service Management", name: "service desk workflows" },
     { category: "IT Service Management", name: "incident management" },
-    { category: "IT Service Management", name: "change enablement" },
     { category: "IT Service Management", name: "problem management" },
+    { category: "IT Service Management", name: "change enablement" },
     { category: "IT Service Management", name: "service request management" },
+    { category: "IT Service Management", name: "release management" },
+    { category: "IT Service Management", name: "deployment management" },
+    { category: "IT Service Management", name: "monitoring and event management" },
     { category: "IT Service Management", name: "continual improvement" },
-    { category: "Ticketing & Collaboration", name: "service desk workflows" },
-    { category: "Project Management", name: "stakeholder communication" }
+    { category: "IT Service Management", name: "IT asset management" },
+    { category: "IT Service Management", name: "service configuration management" },
+    { category: "IT Service Management", name: "supplier management" },
+    { category: "IT Service Management", name: "relationship management" },
+    { category: "Security", name: "information security management" },
+    { category: "Project Management", name: "stakeholder communication" },
+    { category: "Ticketing & Collaboration", name: "service desk workflows" }
+  ],
+
+  objectiveDomains: [
+    { name: "Key Concepts of Service Management", weight: "" },
+    { name: "ITIL Guiding Principles", weight: "" },
+    { name: "Four Dimensions of Service Management", weight: "" },
+    { name: "ITIL Service Value System", weight: "" },
+    { name: "Service Value Chain", weight: "" },
+    { name: "ITIL Practices", weight: "" }
+  ],
+
+  sourceNotes: [
+    "Certificate confirms earned date and non-expiring status.",
+    "ITIL 4 Foundation candidate syllabus used to derive resume-safe skill tags."
   ]
 };
