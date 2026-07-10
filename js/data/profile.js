@@ -2,6 +2,18 @@ const profile = {
   headline: "Linux Administrator | Platform Support | AI Software Engineering",
   summary: "Linux, systems, and platform support professional with experience across RHEL middleware, enterprise endpoint support, AI-assisted retail validation, offline development workflows, and AI model metadata tooling.",
 
+  headlinesByTargetRole: {
+    "Linux Administrator": "Linux Administrator | RHEL Middleware | Offline Systems",
+    "Systems Administrator": "Systems Administrator | Endpoint Support | Platform Operations",
+    "Platform Engineer": "Platform Engineer | Linux Automation | AI Infrastructure",
+    "Support Engineer": "Support Engineer | Enterprise IT | Platform Support",
+    "Middleware Engineer": "Middleware Engineer | RHEL | WebLogic | Tomcat | IBM MQ",
+    "Software Engineer": "Software Engineer | Python | JavaScript | FastAPI | React",
+    "AI/ML Engineer": "AI Software Engineer | Model Metadata | AI Validation",
+    "MLOps / AI Infrastructure": "MLOps / AI Infrastructure | Offline Labs | Local Model Planning",
+    "Technical Coordinator": "Technical Coordinator | IT Operations | Documentation"
+  },
+
   summariesByTargetRole: {
     "Linux Administrator": "Linux and platform support professional with hands-on experience supporting RHEL middleware environments, automating validation workflows, troubleshooting services, documenting rebuild procedures, and building offline-capable Linux development labs.",
     "Systems Administrator": "Systems and support professional with experience across enterprise endpoint support, RHEL middleware operations, Docker/PostgreSQL lab environments, incident workflows, documentation, and operational validation.",

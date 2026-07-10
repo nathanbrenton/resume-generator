@@ -191,7 +191,7 @@ function buildResume(options = {}) {
   return {
     targetRole,
     contact: careerData.contactInfo,
-    headline: careerData.profile.headline,
+    headline: careerData.profile.headlinesByTargetRole[targetRole] || careerData.profile.headline,
     summary: careerData.profile.summariesByTargetRole[targetRole] || careerData.profile.summary,
     skills: groupSkills([...skillMap.values()])
       .slice(0, maxSkillGroups)

@@ -16,20 +16,27 @@ function contactLink(label, value, hrefPrefix = "") {
   return `<a href="${escapeHtml(href)}">${escapeHtml(label)}</a>`;
 }
 
+function displayUrl(value) {
+  return String(value || "")
+    .replace(/^https?:\/\//, "")
+    .replace(/^www\./, "")
+    .replace(/\/$/, "");
+}
+
 function renderContact(contact) {
   const items = [
     contact.city,
     contact.email ? contactLink(contact.email, contact.email, "mailto:") : "",
     contact.phone,
-    contact.linkedin ? contactLink("LinkedIn", contact.linkedin) : "",
-    contact.github ? contactLink("GitHub", contact.github) : "",
-    contact.website ? contactLink("Website", contact.website) : ""
+    contact.linkedin ? contactLink(displayUrl(contact.linkedin), contact.linkedin) : "",
+    contact.github ? contactLink(displayUrl(contact.github), contact.github) : "",
+    contact.website ? contactLink(displayUrl(contact.website), contact.website) : ""
   ].filter(Boolean);
 
   return `
     <header class="resume-header">
       <h1>${escapeHtml(contact.name)}</h1>
-      <p class="headline">${escapeHtml(profile.headline)}</p>
+      <p class="headline">${escapeHtml(contact.headline || "")}</p>
       <p class="contact-line">${items.join(" | ")}</p>
     </header>
   `;
@@ -153,9 +160,14 @@ function renderCertifications(resume) {
 }
 
 function renderResume(resume, targetElement) {
+  const contactWithHeadline = {
+    ...resume.contact,
+    headline: resume.headline
+  };
+
   targetElement.innerHTML = `
     <div class="resume-page">
-      ${renderContact(resume.contact)}
+      ${renderContact(contactWithHeadline)}
       ${renderSummary(resume)}
       ${renderSkills(resume)}
       ${renderExperience(resume)}
