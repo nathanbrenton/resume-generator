@@ -1,0 +1,248 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+div,
+h1,
+h2,
+h3,
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #d7d7d7;
+  color: #111;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 24px;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.builder-controls {
+  align-self: start;
+  background: #fff;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  padding: 16px;
+  position: sticky;
+  top: 24px;
+}
+
+.builder-controls h1 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  text-transform: none;
+}
+
+.builder-controls p {
+  color: #444;
+  margin-bottom: 12px;
+}
+
+.control-group {
+  border-top: 1px solid #ddd;
+  margin-top: 14px;
+  padding-top: 14px;
+}
+
+.control-group h2 {
+  border: 0;
+  font-size: 0.9rem;
+  margin: 0 0 8px;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.control-group select,
+.control-group button {
+  font: inherit;
+  width: 100%;
+}
+
+.control-checkbox {
+  display: block;
+  font-size: 0.86rem;
+  margin: 6px 0;
+}
+
+.control-checkbox input {
+  margin-right: 6px;
+}
+
+.print-button {
+  cursor: pointer;
+  margin-top: 10px;
+  padding: 8px;
+}
+
+.debug-output {
+  background: #f6f6f6;
+  border: 1px solid #ddd;
+  font-family: Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  margin-top: 10px;
+  padding: 8px;
+  white-space: pre-wrap;
+}
+
+.preview-wrap {
+  overflow-x: auto;
+}
+
+.resume-page {
+  background: #fff;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+  min-height: 11in;
+  padding: 0.55in;
+  width: 8.5in;
+}
+
+.resume-header {
+  text-align: center;
+}
+
+.resume-header h1 {
+  font-size: 2rem;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.headline {
+  font-size: 0.95rem;
+  margin-top: 5px;
+}
+
+.contact-line {
+  border-bottom: 1px solid #111;
+  border-top: 2px solid #111;
+  font-size: 0.78rem;
+  margin-top: 8px;
+  padding: 4px 0;
+  text-transform: uppercase;
+}
+
+.resume-section {
+  margin-top: 10px;
+}
+
+.resume-section h2 {
+  border-bottom: 1px solid #111;
+  border-top: 2px solid #111;
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+  padding: 2px 0 1px;
+  text-transform: uppercase;
+}
+
+.skills-grid {
+  column-count: 2;
+  column-gap: 18px;
+  font-size: 0.78rem;
+}
+
+.skill-group {
+  break-inside: avoid;
+  margin-bottom: 3px;
+}
+
+.skill-category {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.entry {
+  break-inside: avoid;
+  margin-bottom: 8px;
+}
+
+.compact-entry {
+  margin-bottom: 4px;
+}
+
+.entry-header {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.entry-title {
+  font-weight: 700;
+}
+
+.entry-subtitle {
+  font-style: italic;
+}
+
+.entry-meta {
+  flex: 0 0 auto;
+  font-size: 0.82rem;
+  font-style: italic;
+  text-align: right;
+}
+
+.entry ul {
+  list-style: square;
+  margin-left: 17px;
+  margin-top: 3px;
+}
+
+.entry li {
+  margin-bottom: 2px;
+}
+
+.cert-list {
+  column-count: 2;
+  column-gap: 18px;
+  font-size: 0.85rem;
+}
+
+@page {
+  size: Letter;
+  margin: 0;
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+
+  .app-shell {
+    display: block;
+    padding: 0;
+  }
+
+  .builder-controls {
+    display: none;
+  }
+
+  .preview-wrap {
+    overflow: visible;
+  }
+
+  .resume-page {
+    box-shadow: none;
+    min-height: 11in;
+    padding: 0.55in;
+    width: 8.5in;
+  }
+}

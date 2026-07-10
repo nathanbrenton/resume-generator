@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Resume Generator</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <aside id="builderControls" class="builder-controls">
+      <h1>Resume Generator</h1>
+      <p>Milestone 1: data validation, selection logic, skill de-duplication, and printable Letter preview.</p>
+
+      <div class="control-group">
+        <h2>Target Role</h2>
+        <select id="targetRole"></select>
+      </div>
+
+      <div class="control-group">
+        <h2>Experience</h2>
+        <div id="jobControls"></div>
+      </div>
+
+      <div class="control-group">
+        <h2>Projects</h2>
+        <div id="projectControls"></div>
+      </div>
+
+      <div class="control-group">
+        <h2>Education</h2>
+        <div id="educationControls"></div>
+      </div>
+
+      <div class="control-group">
+        <h2>Certifications</h2>
+        <div id="certificationControls"></div>
+      </div>
+
+      <div class="control-group">
+        <button id="printButton" class="print-button" type="button">Print / Save PDF</button>
+        <pre id="debugOutput" class="debug-output"></pre>
+      </div>
+    </aside>
+
+    <section class="preview-wrap">
+      <div id="resumePreview"></div>
+    </section>
+  </main>
+
+  <script src="./js/data/contact.js"></script>
+  <script src="./js/data/profile.js"></script>
+  <script src="./js/data/target-roles.js"></script>
+
+  <script src="./js/data/jobs/2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i.js"></script>
+  <script src="./js/data/jobs/2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician.js"></script>
+  <script src="./js/data/jobs/2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician.js"></script>
+  <script src="./js/data/jobs/index.js"></script>
+
+  <script src="./js/data/projects/2026-06-xx_xxxx-xx-xx_offline-dev-lab.js"></script>
+  <script src="./js/data/projects/2026-07-xx_xxxx-xx-xx_model-hardware-fit-explorer.js"></script>
+  <script src="./js/data/projects/index.js"></script>
+
+  <script src="./js/data/education/xxxx-xx-xx_2026-04-16_wgu_ms-software-engineering-ai-engineering.js"></script>
+  <script src="./js/data/education/xxxx-xx-xx_2023-10-10_wgu_bs-cybersecurity-information-assurance.js"></script>
+  <script src="./js/data/education/xxxx-xx-xx_2019-05-12_udacity_front-end-web-developer-nanodegree.js"></script>
+  <script src="./js/data/education/index.js"></script>
+
+  <script src="./js/data/certifications/2023-08-11_2029-08-11_comptia_cysa-plus-ce.js"></script>
+  <script src="./js/data/certifications/2023-08-28_2026-08-28_comptia_pentest-plus-ce.js"></script>
+  <script src="./js/data/certifications/2022-01-09_xxxx-xx-xx_comptia_project-plus.js"></script>
+  <script src="./js/data/certifications/2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation.js"></script>
+  <script src="./js/data/certifications/index.js"></script>
+
+  <script src="./js/taxonomies.js"></script>
+  <script src="./js/data/index.js"></script>
+  <script src="./js/resume-builder.js"></script>
+  <script src="./js/render-resume.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>

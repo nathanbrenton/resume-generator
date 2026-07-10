@@ -1,0 +1,21 @@
+const skillCategoryOrder = [
+  "Operating Systems",
+  "Linux & Systems Administration",
+  "Middleware & Web Platforms",
+  "Programming & Scripting",
+  "Web & API Development",
+  "Databases",
+  "Cloud & Infrastructure",
+  "Networking",
+  "Security",
+  "DevOps & Tooling",
+  "Ticketing & Collaboration",
+  "Productivity",
+  "IT Service Management",
+  "Project Management",
+  "Documentation",
+  "Media & Encoding",
+  "Hardware / Repair",
+  "AI/ML",
+  "Other"
+];

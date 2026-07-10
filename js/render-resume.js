@@ -1,0 +1,167 @@
+function escapeHtml(value) {
+  return String(value || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function contactLink(label, value, hrefPrefix = "") {
+  if (!value) {
+    return "";
+  }
+
+  const href = hrefPrefix ? `${hrefPrefix}${value}` : value;
+  return `<a href="${escapeHtml(href)}">${escapeHtml(label)}</a>`;
+}
+
+function renderContact(contact) {
+  const items = [
+    contact.city,
+    contact.email ? contactLink(contact.email, contact.email, "mailto:") : "",
+    contact.phone,
+    contact.linkedin ? contactLink("LinkedIn", contact.linkedin) : "",
+    contact.github ? contactLink("GitHub", contact.github) : "",
+    contact.website ? contactLink("Website", contact.website) : ""
+  ].filter(Boolean);
+
+  return `
+    <header class="resume-header">
+      <h1>${escapeHtml(contact.name)}</h1>
+      <p class="headline">${escapeHtml(profile.headline)}</p>
+      <p class="contact-line">${items.join(" | ")}</p>
+    </header>
+  `;
+}
+
+function renderSection(title, body) {
+  if (!body || !String(body).trim()) {
+    return "";
+  }
+
+  return `
+    <section class="resume-section">
+      <h2>${escapeHtml(title)}</h2>
+      ${body}
+    </section>
+  `;
+}
+
+function renderSummary(resume) {
+  return renderSection("Summary", `<p>${escapeHtml(resume.summary)}</p>`);
+}
+
+function renderSkills(resume) {
+  const body = `
+    <div class="skills-grid">
+      ${resume.skills.map((group) => `
+        <div class="skill-group">
+          <span class="skill-category">${escapeHtml(group.category)}:</span>
+          <span>${escapeHtml(group.skills.join(", "))}</span>
+        </div>
+      `).join("")}
+    </div>
+  `;
+
+  return renderSection("Skills", body);
+}
+
+function renderBullets(bullets) {
+  if (!bullets || bullets.length === 0) {
+    return "";
+  }
+
+  return `
+    <ul>
+      ${bullets.map((bullet) => `<li>${escapeHtml(bullet.text)}</li>`).join("")}
+    </ul>
+  `;
+}
+
+function renderExperience(resume) {
+  const body = resume.jobs.map((job) => `
+    <div class="entry">
+      <div class="entry-header">
+        <div>
+          <p class="entry-title">${escapeHtml(job.resumeTitle || job.title)}</p>
+          <p class="entry-subtitle">${escapeHtml(job.company)}${job.clientOrAssignment ? ` — ${escapeHtml(job.clientOrAssignment)}` : ""}</p>
+        </div>
+        <div class="entry-meta">
+          <p>${escapeHtml(job.dateText)}</p>
+          <p>${escapeHtml(job.location?.city || "")}${job.location?.state ? `, ${escapeHtml(job.location.state)}` : ""}</p>
+        </div>
+      </div>
+      ${renderBullets(job.selectedBullets)}
+    </div>
+  `).join("");
+
+  return renderSection("Experience", body);
+}
+
+function renderProjects(resume) {
+  const body = resume.projects.map((project) => `
+    <div class="entry">
+      <div class="entry-header">
+        <div>
+          <p class="entry-title">${escapeHtml(project.name)}</p>
+          <p class="entry-subtitle">${project.repositoryUrl ? `<a href="${escapeHtml(project.repositoryUrl)}">${escapeHtml(project.repositoryUrl.replace("https://github.com/", "github.com/"))}</a>` : escapeHtml(project.type)}</p>
+        </div>
+        <div class="entry-meta">
+          <p>${escapeHtml(project.status)}</p>
+          <p>${escapeHtml(project.dateText)}</p>
+        </div>
+      </div>
+      ${renderBullets(project.selectedBullets)}
+    </div>
+  `).join("");
+
+  return renderSection("Projects", body);
+}
+
+function renderEducation(resume) {
+  const body = resume.education.map((entry) => `
+    <div class="entry compact-entry">
+      <div class="entry-header">
+        <div>
+          <p class="entry-title">${escapeHtml(entry.resumeDisplay?.name || entry.shortName || entry.program)}</p>
+          <p class="entry-subtitle">${escapeHtml(entry.resumeDisplay?.detail || entry.institution)}</p>
+        </div>
+        <div class="entry-meta">
+          <p>${escapeHtml(entry.resumeDisplay?.dateText || "")}</p>
+        </div>
+      </div>
+    </div>
+  `).join("");
+
+  return renderSection("Education", body);
+}
+
+function renderCertifications(resume) {
+  const body = `
+    <div class="cert-list">
+      ${resume.certifications.map((cert) => `
+        <div>
+          <strong>${escapeHtml(cert.resumeDisplay?.name || cert.name)}</strong>
+          <span> — ${escapeHtml(cert.resumeDisplay?.dateText || cert.status)}</span>
+        </div>
+      `).join("")}
+    </div>
+  `;
+
+  return renderSection("Certifications", body);
+}
+
+function renderResume(resume, targetElement) {
+  targetElement.innerHTML = `
+    <div class="resume-page">
+      ${renderContact(resume.contact)}
+      ${renderSummary(resume)}
+      ${renderSkills(resume)}
+      ${renderExperience(resume)}
+      ${renderProjects(resume)}
+      ${renderEducation(resume)}
+      ${renderCertifications(resume)}
+    </div>
+  `;
+}
