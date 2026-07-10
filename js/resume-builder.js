@@ -6,7 +6,7 @@ function toSkillKey(skill) {
   return `${normalizeText(skill.category).toLowerCase()}::${normalizeText(skill.name).toLowerCase()}`;
 }
 
-function addSkill(skillMap, skill) {
+function addSkill(skillMap, skill, weight = 1) {
   if (!skill || !skill.category || !skill.name) {
     return;
   }
@@ -16,13 +16,16 @@ function addSkill(skillMap, skill) {
   if (!skillMap.has(key)) {
     skillMap.set(key, {
       category: normalizeText(skill.category),
-      name: normalizeText(skill.name)
+      name: normalizeText(skill.name),
+      weight: 0
     });
   }
+
+  skillMap.get(key).weight += weight;
 }
 
-function addSkills(skillMap, skills) {
-  (skills || []).forEach((skill) => addSkill(skillMap, skill));
+function addSkills(skillMap, skills, weight = 1) {
+  (skills || []).forEach((skill) => addSkill(skillMap, skill, weight));
 }
 
 function monthName(month) {
@@ -115,11 +118,17 @@ function groupSkills(skills) {
       grouped[skill.category] = [];
     }
 
-    grouped[skill.category].push(skill.name);
+    grouped[skill.category].push(skill);
   });
 
   Object.keys(grouped).forEach((category) => {
-    grouped[category].sort((a, b) => a.localeCompare(b));
+    grouped[category].sort((a, b) => {
+      if (b.weight !== a.weight) {
+        return b.weight - a.weight;
+      }
+
+      return a.name.localeCompare(b.name);
+    });
   });
 
   const categories = Object.keys(grouped).sort((a, b) => {
@@ -143,16 +152,16 @@ function groupSkills(skills) {
 
   return categories.map((category) => ({
     category,
-    skills: grouped[category]
+    skills: grouped[category].map((skill) => skill.name)
   }));
 }
 
 function buildResume(options = {}) {
   const targetRole = options.targetRole || careerData.targetRoles[0];
   const maxJobBullets = options.maxJobBullets ?? 2;
-  const maxProjectBullets = options.maxProjectBullets ?? 2;
-  const maxSkillGroups = options.maxSkillGroups ?? 9;
-  const maxSkillsPerGroup = options.maxSkillsPerGroup ?? 8;
+  const maxProjectBullets = options.maxProjectBullets ?? 1;
+  const maxSkillGroups = options.maxSkillGroups ?? 6;
+  const maxSkillsPerGroup = options.maxSkillsPerGroup ?? 5;
 
   const selectedJobs = selectedByIds(careerData.jobs, options.selectedJobIds);
   const selectedProjects = selectedByIds(careerData.projects, options.selectedProjectIds);
@@ -161,10 +170,11 @@ function buildResume(options = {}) {
 
   const skillMap = new Map();
 
+  addSkills(skillMap, careerData.roleSkillPriorities[targetRole], 10);
+
   const jobsForResume = selectedJobs.map((job) => {
     const bullets = selectBullets(job, targetRole, maxJobBullets);
-    addSkills(skillMap, job.skillTags);
-    bullets.forEach((bullet) => addSkills(skillMap, bullet.skillTags));
+    bullets.forEach((bullet) => addSkills(skillMap, bullet.skillTags, 4));
 
     return {
       ...job,
@@ -175,8 +185,7 @@ function buildResume(options = {}) {
 
   const projectsForResume = selectedProjects.map((project) => {
     const bullets = selectBullets(project, targetRole, maxProjectBullets);
-    addSkills(skillMap, project.skillTags);
-    bullets.forEach((bullet) => addSkills(skillMap, bullet.skillTags));
+    bullets.forEach((bullet) => addSkills(skillMap, bullet.skillTags, 4));
 
     return {
       ...project,
@@ -185,8 +194,8 @@ function buildResume(options = {}) {
     };
   });
 
-  selectedEducation.forEach((entry) => addSkills(skillMap, entry.skillTags));
-  selectedCertifications.forEach((entry) => addSkills(skillMap, entry.skillTags));
+  selectedEducation.forEach((entry) => addSkills(skillMap, entry.resumeSkillTags, 2));
+  selectedCertifications.forEach((entry) => addSkills(skillMap, entry.resumeSkillTags, 2));
 
   return {
     targetRole,

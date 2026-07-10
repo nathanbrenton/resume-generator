@@ -76,9 +76,9 @@ function renderCurrentResume() {
     selectedEducationIds: getCheckedValues("educationControls"),
     selectedCertificationIds: getCheckedValues("certificationControls"),
     maxJobBullets: 2,
-    maxProjectBullets: 2,
-    maxSkillGroups: 9,
-    maxSkillsPerGroup: 8
+    maxProjectBullets: 1,
+    maxSkillGroups: 6,
+    maxSkillsPerGroup: 5
   });
 
   renderResume(resume, document.getElementById("resumePreview"));
