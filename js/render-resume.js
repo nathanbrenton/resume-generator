@@ -159,6 +159,21 @@ function renderCertifications(resume) {
   return renderSection("Certifications", body);
 }
 
+function renderPageBreakGuides(pageCount = 4) {
+  const pageHeightInches = 11;
+
+  return Array.from({ length: pageCount - 1 }, (_, index) => {
+    const pageNumber = index + 2;
+    const top = pageHeightInches * (index + 1);
+
+    return `
+      <div class="page-break-guide" style="top: ${top}in;">
+        <span>Page ${pageNumber} starts here</span>
+      </div>
+    `;
+  }).join("");
+}
+
 function renderResume(resume, targetElement) {
   const contactWithHeadline = {
     ...resume.contact,
@@ -166,14 +181,17 @@ function renderResume(resume, targetElement) {
   };
 
   targetElement.innerHTML = `
-    <div class="resume-page">
-      ${renderContact(contactWithHeadline)}
-      ${renderSummary(resume)}
-      ${renderSkills(resume)}
-      ${renderExperience(resume)}
-      ${renderProjects(resume)}
-      ${renderEducation(resume)}
-      ${renderCertifications(resume)}
+    <div class="resume-page-wrap">
+      ${renderPageBreakGuides(4)}
+      <div class="resume-page">
+        ${renderContact(contactWithHeadline)}
+        ${renderSummary(resume)}
+        ${renderSkills(resume)}
+        ${renderExperience(resume)}
+        ${renderProjects(resume)}
+        ${renderEducation(resume)}
+        ${renderCertifications(resume)}
+      </div>
     </div>
   `;
 }

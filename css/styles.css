@@ -24,8 +24,8 @@ body {
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+  color: #0645ad;
+  text-decoration: underline;
 }
 
 .app-shell {
@@ -107,6 +107,32 @@ a {
   overflow-x: auto;
 }
 
+.resume-page-wrap {
+  position: relative;
+  width: 8.5in;
+}
+
+.page-break-guide {
+  border-top: 2px dashed #b00020;
+  color: #b00020;
+  font-size: 0.72rem;
+  font-weight: 700;
+  left: 0;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  text-transform: uppercase;
+  z-index: 3;
+}
+
+.page-break-guide span {
+  background: #fff;
+  padding-left: 6px;
+}
+
 .resume-page {
   background: #fff;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
@@ -137,7 +163,6 @@ a {
   font-size: 0.78rem;
   margin-top: 8px;
   padding: 4px 0;
-  text-transform: uppercase;
 }
 
 .resume-section {
@@ -237,6 +262,10 @@ a {
 
   .preview-wrap {
     overflow: visible;
+  }
+
+  .page-break-guide {
+    display: none;
   }
 
   .resume-page {
