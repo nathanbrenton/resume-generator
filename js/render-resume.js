@@ -131,33 +131,30 @@ function renderProjects(resume) {
 }
 
 function renderEducation(resume) {
-  const body = resume.education.map((entry) => `
-    <div class="entry compact-entry">
-      <div class="entry-header">
-        <div>
-          <p class="entry-title">${escapeHtml(entry.resumeDisplay?.name || entry.shortName || entry.program)}</p>
-          <p class="entry-subtitle">${escapeHtml(entry.resumeDisplay?.detail || entry.institution)}</p>
+  const body = `
+    <div class="inline-list">
+      ${resume.education.map((entry) => `
+        <div class="inline-list-item">
+          <strong>${escapeHtml(entry.resumeDisplay?.name || entry.shortName || entry.program)}</strong>
+          <span> — ${escapeHtml(entry.institution || entry.resumeDisplay?.detail || "")}</span>
+          ${entry.resumeDisplay?.dateText ? `<span>, ${escapeHtml(entry.resumeDisplay.dateText)}</span>` : ""}
         </div>
-        <div class="entry-meta">
-          <p>${escapeHtml(entry.resumeDisplay?.dateText || "")}</p>
-        </div>
-      </div>
+      `).join("")}
     </div>
-  `).join("");
+  `;
 
   return renderSection("Education", body);
 }
 
 function renderCertifications(resume) {
   const body = `
-    <div class="cert-list">
-      ${resume.certifications.map((cert) => `
-        <div>
-          <strong>${escapeHtml(cert.resumeDisplay?.name || cert.name)}</strong>
-          <span> — ${escapeHtml(cert.resumeDisplay?.dateText || cert.status)}</span>
-        </div>
-      `).join("")}
-    </div>
+    <p class="compact-cert-line">
+      ${resume.certifications.map((cert) => {
+        const name = cert.resumeDisplay?.name || cert.name;
+        const dateText = cert.resumeDisplay?.dateText || cert.status || "";
+        return `<span><strong>${escapeHtml(name)}</strong>${dateText ? ` (${escapeHtml(dateText)})` : ""}</span>`;
+      }).join(" · ")}
+    </p>
   `;
 
   return renderSection("Certifications", body);

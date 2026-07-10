@@ -160,8 +160,8 @@ function buildResume(options = {}) {
   const targetRole = options.targetRole || careerData.targetRoles[0];
   const maxJobBullets = options.maxJobBullets ?? 2;
   const maxProjectBullets = options.maxProjectBullets ?? 1;
-  const maxSkillGroups = options.maxSkillGroups ?? 6;
-  const maxSkillsPerGroup = options.maxSkillsPerGroup ?? 5;
+  const maxSkillGroups = options.maxSkillGroups ?? 5;
+  const maxSkillsPerGroup = options.maxSkillsPerGroup ?? 4;
 
   const selectedJobs = selectedByIds(careerData.jobs, options.selectedJobIds);
   const selectedProjects = selectedByIds(careerData.projects, options.selectedProjectIds);
@@ -170,11 +170,12 @@ function buildResume(options = {}) {
 
   const skillMap = new Map();
 
-  addSkills(skillMap, careerData.roleSkillPriorities[targetRole], 10);
+  addSkills(skillMap, careerData.roleSkillPriorities[targetRole], 25);
 
-  const jobsForResume = selectedJobs.map((job) => {
-    const bullets = selectBullets(job, targetRole, maxJobBullets);
-    bullets.forEach((bullet) => addSkills(skillMap, bullet.skillTags, 4));
+  const jobsForResume = selectedJobs.map((job, index) => {
+    const jobBulletLimit = index === 0 ? maxJobBullets : 1;
+    const bullets = selectBullets(job, targetRole, jobBulletLimit);
+    bullets.forEach((bullet) => addSkills(skillMap, bullet.skillTags, 3));
 
     return {
       ...job,
@@ -185,7 +186,7 @@ function buildResume(options = {}) {
 
   const projectsForResume = selectedProjects.map((project) => {
     const bullets = selectBullets(project, targetRole, maxProjectBullets);
-    bullets.forEach((bullet) => addSkills(skillMap, bullet.skillTags, 4));
+    bullets.forEach((bullet) => addSkills(skillMap, bullet.skillTags, 3));
 
     return {
       ...project,
@@ -194,8 +195,8 @@ function buildResume(options = {}) {
     };
   });
 
-  selectedEducation.forEach((entry) => addSkills(skillMap, entry.resumeSkillTags, 2));
-  selectedCertifications.forEach((entry) => addSkills(skillMap, entry.resumeSkillTags, 2));
+  selectedEducation.forEach((entry) => addSkills(skillMap, entry.resumeSkillTags, 1));
+  selectedCertifications.forEach((entry) => addSkills(skillMap, entry.resumeSkillTags, 1));
 
   return {
     targetRole,
