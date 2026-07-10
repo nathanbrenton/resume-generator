@@ -7,5 +7,9 @@ const targetRoles = [
   "Software Engineer",
   "AI/ML Engineer",
   "MLOps / AI Infrastructure",
-  "Technical Coordinator"
+  "Technical Coordinator",
+  "Digital Media Technician",
+  "Media Systems Technician",
+  "Encoding / Transcode Technician",
+  "Post-Production Support Technician"
 ];

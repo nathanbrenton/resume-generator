@@ -114,5 +114,57 @@ const roleSkillPriorities = {
     { category: "Project Management", name: "Kanban" },
     { category: "Productivity", name: "Microsoft Teams" },
     { category: "Productivity", name: "Office 365" }
+  ],
+
+  "Digital Media Technician": [
+    { category: "Media & Encoding", name: "encoding" },
+    { category: "Media & Encoding", name: "transcoding" },
+    { category: "Media & Encoding", name: "quality control" },
+    { category: "Media & Encoding", name: "file-based workflows" },
+    { category: "Media & Encoding", name: "media delivery" },
+    { category: "Media & Encoding", name: "FFmpeg" },
+    { category: "Hardware / Repair", name: "hardware troubleshooting" },
+    { category: "Operating Systems", name: "macOS" },
+    { category: "Operating Systems", name: "Windows" },
+    { category: "Documentation", name: "workflow documentation" }
+  ],
+
+  "Media Systems Technician": [
+    { category: "Media & Encoding", name: "post-production workflows" },
+    { category: "Media & Encoding", name: "media asset workflows" },
+    { category: "Media & Encoding", name: "quality control" },
+    { category: "Hardware / Repair", name: "hardware troubleshooting" },
+    { category: "Operating Systems", name: "macOS" },
+    { category: "Operating Systems", name: "Windows" },
+    { category: "Networking", name: "network shares" },
+    { category: "Productivity", name: "Microsoft Office" },
+    { category: "Documentation", name: "technical documentation" },
+    { category: "Ticketing & Collaboration", name: "client communication" }
+  ],
+
+  "Encoding / Transcode Technician": [
+    { category: "Media & Encoding", name: "encoding" },
+    { category: "Media & Encoding", name: "transcoding" },
+    { category: "Media & Encoding", name: "compression" },
+    { category: "Media & Encoding", name: "media QC" },
+    { category: "Media & Encoding", name: "delivery specs" },
+    { category: "Media & Encoding", name: "file-based workflows" },
+    { category: "Media & Encoding", name: "FFmpeg" },
+    { category: "Operating Systems", name: "macOS" },
+    { category: "Operating Systems", name: "Windows" },
+    { category: "Documentation", name: "handoff notes" }
+  ],
+
+  "Post-Production Support Technician": [
+    { category: "Media & Encoding", name: "post-production workflows" },
+    { category: "Media & Encoding", name: "quality control" },
+    { category: "Media & Encoding", name: "file-based workflows" },
+    { category: "Media & Encoding", name: "media delivery" },
+    { category: "Hardware / Repair", name: "hardware troubleshooting" },
+    { category: "Operating Systems", name: "macOS" },
+    { category: "Operating Systems", name: "Windows" },
+    { category: "Ticketing & Collaboration", name: "client communication" },
+    { category: "Documentation", name: "workflow documentation" },
+    { category: "Productivity", name: "Microsoft Office" }
   ]
 };
