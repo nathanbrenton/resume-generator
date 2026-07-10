@@ -52,6 +52,7 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
     {
       id: "randstad-jr-deskside-technician-001",
       text: "Triaged internal end-user incidents and service requests to resolve hardware, operating system, VPN, MFA, software, and enterprise application issues across laptops, mobile devices, and desktop workstations.",
+      printText: "Resolved endpoint, VPN, MFA, software, imaging, and hardware issues across enterprise-managed devices.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -74,6 +75,7 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
     {
       id: "randstad-jr-deskside-technician-002",
       text: "Managed enterprise technology assets across provisioning, imaging, deployment, support, recovery, redeployment, and decommissioning workflows using ServiceNow, SCCM / Microsoft Endpoint Configuration Manager, Active Directory, Splunk, JAMF, and related support tools.",
+      printText: "Managed device lifecycle workflows with ServiceNow, SCCM/MECM, Active Directory, Splunk, JAMF, and BitLocker.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -94,6 +96,7 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
     {
       id: "randstad-jr-deskside-technician-003",
       text: "Provisioned company-managed Windows, macOS, and iOS devices using approved enterprise images, endpoint-management tools, VPN, MFA, and required software configurations.",
+      printText: "Provisioned Windows, macOS, and iOS devices with approved images, VPN, MFA, and required software.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -115,6 +118,7 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
     {
       id: "randstad-jr-deskside-technician-004",
       text: "Resolved approximately 30 incident tickets per week across device, software, access, network, and workstation issues.",
+      printText: "Resolved approximately 30 weekly incidents across device, software, access, network, and workstation issues.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -133,6 +137,7 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
     {
       id: "randstad-jr-deskside-technician-005",
       text: "Served as a front-facing support contact for walk-in and scheduled appointments at an onsite User Support service location.",
+      printText: "Served as front-facing support for walk-in and scheduled onsite User Support appointments.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -151,6 +156,7 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
     {
       id: "randstad-jr-deskside-technician-006",
       text: "Automated hardware and software validation checks with PowerShell scripts to improve fulfillment consistency and device-readiness reviews.",
+      printText: "Automated hardware and software validation checks with PowerShell to improve fulfillment consistency.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -168,6 +174,7 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
     {
       id: "randstad-jr-deskside-technician-007",
       text: "Performed hardware upgrades and repair coordination for Lenovo laptops, including RAM, NVMe storage, keyboards, screens, and mainboard-related support.",
+      printText: "Performed Lenovo laptop upgrades and repair coordination for RAM, NVMe, keyboards, screens, and mainboards.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -188,6 +195,7 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
     {
       id: "randstad-jr-deskside-technician-008",
       text: "Supported encrypted-device recovery and user data preservation during BitLocker, hardware repair, device swap, and software upgrade workflows.",
+      printText: "Supported BitLocker recovery and user data preservation during repairs, swaps, and software upgrades.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -206,6 +214,7 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
     {
       id: "randstad-jr-deskside-technician-009",
       text: "Participated on a two-person team supporting final walkthrough and asset recovery for a building decommission, collecting data-containing devices from nine floors and supporting secure handoff to third-party data-destruction / e-waste processes.",
+      printText: "Recovered data-containing devices from nine floors during a building decommission and secure handoff.",
       includeByDefault: false,
       strength: "supporting",
       targetRoles: [
@@ -225,6 +234,7 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
     {
       id: "randstad-jr-deskside-technician-010",
       text: "Configured workstation peripherals, shared network locations, printers, docking stations, monitors, Bluetooth accessories, and display settings for onsite employees.",
+      printText: "Configured peripherals, shared network locations, printers, docking stations, monitors, and Bluetooth accessories.",
       includeByDefault: false,
       strength: "supporting",
       targetRoles: [

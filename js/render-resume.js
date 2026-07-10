@@ -81,7 +81,7 @@ function renderBullets(bullets) {
 
   return `
     <ul>
-      ${bullets.map((bullet) => `<li>${escapeHtml(bullet.text)}</li>`).join("")}
+      ${bullets.map((bullet) => `<li>${escapeHtml(bullet.printText || bullet.text)}</li>`).join("")}
     </ul>
   `;
 }

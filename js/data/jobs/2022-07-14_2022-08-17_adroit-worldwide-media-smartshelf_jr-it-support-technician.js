@@ -93,6 +93,7 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
     {
       id: "adroit-smartshelf-jr-it-support-001",
       text: "Performed human-in-the-loop validation of AI-generated computer vision transaction results by reviewing multi-camera shopping-session footage and correcting item counts, product types, and purchase outcomes in an in-house system.",
+      printText: "Validated AI-generated computer vision transactions by reviewing multi-camera footage and correcting model outputs.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -112,6 +113,7 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
     {
       id: "adroit-smartshelf-jr-it-support-002",
       text: "Reviewed 10+ frictionless shopping sessions per day for AI output accuracy, comparing model-generated transaction data against source video from multi-camera retail environments.",
+      printText: "Reviewed 10+ daily frictionless shopping sessions against source video for AI transaction accuracy.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -130,6 +132,7 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
     {
       id: "adroit-smartshelf-jr-it-support-003",
       text: "Supported deployed smart shelf systems across six retail locations in three countries, including environments with approximately 18 cameras per location.",
+      printText: "Supported smart shelf deployments across six locations in three countries with 18-camera environments.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -148,6 +151,7 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
     {
       id: "adroit-smartshelf-jr-it-support-004",
       text: "Monitored and escalated alerts for deployed field hardware and software systems, communicating findings and follow-up expectations through Slack and support handoffs.",
+      printText: "Escalated field hardware/software alerts through Slack with findings, handoffs, and follow-up expectations.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -166,6 +170,7 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
     {
       id: "adroit-smartshelf-jr-it-support-005",
       text: "Troubleshot Ubuntu-based Raspberry Pi devices supporting network-aware shelves, sensors, and camera systems in frictionless retail deployments.",
+      printText: "Troubleshot Ubuntu-based Raspberry Pi devices supporting network-aware shelves, sensors, and cameras.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -185,6 +190,7 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
     {
       id: "adroit-smartshelf-jr-it-support-006",
       text: "Recorded remote computer evaluations using VDO.Ninja, gathered diagnostic information, and produced clear findings reports for support escalation.",
+      printText: "Recorded remote evaluations with VDO.Ninja and produced findings reports for support escalation.",
       includeByDefault: true,
       strength: "supporting",
       targetRoles: [
@@ -203,6 +209,7 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
     {
       id: "adroit-smartshelf-jr-it-support-007",
       text: "Supported camera assembly and sensor hardware workflows, including soldering and troubleshooting for field-deployed retail technology systems.",
+      printText: "Supported camera assembly, sensor workflows, soldering, and field hardware troubleshooting.",
       includeByDefault: true,
       strength: "supporting",
       targetRoles: [
@@ -221,6 +228,7 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
     {
       id: "adroit-smartshelf-jr-it-support-008",
       text: "Contributed to AI-assisted retail analytics quality assurance by correcting model-generated outputs and supporting ground-truth review workflows.",
+      printText: "Supported AI-assisted retail analytics QA through model-output correction and ground-truth review.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [

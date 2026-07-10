@@ -192,6 +192,7 @@ const project202606xxOfflineDevLab = {
     {
       id: "offline-dev-lab-001",
       text: "Built a Debian 13 offline development lab that preserves APT packages, Python wheels, Docker images, scripts, screenshots, diagrams, and runbooks for repeatable rebuilds without internet access.",
+      printText: "Built a Debian 13 offline lab preserving APT packages, Python wheels, Docker images, runbooks, and diagrams.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -211,6 +212,7 @@ const project202606xxOfflineDevLab = {
     {
       id: "offline-dev-lab-002",
       text: "Developed a FastAPI/PostgreSQL application stack with Docker Compose, local environment configuration, health-check endpoints, and database connectivity validation.",
+      printText: "Built a FastAPI/PostgreSQL stack with Docker Compose, health checks, and database connectivity validation.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -229,6 +231,7 @@ const project202606xxOfflineDevLab = {
     {
       id: "offline-dev-lab-003",
       text: "Automated lab validation with Bash scripts for wheelhouse verification, virtual environment setup, Docker stack startup, smoke tests, security checks, diagnostics snapshots, and synthetic database transactions.",
+      printText: "Automated wheelhouse checks, venv setup, stack startup, smoke tests, security checks, diagnostics, and synthetic transactions.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -248,6 +251,7 @@ const project202606xxOfflineDevLab = {
     {
       id: "offline-dev-lab-004",
       text: "Implemented local dependency workflows using an offline APT repository, Python wheelhouse, and saved Docker image archives to support air-gapped rebuild scenarios.",
+      printText: "Implemented offline dependency workflows with local APT repos, Python wheelhouse installs, and Docker image archives.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -266,6 +270,7 @@ const project202606xxOfflineDevLab = {
     {
       id: "offline-dev-lab-005",
       text: "Created security and quality gates using pytest, ruff, bandit, and pip-audit, including network-aware logic for online and offline execution paths.",
+      printText: "Added pytest, ruff, bandit, and pip-audit checks with online/offline execution paths.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -285,6 +290,7 @@ const project202606xxOfflineDevLab = {
     {
       id: "offline-dev-lab-006",
       text: "Built operational runbooks, screenshots, and PlantUML diagrams documenting validation flow, configuration flow, diagnostics evidence flow, operational scripts, runtime architecture, and application request flow.",
+      printText: "Documented validation, configuration, diagnostics, operational scripts, runtime architecture, and request flow.",
       includeByDefault: true,
       strength: "supporting",
       targetRoles: [
@@ -304,6 +310,7 @@ const project202606xxOfflineDevLab = {
     {
       id: "offline-dev-lab-007",
       text: "Validated PostgreSQL container networking and resolved local port conflicts by mapping container database services to a non-default host port.",
+      printText: "Resolved PostgreSQL port conflicts with host/container port mapping and connectivity validation.",
       includeByDefault: true,
       strength: "supporting",
       targetRoles: [
@@ -321,6 +328,7 @@ const project202606xxOfflineDevLab = {
     {
       id: "offline-dev-lab-008",
       text: "Captured diagnostics snapshots including system versions, Docker state, logs, listening ports, application processes, endpoint timing, and health-check output.",
+      printText: "Captured diagnostics including versions, Docker state, logs, ports, processes, timing, and health output.",
       includeByDefault: true,
       strength: "supporting",
       targetRoles: [

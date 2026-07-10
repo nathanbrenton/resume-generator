@@ -50,6 +50,7 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     {
       id: "roth-system-engineer-i-001",
       text: "Supported production RHEL middleware environments with 24/7 uptime expectations, including Oracle WebLogic, Oracle Service Bus, IBM MQ, Apache HTTP Server, Apache Tomcat, and TomEE systems used by enterprise application teams.",
+      printText: "Supported RHEL middleware environments running WebLogic, OSB, IBM MQ, Apache HTTP Server, Tomcat, and TomEE.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -71,6 +72,7 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     {
       id: "roth-system-engineer-i-002",
       text: "Coordinated monthly middleware validation activities across test, staging, and production environments for patching, upgrades, deployments, disaster recovery exercises, and post-change support.",
+      printText: "Coordinated patching, deployments, DR validation, and post-change support across test, staging, and production.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -92,6 +94,7 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     {
       id: "roth-system-engineer-i-003",
       text: "Automated middleware service startup and recovery behavior using systemd units, shell scripts, cron, and authenticated service-management workflows.",
+      printText: "Automated middleware startup and recovery with systemd, cron, shell scripts, and service validation workflows.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -111,6 +114,7 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     {
       id: "roth-system-engineer-i-004",
       text: "Supported migration and modernization work from Oracle WebLogic-hosted applications to Linux-based Apache Tomcat and AWS-compatible middleware stacks.",
+      printText: "Supported WebLogic-to-Tomcat modernization and AWS-compatible middleware stack planning.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -131,6 +135,7 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     {
       id: "roth-system-engineer-i-005",
       text: "Applied Oracle Critical Patch Updates and Patch Set Updates using OPatch to remediate vulnerabilities and maintain supported middleware platforms.",
+      printText: "Applied Oracle CPU/PSU patches with OPatch to remediate middleware vulnerabilities.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -150,6 +155,7 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     {
       id: "roth-system-engineer-i-006",
       text: "Configured LDAP authentication for WebLogic Administration Console access and supported secure credential-management workflows using CyberArk and Keeper Password Manager.",
+      printText: "Configured LDAP authentication for WebLogic Admin Console and supported secure credential workflows.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -170,6 +176,7 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     {
       id: "roth-system-engineer-i-007",
       text: "Assisted developers with Apache HTTP Server virtual host changes, Tomcat deployments, database connection pool troubleshooting, and application log analysis.",
+      printText: "Assisted developers with virtual hosts, Tomcat deployments, connection pools, and application log analysis.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -190,6 +197,7 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     {
       id: "roth-system-engineer-i-008",
       text: "Created runbooks, SOPs, ticket notes, CMDB updates, handoff documentation, and RCA documents to improve middleware operations and knowledge transfer.",
+      printText: "Created runbooks, SOPs, ticket notes, CMDB updates, handoff notes, and RCA documentation.",
       includeByDefault: true,
       strength: "supporting",
       targetRoles: [
@@ -211,6 +219,7 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     {
       id: "roth-system-engineer-i-009",
       text: "Assisted with IBM MQ queue manager rebuilds, message queue migration, and middleware recovery activities.",
+      printText: "Assisted with IBM MQ queue manager rebuilds, message migration, and recovery activities.",
       includeByDefault: false,
       strength: "supporting",
       targetRoles: [
@@ -229,6 +238,7 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     {
       id: "roth-system-engineer-i-010",
       text: "Improved operational visibility by configuring browser-based Tomcat log viewing and tracking platform work through ServiceNow and Azure DevOps.",
+      printText: "Improved visibility with browser-based Tomcat log access and ServiceNow/Azure DevOps tracking.",
       includeByDefault: false,
       strength: "supporting",
       targetRoles: [

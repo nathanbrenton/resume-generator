@@ -234,6 +234,7 @@ const project202607xxModelHardwareFitExplorer = {
     {
       id: "model-hardware-fit-explorer-001",
       text: "Built a static React/Vite AI model comparison dashboard that analyzes Hugging Face configuration metadata and GGUF profiles to explain qualitative local hardware-fit considerations.",
+      printText: "Built a React/Vite dashboard comparing Hugging Face configs and GGUF profiles for local hardware-fit planning.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -253,6 +254,7 @@ const project202607xxModelHardwareFitExplorer = {
     {
       id: "model-hardware-fit-explorer-002",
       text: "Normalized transformer architecture fields across model families, including hidden size, model dimension, layer count, attention heads, vocabulary size, feed-forward dimensions, and task-specific configuration values.",
+      printText: "Normalized transformer fields including hidden size, dimensions, layers, attention heads, vocabulary, and feed-forward values.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -271,6 +273,7 @@ const project202607xxModelHardwareFitExplorer = {
     {
       id: "model-hardware-fit-explorer-003",
       text: "Created structured model data and UI views to compare architecture type, task compatibility, parameter scale, sizing metrics, and local deployment considerations.",
+      printText: "Created structured model data and views for architecture, task type, sizing metrics, and deployment considerations.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -288,6 +291,7 @@ const project202607xxModelHardwareFitExplorer = {
     {
       id: "model-hardware-fit-explorer-004",
       text: "Added GitHub README screenshots and documentation to explain model comparison workflows, sizing metrics, qualitative hardware-fit reasoning, and project usage.",
+      printText: "Documented comparison workflows, sizing metrics, screenshots, and qualitative hardware-fit guidance in GitHub README.",
       includeByDefault: true,
       strength: "supporting",
       targetRoles: [
@@ -305,6 +309,7 @@ const project202607xxModelHardwareFitExplorer = {
     {
       id: "model-hardware-fit-explorer-005",
       text: "Used JavaScript, React, Vite, Hugging Face model cards, and configuration files to build a portfolio-ready AI infrastructure support tool.",
+      printText: "Built an AI infrastructure support tool with JavaScript, React, Vite, Hugging Face model cards, and configs.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -322,6 +327,7 @@ const project202607xxModelHardwareFitExplorer = {
     {
       id: "model-hardware-fit-explorer-006",
       text: "Validated project quality with Vite build workflows and iterative Git commits.",
+      printText: "Validated the static front-end with Vite build workflows and iterative Git commits.",
       includeByDefault: true,
       strength: "supporting",
       targetRoles: [
@@ -337,6 +343,7 @@ const project202607xxModelHardwareFitExplorer = {
     {
       id: "model-hardware-fit-explorer-007",
       text: "Translated raw model configuration data into readable deployment notes for users evaluating local AI workloads.",
+      printText: "Translated raw model config data into readable notes for evaluating local AI workloads.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -355,6 +362,7 @@ const project202607xxModelHardwareFitExplorer = {
     {
       id: "model-hardware-fit-explorer-008",
       text: "Created a practical bridge between AI model metadata and infrastructure planning for local development systems.",
+      printText: "Connected AI model metadata with infrastructure planning for local development systems.",
       includeByDefault: true,
       strength: "supporting",
       targetRoles: [
