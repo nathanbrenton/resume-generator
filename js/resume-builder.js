@@ -99,7 +99,7 @@ function selectBullets(item, targetRole, maxBullets) {
 }
 
 function selectedByIds(items, selectedIds) {
-  if (!selectedIds || selectedIds.length === 0) {
+  if (!Array.isArray(selectedIds)) {
     return items.filter((item) => item.includeByDefault !== false);
   }
 
@@ -149,6 +149,10 @@ function groupSkills(skills) {
 
 function buildResume(options = {}) {
   const targetRole = options.targetRole || careerData.targetRoles[0];
+  const maxJobBullets = options.maxJobBullets ?? 2;
+  const maxProjectBullets = options.maxProjectBullets ?? 2;
+  const maxSkillGroups = options.maxSkillGroups ?? 9;
+  const maxSkillsPerGroup = options.maxSkillsPerGroup ?? 8;
 
   const selectedJobs = selectedByIds(careerData.jobs, options.selectedJobIds);
   const selectedProjects = selectedByIds(careerData.projects, options.selectedProjectIds);
@@ -158,7 +162,7 @@ function buildResume(options = {}) {
   const skillMap = new Map();
 
   const jobsForResume = selectedJobs.map((job) => {
-    const bullets = selectBullets(job, targetRole, 4);
+    const bullets = selectBullets(job, targetRole, maxJobBullets);
     addSkills(skillMap, job.skillTags);
     bullets.forEach((bullet) => addSkills(skillMap, bullet.skillTags));
 
@@ -170,7 +174,7 @@ function buildResume(options = {}) {
   });
 
   const projectsForResume = selectedProjects.map((project) => {
-    const bullets = selectBullets(project, targetRole, 3);
+    const bullets = selectBullets(project, targetRole, maxProjectBullets);
     addSkills(skillMap, project.skillTags);
     bullets.forEach((bullet) => addSkills(skillMap, bullet.skillTags));
 
@@ -189,7 +193,12 @@ function buildResume(options = {}) {
     contact: careerData.contactInfo,
     headline: careerData.profile.headline,
     summary: careerData.profile.summariesByTargetRole[targetRole] || careerData.profile.summary,
-    skills: groupSkills([...skillMap.values()]),
+    skills: groupSkills([...skillMap.values()])
+      .slice(0, maxSkillGroups)
+      .map((group) => ({
+        ...group,
+        skills: group.skills.slice(0, maxSkillsPerGroup)
+      })),
     jobs: jobsForResume,
     projects: projectsForResume,
     education: selectedEducation,
