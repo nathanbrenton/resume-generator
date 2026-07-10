@@ -160,8 +160,8 @@ function buildResume(options = {}) {
   const targetRole = options.targetRole || careerData.targetRoles[0];
   const maxJobBullets = options.maxJobBullets ?? 2;
   const maxProjectBullets = options.maxProjectBullets ?? 1;
-  const maxSkillGroups = options.maxSkillGroups ?? 5;
-  const maxSkillsPerGroup = options.maxSkillsPerGroup ?? 4;
+  const maxSkillGroups = options.maxSkillGroups ?? 6;
+  const maxSkillsPerGroup = options.maxSkillsPerGroup ?? 6;
 
   const selectedJobs = selectedByIds(careerData.jobs, options.selectedJobIds);
   const selectedProjects = selectedByIds(careerData.projects, options.selectedProjectIds);
@@ -172,9 +172,8 @@ function buildResume(options = {}) {
 
   addSkills(skillMap, careerData.roleSkillPriorities[targetRole], 25);
 
-  const jobsForResume = selectedJobs.map((job, index) => {
-    const jobBulletLimit = index === 0 ? maxJobBullets : 1;
-    const bullets = selectBullets(job, targetRole, jobBulletLimit);
+  const jobsForResume = selectedJobs.map((job) => {
+    const bullets = selectBullets(job, targetRole, Math.max(maxJobBullets, 2));
     bullets.forEach((bullet) => addSkills(skillMap, bullet.skillTags, 3));
 
     return {
