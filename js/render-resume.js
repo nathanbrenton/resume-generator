@@ -107,21 +107,25 @@ function renderExperience(resume) {
 }
 
 function renderProjects(resume) {
-  const body = resume.projects.map((project) => `
-    <div class="entry">
-      <div class="entry-header">
-        <div>
-          <p class="entry-title">${escapeHtml(project.name)}</p>
-          <p class="entry-subtitle">${project.repositoryUrl ? `<a href="${escapeHtml(project.repositoryUrl)}">${escapeHtml(project.repositoryUrl.replace("https://github.com/", "github.com/"))}</a>` : escapeHtml(project.type)}</p>
+  const body = resume.projects.map((project) => {
+    const projectUrl = project.repositoryUrl
+      ? project.repositoryUrl.replace("https://github.com/", "github.com/")
+      : "";
+
+    return `
+      <div class="entry">
+        <div class="entry-header">
+          <div>
+            <p class="entry-title">${escapeHtml(project.name)}</p>
+          </div>
+          <div class="entry-meta">
+            ${project.repositoryUrl ? `<p><a href="${escapeHtml(project.repositoryUrl)}">${escapeHtml(projectUrl)}</a></p>` : ""}
+          </div>
         </div>
-        <div class="entry-meta">
-          <p>${escapeHtml(project.status)}</p>
-          <p>${escapeHtml(project.dateText)}</p>
-        </div>
+        ${renderBullets(project.selectedBullets)}
       </div>
-      ${renderBullets(project.selectedBullets)}
-    </div>
-  `).join("");
+    `;
+  }).join("");
 
   return renderSection("Projects", body);
 }
