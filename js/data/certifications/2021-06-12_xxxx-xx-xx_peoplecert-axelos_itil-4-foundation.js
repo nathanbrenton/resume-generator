@@ -1,6 +1,6 @@
 const cert20210612PeoplecertAxelosItil4Foundation = {
   id: "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation",
-  name: "ITIL® Foundation Certificate in IT Service Management",
+  name: "ITIL 4 Foundation",
   vendor: "PeopleCert / AXELOS",
   type: "certification",
   status: "Active",
@@ -27,7 +27,7 @@ const cert20210612PeoplecertAxelosItil4Foundation = {
   },
 
   resumeDisplay: {
-    name: "ITIL® Foundation Certificate in IT Service Management",
+    name: "ITIL 4 Foundation",
     detail: "PeopleCert / AXELOS, ITIL 4 Edition",
     dateText: "Issued Jun 2021"
   },
