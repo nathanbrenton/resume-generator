@@ -341,3 +341,22 @@ a {
     overflow: hidden;
   }
 }
+
+
+.education-item {
+  align-items: baseline;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.education-main {
+  min-width: 0;
+}
+
+.education-date {
+  color: #333;
+  font-size: 0.82rem;
+  text-align: right;
+  white-space: nowrap;
+}
