@@ -1,6 +1,6 @@
 const cert20230811ComptiaCysaPlusCe = {
   id: "2023-08-11_2029-08-11_comptia_cysa-plus-ce",
-  name: "CompTIA CySA+ ce",
+  name: "CompTIA CySA+",
   vendor: "CompTIA",
   type: "certification",
   status: "Active",
@@ -27,7 +27,7 @@ const cert20230811ComptiaCysaPlusCe = {
   },
 
   resumeDisplay: {
-    name: "CompTIA CySA+ ce",
+    name: "CompTIA CySA+",
     detail: "CompTIA",
     dateText: "Valid through Aug 2029"
   },
