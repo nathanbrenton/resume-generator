@@ -5,4 +5,6 @@ const jobs = [
   job20210419PaulMorteTechnicalServicesWarehouseTechnician
 ,
   job20170315PostHasteDigitalEncodeTranscodeSpecialist
+,
+  job20120201RoundaboutEntertainmentEncodingOperator
 ];
