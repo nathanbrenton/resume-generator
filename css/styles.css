@@ -333,3 +333,11 @@ a {
     width: 8.5in;
   }
 }
+
+/* Keep preview from scrolling far past the two-page warning line. */
+@media screen {
+  .resume-page {
+    max-height: calc(22in + 0.35in);
+    overflow: hidden;
+  }
+}

@@ -202,7 +202,7 @@ function renderResume(resume, targetElement) {
 
   targetElement.innerHTML = `
     <div class="resume-page-wrap">
-      ${renderPageBreakGuides(4)}
+      ${renderPageBreakGuides(3)}
       <div class="resume-page">
         ${renderContact(contactWithHeadline)}
         ${renderSummary(resume)}
