@@ -360,3 +360,24 @@ a {
   text-align: right;
   white-space: nowrap;
 }
+
+/* Education completion-date alignment override. */
+.resume-section .education-item {
+  align-items: baseline;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  width: 100%;
+}
+
+.resume-section .education-main {
+  min-width: 0;
+}
+
+.resume-section .education-date {
+  color: #333;
+  font-size: 0.82rem;
+  font-style: italic;
+  text-align: right;
+  white-space: nowrap;
+}

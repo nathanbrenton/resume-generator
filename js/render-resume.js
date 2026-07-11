@@ -142,17 +142,20 @@ function renderProjects(resume) {
 }
 
 function renderEducation(resume) {
-  const body = `
-    <div class="inline-list">
-      ${resume.education.map((entry) => `
-        <div class="inline-list-item">
-          <strong>${escapeHtml(entry.resumeDisplay?.name || entry.shortName || entry.program)}</strong>
-          <span> — ${escapeHtml(entry.institution || entry.resumeDisplay?.detail || "")}</span>
-          ${entry.resumeDisplay?.dateText ? `<span>, ${escapeHtml(entry.resumeDisplay.dateText)}</span>` : ""}
+  const body = resume.education.map((item) => {
+    const name = item.resumeDisplay?.name || item.degree || item.name;
+    const institution = item.resumeDisplay?.institution || item.institution || "";
+    const dateText = item.resumeDisplay?.dateText || item.dateText || "";
+
+    return `
+      <div class="education-item">
+        <div class="education-main">
+          <strong>${escapeHtml(name)}</strong>${institution ? `, ${escapeHtml(institution)}` : ""}
         </div>
-      `).join("")}
-    </div>
-  `;
+        ${dateText ? `<div class="education-date">${escapeHtml(dateText)}</div>` : ""}
+      </div>
+    `;
+  }).join("");
 
   return renderSection("Education", body);
 }
