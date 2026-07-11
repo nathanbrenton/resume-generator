@@ -3,4 +3,6 @@ const projects = [
   project202607xxModelHardwareFitExplorer
 ,
   project20260501SignalStack
+,
+  project202606xxEnglishIpaTranslator
 ];
