@@ -59,7 +59,7 @@ const project20260501SignalStack = {
     "Technical Coordinator",
     "Digital Media Technician",
     "Media Systems Technician",
-    "Post-Production Support Technician"
+    "Post-Production Technician"
   ],
 
   rolePriority: {
@@ -78,7 +78,7 @@ const project20260501SignalStack = {
     "Digital Media Technician": 1,
     "Media Systems Technician": 1,
     "Encoding / Transcode Technician": 0,
-    "Post-Production Support Technician": 1,
+    "Post-Production Technician": 1,
     "Electronics / Repair Technician": 0,
     "Hardware Repair Technician": 0
   },
@@ -253,7 +253,7 @@ const project20260501SignalStack = {
         "Technical Coordinator",
         "Digital Media Technician",
         "Media Systems Technician",
-        "Post-Production Support Technician"
+        "Post-Production Technician"
       ],
       skillTags: [
         { category: "Programming & Scripting", name: "JavaScript" },

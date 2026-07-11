@@ -70,7 +70,7 @@ const job20170315PostHasteDigitalEncodeTranscodeSpecialist = {
     "Digital Media Technician",
     "Media Systems Technician",
     "Encoding / Transcode Technician",
-    "Post-Production Support Technician",
+    "Post-Production Technician",
     "Hardware Repair Technician"
   ],
 
@@ -90,7 +90,7 @@ const job20170315PostHasteDigitalEncodeTranscodeSpecialist = {
     "Digital Media Technician": 3,
     "Media Systems Technician": 3,
     "Encoding / Transcode Technician": 3,
-    "Post-Production Support Technician": 3,
+    "Post-Production Technician": 3,
     "Electronics / Repair Technician": 0,
     "Hardware Repair Technician": 1
   },
@@ -105,7 +105,7 @@ const job20170315PostHasteDigitalEncodeTranscodeSpecialist = {
         "Digital Media Technician",
         "Media Systems Technician",
         "Encoding / Transcode Technician",
-        "Post-Production Support Technician"
+        "Post-Production Technician"
       ],
       skillTags: [
         { category: "Media & Encoding", name: "encoding" },
@@ -127,7 +127,7 @@ const job20170315PostHasteDigitalEncodeTranscodeSpecialist = {
         "Digital Media Technician",
         "Media Systems Technician",
         "Encoding / Transcode Technician",
-        "Post-Production Support Technician"
+        "Post-Production Technician"
       ],
       skillTags: [
         { category: "Media & Encoding", name: "file packaging" },
@@ -145,7 +145,7 @@ const job20170315PostHasteDigitalEncodeTranscodeSpecialist = {
       targetRoles: [
         "Digital Media Technician",
         "Encoding / Transcode Technician",
-        "Post-Production Support Technician"
+        "Post-Production Technician"
       ],
       skillTags: [
         { category: "Media & Encoding", name: "proxies" },
@@ -165,7 +165,7 @@ const job20170315PostHasteDigitalEncodeTranscodeSpecialist = {
         "Digital Media Technician",
         "Media Systems Technician",
         "Encoding / Transcode Technician",
-        "Post-Production Support Technician"
+        "Post-Production Technician"
       ],
       skillTags: [
         { category: "Media & Encoding", name: "archival tape digitization" },
@@ -205,7 +205,7 @@ const job20170315PostHasteDigitalEncodeTranscodeSpecialist = {
         "Digital Media Technician",
         "Media Systems Technician",
         "Encoding / Transcode Technician",
-        "Post-Production Support Technician"
+        "Post-Production Technician"
       ],
       skillTags: [
         { category: "Media & Encoding", name: "high-volume transcoding" },
@@ -221,7 +221,7 @@ const job20170315PostHasteDigitalEncodeTranscodeSpecialist = {
       includeByDefault: true,
       targetRoles: [
         "Digital Media Technician",
-        "Post-Production Support Technician",
+        "Post-Production Technician",
         "Encoding / Transcode Technician"
       ],
       skillTags: [
@@ -282,7 +282,7 @@ const job20170315PostHasteDigitalEncodeTranscodeSpecialist = {
         "Support Engineer",
         "Digital Media Technician",
         "Media Systems Technician",
-        "Post-Production Support Technician"
+        "Post-Production Technician"
       ],
       skillTags: [
         { category: "Ticketing & Collaboration", name: "QC operator coordination" },

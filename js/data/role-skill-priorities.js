@@ -155,7 +155,7 @@ const roleSkillPriorities = {
     { category: "Documentation", name: "handoff notes" }
   ],
 
-  "Post-Production Support Technician": [
+  "Post-Production Technician": [
     { category: "Media & Encoding", name: "post-production workflows" },
     { category: "Media & Encoding", name: "quality control" },
     { category: "Media & Encoding", name: "file-based workflows" },

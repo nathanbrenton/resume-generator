@@ -60,7 +60,7 @@ const job20210419PaulMorteTechnicalServicesWarehouseTechnician = {
     "Digital Media Technician",
     "Media Systems Technician",
     "Encoding / Transcode Technician",
-    "Post-Production Support Technician",
+    "Post-Production Technician",
     "Electronics / Repair Technician",
     "Hardware Repair Technician"
   ],
@@ -81,7 +81,7 @@ const job20210419PaulMorteTechnicalServicesWarehouseTechnician = {
     "Digital Media Technician": 1,
     "Media Systems Technician": 3,
     "Encoding / Transcode Technician": 1,
-    "Post-Production Support Technician": 2,
+    "Post-Production Technician": 2,
     "Electronics / Repair Technician": 3,
     "Hardware Repair Technician": 3
   },
@@ -96,7 +96,7 @@ const job20210419PaulMorteTechnicalServicesWarehouseTechnician = {
         "Support Engineer",
         "Digital Media Technician",
         "Media Systems Technician",
-        "Post-Production Support Technician",
+        "Post-Production Technician",
         "Electronics / Repair Technician",
         "Hardware Repair Technician"
       ],
@@ -116,7 +116,7 @@ const job20210419PaulMorteTechnicalServicesWarehouseTechnician = {
         "Technical Coordinator",
         "Project Coordinator",
         "Media Systems Technician",
-        "Post-Production Support Technician"
+        "Post-Production Technician"
       ],
       skillTags: [
         { category: "Middleware & Web Platforms", name: "Citrix" },
@@ -136,7 +136,7 @@ const job20210419PaulMorteTechnicalServicesWarehouseTechnician = {
         "Digital Media Technician",
         "Media Systems Technician",
         "Encoding / Transcode Technician",
-        "Post-Production Support Technician",
+        "Post-Production Technician",
         "Electronics / Repair Technician",
         "Hardware Repair Technician"
       ],
@@ -155,7 +155,7 @@ const job20210419PaulMorteTechnicalServicesWarehouseTechnician = {
       targetRoles: [
         "Technical Coordinator",
         "Media Systems Technician",
-        "Post-Production Support Technician"
+        "Post-Production Technician"
       ],
       skillTags: [
         { category: "Project Management", name: "freight coordination" },
@@ -172,7 +172,7 @@ const job20210419PaulMorteTechnicalServicesWarehouseTechnician = {
       targetRoles: [
         "Technical Coordinator",
         "Media Systems Technician",
-        "Post-Production Support Technician",
+        "Post-Production Technician",
         "Electronics / Repair Technician",
         "Hardware Repair Technician"
       ],
@@ -190,7 +190,7 @@ const job20210419PaulMorteTechnicalServicesWarehouseTechnician = {
       targetRoles: [
         "Digital Media Technician",
         "Media Systems Technician",
-        "Post-Production Support Technician",
+        "Post-Production Technician",
         "Electronics / Repair Technician",
         "Hardware Repair Technician"
       ],
@@ -212,7 +212,7 @@ const job20210419PaulMorteTechnicalServicesWarehouseTechnician = {
         "Digital Media Technician",
         "Media Systems Technician",
         "Encoding / Transcode Technician",
-        "Post-Production Support Technician",
+        "Post-Production Technician",
         "Electronics / Repair Technician",
         "Hardware Repair Technician"
       ],

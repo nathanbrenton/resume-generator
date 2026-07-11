@@ -15,7 +15,7 @@ const profile = {
     "Digital Media Technician": "Digital Media Technician | Encoding | QC | Media Workflows",
     "Media Systems Technician": "Media Systems Technician | Post-Production | Technical Support",
     "Encoding / Transcode Technician": "Encoding / Transcode Technician | Media QC | File Delivery",
-    "Post-Production Support Technician": "Post-Production Support Technician | Media Ops | Workflow Support"
+    "Post-Production Technician": "Post-Production Technician | Media Ops | Workflow Support"
   },
 
   summariesByTargetRole: {
@@ -31,6 +31,6 @@ const profile = {
     "Digital Media Technician": "Technical professional with experience spanning digital media workflows, encoding/transcode operations, quality control, hardware troubleshooting, documentation, and production-support environments.",
     "Media Systems Technician": "Media and IT support professional with experience troubleshooting production tools, endpoint hardware, file-based workflows, documentation, and technical handoffs across support environments.",
     "Encoding / Transcode Technician": "Digital media technician with experience supporting file-based media workflows, encoding and transcode operations, quality control, delivery preparation, troubleshooting, and production documentation.",
-    "Post-Production Support Technician": "Post-production support professional with experience across digital media operations, technical troubleshooting, QC workflows, user support, hardware repair, and documentation."
+    "Post-Production Technician": "Post-production support professional with experience across digital media operations, technical troubleshooting, QC workflows, user support, hardware repair, and documentation."
   }
 };

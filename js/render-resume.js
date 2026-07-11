@@ -23,6 +23,17 @@ function displayUrl(value) {
     .replace(/\/$/, "");
 }
 
+function renderHeadline(value) {
+  const parts = String(value || "")
+    .split("|")
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  return parts
+    .map((part) => `<span class="headline-role">${escapeHtml(part)}</span>`)
+    .join('<span class="headline-pipe">|</span>');
+}
+
 function renderContact(contact) {
   const items = [
     contact.city,
@@ -36,7 +47,7 @@ function renderContact(contact) {
   return `
     <header class="resume-header">
       <h1>${escapeHtml(contact.name)}</h1>
-      <p class="headline">${escapeHtml(contact.headline || "")}</p>
+      <p class="headline">${renderHeadline(contact.headline)}</p>
       <p class="contact-line">${items.join(" | ")}</p>
     </header>
   `;
@@ -148,13 +159,21 @@ function renderEducation(resume) {
 
 function renderCertifications(resume) {
   const body = `
-    <p class="compact-cert-line">
+    <div class="compact-cert-list">
       ${resume.certifications.map((cert) => {
         const name = cert.resumeDisplay?.name || cert.name;
+        const issuer = cert.resumeDisplay?.issuer || cert.issuer || "";
         const dateText = cert.resumeDisplay?.dateText || cert.status || "";
-        return `<span><strong>${escapeHtml(name)}</strong>${dateText ? ` (${escapeHtml(dateText)})` : ""}</span>`;
-      }).join(" · ")}
-    </p>
+
+        return `
+          <div class="compact-cert-item">
+            <strong>${escapeHtml(name)}</strong>
+            ${issuer ? `<span>${escapeHtml(issuer)}</span>` : ""}
+            ${dateText ? `<span>${escapeHtml(dateText)}</span>` : ""}
+          </div>
+        `;
+      }).join("")}
+    </div>
   `;
 
   return renderSection("Certifications", body);

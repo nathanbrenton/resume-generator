@@ -11,5 +11,5 @@ const targetRoles = [
   "Digital Media Technician",
   "Media Systems Technician",
   "Encoding / Transcode Technician",
-  "Post-Production Support Technician"
+  "Post-Production Technician"
 ];
