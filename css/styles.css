@@ -413,3 +413,32 @@ a {
   text-align: left;
   white-space: nowrap;
 }
+
+/* Tidy two-pair certification grid override. */
+.resume-section .compact-cert-list {
+  align-items: baseline;
+  column-gap: 14px;
+  display: grid;
+  font-size: 0.82rem;
+  grid-template-columns: minmax(0, 1fr) max-content minmax(0, 1fr) max-content;
+  row-gap: 2px;
+}
+
+.resume-section .compact-cert-item {
+  display: contents;
+}
+
+.resume-section .compact-cert-name {
+  font-weight: 700;
+  min-width: 0;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.resume-section .compact-cert-date {
+  color: #333;
+  font-size: 0.78rem;
+  font-style: italic;
+  text-align: left;
+  white-space: nowrap;
+}
