@@ -165,14 +165,12 @@ function renderCertifications(resume) {
     <div class="compact-cert-list">
       ${resume.certifications.map((cert) => {
         const name = cert.resumeDisplay?.name || cert.name;
-        const issuer = cert.resumeDisplay?.issuer || cert.issuer || "";
         const dateText = cert.resumeDisplay?.dateText || cert.status || "";
 
         return `
           <div class="compact-cert-item">
-            <strong>${escapeHtml(name)}</strong>
-            ${issuer ? `<span>${escapeHtml(issuer)}</span>` : ""}
-            ${dateText ? `<span>${escapeHtml(dateText)}</span>` : ""}
+            <strong class="compact-cert-name">${escapeHtml(name)}</strong>
+            ${dateText ? `<span class="compact-cert-date">${escapeHtml(dateText)}</span>` : ""}
           </div>
         `;
       }).join("")}

@@ -381,3 +381,35 @@ a {
   text-align: right;
   white-space: nowrap;
 }
+
+/* Compact paired certification layout. */
+.resume-section .compact-cert-list {
+  column-gap: 18px;
+  display: grid;
+  font-size: 0.82rem;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 2px;
+}
+
+.resume-section .compact-cert-item {
+  align-items: baseline;
+  column-gap: 8px;
+  display: grid;
+  grid-template-columns: minmax(0, max-content) max-content;
+  justify-content: center;
+  min-width: 0;
+}
+
+.resume-section .compact-cert-name {
+  font-weight: 700;
+  min-width: 0;
+  text-align: right;
+}
+
+.resume-section .compact-cert-date {
+  color: #333;
+  font-size: 0.78rem;
+  font-style: italic;
+  text-align: left;
+  white-space: nowrap;
+}
