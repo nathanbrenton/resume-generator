@@ -3,4 +3,6 @@ const jobs = [
   job20220818RandstadTechnologiesJrDesksideTechnician,
   job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician,
   job20210419PaulMorteTechnicalServicesWarehouseTechnician
+,
+  job20170315PostHasteDigitalEncodeTranscodeSpecialist
 ];
