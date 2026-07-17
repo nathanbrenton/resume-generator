@@ -6,7 +6,7 @@ const job20120201RoundaboutEntertainmentEncodingOperator = {
   employer: "Roundabout Entertainment, Inc.",
   company: "Roundabout Entertainment, Inc.",
   clientOrAssignment:
-    "Major studio, broadcast, streaming, console, and international distribution clients",
+    "Major studio and platform deliverables",
 
   title: "Encoding Operator",
   resumeTitle: "Encoding Operator",

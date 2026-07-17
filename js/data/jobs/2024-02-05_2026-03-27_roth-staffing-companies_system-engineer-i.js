@@ -1,7 +1,7 @@
 const job20240205RothStaffingCompaniesSystemEngineerI = {
   id: "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
   company: "Roth Staffing Companies, L.P.",
-  clientOrAssignment: "Pacific Life",
+  clientOrAssignment: "Pacific Life Insurance",
   title: "System Engineer I",
   resumeTitle: "System Engineer I",
   employmentType: "W-2 Contract",
