@@ -1,5 +1,5 @@
 const eduWguMsSoftwareEngineering = {
-  id: "xxxx-xx-xx_2026-04-16_wgu_ms-software-engineering",
+  id: "2025-09-01_2026-04-16_wgu_ms-software-engineering-ai-engineering",
   institution: "Western Governors University",
   program: "Master of Science, Software Engineering",
   shortName: "M.S. Software Engineering",
@@ -8,9 +8,9 @@ const eduWguMsSoftwareEngineering = {
   status: "Completed",
 
   start: {
-    year: null,
-    month: null,
-    day: null
+    year: 2025,
+    month: 09,
+    day: 01
   },
 
   completed: {
@@ -23,7 +23,7 @@ const eduWguMsSoftwareEngineering = {
   includeByDefault: true,
 
   resumeDisplay: {
-    name: "M.S. Software Engineering",
+    name: "M.S. Software Engineering — AI Engineering",
     detail: "Western Governors University, AI Engineering concentration",
     dateText: "Completed Apr 2026"
   },

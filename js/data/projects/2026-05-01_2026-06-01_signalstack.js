@@ -1,7 +1,7 @@
 const project20260501SignalStack = {
   id: "2026-05-01_2026-06-01_signalstack",
   type: "project",
-  includeByDefault: false,
+  includeByDefault: true,
 
   name: "SignalStack",
   resumeName: "SignalStack AI News Intelligence Platform",
@@ -107,7 +107,7 @@ const project20260501SignalStack = {
     {
       id: "signalstack-001",
       text: "Built an AI-powered news intelligence platform with FastAPI, PostgreSQL, SQLAlchemy, Alembic, Docker, scikit-learn, sentence-transformers, and a lightweight JavaScript dashboard.",
-      printText: "Built a FastAPI/PostgreSQL news intelligence platform with AI retrieval and ML classification workflows.",
+      printText: "Developed a FastAPI/PostgreSQL AI retrieval platform using sentence-transformer embeddings, hybrid search, and scikit-learn classification.",
       includeByDefault: true,
       targetRoles: [
         "Platform Engineer",
@@ -124,7 +124,9 @@ const project20260501SignalStack = {
         { category: "Databases", name: "Alembic" },
         { category: "DevOps & Tooling", name: "Docker" },
         { category: "AI/ML", name: "scikit-learn" },
-        { category: "AI/ML", name: "sentence-transformers" }
+        { category: "AI/ML", name: "sentence-transformers" },
+        { category: "AI/ML", name: "semantic embeddings" },
+        { category: "AI/ML", name: "hybrid retrieval" }
       ]
     },
     {

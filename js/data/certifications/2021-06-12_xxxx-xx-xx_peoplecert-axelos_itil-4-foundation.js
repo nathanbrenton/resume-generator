@@ -19,7 +19,7 @@ const cert20210612PeoplecertAxelosItil4Foundation = {
 
   doesExpire: false,
   includeIfExpired: false,
-  includeByDefault: true,
+  includeByDefault: false,
 
   exam: {
     code: "",

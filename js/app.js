@@ -68,6 +68,22 @@ function updateDebug(resume) {
   ].join("\\n");
 }
 
+function setCustomizeMode(enabled) {
+  const resumePage = document.querySelector("#resumePreview .resume-page");
+
+  if (!resumePage) {
+    return;
+  }
+
+  resumePage.contentEditable = enabled ? "true" : "false";
+  resumePage.spellcheck = enabled;
+  resumePage.classList.toggle("is-customizing", enabled);
+  resumePage.setAttribute(
+    "aria-label",
+    enabled ? "Editable resume preview" : "Resume preview"
+  );
+}
+
 function renderCurrentResume() {
   const resume = buildResume({
     targetRole: document.getElementById("targetRole").value,
@@ -83,12 +99,29 @@ function renderCurrentResume() {
 
   renderResume(resume, document.getElementById("resumePreview"));
   updateDebug(resume);
+  setCustomizeMode(document.getElementById("customizeToggle")?.checked === true);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   populateControls();
   renderCurrentResume();
 
-  document.getElementById("builderControls").addEventListener("change", renderCurrentResume);
+  document.getElementById("builderControls").addEventListener("change", (event) => {
+    if (event.target.id === "customizeToggle") {
+      setCustomizeMode(event.target.checked);
+      return;
+    }
+
+    renderCurrentResume();
+  });
+
+  document.getElementById("resumePreview").addEventListener("click", (event) => {
+    const customizeToggle = document.getElementById("customizeToggle");
+
+    if (customizeToggle.checked && event.target.closest("a")) {
+      event.preventDefault();
+    }
+  });
+
   document.getElementById("printButton").addEventListener("click", () => window.print());
 });

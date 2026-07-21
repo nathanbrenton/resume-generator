@@ -234,7 +234,7 @@ const project202607xxModelHardwareFitExplorer = {
     {
       id: "model-hardware-fit-explorer-001",
       text: "Built a static React/Vite AI model comparison dashboard that analyzes Hugging Face configuration metadata and GGUF profiles to explain qualitative local hardware-fit considerations.",
-      printText: "Built a React/Vite dashboard comparing Hugging Face configs and GGUF profiles for local hardware-fit planning.",
+      printText: "Compared Hugging Face and GGUF models by architecture, parameter scale, attention design, and local hardware constraints.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [

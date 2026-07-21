@@ -110,7 +110,7 @@ function selectedByIds(items, selectedIds) {
   return items.filter((item) => selectedSet.has(item.id));
 }
 
-function groupSkills(skills) {
+function groupSkills(skills, targetRole) {
   const grouped = {};
 
   skills.forEach((skill) => {
@@ -131,9 +131,11 @@ function groupSkills(skills) {
     });
   });
 
+  const categoryOrder = skillCategoryOrderByRole[targetRole] || skillCategoryOrder;
+
   const categories = Object.keys(grouped).sort((a, b) => {
-    const aIndex = skillCategoryOrder.indexOf(a);
-    const bIndex = skillCategoryOrder.indexOf(b);
+    const aIndex = categoryOrder.indexOf(a);
+    const bIndex = categoryOrder.indexOf(b);
 
     if (aIndex === -1 && bIndex === -1) {
       return a.localeCompare(b);
@@ -202,12 +204,17 @@ function buildResume(options = {}) {
     contact: careerData.contactInfo,
     headline: careerData.profile.headlinesByTargetRole[targetRole] || careerData.profile.headline,
     summary: careerData.profile.summariesByTargetRole[targetRole] || careerData.profile.summary,
-    skills: groupSkills([...skillMap.values()])
+    skills: groupSkills([...skillMap.values()], targetRole)
       .slice(0, maxSkillGroups)
-      .map((group) => ({
-        ...group,
-        skills: group.skills.slice(0, maxSkillsPerGroup)
-      })),
+      .map((group) => {
+        const roleLimit = skillGroupLimitsByRole[targetRole]?.[group.category];
+        const groupLimit = roleLimit ?? maxSkillsPerGroup;
+
+        return {
+          ...group,
+          skills: group.skills.slice(0, groupLimit)
+        };
+      }),
     jobs: jobsForResume,
     projects: projectsForResume,
     education: selectedEducation,

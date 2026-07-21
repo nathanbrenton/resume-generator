@@ -19,7 +19,7 @@ const cert20230811ComptiaCysaPlusCe = {
 
   doesExpire: true,
   includeIfExpired: false,
-  includeByDefault: true,
+  includeByDefault: false,
 
   exam: {
     code: "CS0-002",

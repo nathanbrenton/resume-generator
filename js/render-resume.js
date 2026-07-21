@@ -127,7 +127,7 @@ function renderProjects(resume) {
       <div class="entry">
         <div class="entry-header">
           <div>
-            <p class="entry-title">${escapeHtml(project.name)}</p>
+            <p class="entry-title">${escapeHtml(project.resumeName || project.name)}</p>
           </div>
           <div class="entry-meta">
             ${project.repositoryUrl ? `<p><a href="${escapeHtml(project.repositoryUrl)}">${escapeHtml(projectUrl)}</a></p>` : ""}

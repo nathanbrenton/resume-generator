@@ -442,3 +442,44 @@ a {
   text-align: left;
   white-space: nowrap;
 }
+
+/* Temporary manual editing mode for job-posting-specific resume tuning. */
+.customize-toggle {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  font-size: 0.86rem;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.customize-toggle input {
+  margin: 0;
+}
+
+.builder-controls .customize-help {
+  color: #555;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  margin: 6px 0 0;
+}
+
+.resume-page.is-customizing {
+  caret-color: #111;
+  outline: 2px dashed #8a8a8a;
+  outline-offset: 8px;
+}
+
+.resume-page.is-customizing :is(h1, h2, h3, p, li, strong, span, a, div) {
+  cursor: text;
+}
+
+.resume-page.is-customizing [contenteditable="false"] {
+  cursor: default;
+}
+
+@media print {
+  .resume-page.is-customizing {
+    outline: none;
+  }
+}

@@ -7,9 +7,9 @@ const eduUdacityFrontEndWebDeveloperNanodegree = {
   status: "Completed",
 
   start: {
-    year: null,
-    month: null,
-    day: null
+    year: 2019,
+    month: 01,
+    day: 29
   },
 
   completed: {

@@ -192,13 +192,14 @@ const project202606xxOfflineDevLab = {
     {
       id: "offline-dev-lab-001",
       text: "Built a Debian 13 offline development lab that preserves APT packages, Python wheels, Docker images, scripts, screenshots, diagrams, and runbooks for repeatable rebuilds without internet access.",
-      printText: "Built a Debian 13 offline lab preserving APT packages, Python wheels, Docker images, runbooks, and diagrams.",
+      printText: "Created a reproducible Debian 13 environment preserving Python wheels, Docker images, system packages, validation scripts, diagnostics, and synthetic transactions.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
         "Linux Administrator",
         "Systems Administrator",
         "Platform Engineer",
+        "AI/ML Engineer",
         "MLOps / AI Infrastructure"
       ],
       skillTags: [

@@ -50,7 +50,7 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     {
       id: "roth-system-engineer-i-001",
       text: "Supported production RHEL middleware environments with 24/7 uptime expectations, including Oracle WebLogic, Oracle Service Bus, IBM MQ, Apache HTTP Server, Apache Tomcat, and TomEE systems used by enterprise application teams.",
-      printText: "Supported RHEL middleware environments running WebLogic, OSB, IBM MQ, Apache HTTP Server, Tomcat, and TomEE.",
+      printText: "Supported RHEL middleware environments running WebLogic, OSB, IBM MQ, Apache HTTP Server, Tomcat/TomEE.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [

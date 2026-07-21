@@ -41,6 +41,7 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
     "IT Support Specialist",
     "AI Operations Support",
     "Computer Vision QA",
+    "AI/ML Engineer",
     "Platform Engineer",
     "Systems Administrator",
     "Linux Administrator",
@@ -93,32 +94,36 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
     {
       id: "adroit-smartshelf-jr-it-support-001",
       text: "Performed human-in-the-loop validation of AI-generated computer vision transaction results by reviewing multi-camera shopping-session footage and correcting item counts, product types, and purchase outcomes in an in-house system.",
-      printText: "Validated AI-generated computer vision transactions by reviewing multi-camera footage and correcting model outputs.",
+      printText: "Validated AI-generated computer vision transactions against multi-camera source footage, correcting item counts, product types, and purchase outcomes.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
         "AI Operations Support",
         "Computer Vision QA",
+        "AI/ML Engineer",
         "Support Engineer",
         "IT Support Specialist"
       ],
       skillTags: [
         { category: "AI/ML", name: "human-in-the-loop validation" },
         { category: "AI/ML", name: "computer vision QA" },
+        { category: "AI/ML", name: "computer vision output validation" },
         { category: "AI/ML", name: "AI output verification" },
         { category: "AI/ML", name: "model output correction" },
+        { category: "AI/ML", name: "model evaluation" },
         { category: "Media & Encoding", name: "multi-camera video review" }
       ]
     },
     {
       id: "adroit-smartshelf-jr-it-support-002",
       text: "Reviewed 10+ frictionless shopping sessions per day for AI output accuracy, comparing model-generated transaction data against source video from multi-camera retail environments.",
-      printText: "Reviewed 10+ daily frictionless shopping sessions against source video for AI transaction accuracy.",
+      printText: "Reviewed 10+ daily frictionless-shopping sessions for transaction accuracy, identifying discrepancies between recorded activity and generated transactions.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
         "AI Operations Support",
         "Computer Vision QA",
+        "AI/ML Engineer",
         "Support Engineer"
       ],
       skillTags: [

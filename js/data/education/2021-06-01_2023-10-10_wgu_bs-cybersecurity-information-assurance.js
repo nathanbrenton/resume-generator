@@ -1,5 +1,5 @@
 const eduWguBsCybersecurityInformationAssurance = {
-  id: "xxxx-xx-xx_2023-10-10_wgu_bs-cybersecurity-information-assurance",
+  id: "2021-06-01_2023-10-10_wgu_bs-cybersecurity-information-assurance",
   institution: "Western Governors University",
   program: "Bachelor of Science, Cybersecurity and Information Assurance",
   shortName: "B.S. Cybersecurity and Information Assurance",
@@ -7,9 +7,9 @@ const eduWguBsCybersecurityInformationAssurance = {
   status: "Completed",
 
   start: {
-    year: null,
-    month: null,
-    day: null
+    year: 2021,
+    month: 6,
+    day: 1
   },
 
   completed: {

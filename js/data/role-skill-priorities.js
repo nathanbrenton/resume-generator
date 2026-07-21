@@ -78,16 +78,24 @@ const roleSkillPriorities = {
   ],
 
   "AI/ML Engineer": [
-    { category: "AI/ML", name: "Hugging Face" },
-    { category: "AI/ML", name: "transformer configs" },
-    { category: "AI/ML", name: "model cards" },
-    { category: "AI/ML", name: "model metadata" },
+    { category: "AI/ML", name: "Hugging Face Transformers" },
+    { category: "AI/ML", name: "pretrained model inference" },
+    { category: "AI/ML", name: "model evaluation" },
+    { category: "AI/ML", name: "transformer architecture analysis" },
+    { category: "AI/ML", name: "semantic embeddings" },
     { category: "AI/ML", name: "human-in-the-loop validation" },
-    { category: "AI/ML", name: "computer vision QA" },
+    { category: "AI/ML", name: "computer vision output validation" },
+    { category: "AI/ML", name: "hybrid retrieval" },
+    { category: "Programming & Scripting", name: "Python" },
+    { category: "Programming & Scripting", name: "TypeScript" },
+    { category: "Web & API Development", name: "FastAPI" },
     { category: "Web & API Development", name: "React" },
-    { category: "Web & API Development", name: "Vite" },
-    { category: "Programming & Scripting", name: "JavaScript" },
-    { category: "DevOps & Tooling", name: "GitHub" }
+    { category: "Databases", name: "PostgreSQL" },
+    { category: "DevOps & Tooling", name: "Docker" },
+    { category: "DevOps & Tooling", name: "pytest" },
+    { category: "DevOps & Tooling", name: "GitHub" },
+    { category: "Operating Systems", name: "Debian 13" },
+    { category: "Operating Systems", name: "RHEL 9" }
   ],
 
   "MLOps / AI Infrastructure": [
