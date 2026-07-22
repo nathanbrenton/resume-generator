@@ -34,14 +34,19 @@ const project202606xxOfflineDevLab = {
     "Linux Administrator",
     "Systems Administrator",
     "Platform Engineer",
+    "Site Reliability Engineer",
     "DevOps Engineer",
     "Support Engineer",
     "Middleware Engineer",
     "Software Engineer",
     "AI/ML Engineer",
+    "Computer Engineer — Physical AI Compute",
     "MLOps / AI Infrastructure",
     "Technical Coordinator",
-    "Cybersecurity Analyst"
+    "Cybersecurity Analyst",
+    "Media DevOps Engineer",
+    "Junior Operations Engineer",
+    "AI Automation Engineer — Financial Operations"
   ],
 
   projectGoals: [
@@ -189,6 +194,106 @@ const project202606xxOfflineDevLab = {
   },
 
   bullets: [
+    {
+      id: "offline-dev-lab-physical-ai-compute-001",
+      text: "Built a reproducible Debian 13 environment preserving Python packages and Docker images, with automated validation, diagnostics, security checks, and containerized PostgreSQL services.",
+      printText: "Built a reproducible Debian 13 environment preserving Python packages and Docker images with automated validation, diagnostics, and containerized PostgreSQL.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Computer Engineer — Physical AI Compute"
+      ],
+      skillTags: [
+        { category: "Programming & Scripting", name: "Python" },
+        { category: "Programming & Scripting", name: "Bash" },
+        { category: "Linux & Systems Administration", name: "Debian 13" },
+        { category: "Linux & Systems Administration", name: "package management" },
+        { category: "DevOps & Tooling", name: "Docker" },
+        { category: "DevOps & Tooling", name: "containerized services" },
+        { category: "DevOps & Tooling", name: "reproducible environments" },
+        { category: "Performance & Validation", name: "automated testing" },
+        { category: "Performance & Validation", name: "diagnostics" }
+      ]
+    },
+    {
+      id: "offline-dev-lab-sre-001",
+      text: "Built a reproducible Debian 13 environment preserving APT packages, Python wheels, and Docker images, with containerized PostgreSQL, automated startup, health checks, security scans, diagnostics, and synthetic transactions.",
+      printText: "Built a reproducible Debian 13 environment preserving APT packages, Python wheels, and Docker images, with containerized PostgreSQL, health checks, diagnostics, and synthetic transactions.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Site Reliability Engineer"
+      ],
+      skillTags: [
+        { category: "Linux & Production Systems", name: "Debian 13" },
+        { category: "Linux & Production Systems", name: "package management" },
+        { category: "Linux & Production Systems", name: "software distribution" },
+        { category: "Programming & Scripting", name: "Python" },
+        { category: "Programming & Scripting", name: "Bash" },
+        { category: "DevOps & Tooling", name: "Docker" },
+        { category: "Databases", name: "PostgreSQL" },
+        { category: "Monitoring & Incident Management", name: "health checks" },
+        { category: "Testing & Validation", name: "synthetic transactions" }
+      ]
+    },
+    {
+      id: "offline-dev-lab-ai-financial-operations-001",
+      text: "Built a reproducible Debian 13 environment with containerized PostgreSQL, Python/Bash automation, health checks, smoke tests, security scans, diagnostics, and synthetic transactions.",
+      printText: "Built a reproducible Debian 13 lab with containerized PostgreSQL, Python/Bash automation, health checks, security scans, diagnostics, and synthetic transactions.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "AI Automation Engineer — Financial Operations"
+      ],
+      skillTags: [
+        { category: "Programming & Scripting", name: "Python" },
+        { category: "Programming & Scripting", name: "Bash" },
+        { category: "Databases & Data", name: "PostgreSQL" },
+        { category: "DevOps & Tooling", name: "Docker" },
+        { category: "DevOps & Tooling", name: "health checks" },
+        { category: "Testing & Quality", name: "smoke testing" },
+        { category: "Testing & Quality", name: "security testing" },
+        { category: "Linux & Systems Administration", name: "Debian 13" }
+      ]
+    },
+    {
+      id: "offline-dev-lab-junior-operations-001",
+      text: "Built a reproducible Debian 13 environment with containerized PostgreSQL, Bash/Python automation, health checks, smoke tests, security scans, diagnostics, and synthetic transactions.",
+      printText: "Built a reproducible Debian 13 lab with containerized PostgreSQL, Bash/Python automation, health checks, smoke tests, security scans, diagnostics, and synthetic transactions.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Junior Operations Engineer"
+      ],
+      skillTags: [
+        { category: "Programming & Scripting", name: "Python" },
+        { category: "Programming & Scripting", name: "Bash" },
+        { category: "DevOps & Tooling", name: "Docker" },
+        { category: "DevOps & Tooling", name: "smoke testing" },
+        { category: "DevOps & Tooling", name: "health checks" },
+        { category: "Linux & Systems Administration", name: "Debian 13" },
+        { category: "Databases", name: "PostgreSQL" },
+        { category: "Operations & Troubleshooting", name: "diagnostics" }
+      ]
+    },
+    {
+      id: "offline-dev-lab-media-devops-001",
+      text: "Built a reproducible Debian 13 lab with containerized PostgreSQL and Bash automation for stack startup, health checks, smoke tests, security checks, diagnostics, and synthetic transactions.",
+      printText: "Built a Debian 13 lab with containerized PostgreSQL and automated startup, health checks, testing, and diagnostics.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Media DevOps Engineer"
+      ],
+      skillTags: [
+        { category: "Operating Systems", name: "Debian 13" },
+        { category: "Programming & Scripting", name: "Bash" },
+        { category: "Programming & Scripting", name: "Python" },
+        { category: "DevOps & Tooling", name: "Docker" },
+        { category: "DevOps & Tooling", name: "Docker Compose" },
+        { category: "Databases", name: "PostgreSQL" }
+      ]
+    },
     {
       id: "offline-dev-lab-001",
       text: "Built a Debian 13 offline development lab that preserves APT packages, Python wheels, Docker images, scripts, screenshots, diagrams, and runbooks for repeatable rebuilds without internet access.",

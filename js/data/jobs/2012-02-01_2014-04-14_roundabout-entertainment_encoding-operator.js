@@ -3,6 +3,11 @@ const job20120201RoundaboutEntertainmentEncodingOperator = {
   type: "work-history",
   includeByDefault: false,
 
+  maxBulletsByTargetRole: {
+    "Site Reliability Engineer": 1,
+    "Media DevOps Engineer": 2
+  },
+
   employer: "Roundabout Entertainment, Inc.",
   company: "Roundabout Entertainment, Inc.",
   clientOrAssignment:
@@ -77,7 +82,9 @@ const job20120201RoundaboutEntertainmentEncodingOperator = {
     "Media Systems Technician",
     "Encoding / Transcode Technician",
     "Post-Production Technician",
-    "Hardware Repair Technician"
+    "Hardware Repair Technician",
+    "Site Reliability Engineer",
+    "Media DevOps Engineer"
   ],
 
   rolePriority: {
@@ -102,6 +109,54 @@ const job20120201RoundaboutEntertainmentEncodingOperator = {
   },
 
   bullets: [
+    {
+      id: "roundabout-entertainment-encoding-operator-sre-001",
+      text: "Supported time-sensitive transcode and delivery workflows for PlayStation Network, FOX, Netflix, and international media platforms.",
+      printText: "Supported time-sensitive transcode and delivery workflows for PlayStation Network, FOX, Netflix, and international platforms.",
+      includeByDefault: true,
+      strength: "supporting",
+      targetRoles: [
+        "Site Reliability Engineer"
+      ],
+      skillTags: [
+        { category: "Site Reliability & Operations", name: "production support" },
+        { category: "Site Reliability & Operations", name: "operational readiness" },
+        { category: "Testing & Validation", name: "delivery validation" }
+      ]
+    },
+    {
+      id: "roundabout-entertainment-encoding-operator-media-devops-001",
+      text: "Operated and validated tape/file-based ingest, transcode, metadata, and delivery workflows for FOX and other broadcast, streaming, dailies, and archival platforms.",
+      printText: "Operated ingest, transcode, metadata, and delivery workflows for FOX and other media platforms.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Media DevOps Engineer"
+      ],
+      skillTags: [
+        { category: "Media & Encoding", name: "media ingest" },
+        { category: "Media & Encoding", name: "transcoding" },
+        { category: "Media & Encoding", name: "metadata validation" },
+        { category: "Media & Encoding", name: "media delivery" },
+        { category: "Media & Encoding", name: "FOX deliverables" }
+      ]
+    },
+    {
+      id: "roundabout-entertainment-encoding-operator-media-devops-002",
+      text: "Managed dailies and forensic-watermarking workflows for mobile, tablet, desktop, and international media delivery.",
+      printText: "Managed dailies and forensic-watermarking workflows for mobile, tablet, desktop, and international delivery.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Media DevOps Engineer"
+      ],
+      skillTags: [
+        { category: "Media & Encoding", name: "dailies" },
+        { category: "Security", name: "forensic watermarking" },
+        { category: "Media & Encoding", name: "review platform deliverables" },
+        { category: "Media & Encoding", name: "international distribution" }
+      ]
+    },
     {
       id: "roundabout-entertainment-encoding-operator-001",
       text: "Operated broadcast tape deck and file-based workflows for HDCAM-SR, Digital Betacam, D5, D2, D1, Sony 1-inch tape, dailies, archival capture, and platform deliverables.",

@@ -3,6 +3,10 @@ const job20210419PaulMorteTechnicalServicesWarehouseTechnician = {
   type: "work-history",
   includeByDefault: false,
 
+  maxBulletsByTargetRole: {
+    "Junior Operations Engineer": 1
+  },
+
   employer: "Paul Morte Technical Services",
   company: "Paul Morte Technical Services",
   clientOrAssignment: "Yamaha-related service and repair work",
@@ -62,7 +66,8 @@ const job20210419PaulMorteTechnicalServicesWarehouseTechnician = {
     "Encoding / Transcode Technician",
     "Post-Production Technician",
     "Electronics / Repair Technician",
-    "Hardware Repair Technician"
+    "Hardware Repair Technician",
+    "Junior Operations Engineer"
   ],
 
   rolePriority: {
@@ -87,6 +92,22 @@ const job20210419PaulMorteTechnicalServicesWarehouseTechnician = {
   },
 
   bullets: [
+    {
+      id: "paul-morte-warehouse-technician-junior-operations-001",
+      text: "Coordinated inventory tracking, repair staging, order preparation, and shipment workflows in a high-volume warehouse and technical-service environment.",
+      printText: "Coordinated inventory, repair staging, order preparation, and shipment workflows in a technical warehouse.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Junior Operations Engineer"
+      ],
+      skillTags: [
+        { category: "Operations & Troubleshooting", name: "process improvement" },
+        { category: "Project Management", name: "inventory tracking" },
+        { category: "IT Service Management", name: "workflow support" },
+        { category: "Documentation", name: "inventory records" }
+      ]
+    },
     {
       id: "paul-morte-warehouse-technician-001",
       text: "Evaluated Yamaha musical instruments, live sound equipment, communication equipment, and related accessories for repair, calibration, firmware updates, or shipment.",

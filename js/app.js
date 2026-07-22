@@ -18,6 +18,51 @@ function getCheckedValues(containerId) {
     .map((input) => input.value);
 }
 
+function getDefaultSelectionIds(items) {
+  return items
+    .filter((item) => item.includeByDefault !== false)
+    .map((item) => item.id);
+}
+
+function getRoleSelectionIds(targetRole, selectionKey, items) {
+  const roleSelections = careerData.roleDefaultSelections?.[targetRole];
+  const selectedIds = roleSelections?.[selectionKey];
+
+  return Array.isArray(selectedIds)
+    ? selectedIds
+    : getDefaultSelectionIds(items);
+}
+
+function populateSelectionControls(targetRole) {
+  createCheckboxList(
+    "jobControls",
+    careerData.jobs,
+    getRoleSelectionIds(targetRole, "jobIds", careerData.jobs),
+    (job) => `${job.resumeTitle || job.title} — ${job.company}`
+  );
+
+  createCheckboxList(
+    "projectControls",
+    careerData.projects,
+    getRoleSelectionIds(targetRole, "projectIds", careerData.projects),
+    (project) => project.name
+  );
+
+  createCheckboxList(
+    "educationControls",
+    careerData.education,
+    getRoleSelectionIds(targetRole, "educationIds", careerData.education),
+    (entry) => entry.resumeDisplay?.name || entry.shortName || entry.program
+  );
+
+  createCheckboxList(
+    "certificationControls",
+    careerData.certifications,
+    getRoleSelectionIds(targetRole, "certificationIds", careerData.certifications),
+    (entry) => entry.resumeDisplay?.name || entry.name
+  );
+}
+
 function populateControls() {
   const targetRoleSelect = document.getElementById("targetRole");
 
@@ -25,33 +70,7 @@ function populateControls() {
     .map((role) => `<option value="${role}">${role}</option>`)
     .join("");
 
-  createCheckboxList(
-    "jobControls",
-    careerData.jobs,
-    careerData.jobs.filter((job) => job.includeByDefault !== false).map((job) => job.id),
-    (job) => `${job.resumeTitle || job.title} — ${job.company}`
-  );
-
-  createCheckboxList(
-    "projectControls",
-    careerData.projects,
-    careerData.projects.filter((project) => project.includeByDefault !== false).map((project) => project.id),
-    (project) => project.name
-  );
-
-  createCheckboxList(
-    "educationControls",
-    careerData.education,
-    careerData.education.filter((entry) => entry.includeByDefault !== false).map((entry) => entry.id),
-    (entry) => entry.resumeDisplay?.name || entry.shortName || entry.program
-  );
-
-  createCheckboxList(
-    "certificationControls",
-    careerData.certifications,
-    careerData.certifications.filter((entry) => entry.includeByDefault !== false).map((entry) => entry.id),
-    (entry) => entry.resumeDisplay?.name || entry.name
-  );
+  populateSelectionControls(targetRoleSelect.value);
 }
 
 function updateDebug(resume) {
@@ -93,7 +112,15 @@ function renderCurrentResume() {
     selectedCertificationIds: getCheckedValues("certificationControls"),
     maxJobBullets: 2,
     maxProjectBullets: 1,
-    maxSkillGroups: 6,
+    maxSkillGroups: ({
+      "Media DevOps Engineer": 9,
+      "Site Reliability Engineer": 8,
+      "Junior Operations Engineer": 8,
+      "AI Automation Engineer — Financial Operations": 8,
+      "AI-First Software Engineer": 8,
+      "Computer Engineer — Physical AI Compute": 7,
+      "Software Engineer — Full Stack": 7
+    })[document.getElementById("targetRole").value] ?? 6,
     maxSkillsPerGroup: 6
   });
 
@@ -110,6 +137,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (event.target.id === "customizeToggle") {
       setCustomizeMode(event.target.checked);
       return;
+    }
+
+    if (event.target.id === "targetRole") {
+      populateSelectionControls(event.target.value);
     }
 
     renderCurrentResume();

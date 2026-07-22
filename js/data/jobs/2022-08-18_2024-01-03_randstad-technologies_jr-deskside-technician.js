@@ -36,6 +36,15 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
 
   includeByDefault: true,
 
+  maxBulletsByTargetRole: {
+    "Site Reliability Engineer": 1,
+    "Media DevOps Engineer": 2,
+    "Junior Operations Engineer": 2,
+    "AI Automation Engineer — Financial Operations": 1,
+    "Software Engineer — Full Stack": 2,
+    "AI-First Software Engineer": 2
+  },
+
   targetRoles: [
     "Support Engineer",
     "IT Support Specialist",
@@ -45,10 +54,132 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
     "Technical Support Specialist",
     "Technical Coordinator",
     "Hardware Repair Technician",
-    "IT Operations Specialist"
+    "IT Operations Specialist",
+    "Site Reliability Engineer",
+    "Media DevOps Engineer",
+    "Junior Operations Engineer",
+    "AI Automation Engineer — Financial Operations",
+    "Software Engineer — Full Stack",
+    "AI-First Software Engineer"
   ],
 
   bullets: [
+    {
+      id: "randstad-jr-deskside-technician-sre-001",
+      text: "Troubleshot application, VPN, MFA, network-access, and endpoint incidents using ServiceNow, Splunk, SCCM/MECM, and Active Directory.",
+      printText: "Troubleshot application, VPN, MFA, network, and endpoint incidents using ServiceNow, Splunk, SCCM/MECM, AD.",
+      includeByDefault: true,
+      strength: "supporting",
+      targetRoles: [
+        "Site Reliability Engineer"
+      ],
+      skillTags: [
+        { category: "Monitoring & Incident Management", name: "Splunk" },
+        { category: "Monitoring & Incident Management", name: "ServiceNow" },
+        { category: "Monitoring & Incident Management", name: "incident triage" },
+        { category: "Networking & Security", name: "TCP/IP" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-ai-financial-operations-001",
+      text: "Troubleshot enterprise application, access, device, and network incidents using ServiceNow, Splunk, SCCM/MECM, and Active Directory.",
+      printText: "Troubleshot application, access, device, and network incidents using ServiceNow, Splunk, SCCM/MECM, and AD.",
+      includeByDefault: true,
+      strength: "supporting",
+      targetRoles: [
+        "AI Automation Engineer — Financial Operations"
+      ],
+      skillTags: [
+        { category: "Testing & Quality", name: "issue investigation" },
+        { category: "DevOps & Tooling", name: "log analysis" },
+        { category: "Documentation", name: "ServiceNow" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-full-stack-001",
+      text: "Troubleshot enterprise application, access, device, and network issues using ServiceNow, Splunk, SCCM/MECM, and Active Directory.",
+      printText: "Troubleshot application, access, device, network incidents using ServiceNow, Splunk, SCCM/MECM, AD.",
+      includeByDefault: true,
+      strength: "supporting",
+      targetRoles: [
+        "Software Engineer — Full Stack",
+        "AI-First Software Engineer"
+      ],
+      skillTags: [
+        { category: "Testing & Quality", name: "issue investigation" },
+        { category: "DevOps & Tooling", name: "Splunk" },
+        { category: "Documentation", name: "ServiceNow" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-junior-operations-001",
+      text: "Troubleshot VPN, MFA, network-access, endpoint, and enterprise-application incidents using ServiceNow, Splunk, SCCM/MECM, and Active Directory.",
+      printText: "Troubleshot access, endpoint, and application incidents using ServiceNow, Splunk, SCCM/MECM, and AD.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Junior Operations Engineer"
+      ],
+      skillTags: [
+        { category: "Operations & Troubleshooting", name: "incident triage" },
+        { category: "Operations & Troubleshooting", name: "log analysis" },
+        { category: "Enterprise Support", name: "ServiceNow" },
+        { category: "Enterprise Support", name: "Splunk" },
+        { category: "Enterprise Support", name: "SCCM/MECM" },
+        { category: "Enterprise Support", name: "Active Directory" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-junior-operations-002",
+      text: "Analyzed user symptoms, system state, device configuration, and support history to identify likely causes, document findings, and restore service.",
+      printText: "Analyzed symptoms, system state, configurations, and support history to identify causes and restore service.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Junior Operations Engineer"
+      ],
+      skillTags: [
+        { category: "Operations & Troubleshooting", name: "root-cause analysis" },
+        { category: "Operations & Troubleshooting", name: "production support" },
+        { category: "Documentation", name: "ticket notes" },
+        { category: "IT Service Management", name: "service restoration" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-media-devops-001",
+      text: "Troubleshot VPN, MFA, network-access, software, and endpoint incidents using ServiceNow, Splunk, SCCM/MECM, and Active Directory.",
+      printText: "Troubleshot VPN, MFA, network-access, and endpoint incidents using ServiceNow, Splunk, SCCM/MECM, and AD.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Media DevOps Engineer"
+      ],
+      skillTags: [
+        { category: "Ticketing & Collaboration", name: "ServiceNow" },
+        { category: "IT Service Management", name: "incident management" },
+        { category: "Networking & Security", name: "VPN" },
+        { category: "Monitoring & Observability", name: "Splunk" },
+        { category: "Cloud & Infrastructure", name: "SCCM/MECM" },
+        { category: "Security", name: "Active Directory" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-media-devops-002",
+      text: "Provisioned hardened Windows and macOS fleet devices from approved golden images, validating authorized configurations before deployment.",
+      printText: "Provisioned hardened Windows and macOS devices from golden images, validating configurations before deployment.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Media DevOps Engineer"
+      ],
+      skillTags: [
+        { category: "Operating Systems", name: "Windows" },
+        { category: "Operating Systems", name: "macOS" },
+        { category: "Cloud & Infrastructure", name: "endpoint management" },
+        { category: "DevOps & Tooling", name: "deployment validation" },
+        { category: "Security", name: "configuration hardening" }
+      ]
+    },
     {
       id: "randstad-jr-deskside-technician-001",
       text: "Triaged internal end-user incidents and service requests to resolve hardware, operating system, VPN, MFA, software, and enterprise application issues across laptops, mobile devices, and desktop workstations.",
@@ -162,7 +293,9 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
       targetRoles: [
         "Support Engineer",
         "Systems Administrator",
-        "IT Operations Specialist"
+        "IT Operations Specialist",
+        "Software Engineer — Full Stack",
+        "AI-First Software Engineer"
       ],
       skillTags: [
         { category: "Programming & Scripting", name: "PowerShell" },

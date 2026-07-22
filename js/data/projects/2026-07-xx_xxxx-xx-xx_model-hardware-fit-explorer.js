@@ -37,6 +37,7 @@ const project202607xxModelHardwareFitExplorer = {
     "DevOps Engineer",
     "Support Engineer",
     "Software Engineer",
+    "Computer Engineer — Physical AI Compute",
     "AI/ML Engineer",
     "MLOps / AI Infrastructure",
     "Technical Coordinator"
@@ -231,6 +232,27 @@ const project202607xxModelHardwareFitExplorer = {
   },
 
   bullets: [
+    {
+      id: "model-hardware-fit-explorer-physical-ai-compute-001",
+      text: "Built a React/Vite analysis tool comparing Hugging Face and GGUF model architectures, dimensions, context limits, quantization profiles, and qualitative local compute and memory constraints.",
+      printText: "Built a React/Vite tool comparing model architectures, dimensions, context limits, quantization profiles, and local compute/memory constraints.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Computer Engineer — Physical AI Compute"
+      ],
+      skillTags: [
+        { category: "Programming & Scripting", name: "JavaScript" },
+        { category: "AI Systems & Compute", name: "Hugging Face Transformers" },
+        { category: "AI Systems & Compute", name: "GGUF profiles" },
+        { category: "AI Systems & Compute", name: "model metadata analysis" },
+        { category: "AI Systems & Compute", name: "quantization profiles" },
+        { category: "AI Systems & Compute", name: "compute and memory constraints" },
+        { category: "Performance & Validation", name: "deployment analysis" },
+        { category: "Application Development", name: "React" },
+        { category: "Application Development", name: "Vite" }
+      ]
+    },
     {
       id: "model-hardware-fit-explorer-001",
       text: "Built a static React/Vite AI model comparison dashboard that analyzes Hugging Face configuration metadata and GGUF profiles to explain qualitative local hardware-fit considerations.",

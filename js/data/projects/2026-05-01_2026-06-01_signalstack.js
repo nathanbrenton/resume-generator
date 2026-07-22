@@ -50,16 +50,22 @@ const project20260501SignalStack = {
     "Systems Administrator",
     "Middleware Engineer",
     "Platform Engineer",
+    "Site Reliability Engineer",
     "Support Engineer",
     "Cybersecurity Analyst",
     "Security Analyst",
     "Software Engineer",
+    "Software Engineer — Full Stack",
+    "AI-First Software Engineer",
     "AI/ML Engineer",
+    "AI Automation Engineer — Financial Operations",
     "MLOps / AI Infrastructure",
     "Technical Coordinator",
     "Digital Media Technician",
     "Media Systems Technician",
-    "Post-Production Technician"
+    "Post-Production Technician",
+    "Media DevOps Engineer",
+    "Junior Operations Engineer"
   ],
 
   rolePriority: {
@@ -67,12 +73,16 @@ const project20260501SignalStack = {
     "Systems Administrator": 1,
     "Middleware Engineer": 1,
     "Platform Engineer": 3,
+    "Site Reliability Engineer": 3,
     "Support Engineer": 1,
     "IT Support Specialist": 0,
     "Cybersecurity Analyst": 1,
     "Security Analyst": 1,
     "Software Engineer": 3,
+    "Software Engineer — Full Stack": 3,
+    "AI-First Software Engineer": 4,
     "AI/ML Engineer": 3,
+    "AI Automation Engineer — Financial Operations": 4,
     "MLOps / AI Infrastructure": 3,
     "Technical Coordinator": 2,
     "Digital Media Technician": 1,
@@ -81,6 +91,10 @@ const project20260501SignalStack = {
     "Post-Production Technician": 1,
     "Electronics / Repair Technician": 0,
     "Hardware Repair Technician": 0
+  },
+
+  maxBulletsByTargetRole: {
+    "AI Automation Engineer — Financial Operations": 2
   },
 
   features: [
@@ -104,6 +118,137 @@ const project20260501SignalStack = {
   ],
 
   bullets: [
+    {
+      id: "signalstack-ai-first-001",
+      text: "Built a containerized FastAPI/PostgreSQL AI application with automated ingestion, semantic retrieval, ML classification, API endpoints, health visibility, and dashboard workflows.",
+      printText: "Built a containerized FastAPI/PostgreSQL AI app with ingestion, semantic retrieval, ML classification, APIs, health visibility, and dashboard workflows.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "AI-First Software Engineer"
+      ],
+      skillTags: [
+        { category: "Programming & Scripting", name: "Python" },
+        { category: "Backend & APIs", name: "FastAPI" },
+        { category: "Backend & APIs", name: "REST APIs" },
+        { category: "Databases & Data", name: "PostgreSQL" },
+        { category: "Databases & Data", name: "ingestion pipelines" },
+        { category: "DevOps & Tooling", name: "Docker" },
+        { category: "AI & Automation", name: "semantic retrieval" },
+        { category: "AI & Automation", name: "ML classification" }
+      ]
+    },
+    {
+      id: "signalstack-sre-001",
+      text: "Built a containerized FastAPI/PostgreSQL platform with automated ingestion, duplicate detection, full-text and semantic retrieval, ML classification, health visibility, and dashboard controls.",
+      printText: "Built a containerized FastAPI/PostgreSQL platform with automated ingestion, duplicate detection, retrieval, ML classification, health visibility, and dashboard controls.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Site Reliability Engineer"
+      ],
+      skillTags: [
+        { category: "Programming & Scripting", name: "Python" },
+        { category: "DevOps & Tooling", name: "Docker" },
+        { category: "Databases", name: "PostgreSQL" },
+        { category: "Monitoring & Incident Management", name: "health checks" },
+        { category: "Testing & Validation", name: "data validation" }
+      ]
+    },
+    {
+      id: "signalstack-ai-financial-operations-001",
+      text: "Built a containerized FastAPI/PostgreSQL intelligence platform with RSS ingestion, normalization, full-text and semantic retrieval, ML classification, health monitoring, and dashboard workflows.",
+      printText: "Built a containerized FastAPI/PostgreSQL platform with RSS ingestion, normalization, full-text/semantic retrieval, ML classification, health monitoring, and dashboard workflows.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "AI Automation Engineer — Financial Operations"
+      ],
+      skillTags: [
+        { category: "Programming & Scripting", name: "Python" },
+        { category: "Backend & APIs", name: "FastAPI" },
+        { category: "Databases & Data", name: "PostgreSQL" },
+        { category: "Databases & Data", name: "SQL" },
+        { category: "Databases & Data", name: "ingestion pipelines" },
+        { category: "AI & Automation", name: "semantic retrieval" },
+        { category: "AI & Automation", name: "ML classification" },
+        { category: "DevOps & Tooling", name: "Docker" }
+      ]
+    },
+    {
+      id: "signalstack-ai-financial-operations-002",
+      text: "Implemented duplicate detection, feed and ML health visibility, and dashboard controls for monitoring automated ingestion and model workflows.",
+      printText: "Added duplicate detection, feed/ML health visibility, and dashboard controls for automated data and model workflows.",
+      includeByDefault: true,
+      strength: "supporting",
+      targetRoles: [
+        "AI Automation Engineer — Financial Operations"
+      ],
+      skillTags: [
+        { category: "Testing & Quality", name: "data validation" },
+        { category: "DevOps & Tooling", name: "health checks" },
+        { category: "AI & Automation", name: "model monitoring" },
+        { category: "Frontend Development", name: "dashboard workflows" }
+      ]
+    },
+    {
+      id: "signalstack-full-stack-001",
+      text: "Built a containerized FastAPI/PostgreSQL data platform with automated ingestion, normalization, semantic retrieval, ML classification, health visibility, and dashboard workflows.",
+      printText: "Built a containerized FastAPI/PostgreSQL platform with RSS ingestion, normalization, full-text/semantic retrieval, ML classification, health visibility, and dashboard workflows.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Software Engineer — Full Stack"
+      ],
+      skillTags: [
+        { category: "Programming & Scripting", name: "Python" },
+        { category: "Backend & APIs", name: "FastAPI" },
+        { category: "Backend & APIs", name: "REST APIs" },
+        { category: "Databases & Data", name: "PostgreSQL" },
+        { category: "Databases & Data", name: "ingestion pipelines" },
+        { category: "DevOps & Tooling", name: "Docker" },
+        { category: "AI & Data Products", name: "semantic retrieval" },
+        { category: "AI & Data Products", name: "ML classification" }
+      ]
+    },
+    {
+      id: "signalstack-junior-operations-001",
+      text: "Built a containerized FastAPI/PostgreSQL platform that automates data ingestion, normalization, semantic retrieval, ML classification, health monitoring, and dashboard workflows.",
+      printText: "Built a containerized FastAPI/PostgreSQL platform automating ingestion, normalization, semantic retrieval, ML classification, health monitoring, and dashboard workflows.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Junior Operations Engineer"
+      ],
+      skillTags: [
+        { category: "Programming & Scripting", name: "Python" },
+        { category: "Web & API Development", name: "FastAPI" },
+        { category: "Web & API Development", name: "REST APIs" },
+        { category: "Databases", name: "PostgreSQL" },
+        { category: "DevOps & Tooling", name: "Docker" },
+        { category: "AI & Automation", name: "workflow automation" },
+        { category: "AI & Automation", name: "semantic retrieval" },
+        { category: "Operations & Troubleshooting", name: "health visibility" }
+      ]
+    },
+    {
+      id: "signalstack-media-devops-001",
+      text: "Built a containerized FastAPI/PostgreSQL platform with automated ingestion, feed-health visibility, semantic retrieval, ML classification, and dashboard controls.",
+      printText: "Built a containerized FastAPI/PostgreSQL platform with automated ingestion, health visibility, and AI retrieval workflows.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Media DevOps Engineer"
+      ],
+      skillTags: [
+        { category: "Programming & Scripting", name: "Python" },
+        { category: "Web & API Development", name: "FastAPI" },
+        { category: "Databases", name: "PostgreSQL" },
+        { category: "DevOps & Tooling", name: "Docker" },
+        { category: "AI/ML", name: "semantic embeddings" },
+        { category: "IT Service Management", name: "health visibility" }
+      ]
+    },
     {
       id: "signalstack-001",
       text: "Built an AI-powered news intelligence platform with FastAPI, PostgreSQL, SQLAlchemy, Alembic, Docker, scikit-learn, sentence-transformers, and a lightweight JavaScript dashboard.",

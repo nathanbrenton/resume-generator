@@ -161,6 +161,10 @@ function renderEducation(resume) {
 }
 
 function renderCertifications(resume) {
+  if (!Array.isArray(resume.certifications) || resume.certifications.length === 0) {
+    return "";
+  }
+
   const body = `
     <div class="compact-cert-list">
       ${resume.certifications.map((cert) => {

@@ -6,31 +6,45 @@ const profile = {
     "Linux Administrator": "Linux Administrator | RHEL Middleware | Offline Systems",
     "Systems Administrator": "Systems Administrator | Endpoint Support | Platform Operations",
     "Platform Engineer": "Platform Engineer | Linux Automation | AI Infrastructure",
+    "Site Reliability Engineer": "Site Reliability Engineer | Linux Production | Python & Automation",
     "Support Engineer": "Support Engineer | Enterprise IT | Platform Support",
     "Middleware Engineer": "Middleware Engineer | RHEL | WebLogic | Tomcat | IBM MQ",
     "Software Engineer": "Software Engineer | Python | JavaScript | FastAPI | React",
+    "Software Engineer — Full Stack": "Software Engineer | React & TypeScript | Python / FastAPI",
+    "AI-First Software Engineer": "AI-First Software Engineer | Full-Stack | Rapid Prototyping",
     "AI/ML Engineer": "Applied AI / ML Engineer | Model Evaluation | AI Validation",
+    "Computer Engineer — Physical AI Compute": "AI Systems Engineer | Python & Linux | Compute Analysis",
+    "AI Automation Engineer — Financial Operations": "AI Automation | Python & PostgreSQL | Full-Stack Applications",
     "MLOps / AI Infrastructure": "MLOps / AI Infrastructure | Offline Labs | Local Model Planning",
     "Technical Coordinator": "Technical Coordinator | IT Operations | Documentation",
     "Digital Media Technician": "Digital Media Technician | Encoding | QC | Media Workflows",
     "Media Systems Technician": "Media Systems Technician | Post-Production | Technical Support",
     "Encoding / Transcode Technician": "Encoding / Transcode Technician | Media QC | File Delivery",
-    "Post-Production Technician": "Post-Production Technician | Media Ops | Workflow Support"
+    "Post-Production Technician": "Post-Production Technician | Media Ops | Workflow Support",
+    "Media DevOps Engineer": "Media DevOps | Linux Automation | Media Supply Chain",
+    "Junior Operations Engineer": "Operations Engineer | AI Automation | Systems Troubleshooting"
   },
 
   summariesByTargetRole: {
     "Linux Administrator": "Linux and platform support professional with hands-on experience supporting RHEL middleware environments, automating validation workflows, troubleshooting services, documenting rebuild procedures, and building offline-capable Linux development labs.",
     "Systems Administrator": "Systems and support professional with experience across enterprise endpoint support, RHEL middleware operations, Docker/PostgreSQL lab environments, incident workflows, documentation, and operational validation.",
     "Platform Engineer": "Platform-focused technologist with experience building repeatable development environments, validating service health, documenting operational workflows, and connecting AI tooling with infrastructure planning.",
+    "Site Reliability Engineer": "Systems engineer with 2+ years supporting production RHEL services, automating recovery and validation with Python/Bash, and building containerized PostgreSQL environments with health checks, diagnostics, and automated testing.",
     "Support Engineer": "Technical support professional with experience across enterprise endpoint support, RHEL middleware operations, remote troubleshooting, ServiceNow workflows, hardware support, documentation, and user-facing support.",
     "Middleware Engineer": "Middleware and platform support professional with hands-on experience supporting Oracle WebLogic, Oracle Service Bus, IBM MQ, Apache HTTP Server, Apache Tomcat, RHEL services, patching, deployments, migrations, and operational validation.",
     "Software Engineer": "Software engineering graduate with portfolio experience building JavaScript/React front ends, FastAPI back ends, PostgreSQL integrations, validation scripts, documentation, and AI-focused model metadata tooling.",
+    "Software Engineer — Full Stack": "Software engineering master’s graduate and systems engineer building full-stack React/TypeScript and Python/FastAPI applications with PostgreSQL, containerized services, automated testing, complex workflows, and AI-assisted features.",
+    "AI-First Software Engineer": "Software engineering master’s graduate and systems engineer using AI-assisted development to rapidly build tested React/TypeScript and Python/FastAPI applications with PostgreSQL, containerized services, API integrations, and complex workflows.",
     "AI/ML Engineer": "Software engineering master’s graduate and systems engineer experienced in Hugging Face model integration, Python/FastAPI AI applications, deployment analysis, and computer vision validation against multi-camera video.",
+    "Computer Engineer — Physical AI Compute": "Software engineering master’s graduate and systems engineer building Python/Linux tools for AI model analysis, local hardware-fit planning, signal processing, inference services, and reproducible containerized environments.",
+    "AI Automation Engineer — Financial Operations": "Software engineering master’s graduate and systems engineer building Python, PostgreSQL, and React applications with AI-assisted workflows, semantic retrieval, data pipelines, containerized services, automated testing, and operational controls.",
     "MLOps / AI Infrastructure": "AI infrastructure-focused technologist with portfolio experience in offline development workflows, Python environment management, Docker-based services, model metadata analysis, and local hardware-fit planning.",
     "Technical Coordinator": "Technical operations professional with experience coordinating validation tasks, support handoffs, documentation, incident/change workflows, deployment support, and cross-team technical communication.",
     "Digital Media Technician": "Technical professional with experience spanning digital media workflows, encoding/transcode operations, quality control, hardware troubleshooting, documentation, and production-support environments.",
     "Media Systems Technician": "Media and IT support professional with experience troubleshooting production tools, endpoint hardware, file-based workflows, documentation, and technical handoffs across support environments.",
     "Encoding / Transcode Technician": "Digital media technician with experience supporting file-based media workflows, encoding and transcode operations, quality control, delivery preparation, troubleshooting, and production documentation.",
-    "Post-Production Technician": "Post-production support professional with experience across digital media operations, technical troubleshooting, QC workflows, user support, hardware repair, and documentation."
+    "Post-Production Technician": "Post-production support professional with experience across digital media operations, technical troubleshooting, QC workflows, user support, hardware repair, and documentation.",
+    "Media DevOps Engineer": "Systems engineer and media-technology developer experienced in production RHEL middleware, Python/Bash automation, containerized services, and high-volume media ingest, transcode, QC, and delivery workflows.",
+    "Junior Operations Engineer": "Systems engineer and software engineering master’s graduate experienced in production troubleshooting, log analysis, Python automation, AI-assisted applications, Linux environments, APIs, databases, and cross-functional operational support."
   }
 };

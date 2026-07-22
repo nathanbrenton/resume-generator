@@ -106,8 +106,11 @@ function selectedByIds(items, selectedIds) {
     return items.filter((item) => item.includeByDefault !== false);
   }
 
-  const selectedSet = new Set(selectedIds);
-  return items.filter((item) => selectedSet.has(item.id));
+  const itemsById = new Map(items.map((item) => [item.id, item]));
+
+  return selectedIds
+    .map((id) => itemsById.get(id))
+    .filter(Boolean);
 }
 
 function groupSkills(skills, targetRole) {
@@ -175,7 +178,9 @@ function buildResume(options = {}) {
   addSkills(skillMap, careerData.roleSkillPriorities[targetRole], 25);
 
   const jobsForResume = selectedJobs.map((job) => {
-    const bullets = selectBullets(job, targetRole, Math.max(maxJobBullets, 2));
+    const roleBulletLimit = job.maxBulletsByTargetRole?.[targetRole];
+    const bulletLimit = roleBulletLimit ?? Math.max(maxJobBullets, 2);
+    const bullets = selectBullets(job, targetRole, bulletLimit);
     bullets.forEach((bullet) => addSkills(skillMap, bullet.skillTags, 3));
 
     return {
@@ -186,7 +191,9 @@ function buildResume(options = {}) {
   });
 
   const projectsForResume = selectedProjects.map((project) => {
-    const bullets = selectBullets(project, targetRole, maxProjectBullets);
+    const roleBulletLimit = project.maxBulletsByTargetRole?.[targetRole];
+    const bulletLimit = roleBulletLimit ?? maxProjectBullets;
+    const bullets = selectBullets(project, targetRole, bulletLimit);
     bullets.forEach((bullet) => addSkills(skillMap, bullet.skillTags, 3));
 
     return {

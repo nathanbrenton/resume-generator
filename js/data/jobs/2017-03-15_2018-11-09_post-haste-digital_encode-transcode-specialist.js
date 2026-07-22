@@ -3,6 +3,12 @@ const job20170315PostHasteDigitalEncodeTranscodeSpecialist = {
   type: "work-history",
   includeByDefault: false,
 
+  maxBulletsByTargetRole: {
+    "Computer Engineer — Physical AI Compute": 1,
+    "Site Reliability Engineer": 1,
+    "Media DevOps Engineer": 2
+  },
+
   employer: "Post Haste Digital",
   company: "Post Haste Digital",
   clientOrAssignment: "Major studio and independent post-production clients",
@@ -71,7 +77,10 @@ const job20170315PostHasteDigitalEncodeTranscodeSpecialist = {
     "Media Systems Technician",
     "Encoding / Transcode Technician",
     "Post-Production Technician",
-    "Hardware Repair Technician"
+    "Computer Engineer — Physical AI Compute",
+    "Hardware Repair Technician",
+    "Site Reliability Engineer",
+    "Media DevOps Engineer"
   ],
 
   rolePriority: {
@@ -96,6 +105,72 @@ const job20170315PostHasteDigitalEncodeTranscodeSpecialist = {
   },
 
   bullets: [
+    {
+      id: "post-haste-digital-encode-transcode-specialist-physical-ai-compute-001",
+      text: "Automated and monitored concurrent media-processing workloads using Bash, FFmpeg, render queues, error logs, and automated quality-control systems.",
+      printText: "Automated and monitored concurrent media workloads with Bash, FFmpeg, render queues, error logs, and automated QC.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Computer Engineer — Physical AI Compute"
+      ],
+      skillTags: [
+        { category: "Programming & Scripting", name: "Bash" },
+        { category: "Signal & Media Processing", name: "FFmpeg" },
+        { category: "Performance & Validation", name: "automated testing" },
+        { category: "Performance & Validation", name: "diagnostics" }
+      ]
+    },
+    {
+      id: "post-haste-digital-encode-transcode-specialist-sre-001",
+      text: "Automated and monitored high-volume media-processing queues using Bash, FFmpeg, concurrent systems, error logs, and automated quality-control workflows.",
+      printText: "Automated and monitored high-volume transcode queues with Bash, FFmpeg, error logs, automated QC, and concurrent systems.",
+      includeByDefault: true,
+      strength: "supporting",
+      targetRoles: [
+        "Site Reliability Engineer"
+      ],
+      skillTags: [
+        { category: "Programming & Scripting", name: "Bash" },
+        { category: "Monitoring & Incident Management", name: "log analysis" },
+        { category: "Site Reliability & Operations", name: "operational readiness" },
+        { category: "Testing & Validation", name: "automated validation" }
+      ]
+    },
+    {
+      id: "post-haste-digital-encode-transcode-specialist-media-devops-001",
+      text: "Automated and monitored high-volume media transcode workflows using Bash, FFmpeg, concurrent render queues, error logging, and automated quality-control systems.",
+      printText: "Automated and monitored high-volume transcodes with Bash, FFmpeg, render queues, error logs, and automated QC.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Media DevOps Engineer"
+      ],
+      skillTags: [
+        { category: "Programming & Scripting", name: "Bash" },
+        { category: "Media & Encoding", name: "FFmpeg" },
+        { category: "Media & Encoding", name: "transcoding" },
+        { category: "Media & Encoding", name: "automated QC" },
+        { category: "IT Service Management", name: "error monitoring" }
+      ]
+    },
+    {
+      id: "post-haste-digital-encode-transcode-specialist-media-devops-002",
+      text: "Managed FOX transcode workloads across five concurrent systems and supported AS-02, DCP, and IMF onboarding workflows for Netflix and HBO.",
+      printText: "Managed FOX workloads across five concurrent transcode systems and supported Netflix/HBO onboarding workflows.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Media DevOps Engineer"
+      ],
+      skillTags: [
+        { category: "Media & Encoding", name: "FOX deliverables" },
+        { category: "Media & Encoding", name: "concurrent transcode systems" },
+        { category: "Media & Encoding", name: "AS-02" },
+        { category: "Media & Encoding", name: "DCP" },
+        { category: "Media & Encoding", name: "IMF" }
+      ]
+    },
     {
       id: "post-haste-digital-encode-transcode-specialist-001",
       text: "Encoded and transcoded video/audio from tape and file-based sources into mezzanine, archival, intermediary, and deliverable formats for major studio post-production workflows.",

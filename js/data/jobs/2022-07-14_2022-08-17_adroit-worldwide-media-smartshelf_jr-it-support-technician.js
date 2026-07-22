@@ -36,18 +36,31 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
 
   includeByDefault: true,
 
+  maxBulletsByTargetRole: {
+    "Computer Engineer — Physical AI Compute": 1,
+    "Junior Operations Engineer": 2,
+    "AI Automation Engineer — Financial Operations": 2,
+    "Software Engineer — Full Stack": 1,
+    "AI-First Software Engineer": 2
+  },
+
   targetRoles: [
     "Support Engineer",
     "IT Support Specialist",
     "AI Operations Support",
     "Computer Vision QA",
+    "Computer Engineer — Physical AI Compute",
     "AI/ML Engineer",
     "Platform Engineer",
     "Systems Administrator",
     "Linux Administrator",
     "Technical Coordinator",
     "Media Systems / Encoding Engineer",
-    "Electronics Repair Technician"
+    "Electronics Repair Technician",
+    "Junior Operations Engineer",
+    "AI Automation Engineer — Financial Operations",
+    "Software Engineer — Full Stack",
+    "AI-First Software Engineer"
   ],
 
   aiWorkflow: {
@@ -91,6 +104,100 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
   },
 
   bullets: [
+    {
+      id: "adroit-smartshelf-jr-it-support-physical-ai-compute-001",
+      text: "Validated computer-vision model outputs against multi-camera source footage, correcting classifications and structured ground-truth records.",
+      printText: "Validated computer-vision outputs against multi-camera footage, correcting classifications and ground-truth records.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Computer Engineer — Physical AI Compute"
+      ],
+      skillTags: [
+        { category: "AI Systems & Compute", name: "computer vision validation" },
+        { category: "Performance & Validation", name: "model output validation" },
+        { category: "Performance & Validation", name: "data validation" }
+      ]
+    },
+    {
+      id: "adroit-smartshelf-jr-it-support-ai-financial-operations-001",
+      text: "Validated AI-generated retail transactions against multi-camera footage, identifying discrepancies and correcting item counts, product classifications, and purchase outcomes.",
+      printText: "Validated AI-generated retail transactions against video, correcting item counts, product classes, and outcomes.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "AI Automation Engineer — Financial Operations",
+        "AI-First Software Engineer"
+      ],
+      skillTags: [
+        { category: "AI & Automation", name: "human-in-the-loop validation" },
+        { category: "AI & Automation", name: "model output validation" },
+        { category: "Testing & Quality", name: "discrepancy investigation" }
+      ]
+    },
+    {
+      id: "adroit-smartshelf-jr-it-support-ai-financial-operations-002",
+      text: "Supported operational AI quality workflows through discrepancy investigation, structured output correction, and documented escalation of field-system issues.",
+      printText: "Supported AI quality workflows through discrepancy investigation, output correction, and documented issue escalation.",
+      includeByDefault: true,
+      strength: "supporting",
+      targetRoles: [
+        "AI Automation Engineer — Financial Operations",
+        "AI-First Software Engineer"
+      ],
+      skillTags: [
+        { category: "AI & Automation", name: "model evaluation" },
+        { category: "Testing & Quality", name: "issue investigation" },
+        { category: "Testing & Quality", name: "data validation" }
+      ]
+    },
+    {
+      id: "adroit-smartshelf-jr-it-support-full-stack-001",
+      text: "Supported deployed AI retail systems through operational review, discrepancy investigation, and structured correction of computer-vision transaction outputs.",
+      printText: "Supported deployed AI retail systems through discrepancy investigation and structured correction of model outputs.",
+      includeByDefault: true,
+      strength: "supporting",
+      targetRoles: [
+        "Software Engineer — Full Stack"
+      ],
+      skillTags: [
+        { category: "AI & Data Products", name: "AI-assisted products" },
+        { category: "AI & Data Products", name: "model output validation" },
+        { category: "Testing & Quality", name: "discrepancy investigation" }
+      ]
+    },
+    {
+      id: "adroit-smartshelf-jr-it-support-junior-operations-001",
+      text: "Validated AI-generated retail transactions against multi-camera source footage, identifying discrepancies and correcting item counts, product classifications, and purchase outcomes.",
+      printText: "Validated AI-generated retail transactions against video, correcting item counts, product classes, and outcomes.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Junior Operations Engineer"
+      ],
+      skillTags: [
+        { category: "AI & Automation", name: "human-in-the-loop validation" },
+        { category: "AI & Automation", name: "model output validation" },
+        { category: "Operations & Troubleshooting", name: "data discrepancy analysis" },
+        { category: "AI/ML", name: "computer vision QA" }
+      ]
+    },
+    {
+      id: "adroit-smartshelf-jr-it-support-junior-operations-002",
+      text: "Monitored deployed field systems and escalated hardware and software alerts with documented findings, support handoffs, and follow-up expectations.",
+      printText: "Monitored field systems and escalated hardware/software alerts with findings and support handoffs.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Junior Operations Engineer"
+      ],
+      skillTags: [
+        { category: "Operations & Troubleshooting", name: "incident triage" },
+        { category: "Operations & Troubleshooting", name: "monitoring" },
+        { category: "Documentation", name: "support handoffs" },
+        { category: "Ticketing & Collaboration", name: "Slack" }
+      ]
+    },
     {
       id: "adroit-smartshelf-jr-it-support-001",
       text: "Performed human-in-the-loop validation of AI-generated computer vision transaction results by reviewing multi-camera shopping-session footage and correcting item counts, product types, and purchase outcomes in an in-house system.",

@@ -1,5 +1,5 @@
 const eduUdacityFrontEndWebDeveloperNanodegree = {
-  id: "xxxx-xx-xx_2019-05-12_udacity_front-end-web-developer-nanodegree",
+  id: "2019-01-29_2019-05-12_udacity_front-end-web-developer-nanodegree",
   institution: "Udacity",
   program: "Front-End Web Developer Nanodegree",
   shortName: "Front-End Web Developer Nanodegree",
@@ -32,6 +32,7 @@ const eduUdacityFrontEndWebDeveloperNanodegree = {
     "Front-End Developer",
     "Web Developer",
     "JavaScript Developer",
+    "Software Engineer — Full Stack",
     "AI/ML Engineer"
   ],
 
