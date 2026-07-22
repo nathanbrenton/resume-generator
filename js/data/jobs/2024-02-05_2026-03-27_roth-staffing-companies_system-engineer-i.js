@@ -37,20 +37,35 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
   includeByDefault: true,
 
   maxBulletsByTargetRole: {
+    "IT Systems Engineer — Automation & Self-Service": 3,
+    "Application Support Analyst": 4,
+    "Support Engineer — APIs & Technical Support": 3,
     "Computer Engineer — Physical AI Compute": 3,
     "Site Reliability Engineer": 4,
+    "Associate Software Engineer — Reliability": 4,
+    "Infrastructure Analyst — Deployment & Operations": 4,
+    "Technical Support Engineer — Industrial Applications": 2,
     "Media DevOps Engineer": 3,
     "Junior Operations Engineer": 3,
     "AI Automation Engineer — Financial Operations": 3,
+    "AI Automation Engineer — Business Systems Integration": 3,
     "Software Engineer — Full Stack": 3,
-    "AI-First Software Engineer": 3
+    "AI-First Software Engineer": 3,
+    "Platform Engineer — Digital Workplace Automation": 3
   },
 
   targetRoles: [
     "Middleware Engineer",
     "Platform Engineer",
+    "Platform Engineer — Digital Workplace Automation",
+    "IT Systems Engineer — Automation & Self-Service",
+    "Application Support Analyst",
+    "Support Engineer — APIs & Technical Support",
     "Computer Engineer — Physical AI Compute",
     "Site Reliability Engineer",
+    "Associate Software Engineer — Reliability",
+    "Infrastructure Analyst — Deployment & Operations",
+    "Technical Support Engineer — Industrial Applications",
     "Systems Administrator",
     "Linux Administrator",
     "Support Engineer",
@@ -59,11 +74,387 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     "Media DevOps Engineer",
     "Junior Operations Engineer",
     "AI Automation Engineer — Financial Operations",
+    "AI Automation Engineer — Business Systems Integration",
     "Software Engineer — Full Stack",
     "AI-First Software Engineer"
   ],
 
   bullets: [
+    {
+      id: "roth-system-engineer-i-ai-business-automation-001",
+      text: "Automated middleware startup, recovery, environment validation, and operational checks using Bash, systemd, cron, and reusable scripts.",
+      printText: "Automated middleware startup, recovery, environment validation, and operational checks with Bash, systemd, cron, and reusable scripts.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["AI Automation Engineer — Business Systems Integration"],
+      skillTags: [
+        { category: "Automation & Integration", name: "workflow automation" },
+        { category: "Programming & APIs", name: "Bash" },
+        { category: "Enterprise Operations", name: "production support" },
+        { category: "Testing & Delivery", name: "deployment validation" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-ai-business-automation-002",
+      text: "Supported business-critical RHEL application services across development, test, staging, production, and disaster-recovery environments, coordinating deployments, patching, configuration changes, and post-change validation.",
+      printText: "Supported RHEL application services across development, test, staging, production, and DR; coordinated deployments, patching, configuration, and validation.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["AI Automation Engineer — Business Systems Integration"],
+      skillTags: [
+        { category: "Enterprise Operations", name: "production support" },
+        { category: "Enterprise Operations", name: "cross-team delivery" },
+        { category: "Testing & Delivery", name: "deployment validation" },
+        { category: "Automation & Integration", name: "system integration" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-ai-business-automation-003",
+      text: "Investigated application, operating-system, network, and configuration issues using logs and Splunk; documented procedures and resolution details and coordinated cross-team support.",
+      printText: "Investigated application, OS, network, and configuration issues with logs and Splunk; documented resolutions and coordinated cross-team support.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["AI Automation Engineer — Business Systems Integration"],
+      skillTags: [
+        { category: "Enterprise Operations", name: "Splunk" },
+        { category: "Enterprise Operations", name: "technical documentation" },
+        { category: "Enterprise Operations", name: "stakeholder communication" },
+        { category: "Automation & Integration", name: "business process analysis" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-aveva-tech-support-001",
+      text: "Supported business-critical RHEL middleware across test, staging, production, and disaster-recovery environments, coordinating deployments, upgrades, patching, and post-change validation.",
+      printText: "Supported RHEL middleware across test, staging, production, and DR while coordinating deployments, upgrades, patching, and validation.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Technical Support Engineer — Industrial Applications"],
+      skillTags: [
+        { category: "Application Reliability", name: "production support" },
+        { category: "Deployment & Upgrades", name: "application deployments" },
+        { category: "Deployment & Upgrades", name: "upgrades and patching" },
+        { category: "Deployment & Upgrades", name: "post-change validation" },
+        { category: "Linux & Middleware", name: "RHEL 9" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-aveva-tech-support-002",
+      text: "Investigated application, operating-system, network, and middleware incidents using logs, service state, configuration analysis, and Splunk; documented corrective actions and escalation details.",
+      printText: "Investigated application, OS, network, and middleware incidents with logs, service state, configuration analysis, and Splunk; documented corrective actions.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Technical Support Engineer — Industrial Applications"],
+      skillTags: [
+        { category: "Application Reliability", name: "application troubleshooting" },
+        { category: "Application Reliability", name: "root-cause analysis" },
+        { category: "Application Reliability", name: "corrective actions" },
+        { category: "Monitoring & Diagnostics", name: "Splunk" },
+        { category: "Monitoring & Diagnostics", name: "log analysis" },
+        { category: "Documentation & Collaboration", name: "issue escalation" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-ust-infrastructure-001",
+      text: "Supported business-critical RHEL middleware across development, test, staging, production, and disaster-recovery environments.",
+      printText: "Supported business-critical RHEL middleware across development, test, staging, production, and DR environments.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Infrastructure Analyst — Deployment & Operations"],
+      skillTags: [
+        { category: "Linux & Middleware", name: "RHEL 9" },
+        { category: "Infrastructure Operations", name: "environment support" },
+        { category: "Infrastructure Operations", name: "production operations" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-ust-infrastructure-002",
+      text: "Coordinated application releases, patching, configuration updates, and post-change validation across engineering and operations teams.",
+      printText: "Coordinated releases, patching, configuration updates, and post-change validation across engineering and operations teams.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Infrastructure Analyst — Deployment & Operations"],
+      skillTags: [
+        { category: "Infrastructure Operations", name: "application deployment" },
+        { category: "Infrastructure Operations", name: "release support" },
+        { category: "Infrastructure Operations", name: "deployment validation" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-ust-infrastructure-003",
+      text: "Monitored service health and investigated application, operating-system, network, and middleware issues using logs, process state, configuration analysis, and Splunk.",
+      printText: "Monitored service health and investigated application, OS, network, and middleware issues with logs, process state, configuration analysis, and Splunk.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Infrastructure Analyst — Deployment & Operations"],
+      skillTags: [
+        { category: "Monitoring & Support", name: "Splunk" },
+        { category: "Monitoring & Support", name: "log analysis" },
+        { category: "Monitoring & Support", name: "health checks" },
+        { category: "Monitoring & Support", name: "incident troubleshooting" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-ust-infrastructure-004",
+      text: "Automated middleware startup, recovery, and environment-validation workflows using Bash, systemd, cron, and reusable operational checks.",
+      printText: "Automated middleware startup, recovery, and environment validation with Bash, systemd, cron, and reusable checks.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Infrastructure Analyst — Deployment & Operations"],
+      skillTags: [
+        { category: "Programming & Automation", name: "Bash" },
+        { category: "Programming & Automation", name: "systemd" },
+        { category: "Programming & Automation", name: "cron" },
+        { category: "Infrastructure Operations", name: "environment validation" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-blizzard-reliability-001",
+      text: "Supported business-critical RHEL middleware services across test, staging, production, and disaster-recovery environments.",
+      printText: "Supported business-critical RHEL middleware across test, staging, production, and DR environments.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Associate Software Engineer — Reliability"],
+      skillTags: [
+        { category: "Linux & Production Systems", name: "RHEL 9" },
+        { category: "Reliability Engineering", name: "production support" },
+        { category: "Reliability Engineering", name: "disaster recovery" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-blizzard-reliability-002",
+      text: "Automated middleware startup, recovery, health validation, and operational checks using Bash, systemd, cron, and reusable scripts.",
+      printText: "Automated middleware startup, recovery, and health validation with Bash, systemd, cron, and reusable scripts.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Associate Software Engineer — Reliability"],
+      skillTags: [
+        { category: "Programming & Automation", name: "Bash" },
+        { category: "Linux & Production Systems", name: "systemd" },
+        { category: "Linux & Production Systems", name: "cron" },
+        { category: "Reliability Engineering", name: "service recovery" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-blizzard-reliability-003",
+      text: "Investigated live incidents using logs, service state, configuration analysis, and cross-team troubleshooting.",
+      printText: "Investigated live incidents through logs, service state, configuration analysis, and cross-team troubleshooting.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Associate Software Engineer — Reliability"],
+      skillTags: [
+        { category: "Reliability Engineering", name: "incident response" },
+        { category: "Reliability Engineering", name: "root-cause analysis" },
+        { category: "Monitoring & Incident Management", name: "log analysis" },
+        { category: "Linux & Production Systems", name: "process troubleshooting" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-blizzard-reliability-004",
+      text: "Coordinated patching, deployments, disaster-recovery exercises, and post-change validation across engineering and operations teams.",
+      printText: "Coordinated patching, deployments, DR exercises, and post-change validation across engineering and operations teams.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Associate Software Engineer — Reliability"],
+      skillTags: [
+        { category: "Reliability Engineering", name: "deployment validation" },
+        { category: "Reliability Engineering", name: "release support" },
+        { category: "Reliability Engineering", name: "disaster recovery" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-anduril-it-automation-001",
+      text: "Supported business-critical RHEL application services across test, staging, and production environments.",
+      printText: "Supported business-critical RHEL application services across test, staging, and production environments.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["IT Systems Engineer — Automation & Self-Service"],
+      skillTags: [
+        { category: "DevOps & Systems", name: "RHEL 9" },
+        { category: "Security & Operations", name: "operational controls" },
+        { category: "Security & Operations", name: "incident response" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-anduril-it-automation-002",
+      text: "Automated middleware startup, recovery, and validation using Bash, systemd, cron, and reusable service checks.",
+      printText: "Automated middleware startup, recovery, and validation with Bash, systemd, cron, and reusable service checks.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["IT Systems Engineer — Automation & Self-Service"],
+      skillTags: [
+        { category: "IT Automation", name: "service automation" },
+        { category: "IT Automation", name: "validation automation" },
+        { category: "Programming & Scripting", name: "Bash" },
+        { category: "DevOps & Systems", name: "systemd" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-anduril-it-automation-003",
+      text: "Coordinated deployments, patching, disaster-recovery validation, and post-change support across engineering and operations teams.",
+      printText: "Coordinated deployments, patching, DR validation, and post-change support across engineering and operations teams.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["IT Systems Engineer — Automation & Self-Service"],
+      skillTags: [
+        { category: "DevOps & Systems", name: "deployment validation" },
+        { category: "Security & Operations", name: "operational controls" },
+        { category: "Security & Operations", name: "incident response" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-api-support-001",
+      text: "Supported business-critical RHEL application services across test, staging, and production environments.",
+      printText: "Supported business-critical RHEL application services across test, staging, and production environments.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Support Engineer — APIs & Technical Support"
+      ],
+      skillTags: [
+        { category: "Application Support", name: "production support" },
+        { category: "Monitoring & Operations", name: "health checks" },
+        { category: "DevOps & Tooling", name: "deployment validation" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-api-support-002",
+      text: "Investigated incidents using logs, process state, application health, configuration analysis, and cross-team troubleshooting.",
+      printText: "Investigated incidents using logs, process state, application health, configuration analysis, and cross-team troubleshooting.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Support Engineer — APIs & Technical Support"
+      ],
+      skillTags: [
+        { category: "Application Support", name: "incident ownership" },
+        { category: "Application Support", name: "root-cause analysis" },
+        { category: "Monitoring & Operations", name: "log analysis" },
+        { category: "Documentation & Collaboration", name: "cross-functional communication" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-api-support-003",
+      text: "Coordinated patching, deployments, disaster-recovery validation, and post-change support across environments.",
+      printText: "Coordinated patching, deployments, DR validation, and post-change support across environments.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Support Engineer — APIs & Technical Support"
+      ],
+      skillTags: [
+        { category: "Application Support", name: "production support" },
+        { category: "Application Support", name: "issue escalation" },
+        { category: "DevOps & Tooling", name: "deployment validation" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-application-support-001",
+      text: "Supported business-critical RHEL application services across test, staging, and production environments.",
+      printText: "Supported business-critical RHEL application services across test, staging, and production environments.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Application Support Analyst"
+      ],
+      skillTags: [
+        { category: "Application Support", name: "production support" },
+        { category: "Deployment & Operations", name: "test environments" },
+        { category: "Deployment & Operations", name: "production environments" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-application-support-002",
+      text: "Investigated application incidents using logs, service status, configuration analysis, and cross-team troubleshooting.",
+      printText: "Investigated incidents using logs, service status, configuration analysis, and cross-team troubleshooting.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Application Support Analyst"
+      ],
+      skillTags: [
+        { category: "Application Support", name: "incident triage" },
+        { category: "Application Support", name: "root-cause analysis" },
+        { category: "Enterprise Tools", name: "Splunk" },
+        { category: "Documentation & Collaboration", name: "cross-team support" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-application-support-003",
+      text: "Coordinated patching, deployments, disaster-recovery validation, and post-change support across environments.",
+      printText: "Coordinated patching, deployments, DR validation, and post-change support across environments.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Application Support Analyst"
+      ],
+      skillTags: [
+        { category: "Deployment & Operations", name: "patching" },
+        { category: "Deployment & Operations", name: "deployment validation" },
+        { category: "Deployment & Operations", name: "post-change support" },
+        { category: "Deployment & Operations", name: "release support" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-application-support-004",
+      text: "Automated service startup, recovery, and validation using Bash, systemd, cron, and reusable checks.",
+      printText: "Automated service startup, recovery, and validation using Bash, systemd, cron, and reusable checks.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Application Support Analyst"
+      ],
+      skillTags: [
+        { category: "Programming & Automation", name: "Bash" },
+        { category: "DevOps & Tooling", name: "automated checks" },
+        { category: "Testing & QA", name: "smoke testing" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-digital-workplace-platform-001",
+      text: "Supported RHEL middleware services across test, staging, and production environments, including WebLogic, OSB, IBM MQ, Apache HTTP Server, and Tomcat/TomEE.",
+      printText: "Supported RHEL middleware across environments, including WebLogic, OSB, IBM MQ, Apache HTTP Server, and Tomcat/TomEE.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Platform Engineer — Digital Workplace Automation"
+      ],
+      skillTags: [
+        { category: "Platform & Service Delivery", name: "platform administration" },
+        { category: "Platform & Service Delivery", name: "service delivery" },
+        { category: "DevOps & Systems", name: "RHEL 9" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-digital-workplace-platform-002",
+      text: "Coordinated patching, deployments, disaster-recovery validation, and post-change support across engineering and operations teams.",
+      printText: "Coordinated patching, deployments, DR validation, and post-change support across engineering and operations teams.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Platform Engineer — Digital Workplace Automation"
+      ],
+      skillTags: [
+        { category: "Platform & Service Delivery", name: "lifecycle management" },
+        { category: "Platform & Service Delivery", name: "deployment validation" },
+        { category: "Platform & Service Delivery", name: "operational controls" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-digital-workplace-platform-003",
+      text: "Automated middleware startup, recovery, and validation using Bash, systemd, cron, and reusable service checks.",
+      printText: "Automated middleware startup, recovery, and validation with Bash, systemd, cron, and reusable service checks.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Platform Engineer — Digital Workplace Automation"
+      ],
+      skillTags: [
+        { category: "Automation & Scripting", name: "Bash" },
+        { category: "Automation & Scripting", name: "service automation" },
+        { category: "DevOps & Systems", name: "systemd" },
+        { category: "DevOps & Systems", name: "cron" }
+      ]
+    },
     {
       id: "roth-system-engineer-i-physical-ai-compute-001",
       text: "Supported and troubleshot production RHEL application services across test, staging, and production environments.",

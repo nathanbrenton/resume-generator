@@ -34,7 +34,12 @@ const project202606xxOfflineDevLab = {
     "Linux Administrator",
     "Systems Administrator",
     "Platform Engineer",
+    "Platform Engineer — Digital Workplace Automation",
+    "Application Support Analyst",
     "Site Reliability Engineer",
+    "Associate Software Engineer — Reliability",
+    "Infrastructure Analyst — Deployment & Operations",
+    "Technical Support Engineer — Industrial Applications",
     "DevOps Engineer",
     "Support Engineer",
     "Middleware Engineer",
@@ -194,6 +199,94 @@ const project202606xxOfflineDevLab = {
   },
 
   bullets: [
+    {
+      id: "offline-dev-lab-aveva-tech-support-001",
+      text: "Automated startup, health checks, smoke tests, diagnostics, and synthetic transactions for a containerized FastAPI/PostgreSQL application stack.",
+      printText: "Automated startup, health checks, smoke tests, diagnostics, and synthetic transactions for a containerized FastAPI/PostgreSQL stack.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Technical Support Engineer — Industrial Applications"],
+      skillTags: [
+        { category: "Programming & Automation", name: "Python" },
+        { category: "Software & Databases", name: "PostgreSQL" },
+        { category: "Software & Databases", name: "database troubleshooting" },
+        { category: "Monitoring & Diagnostics", name: "health checks" },
+        { category: "DevOps & Testing", name: "Docker" },
+        { category: "DevOps & Testing", name: "smoke testing" }
+      ]
+    },
+    {
+      id: "offline-dev-lab-ust-infrastructure-001",
+      text: "Built a reproducible Debian 13 environment with preserved dependencies, Docker images, containerized PostgreSQL, automated startup, health checks, smoke tests, diagnostics, security checks, and synthetic transactions.",
+      printText: "Built a reproducible Debian 13 lab with containerized PostgreSQL, automated startup, health checks, smoke tests, diagnostics, and synthetic transactions.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Infrastructure Analyst — Deployment & Operations"],
+      skillTags: [
+        { category: "Linux & Middleware", name: "Debian 13" },
+        { category: "Programming & Automation", name: "Python" },
+        { category: "Programming & Automation", name: "Bash" },
+        { category: "DevOps & Tooling", name: "Docker" },
+        { category: "DevOps & Tooling", name: "containerized services" },
+        { category: "Databases & Applications", name: "PostgreSQL" },
+        { category: "Monitoring & Support", name: "health checks" }
+      ]
+    },
+    {
+      id: "offline-dev-lab-blizzard-reliability-001",
+      text: "Built a reproducible Debian 13 environment with preserved dependencies, Docker images, containerized PostgreSQL, automated startup, health checks, security scans, diagnostics, and synthetic transactions.",
+      printText: "Built a reproducible Debian 13 lab with containerized PostgreSQL, automated startup, health checks, diagnostics, and synthetic transactions.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Associate Software Engineer — Reliability"],
+      skillTags: [
+        { category: "Linux & Production Systems", name: "Debian 13" },
+        { category: "Programming & Automation", name: "Python" },
+        { category: "Programming & Automation", name: "Bash" },
+        { category: "Deployment & DevOps", name: "Docker" },
+        { category: "Deployment & DevOps", name: "containerized services" },
+        { category: "Databases & APIs", name: "PostgreSQL" },
+        { category: "Monitoring & Incident Management", name: "health checks" },
+        { category: "Testing & Validation", name: "synthetic transactions" }
+      ]
+    },
+    {
+      id: "offline-dev-lab-application-support-001",
+      text: "Automated environment startup, health checks, smoke tests, security validation, diagnostics, and synthetic transactions for a containerized FastAPI/PostgreSQL stack.",
+      printText: "Automated startup, health checks, smoke tests, security validation, diagnostics, and synthetic transactions for a containerized application stack.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Application Support Analyst"
+      ],
+      skillTags: [
+        { category: "Programming & Automation", name: "Python" },
+        { category: "Testing & QA", name: "smoke testing" },
+        { category: "Testing & QA", name: "integration testing" },
+        { category: "DevOps & Tooling", name: "Docker" },
+        { category: "Application Stack", name: "FastAPI" },
+        { category: "Application Stack", name: "PostgreSQL" }
+      ]
+    },
+    {
+      id: "offline-dev-lab-digital-workplace-platform-001",
+      text: "Built a reproducible Debian environment with containerized PostgreSQL, preserved dependencies, automated startup, health checks, security scans, diagnostics, and synthetic transactions.",
+      printText: "Built a reproducible Debian environment with containerized PostgreSQL, automated startup, health checks, security scans, diagnostics, and synthetic transactions.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Platform Engineer — Digital Workplace Automation"
+      ],
+      skillTags: [
+        { category: "Automation & Scripting", name: "Python" },
+        { category: "Automation & Scripting", name: "Bash" },
+        { category: "Platform & Service Delivery", name: "operational controls" },
+        { category: "Reporting & Analytics", name: "health metrics" },
+        { category: "DevOps & Systems", name: "Docker" },
+        { category: "DevOps & Systems", name: "Debian 13" },
+        { category: "Databases", name: "PostgreSQL" }
+      ]
+    },
     {
       id: "offline-dev-lab-physical-ai-compute-001",
       text: "Built a reproducible Debian 13 environment preserving Python packages and Docker images, with automated validation, diagnostics, security checks, and containerized PostgreSQL services.",

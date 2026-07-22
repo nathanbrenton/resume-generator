@@ -7,5 +7,6 @@ const careerData = {
   jobs,
   projects,
   education,
-  certifications
+  certifications,
+  certificationKnowledge
 };

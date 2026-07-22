@@ -35,13 +35,17 @@ const project202607xxResumeGenerator = {
   targetRoles: [
     "Software Engineer",
     "Software Engineer — Full Stack",
-    "AI-First Software Engineer"
+    "AI-First Software Engineer",
+    "Platform Engineer — Digital Workplace Automation",
+    "IT Systems Engineer — Automation & Self-Service",
   ],
 
   rolePriority: {
     "Software Engineer": 3,
     "Software Engineer — Full Stack": 3,
-    "AI-First Software Engineer": 4
+    "AI-First Software Engineer": 4,
+    "Platform Engineer — Digital Workplace Automation": 4,
+    "IT Systems Engineer — Automation & Self-Service": 4
   },
 
   features: [
@@ -56,6 +60,37 @@ const project202607xxResumeGenerator = {
   ],
 
   bullets: [
+    {
+      id: "resume-generator-anduril-it-automation-001",
+      text: "Used AI-assisted development to build a configurable JavaScript self-service application with structured data, automated role selection, validation, printable layouts, and in-place customization.",
+      printText: "Used AI-assisted development to build a JavaScript self-service app with structured data, automated selection, validation, print layouts, and in-place customization.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["IT Systems Engineer — Automation & Self-Service"],
+      skillTags: [
+        { category: "IT Automation", name: "self-service tooling" },
+        { category: "IT Automation", name: "workflow automation" },
+        { category: "Programming & Scripting", name: "JavaScript" },
+        { category: "Application Development", name: "internal tools" },
+        { category: "AI-Enabled Solutions", name: "AI-assisted development" }
+      ]
+    },
+    {
+      id: "resume-generator-digital-workplace-platform-001",
+      text: "Built a configurable JavaScript application that transforms structured career data into role-specific resumes with automated selection, printable layouts, validation, and in-place customization.",
+      printText: "Built a configurable JavaScript app with structured data, automated role selection, print layouts, validation, and in-place customization.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Platform Engineer — Digital Workplace Automation"
+      ],
+      skillTags: [
+        { category: "Automation & Scripting", name: "workflow automation" },
+        { category: "Platform & Service Delivery", name: "service delivery" },
+        { category: "AI-Enabled Solutions", name: "AI-assisted development" },
+        { category: "Reporting & Analytics", name: "operational reporting" }
+      ]
+    },
     {
       id: "resume-generator-ai-first-001",
       text: "Used AI-assisted development to rapidly build and refine a configurable JavaScript resume application with structured content data, role-specific selection logic, printable layouts, and temporary in-place editing.",

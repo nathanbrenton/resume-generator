@@ -1,15 +1,21 @@
+function createCheckboxMarkup(item, checked, label) {
+  return `
+    <label class="control-checkbox">
+      <input type="checkbox" value="${item.id}" ${checked ? "checked" : ""}>
+      <span>${label}</span>
+    </label>
+  `;
+}
+
 function createCheckboxList(containerId, items, selectedIds, labelCallback) {
   const container = document.getElementById(containerId);
 
   container.innerHTML = items.map((item) => {
-    const checked = selectedIds.includes(item.id) ? "checked" : "";
-
-    return `
-      <label class="control-checkbox">
-        <input type="checkbox" value="${item.id}" ${checked}>
-        <span>${labelCallback(item)}</span>
-      </label>
-    `;
+    return createCheckboxMarkup(
+      item,
+      selectedIds.includes(item.id),
+      labelCallback(item)
+    );
   }).join("");
 }
 
@@ -31,6 +37,55 @@ function getRoleSelectionIds(targetRole, selectionKey, items) {
   return Array.isArray(selectedIds)
     ? selectedIds
     : getDefaultSelectionIds(items);
+}
+
+function createCertificationControls(targetRole, currentDate = new Date()) {
+  const container = document.getElementById("certificationControls");
+  const configuredIds = getRoleSelectionIds(
+    targetRole,
+    "certificationIds",
+    careerData.certifications
+  );
+
+  const selectedIds = configuredIds.filter((id) => {
+    const certification = careerData.certifications.find((entry) => entry.id === id);
+    return certification && getCertificationStatus(certification, currentDate) !== "expired";
+  });
+
+  const currentCertifications = careerData.certifications.filter((certification) => {
+    return getCertificationStatus(certification, currentDate) !== "expired";
+  });
+
+  const expiredCertifications = careerData.certifications.filter((certification) => {
+    return getCertificationStatus(certification, currentDate) === "expired";
+  });
+
+  const currentMarkup = currentCertifications.map((certification) => {
+    return createCheckboxMarkup(
+      certification,
+      selectedIds.includes(certification.id),
+      getCertificationControlLabel(certification, currentDate)
+    );
+  }).join("");
+
+  const expiredMarkup = expiredCertifications.length
+    ? `
+      <details class="certification-disclosure">
+        <summary>Expired certifications (${expiredCertifications.length})</summary>
+        <div class="certification-disclosure-body">
+          ${expiredCertifications.map((certification) => {
+            return createCheckboxMarkup(
+              certification,
+              false,
+              getCertificationControlLabel(certification, currentDate)
+            );
+          }).join("")}
+        </div>
+      </details>
+    `
+    : "";
+
+  container.innerHTML = currentMarkup + expiredMarkup;
 }
 
 function populateSelectionControls(targetRole) {
@@ -55,12 +110,7 @@ function populateSelectionControls(targetRole) {
     (entry) => entry.resumeDisplay?.name || entry.shortName || entry.program
   );
 
-  createCheckboxList(
-    "certificationControls",
-    careerData.certifications,
-    getRoleSelectionIds(targetRole, "certificationIds", careerData.certifications),
-    (entry) => entry.resumeDisplay?.name || entry.name
-  );
+  createCertificationControls(targetRole);
 }
 
 function populateControls() {
@@ -114,9 +164,17 @@ function renderCurrentResume() {
     maxProjectBullets: 1,
     maxSkillGroups: ({
       "Media DevOps Engineer": 9,
+      "Platform Engineer — Digital Workplace Automation": 8,
+      "IT Systems Engineer — Automation & Self-Service": 8,
+      "Application Support Analyst": 8,
+      "Support Engineer — APIs & Technical Support": 8,
       "Site Reliability Engineer": 8,
+      "Associate Software Engineer — Reliability": 8,
+      "Infrastructure Analyst — Deployment & Operations": 8,
+      "Technical Support Engineer — Industrial Applications": 8,
       "Junior Operations Engineer": 8,
       "AI Automation Engineer — Financial Operations": 8,
+      "AI Automation Engineer — Business Systems Integration": 7,
       "AI-First Software Engineer": 8,
       "Computer Engineer — Physical AI Compute": 7,
       "Software Engineer — Full Stack": 7

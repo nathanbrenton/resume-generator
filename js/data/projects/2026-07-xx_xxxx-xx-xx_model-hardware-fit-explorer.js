@@ -38,6 +38,7 @@ const project202607xxModelHardwareFitExplorer = {
     "Support Engineer",
     "Software Engineer",
     "Computer Engineer — Physical AI Compute",
+    "Associate Software Engineer — Reliability",
     "AI/ML Engineer",
     "MLOps / AI Infrastructure",
     "Technical Coordinator"
@@ -232,6 +233,19 @@ const project202607xxModelHardwareFitExplorer = {
   },
 
   bullets: [
+    {
+      id: "model-hardware-fit-explorer-blizzard-reliability-001",
+      text: "Developed a React/Vite tool comparing model architecture, parameter scale, quantization, and qualitative CPU, GPU, and memory constraints to evaluate deployment suitability.",
+      printText: "Compared model architecture, parameter scale, quantization, and CPU/GPU/memory constraints for deployment suitability.",
+      includeByDefault: true,
+      strength: "supporting",
+      targetRoles: ["Associate Software Engineer — Reliability"],
+      skillTags: [
+        { category: "Reliability Engineering", name: "capacity analysis" },
+        { category: "Reliability Engineering", name: "performance analysis" },
+        { category: "Testing & Validation", name: "deployment analysis" }
+      ]
+    },
     {
       id: "model-hardware-fit-explorer-physical-ai-compute-001",
       text: "Built a React/Vite analysis tool comparing Hugging Face and GGUF model architectures, dimensions, context limits, quantization profiles, and qualitative local compute and memory constraints.",

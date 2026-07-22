@@ -40,6 +40,59 @@ const skillCategoryOrder = [
 ];
 
 const skillCategoryOrderByRole = {
+  "IT Systems Engineer — Automation & Self-Service": [
+    "IT Automation",
+    "Programming & Scripting",
+    "APIs & Integrations",
+    "Enterprise Workplace",
+    "Application Development",
+    "AI-Enabled Solutions",
+    "DevOps & Systems",
+    "Security & Operations",
+    "Documentation",
+    "Other"
+  ],
+
+  "Support Engineer — APIs & Technical Support": [
+    "API & Integration Support",
+    "Databases & Data",
+    "Application Support",
+    "Monitoring & Operations",
+    "Testing & QA",
+    "Programming & Scripting",
+    "Documentation & Collaboration",
+    "DevOps & Tooling",
+    "Other"
+  ],
+
+  "Application Support Analyst": [
+    "Application Support",
+    "Testing & QA",
+    "Deployment & Operations",
+    "Programming & Automation",
+    "Enterprise Tools",
+    "Application Stack",
+    "DevOps & Tooling",
+    "Documentation & Collaboration",
+    "Other"
+  ],
+
+  "Platform Engineer — Digital Workplace Automation": [
+    "Platform & Service Delivery",
+    "Automation & Scripting",
+    "Enterprise Workplace",
+    "APIs & Integrations",
+    "Reporting & Analytics",
+    "AI-Enabled Solutions",
+    "DevOps & Systems",
+    "Databases",
+    "IT Service Management",
+    "Project Management",
+    "Security",
+    "Documentation",
+    "Other"
+  ],
+
   "AI-First Software Engineer": [
     "AI-First Development",
     "Programming & Scripting",
@@ -66,6 +119,43 @@ const skillCategoryOrderByRole = {
     "Other"
   ],
 
+  "Associate Software Engineer — Reliability": [
+    "Linux & Production Systems",
+    "Programming & Automation",
+    "Reliability Engineering",
+    "Monitoring & Incident Management",
+    "Deployment & DevOps",
+    "Databases & APIs",
+    "Networking & Systems",
+    "Testing & Validation",
+    "Documentation",
+    "Other"
+  ],
+
+  "Infrastructure Analyst — Deployment & Operations": [
+    "Infrastructure Operations",
+    "Linux & Middleware",
+    "Programming & Automation",
+    "Monitoring & Support",
+    "Networking",
+    "Databases & Applications",
+    "DevOps & Tooling",
+    "Documentation",
+    "Other"
+  ],
+
+  "Technical Support Engineer — Industrial Applications": [
+    "Application Reliability",
+    "Deployment & Upgrades",
+    "Software & Databases",
+    "Linux & Middleware",
+    "Monitoring & Diagnostics",
+    "Programming & Automation",
+    "Documentation & Collaboration",
+    "DevOps & Testing",
+    "Other"
+  ],
+
   "Site Reliability Engineer": [
     "Linux & Production Systems",
     "Programming & Scripting",
@@ -88,6 +178,18 @@ const skillCategoryOrderByRole = {
     "DevOps & Tooling",
     "AI & Data Products",
     "Operating Systems",
+    "Documentation",
+    "Other"
+  ],
+
+  "AI Automation Engineer — Business Systems Integration": [
+    "Automation & Integration",
+    "Programming & APIs",
+    "Data & AI",
+    "Application Development",
+    "Enterprise Operations",
+    "Testing & Delivery",
+    "DevOps & Tooling",
     "Documentation",
     "Other"
   ],
@@ -169,6 +271,50 @@ const skillCategoryOrderByRole = {
 };
 
 const skillGroupLimitsByRole = {
+  "IT Systems Engineer — Automation & Self-Service": {
+    "IT Automation": 6,
+    "Programming & Scripting": 5,
+    "APIs & Integrations": 5,
+    "Enterprise Workplace": 7,
+    "Application Development": 6,
+    "AI-Enabled Solutions": 5,
+    "DevOps & Systems": 6,
+    "Security & Operations": 5
+  },
+
+  "Support Engineer — APIs & Technical Support": {
+    "API & Integration Support": 6,
+    "Databases & Data": 6,
+    "Application Support": 5,
+    "Monitoring & Operations": 5,
+    "Testing & QA": 6,
+    "Programming & Scripting": 5,
+    "Documentation & Collaboration": 4,
+    "DevOps & Tooling": 4
+  },
+
+  "Application Support Analyst": {
+    "Application Support": 6,
+    "Testing & QA": 7,
+    "Deployment & Operations": 6,
+    "Programming & Automation": 5,
+    "Enterprise Tools": 6,
+    "Application Stack": 6,
+    "DevOps & Tooling": 5,
+    "Documentation & Collaboration": 5
+  },
+
+  "Platform Engineer — Digital Workplace Automation": {
+    "Platform & Service Delivery": 6,
+    "Automation & Scripting": 5,
+    "Enterprise Workplace": 7,
+    "APIs & Integrations": 5,
+    "Reporting & Analytics": 5,
+    "AI-Enabled Solutions": 5,
+    "DevOps & Systems": 6,
+    "Databases": 3
+  },
+
   "AI-First Software Engineer": {
     "AI-First Development": 7,
     "Programming & Scripting": 4,
@@ -190,6 +336,38 @@ const skillGroupLimitsByRole = {
     "Application Development": 5
   },
 
+  "Associate Software Engineer — Reliability": {
+    "Linux & Production Systems": 6,
+    "Programming & Automation": 3,
+    "Reliability Engineering": 6,
+    "Monitoring & Incident Management": 5,
+    "Deployment & DevOps": 5,
+    "Databases & APIs": 5,
+    "Networking & Systems": 5,
+    "Testing & Validation": 5
+  },
+
+  "Infrastructure Analyst — Deployment & Operations": {
+    "Infrastructure Operations": 6,
+    "Linux & Middleware": 7,
+    "Programming & Automation": 5,
+    "Monitoring & Support": 5,
+    "Networking": 4,
+    "Databases & Applications": 5,
+    "DevOps & Tooling": 5
+  },
+
+  "Technical Support Engineer — Industrial Applications": {
+    "Application Reliability": 6,
+    "Deployment & Upgrades": 6,
+    "Software & Databases": 6,
+    "Linux & Middleware": 7,
+    "Monitoring & Diagnostics": 5,
+    "Programming & Automation": 6,
+    "Documentation & Collaboration": 5,
+    "DevOps & Testing": 6
+  },
+
   "Site Reliability Engineer": {
     "Linux & Production Systems": 7,
     "Programming & Scripting": 4,
@@ -199,6 +377,16 @@ const skillGroupLimitsByRole = {
     "Databases": 4,
     "Networking & Security": 6,
     "Testing & Validation": 5
+  },
+
+  "AI Automation Engineer — Business Systems Integration": {
+    "Automation & Integration": 6,
+    "Programming & APIs": 7,
+    "Data & AI": 8,
+    "Application Development": 5,
+    "Enterprise Operations": 6,
+    "Testing & Delivery": 6,
+    "DevOps & Tooling": 5
   },
 
   "AI Automation Engineer — Financial Operations": {

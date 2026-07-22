@@ -161,6 +161,82 @@ function groupSkills(skills, targetRole) {
   }));
 }
 
+function getSkillGroupLimit(targetRole, category, fallbackLimit) {
+  return skillGroupLimitsByRole[targetRole]?.[category] ?? fallbackLimit;
+}
+
+function buildVisibleSkillGroups(
+  skills,
+  targetRole,
+  maxSkillGroups,
+  maxSkillsPerGroup,
+  requiredSkillNames = ["Python", "Docker"]
+) {
+  const allGroups = groupSkills(skills, targetRole);
+  const selectedGroups = allGroups.slice(0, maxSkillGroups);
+  const requiredLocations = requiredSkillNames
+    .map((skillName) => {
+      const group = allGroups.find((entry) => entry.skills.includes(skillName));
+      return group ? { skillName, group } : null;
+    })
+    .filter(Boolean);
+
+  requiredLocations.forEach(({ group }) => {
+    if (selectedGroups.some((entry) => entry.category === group.category)) {
+      return;
+    }
+
+    if (selectedGroups.length < maxSkillGroups) {
+      selectedGroups.push(group);
+      return;
+    }
+
+    const requiredCategories = new Set(requiredLocations.map((entry) => entry.group.category));
+    let replacementIndex = -1;
+
+    for (let index = selectedGroups.length - 1; index >= 0; index -= 1) {
+      if (!requiredCategories.has(selectedGroups[index].category)) {
+        replacementIndex = index;
+        break;
+      }
+    }
+
+    if (replacementIndex >= 0) {
+      selectedGroups[replacementIndex] = group;
+    }
+  });
+
+  const groupOrder = new Map(allGroups.map((group, index) => [group.category, index]));
+  selectedGroups.sort((a, b) => groupOrder.get(a.category) - groupOrder.get(b.category));
+
+  const visibleGroups = selectedGroups.map((group) => {
+    const groupLimit = getSkillGroupLimit(targetRole, group.category, maxSkillsPerGroup);
+
+    return {
+      ...group,
+      skills: group.skills.slice(0, groupLimit)
+    };
+  });
+
+  requiredLocations.forEach(({ skillName, group }) => {
+    const visibleGroup = visibleGroups.find((entry) => entry.category === group.category);
+
+    if (!visibleGroup || visibleGroup.skills.includes(skillName)) {
+      return;
+    }
+
+    const groupLimit = getSkillGroupLimit(targetRole, group.category, maxSkillsPerGroup);
+
+    if (visibleGroup.skills.length < groupLimit) {
+      visibleGroup.skills.push(skillName);
+    } else if (groupLimit > 0) {
+      visibleGroup.skills[visibleGroup.skills.length - 1] = skillName;
+    }
+  });
+
+  return visibleGroups;
+}
+
 function buildResume(options = {}) {
   const targetRole = options.targetRole || careerData.targetRoles[0];
   const maxJobBullets = options.maxJobBullets ?? 2;
@@ -172,10 +248,27 @@ function buildResume(options = {}) {
   const selectedProjects = selectedByIds(careerData.projects, options.selectedProjectIds);
   const selectedEducation = selectedByIds(careerData.education, options.selectedEducationIds);
   const selectedCertifications = selectedByIds(careerData.certifications, options.selectedCertificationIds);
+  const currentDate = options.currentDate || new Date();
 
   const skillMap = new Map();
 
   addSkills(skillMap, careerData.roleSkillPriorities[targetRole], 25);
+
+  const existingSkillNames = new Set(
+    [...skillMap.values()].map((skill) => skill.name.toLowerCase())
+  );
+
+  if (!existingSkillNames.has("python")) {
+    addSkill(skillMap, { category: "Programming & Scripting", name: "Python" }, 24);
+  }
+
+  if (!existingSkillNames.has("docker")) {
+    addSkill(skillMap, { category: "DevOps & Tooling", name: "Docker" }, 24);
+  }
+
+  (careerData.certificationKnowledge || [])
+    .filter((entry) => !entry.targetRoles.length || entry.targetRoles.includes(targetRole))
+    .forEach((entry) => addSkills(skillMap, entry.skillTags, 1));
 
   const jobsForResume = selectedJobs.map((job) => {
     const roleBulletLimit = job.maxBulletsByTargetRole?.[targetRole];
@@ -203,28 +296,33 @@ function buildResume(options = {}) {
     };
   });
 
-  selectedEducation.forEach((entry) => addSkills(skillMap, entry.resumeSkillTags, 1));
-  selectedCertifications.forEach((entry) => addSkills(skillMap, entry.resumeSkillTags, 1));
+  selectedEducation.forEach((entry) => {
+    addSkills(skillMap, entry.resumeSkillTags || entry.skillTags, 1);
+  });
+
+  const certificationsForResume = selectedCertifications.map((certification) => ({
+    ...certification,
+    certificationStatus: getCertificationStatus(certification, currentDate),
+    resumeDisplay: {
+      ...(certification.resumeDisplay || {}),
+      dateText: getCertificationDateText(certification, currentDate)
+    }
+  }));
 
   return {
     targetRole,
     contact: careerData.contactInfo,
     headline: careerData.profile.headlinesByTargetRole[targetRole] || careerData.profile.headline,
     summary: careerData.profile.summariesByTargetRole[targetRole] || careerData.profile.summary,
-    skills: groupSkills([...skillMap.values()], targetRole)
-      .slice(0, maxSkillGroups)
-      .map((group) => {
-        const roleLimit = skillGroupLimitsByRole[targetRole]?.[group.category];
-        const groupLimit = roleLimit ?? maxSkillsPerGroup;
-
-        return {
-          ...group,
-          skills: group.skills.slice(0, groupLimit)
-        };
-      }),
+    skills: buildVisibleSkillGroups(
+      [...skillMap.values()],
+      targetRole,
+      maxSkillGroups,
+      maxSkillsPerGroup
+    ),
     jobs: jobsForResume,
     projects: projectsForResume,
     education: selectedEducation,
-    certifications: selectedCertifications
+    certifications: certificationsForResume
   };
 }

@@ -87,6 +87,29 @@ a {
   margin-right: 6px;
 }
 
+.certification-disclosure {
+  border-top: 1px solid #e2e2e2;
+  margin-top: 9px;
+  padding-top: 7px;
+}
+
+.certification-disclosure summary {
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.25;
+  user-select: none;
+}
+
+.certification-disclosure-body {
+  margin-left: 12px;
+  margin-top: 5px;
+}
+
+.certification-disclosure-body .control-checkbox {
+  color: #555;
+}
+
 .print-button {
   cursor: pointer;
   margin-top: 10px;
@@ -155,7 +178,8 @@ a {
 .headline {
   font-size: 0.95rem;
   letter-spacing: 0.12em;
-  margin-top: 5px;
+  line-height: 1;
+  margin-top: 0;
   text-transform: uppercase;
 }
 
@@ -175,8 +199,9 @@ a {
   border-bottom: 0;
   border-top: 2px solid #111;
   font-size: 0.78rem;
-  margin-top: 6px;
-  padding: 3px 0 2px;
+  line-height: 1.05;
+  margin-top: 2px;
+  padding: 1px 0;
 }
 
 .resume-section {
@@ -185,7 +210,7 @@ a {
 }
 
 .resume-header + .resume-section {
-  margin-top: 6px;
+  margin-top: 2px;
 }
 
 .resume-section h2 {
@@ -486,4 +511,8 @@ a {
   .resume-page.is-customizing {
     outline: none;
   }
+}
+
+.compact-cert-item-expired .compact-cert-date {
+  font-weight: 700;
 }

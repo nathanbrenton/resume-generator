@@ -37,11 +37,17 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
   includeByDefault: true,
 
   maxBulletsByTargetRole: {
+    "IT Systems Engineer — Automation & Self-Service": 1,
+    "Application Support Analyst": 1,
+    "Support Engineer — APIs & Technical Support": 2,
     "Computer Engineer — Physical AI Compute": 1,
+    "Associate Software Engineer — Reliability": 1,
     "Junior Operations Engineer": 2,
     "AI Automation Engineer — Financial Operations": 2,
+    "AI Automation Engineer — Business Systems Integration": 1,
     "Software Engineer — Full Stack": 1,
-    "AI-First Software Engineer": 2
+    "AI-First Software Engineer": 2,
+    "Platform Engineer — Digital Workplace Automation": 1
   },
 
   targetRoles: [
@@ -50,8 +56,13 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
     "AI Operations Support",
     "Computer Vision QA",
     "Computer Engineer — Physical AI Compute",
+    "Associate Software Engineer — Reliability",
     "AI/ML Engineer",
     "Platform Engineer",
+    "Platform Engineer — Digital Workplace Automation",
+    "IT Systems Engineer — Automation & Self-Service",
+    "Application Support Analyst",
+    "Support Engineer — APIs & Technical Support",
     "Systems Administrator",
     "Linux Administrator",
     "Technical Coordinator",
@@ -59,6 +70,7 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
     "Electronics Repair Technician",
     "Junior Operations Engineer",
     "AI Automation Engineer — Financial Operations",
+    "AI Automation Engineer — Business Systems Integration",
     "Software Engineer — Full Stack",
     "AI-First Software Engineer"
   ],
@@ -104,6 +116,107 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
   },
 
   bullets: [
+    {
+      id: "adroit-smartshelf-jr-it-support-ai-business-automation-001",
+      text: "Validated AI-generated retail transactions against multi-camera footage, corrected inaccurate output data, investigated discrepancies, and documented recurring issues for escalation.",
+      printText: "Validated AI-generated retail transactions against video, corrected output data, investigated discrepancies, and documented recurring issues.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["AI Automation Engineer — Business Systems Integration"],
+      skillTags: [
+        { category: "Data & AI", name: "human-in-the-loop validation" },
+        { category: "Automation & Integration", name: "data validation" },
+        { category: "Data & AI", name: "model output validation" },
+        { category: "Enterprise Operations", name: "technical documentation" }
+      ]
+    },
+    {
+      id: "awm-smart-shelf-blizzard-reliability-001",
+      text: "Investigated discrepancies in deployed AI-assisted systems, compared structured outputs against source evidence, and escalated documented findings for technical review.",
+      printText: "Investigated deployed AI-system discrepancies, compared outputs with source evidence, and escalated documented findings.",
+      includeByDefault: true,
+      strength: "supporting",
+      targetRoles: ["Associate Software Engineer — Reliability"],
+      skillTags: [
+        { category: "Reliability Engineering", name: "root-cause analysis" },
+        { category: "Testing & Validation", name: "data validation" },
+        { category: "Monitoring & Incident Management", name: "incident triage" }
+      ]
+    },
+    {
+      id: "awm-smart-shelf-anduril-it-automation-001",
+      text: "Supported deployed AI-assisted systems through discrepancy investigation, structured output correction, and documented technical escalation.",
+      printText: "Supported deployed AI-assisted systems through discrepancy investigation, output correction, and documented escalation.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["IT Systems Engineer — Automation & Self-Service"],
+      skillTags: [
+        { category: "AI-Enabled Solutions", name: "human-in-the-loop validation" },
+        { category: "Security & Operations", name: "incident response" },
+        { category: "Documentation", name: "technical documentation" }
+      ]
+    },
+    {
+      id: "awm-smart-shelf-api-support-001",
+      text: "Compared AI-generated transactions against multi-camera source footage, correcting discrepancies across item, product, and purchase data.",
+      printText: "Compared AI-generated transactions with multi-camera footage, correcting item, product, and purchase-data discrepancies.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Support Engineer — APIs & Technical Support"
+      ],
+      skillTags: [
+        { category: "Databases & Data", name: "data comparison" },
+        { category: "Application Support", name: "root-cause analysis" },
+        { category: "Testing & QA", name: "data validation" }
+      ]
+    },
+    {
+      id: "awm-smart-shelf-api-support-002",
+      text: "Documented findings and escalated structured application issues for further technical investigation.",
+      printText: "Documented findings and escalated structured issues for further technical investigation.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Support Engineer — APIs & Technical Support"
+      ],
+      skillTags: [
+        { category: "Application Support", name: "issue escalation" },
+        { category: "Documentation & Collaboration", name: "technical documentation" },
+        { category: "Documentation & Collaboration", name: "support handoffs" }
+      ]
+    },
+    {
+      id: "adroit-smartshelf-jr-it-support-application-support-001",
+      text: "Investigated discrepancies in deployed AI-assisted retail applications, corrected structured outputs, and escalated findings for further technical review.",
+      printText: "Investigated AI-assisted application discrepancies, corrected structured outputs, and escalated findings for technical review.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Application Support Analyst"
+      ],
+      skillTags: [
+        { category: "Application Support", name: "issue escalation" },
+        { category: "Application Support", name: "bug triage" },
+        { category: "Testing & QA", name: "data validation" },
+        { category: "Documentation & Collaboration", name: "support handoffs" }
+      ]
+    },
+    {
+      id: "adroit-smartshelf-jr-it-support-digital-workplace-platform-001",
+      text: "Supported deployed AI-assisted retail systems through discrepancy investigation, structured output correction, and documented escalation of field-system issues.",
+      printText: "Supported AI-assisted systems through discrepancy investigation, output correction, and documented escalation.",
+      includeByDefault: true,
+      strength: "supporting",
+      targetRoles: [
+        "Platform Engineer — Digital Workplace Automation"
+      ],
+      skillTags: [
+        { category: "AI-Enabled Solutions", name: "human-in-the-loop validation" },
+        { category: "Platform & Service Delivery", name: "operational controls" },
+        { category: "Reporting & Analytics", name: "operational reporting" }
+      ]
+    },
     {
       id: "adroit-smartshelf-jr-it-support-physical-ai-compute-001",
       text: "Validated computer-vision model outputs against multi-camera source footage, correcting classifications and structured ground-truth records.",

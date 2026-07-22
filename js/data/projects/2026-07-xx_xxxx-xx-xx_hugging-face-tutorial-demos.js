@@ -32,7 +32,8 @@ const project202607xxHuggingFaceTutorialDemos = {
     "Platform Engineer",
     "Junior Operations Engineer",
     "AI Automation Engineer — Financial Operations",
-    "AI-First Software Engineer"
+    "AI-First Software Engineer",
+    "Support Engineer — APIs & Technical Support"
   ],
 
   rolePriority: {
@@ -43,7 +44,8 @@ const project202607xxHuggingFaceTutorialDemos = {
     "Platform Engineer": 2,
     "Junior Operations Engineer": 2,
     "AI Automation Engineer — Financial Operations": 4,
-    "AI-First Software Engineer": 4
+    "AI-First Software Engineer": 4,
+    "Support Engineer — APIs & Technical Support": 4
   },
 
   modelsAndTasks: [
@@ -62,6 +64,24 @@ const project202607xxHuggingFaceTutorialDemos = {
   ],
 
   bullets: [
+    {
+      id: "hugging-face-tutorial-demos-api-support-001",
+      text: "Developed tested Python/FastAPI JSON endpoints for classification, named-entity recognition, question answering, summarization, and generation.",
+      printText: "Developed tested Python/FastAPI JSON endpoints for classification, NER, QA, summarization, and generation.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Support Engineer — APIs & Technical Support"
+      ],
+      skillTags: [
+        { category: "Programming & Scripting", name: "Python" },
+        { category: "API & Integration Support", name: "REST APIs" },
+        { category: "API & Integration Support", name: "JSON" },
+        { category: "API & Integration Support", name: "OpenAPI" },
+        { category: "Testing & QA", name: "pytest" },
+        { category: "Testing & QA", name: "API testing" }
+      ]
+    },
     {
       id: "hugging-face-tutorial-demos-ai-first-001",
       text: "Integrated pretrained Hugging Face models into tested Python/FastAPI and OpenAPI routes for classification, named-entity recognition, question answering, summarization, and generation.",

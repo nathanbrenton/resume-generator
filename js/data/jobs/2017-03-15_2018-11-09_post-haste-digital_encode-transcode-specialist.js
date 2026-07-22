@@ -6,6 +6,7 @@ const job20170315PostHasteDigitalEncodeTranscodeSpecialist = {
   maxBulletsByTargetRole: {
     "Computer Engineer — Physical AI Compute": 1,
     "Site Reliability Engineer": 1,
+    "Technical Support Engineer — Industrial Applications": 2,
     "Media DevOps Engineer": 2
   },
 
@@ -80,6 +81,7 @@ const job20170315PostHasteDigitalEncodeTranscodeSpecialist = {
     "Computer Engineer — Physical AI Compute",
     "Hardware Repair Technician",
     "Site Reliability Engineer",
+    "Technical Support Engineer — Industrial Applications",
     "Media DevOps Engineer"
   ],
 
@@ -101,10 +103,39 @@ const job20170315PostHasteDigitalEncodeTranscodeSpecialist = {
     "Encoding / Transcode Technician": 3,
     "Post-Production Technician": 3,
     "Electronics / Repair Technician": 0,
-    "Hardware Repair Technician": 1
+    "Hardware Repair Technician": 1,
+    "Technical Support Engineer — Industrial Applications": 3
   },
 
   bullets: [
+    {
+      id: "post-haste-digital-encode-transcode-specialist-aveva-tech-support-001",
+      text: "Monitored high-volume media-processing queues across five concurrent systems, using error logs and automated quality-control results to diagnose failures and coordinate corrective reprocessing.",
+      printText: "Monitored five concurrent processing systems, using error logs and automated QC results to diagnose failures and coordinate reprocessing.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Technical Support Engineer — Industrial Applications"],
+      skillTags: [
+        { category: "Application Reliability", name: "technical production support" },
+        { category: "Monitoring & Diagnostics", name: "error-log analysis" },
+        { category: "Monitoring & Diagnostics", name: "performance monitoring" },
+        { category: "DevOps & Testing", name: "automated quality control" }
+      ]
+    },
+    {
+      id: "post-haste-digital-encode-transcode-specialist-aveva-tech-support-002",
+      text: "Automated and supported technical production workflows using Bash and FFmpeg while meeting client specifications, quality requirements, and delivery deadlines.",
+      printText: "Automated technical production workflows with Bash and FFmpeg while meeting client specs, quality requirements, and deadlines.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Technical Support Engineer — Industrial Applications"],
+      skillTags: [
+        { category: "Programming & Automation", name: "Bash" },
+        { category: "Programming & Automation", name: "FFmpeg" },
+        { category: "Documentation & Collaboration", name: "client specifications" },
+        { category: "DevOps & Testing", name: "quality validation" }
+      ]
+    },
     {
       id: "post-haste-digital-encode-transcode-specialist-physical-ai-compute-001",
       text: "Automated and monitored concurrent media-processing workloads using Bash, FFmpeg, render queues, error logs, and automated quality-control systems.",

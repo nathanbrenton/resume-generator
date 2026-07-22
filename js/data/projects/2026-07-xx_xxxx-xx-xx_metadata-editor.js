@@ -46,23 +46,33 @@ const project202607xxMetadataEditor = {
   targetRoles: [
     "Software Engineer",
     "Software Engineer — Full Stack",
+    "Application Support Analyst",
+    "Support Engineer — APIs & Technical Support",
+    "Technical Support Engineer — Industrial Applications",
     "AI-First Software Engineer",
     "Digital Media Technician",
     "Media Systems Technician",
     "Encoding / Transcode Technician",
     "Post-Production Technician",
-    "Media DevOps Engineer"
+    "Media DevOps Engineer",
+    "IT Systems Engineer — Automation & Self-Service",
+    "AI Automation Engineer — Business Systems Integration",
   ],
 
   rolePriority: {
     "Software Engineer": 2,
     "Software Engineer — Full Stack": 4,
+    "Application Support Analyst": 4,
+    "Support Engineer — APIs & Technical Support": 4,
+    "Technical Support Engineer — Industrial Applications": 4,
     "AI-First Software Engineer": 4,
     "Digital Media Technician": 3,
     "Media Systems Technician": 3,
     "Encoding / Transcode Technician": 2,
     "Post-Production Technician": 3,
-    "Media DevOps Engineer": 3
+    "Media DevOps Engineer": 3,
+    "IT Systems Engineer — Automation & Self-Service": 4,
+    "AI Automation Engineer — Business Systems Integration": 5
   },
 
   features: [
@@ -79,6 +89,89 @@ const project202607xxMetadataEditor = {
   ],
 
   bullets: [
+    {
+      id: "metadata-editor-ai-business-automation-001",
+      text: "Developed a React/TypeScript and FastAPI workflow application with guided forms, data inheritance, validation, staged statuses, and integrated help content.",
+      printText: "Developed a React/TypeScript and FastAPI workflow app with guided forms, inheritance, validation, staged statuses, and integrated help.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["AI Automation Engineer — Business Systems Integration"],
+      skillTags: [
+        { category: "Programming & APIs", name: "TypeScript" },
+        { category: "Programming & APIs", name: "FastAPI" },
+        { category: "Application Development", name: "React" },
+        { category: "Application Development", name: "complex user workflows" },
+        { category: "Application Development", name: "form validation" },
+        { category: "Automation & Integration", name: "workflow automation" },
+        { category: "Enterprise Operations", name: "technical documentation" }
+      ]
+    },
+    {
+      id: "metadata-editor-aveva-tech-support-001",
+      text: "Developed and tested a React/TypeScript and FastAPI application with structured validation, issue handling, ingest inspection, and complex operational workflows.",
+      printText: "Developed and tested a React/TypeScript and FastAPI app with structured validation, issue handling, ingest inspection, and operational workflows.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Technical Support Engineer — Industrial Applications"],
+      skillTags: [
+        { category: "Programming & Automation", name: "TypeScript" },
+        { category: "Software & Databases", name: "FastAPI" },
+        { category: "Software & Databases", name: "REST APIs" },
+        { category: "DevOps & Testing", name: "regression testing" },
+        { category: "Application Reliability", name: "issue handling" }
+      ]
+    },
+    {
+      id: "metadata-editor-anduril-it-automation-001",
+      text: "Developed a React/TypeScript and FastAPI workflow application with guided forms, inheritance, overrides, validation, operational statuses, and integrated help content.",
+      printText: "Developed a React/TypeScript and FastAPI workflow app with guided forms, inheritance, overrides, validation, statuses, and help content.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["IT Systems Engineer — Automation & Self-Service"],
+      skillTags: [
+        { category: "Programming & Scripting", name: "TypeScript" },
+        { category: "APIs & Integrations", name: "FastAPI" },
+        { category: "Application Development", name: "React" },
+        { category: "Application Development", name: "complex user workflows" },
+        { category: "Application Development", name: "internal tools" },
+        { category: "IT Automation", name: "self-service tooling" }
+      ]
+    },
+    {
+      id: "metadata-editor-api-support-001",
+      text: "Developed a React/TypeScript and FastAPI application with structured metadata validation, inheritance, overrides, issue handling, and complex operational workflows.",
+      printText: "Developed a React/TypeScript and FastAPI app with structured validation, inheritance, overrides, issue handling, and operational workflows.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Support Engineer — APIs & Technical Support"
+      ],
+      skillTags: [
+        { category: "Programming & Scripting", name: "TypeScript" },
+        { category: "API & Integration Support", name: "REST APIs" },
+        { category: "API & Integration Support", name: "JSON" },
+        { category: "Testing & QA", name: "regression testing" },
+        { category: "Application Support", name: "bug triage" },
+        { category: "Application Support", name: "root-cause analysis" }
+      ]
+    },
+    {
+      id: "metadata-editor-application-support-001",
+      text: "Developed and tested complex React/TypeScript workflows with validation, inheritance, overrides, issue handling, and iterative usability improvements.",
+      printText: "Developed and tested React/TypeScript workflows with validation, inheritance, overrides, issue handling, and iterative usability improvements.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Application Support Analyst"
+      ],
+      skillTags: [
+        { category: "Programming & Automation", name: "TypeScript" },
+        { category: "Application Stack", name: "React" },
+        { category: "Testing & QA", name: "regression testing" },
+        { category: "Testing & QA", name: "browser testing" },
+        { category: "Application Support", name: "bug triage" }
+      ]
+    },
     {
       id: "metadata-editor-ai-first-001",
       text: "Used AI-assisted iteration to develop a React/TypeScript and FastAPI metadata application with complex forms, inheritance, overrides, validation, ingest inspection, and staged workflows.",

@@ -54,7 +54,9 @@ const project202607xxCenturySolar = {
     "AI/ML Engineer",
     "MLOps / AI Infrastructure",
     "Technical Coordinator",
-    "Junior Operations Engineer"
+    "Junior Operations Engineer",
+    "Infrastructure Analyst — Deployment & Operations",
+    "AI Automation Engineer — Business Systems Integration"
   ],
 
   rolePriority: {
@@ -65,7 +67,9 @@ const project202607xxCenturySolar = {
     "AI/ML Engineer": 1,
     "MLOps / AI Infrastructure": 1,
     "Technical Coordinator": 2,
-    "Junior Operations Engineer": 4
+    "Junior Operations Engineer": 4,
+    "Infrastructure Analyst — Deployment & Operations": 3,
+    "AI Automation Engineer — Business Systems Integration": 5
   },
 
   features: [
@@ -86,6 +90,41 @@ const project202607xxCenturySolar = {
   ],
 
   bullets: [
+    {
+      id: "century-solar-ai-business-automation-001",
+      text: "Developed a private, containerized React/TypeScript, FastAPI, and PostgreSQL business-operations platform modeling customer, inventory, fulfillment, service, and administrative workflows with automated tests.",
+      printText: "Developed a private containerized React/TypeScript, FastAPI, and PostgreSQL platform modeling customer, inventory, fulfillment, service, and admin workflows.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["AI Automation Engineer — Business Systems Integration"],
+      skillTags: [
+        { category: "Programming & APIs", name: "Python" },
+        { category: "Programming & APIs", name: "TypeScript" },
+        { category: "Programming & APIs", name: "FastAPI" },
+        { category: "Application Development", name: "React" },
+        { category: "Application Development", name: "complex user workflows" },
+        { category: "Data & AI", name: "PostgreSQL" },
+        { category: "Testing & Delivery", name: "Playwright" },
+        { category: "Testing & Delivery", name: "pytest" },
+        { category: "DevOps & Tooling", name: "Docker" }
+      ]
+    },
+    {
+      id: "century-solar-ust-infrastructure-001",
+      text: "Developed and tested a private, containerized FastAPI/React/PostgreSQL platform with automated pytest, Vitest, and Playwright coverage for operational workflows.",
+      printText: "Developed and tested a private containerized FastAPI/React/PostgreSQL platform with automated backend, frontend, and browser coverage.",
+      includeByDefault: true,
+      strength: "supporting",
+      targetRoles: ["Infrastructure Analyst — Deployment & Operations"],
+      skillTags: [
+        { category: "Programming & Automation", name: "Python" },
+        { category: "Databases & Applications", name: "FastAPI" },
+        { category: "Databases & Applications", name: "PostgreSQL" },
+        { category: "DevOps & Tooling", name: "Docker" },
+        { category: "DevOps & Tooling", name: "containerized services" },
+        { category: "Infrastructure Operations", name: "deployment validation" }
+      ]
+    },
     {
       id: "century-solar-full-stack-001",
       text: "Developed a private, containerized React/TypeScript, FastAPI, and PostgreSQL business platform with complex operational workflows and automated pytest, Vitest, and Playwright coverage.",

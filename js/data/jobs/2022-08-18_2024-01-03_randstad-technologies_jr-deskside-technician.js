@@ -37,12 +37,20 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
   includeByDefault: true,
 
   maxBulletsByTargetRole: {
+    "IT Systems Engineer — Automation & Self-Service": 3,
+    "Application Support Analyst": 3,
+    "Support Engineer — APIs & Technical Support": 2,
     "Site Reliability Engineer": 1,
+    "Associate Software Engineer — Reliability": 2,
+    "Infrastructure Analyst — Deployment & Operations": 2,
+    "Technical Support Engineer — Industrial Applications": 2,
     "Media DevOps Engineer": 2,
     "Junior Operations Engineer": 2,
     "AI Automation Engineer — Financial Operations": 1,
+    "AI Automation Engineer — Business Systems Integration": 2,
     "Software Engineer — Full Stack": 2,
-    "AI-First Software Engineer": 2
+    "AI-First Software Engineer": 2,
+    "Platform Engineer — Digital Workplace Automation": 3
   },
 
   targetRoles: [
@@ -51,19 +59,305 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
     "Desktop Support Technician",
     "Deskside Support Technician",
     "Systems Administrator",
+    "Platform Engineer — Digital Workplace Automation",
+    "IT Systems Engineer — Automation & Self-Service",
+    "Application Support Analyst",
+    "Support Engineer — APIs & Technical Support",
     "Technical Support Specialist",
     "Technical Coordinator",
     "Hardware Repair Technician",
     "IT Operations Specialist",
     "Site Reliability Engineer",
+    "Associate Software Engineer — Reliability",
+    "Infrastructure Analyst — Deployment & Operations",
+    "Technical Support Engineer — Industrial Applications",
     "Media DevOps Engineer",
     "Junior Operations Engineer",
     "AI Automation Engineer — Financial Operations",
+    "AI Automation Engineer — Business Systems Integration",
     "Software Engineer — Full Stack",
     "AI-First Software Engineer"
   ],
 
   bullets: [
+    {
+      id: "randstad-jr-deskside-technician-ai-business-automation-001",
+      text: "Automated hardware and software validation with PowerShell while supporting enterprise application, access, endpoint, VPN, and device workflows using ServiceNow, Splunk, SCCM/MECM, Active Directory, and JAMF.",
+      printText: "Automated hardware/software validation with PowerShell; supported application, access, endpoint, VPN, and device workflows with enterprise tools.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["AI Automation Engineer — Business Systems Integration"],
+      skillTags: [
+        { category: "Programming & APIs", name: "PowerShell" },
+        { category: "Enterprise Operations", name: "ServiceNow" },
+        { category: "Enterprise Operations", name: "Splunk" },
+        { category: "Enterprise Operations", name: "Active Directory" },
+        { category: "Automation & Integration", name: "workflow automation" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-ai-business-automation-002",
+      text: "Worked directly with users to diagnose technical issues, document resolutions, and communicate practical next steps across varied technical backgrounds.",
+      printText: "Diagnosed user-facing technical issues, documented resolutions, and communicated practical next steps across varied technical backgrounds.",
+      includeByDefault: true,
+      strength: "supporting",
+      targetRoles: ["AI Automation Engineer — Business Systems Integration"],
+      skillTags: [
+        { category: "Enterprise Operations", name: "stakeholder communication" },
+        { category: "Enterprise Operations", name: "technical documentation" },
+        { category: "Automation & Integration", name: "business process analysis" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-aveva-tech-support-001",
+      text: "Provided user-facing support for enterprise application, operating-system, access, VPN, network, and endpoint issues using ServiceNow, Splunk, SCCM/MECM, Active Directory, and JAMF.",
+      printText: "Supported enterprise application, OS, access, VPN, network, and endpoint issues using ServiceNow, Splunk, SCCM/MECM, AD, and JAMF.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Technical Support Engineer — Industrial Applications"],
+      skillTags: [
+        { category: "Application Reliability", name: "customer-facing support" },
+        { category: "Monitoring & Diagnostics", name: "ServiceNow" },
+        { category: "Monitoring & Diagnostics", name: "Splunk" },
+        { category: "Documentation & Collaboration", name: "customer communication" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-aveva-tech-support-002",
+      text: "Documented symptoms, findings, resolutions, and escalation details; automated hardware and software validation with PowerShell to improve support consistency.",
+      printText: "Documented findings and resolutions and automated hardware/software validation with PowerShell to improve support consistency.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Technical Support Engineer — Industrial Applications"],
+      skillTags: [
+        { category: "Programming & Automation", name: "PowerShell" },
+        { category: "Documentation & Collaboration", name: "technical documentation" },
+        { category: "Documentation & Collaboration", name: "support handoffs" },
+        { category: "DevOps & Testing", name: "automated validation" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-ust-infrastructure-001",
+      text: "Resolved enterprise application, operating-system, access, VPN, network, and endpoint issues using ServiceNow, Splunk, SCCM/MECM, Active Directory, and JAMF.",
+      printText: "Resolved application, OS, access, VPN, network, and endpoint issues with ServiceNow, Splunk, SCCM/MECM, AD, and JAMF.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Infrastructure Analyst — Deployment & Operations"],
+      skillTags: [
+        { category: "Monitoring & Support", name: "ServiceNow" },
+        { category: "Monitoring & Support", name: "Splunk" },
+        { category: "Networking", name: "VPN troubleshooting" },
+        { category: "Monitoring & Support", name: "incident troubleshooting" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-ust-infrastructure-002",
+      text: "Automated hardware and software validation with PowerShell to improve deployment and support consistency.",
+      printText: "Automated hardware/software validation with PowerShell to improve deployment and support consistency.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Infrastructure Analyst — Deployment & Operations"],
+      skillTags: [
+        { category: "Programming & Automation", name: "PowerShell" },
+        { category: "Infrastructure Operations", name: "deployment validation" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-blizzard-reliability-001",
+      text: "Diagnosed operating-system, application, network, VPN, authentication, and endpoint incidents using ServiceNow, Splunk, SCCM/MECM, Active Directory, and JAMF.",
+      printText: "Diagnosed OS, application, network, VPN, authentication, and endpoint incidents with ServiceNow, Splunk, SCCM/MECM, AD, and JAMF.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Associate Software Engineer — Reliability"],
+      skillTags: [
+        { category: "Monitoring & Incident Management", name: "ServiceNow" },
+        { category: "Monitoring & Incident Management", name: "Splunk" },
+        { category: "Networking & Systems", name: "VPN troubleshooting" },
+        { category: "Reliability Engineering", name: "incident response" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-blizzard-reliability-002",
+      text: "Automated hardware and software validation with PowerShell to improve consistency and reduce manual verification.",
+      printText: "Automated hardware/software validation with PowerShell to improve consistency and reduce manual verification.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Associate Software Engineer — Reliability"],
+      skillTags: [
+        { category: "Programming & Automation", name: "PowerShell" },
+        { category: "Testing & Validation", name: "automated validation" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-anduril-it-automation-001",
+      text: "Managed enterprise device provisioning, imaging, encryption, replacement, and lifecycle workflows across Windows and macOS environments.",
+      printText: "Managed device provisioning, imaging, encryption, replacement, and lifecycle workflows across Windows and macOS.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["IT Systems Engineer — Automation & Self-Service"],
+      skillTags: [
+        { category: "IT Automation", name: "provisioning workflows" },
+        { category: "IT Automation", name: "lifecycle automation" },
+        { category: "Enterprise Workplace", name: "SCCM/MECM" },
+        { category: "Enterprise Workplace", name: "JAMF" },
+        { category: "Enterprise Workplace", name: "BitLocker" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-anduril-it-automation-002",
+      text: "Resolved application, VPN, MFA, access, and device issues using ServiceNow, SCCM/MECM, Active Directory, JAMF, Splunk, and BitLocker.",
+      printText: "Resolved application, VPN, MFA, access, and device issues using ServiceNow, SCCM/MECM, AD, JAMF, Splunk, and BitLocker.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["IT Systems Engineer — Automation & Self-Service"],
+      skillTags: [
+        { category: "Enterprise Workplace", name: "ServiceNow" },
+        { category: "Enterprise Workplace", name: "Active Directory" },
+        { category: "Enterprise Workplace", name: "Splunk" },
+        { category: "Security & Operations", name: "access controls" },
+        { category: "Security & Operations", name: "incident response" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-anduril-it-automation-003",
+      text: "Automated hardware and software validation with PowerShell to reduce manual verification and improve fulfillment consistency.",
+      printText: "Automated hardware/software validation with PowerShell to reduce manual verification and improve consistency.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["IT Systems Engineer — Automation & Self-Service"],
+      skillTags: [
+        { category: "Programming & Scripting", name: "PowerShell" },
+        { category: "IT Automation", name: "validation automation" },
+        { category: "IT Automation", name: "workflow automation" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-api-support-001",
+      text: "Troubleshot enterprise application, access, network, and device incidents using ServiceNow, Splunk, SCCM/MECM, and Active Directory.",
+      printText: "Troubleshot application, access, network, and device incidents using ServiceNow, Splunk, SCCM/MECM, and AD.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Support Engineer — APIs & Technical Support"
+      ],
+      skillTags: [
+        { category: "Application Support", name: "incident ownership" },
+        { category: "Monitoring & Operations", name: "ServiceNow" },
+        { category: "Monitoring & Operations", name: "Splunk" },
+        { category: "Application Support", name: "root-cause analysis" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-api-support-002",
+      text: "Documented symptoms, findings, resolutions, and escalation details to improve support continuity and technical handoffs.",
+      printText: "Documented symptoms, findings, resolutions, and escalation details to improve support continuity.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Support Engineer — APIs & Technical Support"
+      ],
+      skillTags: [
+        { category: "Documentation & Collaboration", name: "technical documentation" },
+        { category: "Documentation & Collaboration", name: "support handoffs" },
+        { category: "Application Support", name: "issue escalation" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-application-support-001",
+      text: "Resolved enterprise application, access, VPN, MFA, device, and network issues using ServiceNow, Splunk, SCCM/MECM, Active Directory, and JAMF.",
+      printText: "Resolved application, access, VPN, MFA, device, and network issues using ServiceNow, Splunk, SCCM/MECM, AD, and JAMF.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Application Support Analyst"
+      ],
+      skillTags: [
+        { category: "Application Support", name: "application troubleshooting" },
+        { category: "Enterprise Tools", name: "ServiceNow" },
+        { category: "Enterprise Tools", name: "Splunk" },
+        { category: "Enterprise Tools", name: "SCCM/MECM" },
+        { category: "Enterprise Tools", name: "Active Directory" },
+        { category: "Enterprise Tools", name: "JAMF" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-application-support-002",
+      text: "Documented troubleshooting findings, resolutions, and support history to improve escalation quality and service continuity.",
+      printText: "Documented troubleshooting findings, resolutions, and support history to improve escalations and service continuity.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Application Support Analyst"
+      ],
+      skillTags: [
+        { category: "Application Support", name: "issue escalation" },
+        { category: "Documentation & Collaboration", name: "technical documentation" },
+        { category: "Documentation & Collaboration", name: "support handoffs" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-application-support-003",
+      text: "Automated hardware and software validation checks with PowerShell to improve consistency and reduce manual verification.",
+      printText: "Automated hardware/software validation with PowerShell to improve consistency and reduce manual verification.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Application Support Analyst"
+      ],
+      skillTags: [
+        { category: "Programming & Automation", name: "PowerShell" },
+        { category: "Testing & QA", name: "automated test cases" },
+        { category: "DevOps & Tooling", name: "automated checks" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-digital-workplace-platform-001",
+      text: "Resolved enterprise application, VPN, MFA, software, access, and device issues using ServiceNow, Splunk, SCCM/MECM, Active Directory, and JAMF.",
+      printText: "Resolved application, VPN, MFA, access, and device issues using ServiceNow, Splunk, SCCM/MECM, AD, and JAMF.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Platform Engineer — Digital Workplace Automation"
+      ],
+      skillTags: [
+        { category: "Enterprise Workplace", name: "ServiceNow" },
+        { category: "Enterprise Workplace", name: "Splunk" },
+        { category: "Enterprise Workplace", name: "SCCM/MECM" },
+        { category: "Enterprise Workplace", name: "Active Directory" },
+        { category: "Enterprise Workplace", name: "JAMF" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-digital-workplace-platform-002",
+      text: "Managed device provisioning, imaging, configuration, encryption, replacement, and lifecycle workflows across Windows and macOS environments.",
+      printText: "Managed device provisioning, imaging, configuration, encryption, replacement, and lifecycle workflows across Windows and macOS.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Platform Engineer — Digital Workplace Automation"
+      ],
+      skillTags: [
+        { category: "Platform & Service Delivery", name: "lifecycle management" },
+        { category: "Platform & Service Delivery", name: "configuration standards" },
+        { category: "Enterprise Workplace", name: "BitLocker" },
+        { category: "Enterprise Workplace", name: "JAMF" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-digital-workplace-platform-003",
+      text: "Automated hardware and software validation checks with PowerShell to improve fulfillment consistency and reduce manual verification.",
+      printText: "Automated hardware/software validation with PowerShell to improve consistency and reduce manual verification.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Platform Engineer — Digital Workplace Automation"
+      ],
+      skillTags: [
+        { category: "Automation & Scripting", name: "PowerShell" },
+        { category: "Automation & Scripting", name: "workflow automation" },
+        { category: "Platform & Service Delivery", name: "operational controls" }
+      ]
+    },
     {
       id: "randstad-jr-deskside-technician-sre-001",
       text: "Troubleshot application, VPN, MFA, network-access, and endpoint incidents using ServiceNow, Splunk, SCCM/MECM, and Active Directory.",

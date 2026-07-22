@@ -172,7 +172,7 @@ function renderCertifications(resume) {
         const dateText = cert.resumeDisplay?.dateText || cert.status || "";
 
         return `
-          <div class="compact-cert-item">
+          <div class="compact-cert-item${cert.certificationStatus === "expired" ? " compact-cert-item-expired" : ""}">
             <strong class="compact-cert-name">${escapeHtml(name)}</strong>
             ${dateText ? `<span class="compact-cert-date">${escapeHtml(dateText)}</span>` : ""}
           </div>
