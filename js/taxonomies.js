@@ -194,6 +194,18 @@ const skillCategoryOrderByRole = {
     "Other"
   ],
 
+  "AI Application Developer — Secure Workflow Automation": [
+    "Full-Stack Development",
+    "AI & Automation",
+    "APIs & Data",
+    "Security & Privacy",
+    "Human Review & Guardrails",
+    "Testing & Delivery",
+    "DevOps & Tooling",
+    "Documentation",
+    "Other"
+  ],
+
   "AI Automation Engineer — Financial Operations": [
     "AI & Automation",
     "Programming & Scripting",
@@ -385,6 +397,16 @@ const skillGroupLimitsByRole = {
     "Data & AI": 8,
     "Application Development": 5,
     "Enterprise Operations": 6,
+    "Testing & Delivery": 6,
+    "DevOps & Tooling": 5
+  },
+
+  "AI Application Developer — Secure Workflow Automation": {
+    "Full-Stack Development": 7,
+    "AI & Automation": 6,
+    "APIs & Data": 7,
+    "Security & Privacy": 6,
+    "Human Review & Guardrails": 5,
     "Testing & Delivery": 6,
     "DevOps & Tooling": 5
   },

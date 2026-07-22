@@ -19,6 +19,7 @@ const targetRoles = [
   "Computer Engineer — Physical AI Compute",
   "AI Automation Engineer — Financial Operations",
   "AI Automation Engineer — Business Systems Integration",
+  "AI Application Developer — Secure Workflow Automation",
   "MLOps / AI Infrastructure",
   "Technical Coordinator",
   "Digital Media Technician",
@@ -47,7 +48,7 @@ const roleDefaultSelections = {
     ],
     certificationIds: [
       "2023-08-28_2026-08-28_comptia_pentest-plus-ce",
-      "2021-06-12_2024-06-12_peoplecert-axelos_itil-4-foundation"
+      "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation"
     ]
   },
 
@@ -68,7 +69,7 @@ const roleDefaultSelections = {
     ],
     certificationIds: [
       "2022-01-09_xxxx-xx-xx_comptia_project-plus",
-      "2021-06-12_2024-06-12_peoplecert-axelos_itil-4-foundation"
+      "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation"
     ]
   },
 
@@ -89,7 +90,7 @@ const roleDefaultSelections = {
     ],
     certificationIds: [
       "2022-01-09_xxxx-xx-xx_comptia_project-plus",
-      "2021-06-12_2024-06-12_peoplecert-axelos_itil-4-foundation"
+      "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation"
     ]
   },
 
@@ -111,7 +112,7 @@ const roleDefaultSelections = {
     certificationIds: [
       "2023-08-28_2026-08-28_comptia_pentest-plus-ce",
       "2022-01-09_xxxx-xx-xx_comptia_project-plus",
-      "2021-06-12_2024-06-12_peoplecert-axelos_itil-4-foundation"
+      "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation"
     ]
   },
 
@@ -169,7 +170,7 @@ const roleDefaultSelections = {
     ],
     certificationIds: [
       "2022-01-09_xxxx-xx-xx_comptia_project-plus",
-      "2021-06-12_2024-06-12_peoplecert-axelos_itil-4-foundation"
+      "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation"
     ]
   },
 
@@ -189,7 +190,7 @@ const roleDefaultSelections = {
     ],
     certificationIds: [
       "2022-01-09_xxxx-xx-xx_comptia_project-plus",
-      "2021-06-12_2024-06-12_peoplecert-axelos_itil-4-foundation"
+      "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation"
     ]
   },
 
@@ -239,6 +240,24 @@ const roleDefaultSelections = {
     projectIds: [
       "2026-05-01_2026-06-01_signalstack",
       "2026-07-xx_xxxx-xx-xx_metadata-editor",
+      "2026-07-xx_xxxx-xx-xx_century-solar"
+    ],
+    educationIds: [
+      "2025-09-01_2026-04-16_wgu_ms-software-engineering-ai-engineering",
+      "2021-06-01_2023-10-10_wgu_bs-cybersecurity-information-assurance"
+    ],
+    certificationIds: []
+  },
+
+  "AI Application Developer — Secure Workflow Automation": {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician",
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+    ],
+    projectIds: [
+      "2026-07-xx_xxxx-xx-xx_metadata-editor",
+      "2026-05-01_2026-06-01_signalstack",
       "2026-07-xx_xxxx-xx-xx_century-solar"
     ],
     educationIds: [

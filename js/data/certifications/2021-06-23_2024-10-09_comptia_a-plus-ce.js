@@ -42,7 +42,8 @@ const cert20210623ComptiaAPlusCe = {
     "Digital Media Technician",
     "Electronics / Repair Technician",
     "IT Support Specialist",
-    "Service Desk Analyst"
+    "Service Desk Analyst",
+    "AI Application Developer — Secure Workflow Automation"
   ],
   "knowledge": {
     "domains": [

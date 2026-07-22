@@ -57,6 +57,7 @@ const project202607xxMetadataEditor = {
     "Media DevOps Engineer",
     "IT Systems Engineer — Automation & Self-Service",
     "AI Automation Engineer — Business Systems Integration",
+    "AI Application Developer — Secure Workflow Automation"
   ],
 
   rolePriority: {
@@ -72,7 +73,8 @@ const project202607xxMetadataEditor = {
     "Post-Production Technician": 3,
     "Media DevOps Engineer": 3,
     "IT Systems Engineer — Automation & Self-Service": 4,
-    "AI Automation Engineer — Business Systems Integration": 5
+    "AI Automation Engineer — Business Systems Integration": 5,
+    "AI Application Developer — Secure Workflow Automation": 5
   },
 
   features: [
@@ -89,6 +91,22 @@ const project202607xxMetadataEditor = {
   ],
 
   bullets: [
+    {
+      id: "metadata-editor-nakedmd-ai-application-001",
+      text: "Developed a React/TypeScript and FastAPI workflow application with structured validation, inheritance, overrides, staged review states, error handling, and integrated help content.",
+      printText: "Developed a React/TypeScript and FastAPI workflow app with validation, overrides, staged review, error handling, and integrated help.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["AI Application Developer — Secure Workflow Automation"],
+      skillTags: [
+        { category: "Full-Stack Development", name: "TypeScript" },
+        { category: "Full-Stack Development", name: "React" },
+        { category: "Full-Stack Development", name: "FastAPI" },
+        { category: "Human Review & Guardrails", name: "review and override workflows" },
+        { category: "Human Review & Guardrails", name: "structured validation" },
+        { category: "Human Review & Guardrails", name: "error handling" }
+      ]
+    },
     {
       id: "metadata-editor-ai-business-automation-001",
       text: "Developed a React/TypeScript and FastAPI workflow application with guided forms, data inheritance, validation, staged statuses, and integrated help content.",

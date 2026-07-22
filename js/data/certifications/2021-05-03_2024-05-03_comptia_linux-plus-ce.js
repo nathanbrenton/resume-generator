@@ -41,7 +41,8 @@ const cert20210503ComptiaLinuxPlusCe = {
     "Junior Operations Engineer",
     "MLOps / AI Infrastructure",
     "AI Automation Engineer — Business Systems Integration",
-    "Support Engineer"
+    "Support Engineer",
+    "AI Application Developer — Secure Workflow Automation"
   ],
   "knowledge": {
     "domains": [

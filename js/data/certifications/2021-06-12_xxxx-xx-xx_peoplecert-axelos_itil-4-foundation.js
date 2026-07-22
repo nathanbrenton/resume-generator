@@ -1,5 +1,5 @@
 const cert20210612PeoplecertAxelosItil4Foundation = {
-  "id": "2021-06-12_2024-06-12_peoplecert-axelos_itil-4-foundation",
+  "id": "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation",
   "name": "ITIL 4 Foundation",
   "vendor": "PeopleCert / AXELOS",
   "type": "certification",
@@ -14,11 +14,11 @@ const cert20210612PeoplecertAxelosItil4Foundation = {
     "day": null
   },
   "expires": {
-    "year": 2024,
-    "month": 6,
-    "day": 12
+    "year": null,
+    "month": null,
+    "day": null
   },
-  "doesExpire": true,
+  "doesExpire": false,
   "includeByDefault": false,
   "exam": {
     "code": "",
@@ -44,7 +44,8 @@ const cert20210612PeoplecertAxelosItil4Foundation = {
     "Platform Engineer",
     "IT Operations Specialist",
     "Service Desk Analyst",
-    "Change Coordinator"
+    "Change Coordinator",
+    "AI Application Developer — Secure Workflow Automation"
   ],
   "knowledge": {
     "domains": [
@@ -168,7 +169,7 @@ const cert20210612PeoplecertAxelosItil4Foundation = {
   },
   "sourceNotes": [
     "The earned date comes from the existing certification record.",
-    "The modeled expiration date is three years after issuance under the current PeopleCert renewal scheme; update it if the PeopleCert account shows a different renew-by date.",
+    "The credential is modeled as non-expiring; PeopleCert may separately describe whether certification knowledge is aligned with current renewal requirements.",
     "The September 2019 ITIL 4 Foundation candidate syllabus was used to derive knowledge metadata."
   ]
 };

@@ -40,7 +40,8 @@ const cert20230811ComptiaCysaPlusCe = {
     "Systems Administrator",
     "Site Reliability Engineer",
     "Infrastructure Analyst — Deployment & Operations",
-    "MLOps / AI Infrastructure"
+    "MLOps / AI Infrastructure",
+    "AI Application Developer — Secure Workflow Automation"
   ],
   "knowledge": {
     "domains": [

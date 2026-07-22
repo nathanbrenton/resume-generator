@@ -39,7 +39,8 @@ const cert20221015Isc2AssociateSscp = {
     "Cybersecurity Analyst",
     "Security Analyst",
     "Security Engineer",
-    "Security Operations Analyst"
+    "Security Operations Analyst",
+    "AI Application Developer — Secure Workflow Automation"
   ],
   "knowledge": {
     "domains": [

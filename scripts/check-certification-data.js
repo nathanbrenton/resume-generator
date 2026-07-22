@@ -96,7 +96,7 @@ function main() {
     "CompTIA Security+ ce": "expired",
     "CompTIA Network+ ce": "expired",
     "CompTIA A+ ce": "expired",
-    "ITIL 4 Foundation": "expired",
+    "ITIL 4 Foundation": "non-expiring",
     "CompTIA Linux+ ce": "expired"
   };
 
@@ -150,12 +150,13 @@ function main() {
 
   const expiredAPlus = certifications.find((entry) => entry.name === "CompTIA A+ ce");
   const currentPenTest = certifications.find((entry) => entry.name === "CompTIA PenTest+ ce");
+  const nonExpiringItil = certifications.find((entry) => entry.name === "ITIL 4 Foundation");
   const selectedResume = buildResume({
     targetRole: "Systems Administrator",
     selectedJobIds: [],
     selectedProjectIds: [],
     selectedEducationIds: [],
-    selectedCertificationIds: [expiredAPlus.id, currentPenTest.id],
+    selectedCertificationIds: [expiredAPlus.id, currentPenTest.id, nonExpiringItil.id],
     maxSkillGroups: 99,
     maxSkillsPerGroup: 99,
     currentDate: fixedDate
@@ -169,6 +170,10 @@ function main() {
   assert(
     selectedByName.get("CompTIA PenTest+ ce")?.resumeDisplay?.dateText === "Expires Aug 2026",
     "Current certifications must display their calculated expiration date"
+  );
+  assert(
+    selectedByName.get("ITIL 4 Foundation")?.resumeDisplay?.dateText === "Issued Jun 2021 · Does not expire",
+    "Non-expiring certifications must display their issued date and non-expiring status"
   );
 
   console.log("Certification data checks passed.");

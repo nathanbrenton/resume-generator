@@ -175,6 +175,7 @@ function renderCurrentResume() {
       "Junior Operations Engineer": 8,
       "AI Automation Engineer — Financial Operations": 8,
       "AI Automation Engineer — Business Systems Integration": 7,
+      "AI Application Developer — Secure Workflow Automation": 7,
       "AI-First Software Engineer": 8,
       "Computer Engineer — Physical AI Compute": 7,
       "Software Engineer — Full Stack": 7

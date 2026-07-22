@@ -66,6 +66,7 @@ const project20260501SignalStack = {
     "AI/ML Engineer",
     "AI Automation Engineer — Financial Operations",
     "AI Automation Engineer — Business Systems Integration",
+    "AI Application Developer — Secure Workflow Automation",
     "MLOps / AI Infrastructure",
     "Technical Coordinator",
     "Digital Media Technician",
@@ -98,6 +99,7 @@ const project20260501SignalStack = {
     "AI/ML Engineer": 3,
     "AI Automation Engineer — Financial Operations": 4,
     "AI Automation Engineer — Business Systems Integration": 5,
+    "AI Application Developer — Secure Workflow Automation": 4,
     "MLOps / AI Infrastructure": 3,
     "Technical Coordinator": 2,
     "Digital Media Technician": 1,
@@ -112,6 +114,7 @@ const project20260501SignalStack = {
   maxBulletsByTargetRole: {
     "AI Automation Engineer — Financial Operations": 2,
     "AI Automation Engineer — Business Systems Integration": 1,
+    "AI Application Developer — Secure Workflow Automation": 1,
     "Support Engineer — APIs & Technical Support": 2
   },
 
@@ -136,6 +139,23 @@ const project20260501SignalStack = {
   ],
 
   bullets: [
+    {
+      id: "signalstack-nakedmd-ai-application-001",
+      text: "Built a containerized Python/FastAPI/PostgreSQL AI application with API ingestion, normalization, duplicate detection, semantic retrieval, ML classification, health visibility, and tested dashboard workflows.",
+      printText: "Built a containerized Python/FastAPI/PostgreSQL AI app with ingestion, validation, semantic retrieval, ML classification, health checks, and dashboards.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["AI Application Developer — Secure Workflow Automation"],
+      skillTags: [
+        { category: "Full-Stack Development", name: "Python" },
+        { category: "Full-Stack Development", name: "FastAPI" },
+        { category: "APIs & Data", name: "REST APIs" },
+        { category: "APIs & Data", name: "PostgreSQL" },
+        { category: "AI & Automation", name: "semantic retrieval" },
+        { category: "AI & Automation", name: "ML classification" },
+        { category: "DevOps & Tooling", name: "Docker" }
+      ]
+    },
     {
       id: "signalstack-ai-business-automation-001",
       text: "Built a containerized Python/FastAPI/PostgreSQL platform with API-based ingestion, normalization, duplicate detection, semantic retrieval, ML classification, health visibility, and dashboard workflows.",

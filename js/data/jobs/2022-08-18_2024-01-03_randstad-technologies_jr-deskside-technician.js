@@ -48,6 +48,7 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
     "Junior Operations Engineer": 2,
     "AI Automation Engineer — Financial Operations": 1,
     "AI Automation Engineer — Business Systems Integration": 2,
+    "AI Application Developer — Secure Workflow Automation": 2,
     "Software Engineer — Full Stack": 2,
     "AI-First Software Engineer": 2,
     "Platform Engineer — Digital Workplace Automation": 3
@@ -75,11 +76,39 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
     "Junior Operations Engineer",
     "AI Automation Engineer — Financial Operations",
     "AI Automation Engineer — Business Systems Integration",
+    "AI Application Developer — Secure Workflow Automation",
     "Software Engineer — Full Stack",
     "AI-First Software Engineer"
   ],
 
   bullets: [
+    {
+      id: "randstad-jr-deskside-technician-nakedmd-ai-application-001",
+      text: "Automated hardware and software validation with PowerShell while supporting enterprise application, identity, access, VPN, encryption, and endpoint workflows.",
+      printText: "Automated hardware/software validation with PowerShell while supporting application, identity, access, VPN, encryption, and endpoint workflows.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["AI Application Developer — Secure Workflow Automation"],
+      skillTags: [
+        { category: "Full-Stack Development", name: "PowerShell" },
+        { category: "Security & Privacy", name: "access controls" },
+        { category: "Security & Privacy", name: "least-privilege access" },
+        { category: "Testing & Delivery", name: "automated validation" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-nakedmd-ai-application-002",
+      text: "Investigated user-facing application and security issues, documented findings and resolutions, and communicated support guidance across varied technical backgrounds.",
+      printText: "Investigated application and security issues, documented resolutions, and communicated guidance across varied technical backgrounds.",
+      includeByDefault: true,
+      strength: "supporting",
+      targetRoles: ["AI Application Developer — Secure Workflow Automation"],
+      skillTags: [
+        { category: "Security & Privacy", name: "incident response" },
+        { category: "Documentation", name: "technical documentation" },
+        { category: "Documentation", name: "stakeholder communication" }
+      ]
+    },
     {
       id: "randstad-jr-deskside-technician-ai-business-automation-001",
       text: "Automated hardware and software validation with PowerShell while supporting enterprise application, access, endpoint, VPN, and device workflows using ServiceNow, Splunk, SCCM/MECM, Active Directory, and JAMF.",

@@ -45,7 +45,8 @@ const cert20220109ComptiaProjectPlus = {
     "Project Coordinator",
     "IT Project Coordinator",
     "Technical Project Coordinator",
-    "Team Lead"
+    "Team Lead",
+    "AI Application Developer — Secure Workflow Automation"
   ],
   "knowledge": {
     "domains": [

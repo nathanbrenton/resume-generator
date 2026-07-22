@@ -42,7 +42,8 @@ const cert20210711ComptiaNetworkPlusCe = {
     "Media DevOps Engineer",
     "Junior Operations Engineer",
     "MLOps / AI Infrastructure",
-    "Media Systems Technician"
+    "Media Systems Technician",
+    "AI Application Developer — Secure Workflow Automation"
   ],
   "knowledge": {
     "domains": [

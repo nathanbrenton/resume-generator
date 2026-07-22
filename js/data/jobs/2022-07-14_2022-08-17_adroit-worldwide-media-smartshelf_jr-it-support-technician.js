@@ -45,6 +45,7 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
     "Junior Operations Engineer": 2,
     "AI Automation Engineer — Financial Operations": 2,
     "AI Automation Engineer — Business Systems Integration": 1,
+    "AI Application Developer — Secure Workflow Automation": 1,
     "Software Engineer — Full Stack": 1,
     "AI-First Software Engineer": 2,
     "Platform Engineer — Digital Workplace Automation": 1
@@ -71,6 +72,7 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
     "Junior Operations Engineer",
     "AI Automation Engineer — Financial Operations",
     "AI Automation Engineer — Business Systems Integration",
+    "AI Application Developer — Secure Workflow Automation",
     "Software Engineer — Full Stack",
     "AI-First Software Engineer"
   ],
@@ -116,6 +118,20 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
   },
 
   bullets: [
+    {
+      id: "adroit-smartshelf-jr-it-support-nakedmd-ai-application-001",
+      text: "Performed human-in-the-loop review of AI-generated retail transactions against multi-camera footage, corrected inaccurate outputs, and escalated recurring discrepancies.",
+      printText: "Reviewed AI-generated transactions against video, corrected inaccurate outputs, and escalated recurring discrepancies.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["AI Application Developer — Secure Workflow Automation"],
+      skillTags: [
+        { category: "Human Review & Guardrails", name: "human-in-the-loop validation" },
+        { category: "Human Review & Guardrails", name: "structured validation" },
+        { category: "APIs & Data", name: "data validation" },
+        { category: "AI & Automation", name: "AI-assisted workflows" }
+      ]
+    },
     {
       id: "adroit-smartshelf-jr-it-support-ai-business-automation-001",
       text: "Validated AI-generated retail transactions against multi-camera footage, corrected inaccurate output data, investigated discrepancies, and documented recurring issues for escalation.",

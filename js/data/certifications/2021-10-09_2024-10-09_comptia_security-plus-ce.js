@@ -43,7 +43,8 @@ const cert20211009ComptiaSecurityPlusCe = {
     "AI Automation Engineer — Business Systems Integration",
     "Cybersecurity Analyst",
     "Security Analyst",
-    "Security Engineer"
+    "Security Engineer",
+    "AI Application Developer — Secure Workflow Automation"
   ],
   "knowledge": {
     "domains": [

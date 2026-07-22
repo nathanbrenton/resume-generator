@@ -49,6 +49,7 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     "Junior Operations Engineer": 3,
     "AI Automation Engineer — Financial Operations": 3,
     "AI Automation Engineer — Business Systems Integration": 3,
+    "AI Application Developer — Secure Workflow Automation": 2,
     "Software Engineer — Full Stack": 3,
     "AI-First Software Engineer": 3,
     "Platform Engineer — Digital Workplace Automation": 3
@@ -75,11 +76,41 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     "Junior Operations Engineer",
     "AI Automation Engineer — Financial Operations",
     "AI Automation Engineer — Business Systems Integration",
+    "AI Application Developer — Secure Workflow Automation",
     "Software Engineer — Full Stack",
     "AI-First Software Engineer"
   ],
 
   bullets: [
+    {
+      id: "roth-system-engineer-i-nakedmd-ai-application-001",
+      text: "Supported security-conscious enterprise application environments, investigated incidents across operating systems, middleware, networks, and configurations, and coordinated vulnerability remediation and service recovery.",
+      printText: "Supported secure enterprise applications, investigated cross-stack incidents, and coordinated vulnerability remediation and service recovery.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["AI Application Developer — Secure Workflow Automation"],
+      skillTags: [
+        { category: "Security & Privacy", name: "incident response" },
+        { category: "Security & Privacy", name: "vulnerability remediation" },
+        { category: "Security & Privacy", name: "secure operations" },
+        { category: "DevOps & Tooling", name: "Linux" },
+        { category: "Testing & Delivery", name: "deployment validation" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-nakedmd-ai-application-002",
+      text: "Automated startup, recovery, environment validation, and operational checks using Bash, systemd, cron, and reusable scripts; documented procedures for repeatable support.",
+      printText: "Automated startup, recovery, and environment validation with Bash, systemd, cron, and reusable scripts; documented repeatable procedures.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["AI Application Developer — Secure Workflow Automation"],
+      skillTags: [
+        { category: "AI & Automation", name: "workflow automation" },
+        { category: "DevOps & Tooling", name: "Linux" },
+        { category: "Testing & Delivery", name: "deployment validation" },
+        { category: "Documentation", name: "technical documentation" }
+      ]
+    },
     {
       id: "roth-system-engineer-i-ai-business-automation-001",
       text: "Automated middleware startup, recovery, environment validation, and operational checks using Bash, systemd, cron, and reusable scripts.",

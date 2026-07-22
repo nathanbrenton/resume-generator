@@ -56,7 +56,8 @@ const project202607xxCenturySolar = {
     "Technical Coordinator",
     "Junior Operations Engineer",
     "Infrastructure Analyst — Deployment & Operations",
-    "AI Automation Engineer — Business Systems Integration"
+    "AI Automation Engineer — Business Systems Integration",
+    "AI Application Developer — Secure Workflow Automation"
   ],
 
   rolePriority: {
@@ -69,7 +70,8 @@ const project202607xxCenturySolar = {
     "Technical Coordinator": 2,
     "Junior Operations Engineer": 4,
     "Infrastructure Analyst — Deployment & Operations": 3,
-    "AI Automation Engineer — Business Systems Integration": 5
+    "AI Automation Engineer — Business Systems Integration": 5,
+    "AI Application Developer — Secure Workflow Automation": 4
   },
 
   features: [
@@ -90,6 +92,25 @@ const project202607xxCenturySolar = {
   ],
 
   bullets: [
+    {
+      id: "century-solar-nakedmd-ai-application-001",
+      text: "Developed a private, containerized React/TypeScript, FastAPI, and PostgreSQL portfolio platform with access controls, privacy and audit workflows, operational validation, and automated backend, frontend, and browser tests.",
+      printText: "Developed a private containerized React/TypeScript, FastAPI, and PostgreSQL platform with access, privacy, audit, validation, and automated tests.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["AI Application Developer — Secure Workflow Automation"],
+      skillTags: [
+        { category: "Full-Stack Development", name: "TypeScript" },
+        { category: "Full-Stack Development", name: "React" },
+        { category: "Full-Stack Development", name: "Python" },
+        { category: "APIs & Data", name: "PostgreSQL" },
+        { category: "Security & Privacy", name: "access controls" },
+        { category: "Security & Privacy", name: "privacy controls" },
+        { category: "Human Review & Guardrails", name: "audit trails" },
+        { category: "Testing & Delivery", name: "Playwright" },
+        { category: "DevOps & Tooling", name: "Docker" }
+      ]
+    },
     {
       id: "century-solar-ai-business-automation-001",
       text: "Developed a private, containerized React/TypeScript, FastAPI, and PostgreSQL business-operations platform modeling customer, inventory, fulfillment, service, and administrative workflows with automated tests.",
