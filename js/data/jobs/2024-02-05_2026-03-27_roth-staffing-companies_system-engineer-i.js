@@ -50,6 +50,7 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     "AI Automation Engineer — Financial Operations": 3,
     "AI Automation Engineer — Business Systems Integration": 3,
     "AI Application Developer — Secure Workflow Automation": 2,
+    "Video Systems Engineer — AI & Computer Vision Pipelines": 1,
     "Software Engineer — Full Stack": 3,
     "AI-First Software Engineer": 3,
     "Platform Engineer — Digital Workplace Automation": 3
@@ -77,11 +78,27 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     "AI Automation Engineer — Financial Operations",
     "AI Automation Engineer — Business Systems Integration",
     "AI Application Developer — Secure Workflow Automation",
+    "Video Systems Engineer — AI & Computer Vision Pipelines",
     "Software Engineer — Full Stack",
     "AI-First Software Engineer"
   ],
 
   bullets: [
+    {
+      id: "roth-system-engineer-i-trl11-video-systems-001",
+      text: "Supported application deployment workflows and helped developers isolate failures by analyzing RHEL, WebLogic, OSB, IBM MQ, Apache HTTP Server, Tomcat/TomEE, and application logs.",
+      printText: "Supported deployments and helped developers isolate failures using RHEL, middleware, and application logs.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Video Systems Engineer — AI & Computer Vision Pipelines"],
+      skillTags: [
+        { category: "Linux & Application Support", name: "deployment support" },
+        { category: "Linux & Application Support", name: "log analysis" },
+        { category: "Linux & Application Support", name: "application troubleshooting" },
+        { category: "Linux & Application Support", name: "middleware diagnostics" },
+        { category: "Documentation & Collaboration", name: "cross-functional support" }
+      ]
+    },
     {
       id: "roth-system-engineer-i-nakedmd-ai-application-001",
       text: "Supported security-conscious enterprise application environments, investigated incidents across operating systems, middleware, networks, and configurations, and coordinated vulnerability remediation and service recovery.",

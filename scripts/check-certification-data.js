@@ -63,7 +63,8 @@ function main() {
     certifications,
     certificationKnowledge,
     buildResume,
-    getCertificationStatus
+    getCertificationStatus,
+    getCertificationDateText
   } = loadResumeData();
 
   assert(certifications.length === 9, `Expected 9 certifications, found ${certifications.length}`);
@@ -150,13 +151,14 @@ function main() {
 
   const expiredAPlus = certifications.find((entry) => entry.name === "CompTIA A+ ce");
   const currentPenTest = certifications.find((entry) => entry.name === "CompTIA PenTest+ ce");
+  const currentCysa = certifications.find((entry) => entry.name === "CompTIA CySA+ ce");
   const nonExpiringItil = certifications.find((entry) => entry.name === "ITIL 4 Foundation");
   const selectedResume = buildResume({
     targetRole: "Systems Administrator",
     selectedJobIds: [],
     selectedProjectIds: [],
     selectedEducationIds: [],
-    selectedCertificationIds: [expiredAPlus.id, currentPenTest.id, nonExpiringItil.id],
+    selectedCertificationIds: [expiredAPlus.id, currentPenTest.id, currentCysa.id, nonExpiringItil.id],
     maxSkillGroups: 99,
     maxSkillsPerGroup: 99,
     currentDate: fixedDate
@@ -172,8 +174,16 @@ function main() {
     "Current certifications must display their calculated expiration date"
   );
   assert(
-    selectedByName.get("ITIL 4 Foundation")?.resumeDisplay?.dateText === "Issued Jun 2021 · Does not expire",
-    "Non-expiring certifications must display their issued date and non-expiring status"
+    selectedByName.get("CompTIA CySA+ ce")?.resumeDisplay?.dateText === "Expires Aug 2029",
+    "CySA+ must use the certificate-confirmed August 2029 expiration date"
+  );
+  assert(
+    selectedByName.get("ITIL 4 Foundation")?.resumeDisplay?.dateText === "Issued Jun 2021",
+    "Non-expiring certifications must display only their issued date on the resume"
+  );
+  assert(
+    getCertificationDateText(nonExpiringItil, fixedDate) === "Issued Jun 2021 · Does not expire",
+    "Certification controls should retain the non-expiring status"
   );
 
   console.log("Certification data checks passed.");

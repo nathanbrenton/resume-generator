@@ -57,7 +57,8 @@ const project202607xxMetadataEditor = {
     "Media DevOps Engineer",
     "IT Systems Engineer — Automation & Self-Service",
     "AI Automation Engineer — Business Systems Integration",
-    "AI Application Developer — Secure Workflow Automation"
+    "AI Application Developer — Secure Workflow Automation",
+    "Video Systems Engineer — AI & Computer Vision Pipelines"
   ],
 
   rolePriority: {
@@ -74,7 +75,8 @@ const project202607xxMetadataEditor = {
     "Media DevOps Engineer": 3,
     "IT Systems Engineer — Automation & Self-Service": 4,
     "AI Automation Engineer — Business Systems Integration": 5,
-    "AI Application Developer — Secure Workflow Automation": 5
+    "AI Application Developer — Secure Workflow Automation": 5,
+    "Video Systems Engineer — AI & Computer Vision Pipelines": 5
   },
 
   features: [
@@ -91,6 +93,23 @@ const project202607xxMetadataEditor = {
   ],
 
   bullets: [
+    {
+      id: "metadata-editor-trl11-video-systems-001",
+      text: "Built a React/TypeScript and FastAPI media workspace that inspects assets with FFmpeg and MediaInfo, validates technical metadata, and stages playback derivatives through tested workflows.",
+      printText: "Built a React/TypeScript and FastAPI media workspace using FFmpeg/MediaInfo inspection, metadata validation, and tested derivative workflows.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Video Systems Engineer — AI & Computer Vision Pipelines"],
+      skillTags: [
+        { category: "Programming & APIs", name: "Python" },
+        { category: "Programming & APIs", name: "FastAPI" },
+        { category: "Programming & APIs", name: "TypeScript" },
+        { category: "Video & Media Pipelines", name: "FFmpeg" },
+        { category: "Video & Media Pipelines", name: "MediaInfo" },
+        { category: "Video & Media Pipelines", name: "metadata validation" },
+        { category: "DevOps & Testing", name: "automated testing" }
+      ]
+    },
     {
       id: "metadata-editor-nakedmd-ai-application-001",
       text: "Developed a React/TypeScript and FastAPI workflow application with structured validation, inheritance, overrides, staged review states, error handling, and integrated help content.",

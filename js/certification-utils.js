@@ -75,6 +75,15 @@ function getCertificationDateText(certification, currentDate = new Date()) {
     : "Expiration date unavailable";
 }
 
+function getCertificationResumeDateText(certification, currentDate = new Date()) {
+  if (getCertificationStatus(certification, currentDate) === "non-expiring") {
+    const earnedText = formatCertificationDate(certification.earned);
+    return earnedText ? `Issued ${earnedText}` : "Issued date unavailable";
+  }
+
+  return getCertificationDateText(certification, currentDate);
+}
+
 function getCertificationControlLabel(certification, currentDate = new Date()) {
   const name = certification.resumeDisplay?.name || certification.name;
   return `${name} — ${getCertificationDateText(certification, currentDate)}`;

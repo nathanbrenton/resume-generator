@@ -46,6 +46,7 @@ const project202607xxReactAudioPlayer = {
     "Software Engineer",
     "Software Engineer — Full Stack",
     "Computer Engineer — Physical AI Compute",
+    "Video Systems Engineer — AI & Computer Vision Pipelines",
     "Digital Media Technician",
     "Media Systems Technician",
     "Post-Production Technician"
@@ -55,6 +56,7 @@ const project202607xxReactAudioPlayer = {
     "Software Engineer": 3,
     "Software Engineer — Full Stack": 4,
     "Computer Engineer — Physical AI Compute": 4,
+    "Video Systems Engineer — AI & Computer Vision Pipelines": 4,
     "Digital Media Technician": 2,
     "Media Systems Technician": 3,
     "Post-Production Technician": 2
@@ -75,6 +77,21 @@ const project202607xxReactAudioPlayer = {
   ],
 
   bullets: [
+    {
+      id: "react-audio-player-trl11-video-systems-001",
+      text: "Built a React/TypeScript signal-analysis interface with WebAudio playback, custom waveform processing, FFT-based spectral analysis, zoomable timelines, and precomputed signal features.",
+      printText: "Built a React/TypeScript signal interface with waveform processing, FFT spectral analysis, zoomable timelines, and precomputed features.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Video Systems Engineer — AI & Computer Vision Pipelines"],
+      skillTags: [
+        { category: "Programming & APIs", name: "TypeScript" },
+        { category: "Signal & Performance", name: "FFT" },
+        { category: "Signal & Performance", name: "waveform processing" },
+        { category: "Signal & Performance", name: "performance analysis" },
+        { category: "DevOps & Testing", name: "automated testing" }
+      ]
+    },
     {
       id: "react-audio-player-physical-ai-compute-001",
       text: "Built a React/TypeScript signal-analysis interface with WebAudio playback, custom waveform processing, FFT-based spectral analysis, zoomable timelines, and precomputed signal features.",

@@ -46,6 +46,7 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
     "AI Automation Engineer — Financial Operations": 2,
     "AI Automation Engineer — Business Systems Integration": 1,
     "AI Application Developer — Secure Workflow Automation": 1,
+    "Video Systems Engineer — AI & Computer Vision Pipelines": 1,
     "Software Engineer — Full Stack": 1,
     "AI-First Software Engineer": 2,
     "Platform Engineer — Digital Workplace Automation": 1
@@ -73,6 +74,7 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
     "AI Automation Engineer — Financial Operations",
     "AI Automation Engineer — Business Systems Integration",
     "AI Application Developer — Secure Workflow Automation",
+    "Video Systems Engineer — AI & Computer Vision Pipelines",
     "Software Engineer — Full Stack",
     "AI-First Software Engineer"
   ],
@@ -118,6 +120,20 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
   },
 
   bullets: [
+    {
+      id: "adroit-smartshelf-jr-it-support-trl11-video-systems-001",
+      text: "Validated AI-generated retail transactions against synchronized multi-camera footage, corrected output discrepancies, investigated edge cases, and escalated recurring computer-vision failure patterns.",
+      printText: "Validated AI outputs against multi-camera video, corrected discrepancies, and escalated recurring computer-vision failure patterns.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Video Systems Engineer — AI & Computer Vision Pipelines"],
+      skillTags: [
+        { category: "AI & Computer Vision Operations", name: "multi-camera AI validation" },
+        { category: "AI & Computer Vision Operations", name: "computer vision output validation" },
+        { category: "AI & Computer Vision Operations", name: "human-in-the-loop validation" },
+        { category: "Documentation & Collaboration", name: "issue escalation" }
+      ]
+    },
     {
       id: "adroit-smartshelf-jr-it-support-nakedmd-ai-application-001",
       text: "Performed human-in-the-loop review of AI-generated retail transactions against multi-camera footage, corrected inaccurate outputs, and escalated recurring discrepancies.",

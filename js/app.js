@@ -31,7 +31,8 @@ function getDefaultSelectionIds(items) {
 }
 
 function getRoleSelectionIds(targetRole, selectionKey, items) {
-  const roleSelections = careerData.roleDefaultSelections?.[targetRole];
+  const role = getRoleDefinition(targetRole);
+  const roleSelections = careerData.roleDefaultSelections?.[role.id];
   const selectedIds = roleSelections?.[selectionKey];
 
   return Array.isArray(selectedIds)
@@ -116,8 +117,8 @@ function populateSelectionControls(targetRole) {
 function populateControls() {
   const targetRoleSelect = document.getElementById("targetRole");
 
-  targetRoleSelect.innerHTML = careerData.targetRoles
-    .map((role) => `<option value="${role}">${role}</option>`)
+  targetRoleSelect.innerHTML = careerData.roleDefinitions
+    .map((role) => `<option value="${role.id}">${role.label}</option>`)
     .join("");
 
   populateSelectionControls(targetRoleSelect.value);
@@ -127,14 +128,15 @@ function updateDebug(resume) {
   const debug = document.getElementById("debugOutput");
 
   debug.textContent = [
-    `Target role: ${resume.targetRole}`,
+    `Target role: ${resume.targetRoleLabel}`,
+    `Role family: ${resume.roleFamily}`,
     `Jobs: ${resume.jobs.length}`,
     `Projects: ${resume.projects.length}`,
     `Education: ${resume.education.length}`,
     `Certifications: ${resume.certifications.length}`,
     `Skill groups: ${resume.skills.length}`,
     `Skill count: ${resume.skills.reduce((total, group) => total + group.skills.length, 0)}`
-  ].join("\\n");
+  ].join("\n");
 }
 
 function setCustomizeMode(enabled) {
@@ -154,33 +156,19 @@ function setCustomizeMode(enabled) {
 }
 
 function renderCurrentResume() {
+  const targetRole = document.getElementById("targetRole").value;
+  const role = getRoleDefinition(targetRole);
+  const family = careerData.roleFamilies[role.familyId];
   const resume = buildResume({
-    targetRole: document.getElementById("targetRole").value,
+    targetRole,
     selectedJobIds: getCheckedValues("jobControls"),
     selectedProjectIds: getCheckedValues("projectControls"),
     selectedEducationIds: getCheckedValues("educationControls"),
     selectedCertificationIds: getCheckedValues("certificationControls"),
-    maxJobBullets: 2,
-    maxProjectBullets: 1,
-    maxSkillGroups: ({
-      "Media DevOps Engineer": 9,
-      "Platform Engineer — Digital Workplace Automation": 8,
-      "IT Systems Engineer — Automation & Self-Service": 8,
-      "Application Support Analyst": 8,
-      "Support Engineer — APIs & Technical Support": 8,
-      "Site Reliability Engineer": 8,
-      "Associate Software Engineer — Reliability": 8,
-      "Infrastructure Analyst — Deployment & Operations": 8,
-      "Technical Support Engineer — Industrial Applications": 8,
-      "Junior Operations Engineer": 8,
-      "AI Automation Engineer — Financial Operations": 8,
-      "AI Automation Engineer — Business Systems Integration": 7,
-      "AI Application Developer — Secure Workflow Automation": 7,
-      "AI-First Software Engineer": 8,
-      "Computer Engineer — Physical AI Compute": 7,
-      "Software Engineer — Full Stack": 7
-    })[document.getElementById("targetRole").value] ?? 6,
-    maxSkillsPerGroup: 6
+    maxJobBullets: role.layout?.maxJobBullets ?? 2,
+    maxProjectBullets: role.layout?.maxProjectBullets ?? 1,
+    maxSkillGroups: role.layout?.maxSkillGroups ?? family.defaultMaxSkillGroups ?? 6,
+    maxSkillsPerGroup: role.layout?.maxSkillsPerGroup ?? 6
   });
 
   renderResume(resume, document.getElementById("resumePreview"));

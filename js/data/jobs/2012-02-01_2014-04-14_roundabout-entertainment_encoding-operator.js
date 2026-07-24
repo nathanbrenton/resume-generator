@@ -5,7 +5,8 @@ const job20120201RoundaboutEntertainmentEncodingOperator = {
 
   maxBulletsByTargetRole: {
     "Site Reliability Engineer": 1,
-    "Media DevOps Engineer": 2
+    "Media DevOps Engineer": 2,
+    "Video Systems Engineer — AI & Computer Vision Pipelines": 1
   },
 
   employer: "Roundabout Entertainment, Inc.",
@@ -84,7 +85,8 @@ const job20120201RoundaboutEntertainmentEncodingOperator = {
     "Post-Production Technician",
     "Hardware Repair Technician",
     "Site Reliability Engineer",
-    "Media DevOps Engineer"
+    "Media DevOps Engineer",
+    "Video Systems Engineer — AI & Computer Vision Pipelines"
   ],
 
   rolePriority: {
@@ -105,10 +107,25 @@ const job20120201RoundaboutEntertainmentEncodingOperator = {
     "Encoding / Transcode Technician": 3,
     "Post-Production Technician": 3,
     "Electronics / Repair Technician": 0,
-    "Hardware Repair Technician": 1
+    "Hardware Repair Technician": 1,
+    "Video Systems Engineer — AI & Computer Vision Pipelines": 3
   },
 
   bullets: [
+    {
+      id: "roundabout-entertainment-encoding-operator-trl11-video-systems-001",
+      text: "Operated and validated ingest, transcode, metadata, forensic-watermarking, quality-control, and delivery workflows for FOX and other media platforms.",
+      printText: "Operated and validated ingest, transcode, metadata, watermarking, QC, and delivery workflows for FOX and other media platforms.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Video Systems Engineer — AI & Computer Vision Pipelines"],
+      skillTags: [
+        { category: "Video & Media Pipelines", name: "video ingest" },
+        { category: "Video & Media Pipelines", name: "transcoding" },
+        { category: "Video & Media Pipelines", name: "metadata validation" },
+        { category: "Video & Media Pipelines", name: "quality control" }
+      ]
+    },
     {
       id: "roundabout-entertainment-encoding-operator-sre-001",
       text: "Supported time-sensitive transcode and delivery workflows for PlayStation Network, FOX, Netflix, and international media platforms.",

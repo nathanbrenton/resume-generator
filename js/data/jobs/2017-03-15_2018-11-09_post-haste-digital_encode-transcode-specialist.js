@@ -7,7 +7,8 @@ const job20170315PostHasteDigitalEncodeTranscodeSpecialist = {
     "Computer Engineer — Physical AI Compute": 1,
     "Site Reliability Engineer": 1,
     "Technical Support Engineer — Industrial Applications": 2,
-    "Media DevOps Engineer": 2
+    "Media DevOps Engineer": 2,
+    "Video Systems Engineer — AI & Computer Vision Pipelines": 1
   },
 
   employer: "Post Haste Digital",
@@ -82,7 +83,8 @@ const job20170315PostHasteDigitalEncodeTranscodeSpecialist = {
     "Hardware Repair Technician",
     "Site Reliability Engineer",
     "Technical Support Engineer — Industrial Applications",
-    "Media DevOps Engineer"
+    "Media DevOps Engineer",
+    "Video Systems Engineer — AI & Computer Vision Pipelines"
   ],
 
   rolePriority: {
@@ -104,10 +106,27 @@ const job20170315PostHasteDigitalEncodeTranscodeSpecialist = {
     "Post-Production Technician": 3,
     "Electronics / Repair Technician": 0,
     "Hardware Repair Technician": 1,
-    "Technical Support Engineer — Industrial Applications": 3
+    "Technical Support Engineer — Industrial Applications": 3,
+    "Video Systems Engineer — AI & Computer Vision Pipelines": 4
   },
 
   bullets: [
+    {
+      id: "post-haste-digital-encode-transcode-specialist-trl11-video-systems-001",
+      text: "Automated and troubleshot high-volume video transcode workflows using Bash, FFmpeg, concurrent render queues, error logs, and automated quality control across five processing systems.",
+      printText: "Automated and troubleshot high-volume transcodes with Bash, FFmpeg, five concurrent systems, error logs, and automated QC.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Video Systems Engineer — AI & Computer Vision Pipelines"],
+      skillTags: [
+        { category: "Video & Media Pipelines", name: "FFmpeg" },
+        { category: "Video & Media Pipelines", name: "transcoding" },
+        { category: "Video & Media Pipelines", name: "automated QC" },
+        { category: "Programming & APIs", name: "Bash" },
+        { category: "Signal & Performance", name: "concurrent processing" },
+        { category: "Linux & Application Support", name: "log analysis" }
+      ]
+    },
     {
       id: "post-haste-digital-encode-transcode-specialist-aveva-tech-support-001",
       text: "Monitored high-volume media-processing queues across five concurrent systems, using error logs and automated quality-control results to diagnose failures and coordinate corrective reprocessing.",

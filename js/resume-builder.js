@@ -2,8 +2,17 @@ function normalizeText(value) {
   return String(value || "").trim();
 }
 
+function normalizeComparableText(value) {
+  return normalizeText(value)
+    .toLowerCase()
+    .replace(/[–—]/g, "-")
+    .replace(/[^a-z0-9+/#.-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function toSkillKey(skill) {
-  return `${normalizeText(skill.category).toLowerCase()}::${normalizeText(skill.name).toLowerCase()}`;
+  return normalizeComparableText(skill.name);
 }
 
 function addSkill(skillMap, skill, weight = 1) {
@@ -12,16 +21,25 @@ function addSkill(skillMap, skill, weight = 1) {
   }
 
   const key = toSkillKey(skill);
+  const configuredWeight = Number.isFinite(skill.weight) ? skill.weight : 1;
+  const contribution = configuredWeight * weight;
 
   if (!skillMap.has(key)) {
     skillMap.set(key, {
       category: normalizeText(skill.category),
       name: normalizeText(skill.name),
-      weight: 0
+      weight: 0,
+      categoryWeight: Number.NEGATIVE_INFINITY
     });
   }
 
-  skillMap.get(key).weight += weight;
+  const storedSkill = skillMap.get(key);
+  storedSkill.weight += contribution;
+
+  if (contribution > storedSkill.categoryWeight) {
+    storedSkill.category = normalizeText(skill.category);
+    storedSkill.categoryWeight = contribution;
+  }
 }
 
 function addSkills(skillMap, skills, weight = 1) {
@@ -61,44 +79,95 @@ function formatDateRange(start, end, isCurrent) {
   return startText || endText || "";
 }
 
+function getRoleContext(targetRole) {
+  const role = getRoleDefinition(targetRole);
+
+  return {
+    role,
+    roleId: role.id,
+    matchLabels: new Set(getRoleMatchLabels(role.id))
+  };
+}
+
+function matchesRoleLabels(targetRoles, roleContext) {
+  return (targetRoles || []).some((roleName) => roleContext.matchLabels.has(roleName));
+}
+
 function itemMatchesTarget(item, targetRole) {
-  if (!targetRole) {
-    return true;
+  const roleContext = getRoleContext(targetRole);
+  const targetRoles = item.targetRoles || [];
+
+  return targetRoles.length === 0 || matchesRoleLabels(targetRoles, roleContext);
+}
+
+function getConfiguredRoleValue(valuesByRole, roleContext) {
+  if (!valuesByRole) {
+    return undefined;
   }
 
-  return (item.targetRoles || []).includes(targetRole);
+  const candidateKeys = [roleContext.roleId, roleContext.role.label, ...roleContext.role.aliases];
+
+  for (const key of candidateKeys) {
+    if (Object.prototype.hasOwnProperty.call(valuesByRole, key)) {
+      return valuesByRole[key];
+    }
+  }
+
+  return undefined;
+}
+
+function getBulletTextKey(bullet) {
+  return normalizeComparableText(bullet.printText || bullet.text || bullet.id);
+}
+
+function scoreBullet(bullet, roleContext, sourceIndex) {
+  const roleMatch = matchesRoleLabels(bullet.targetRoles, roleContext);
+  const strengthScore = bullet.strength === "primary"
+    ? 6
+    : bullet.strength === "supporting"
+      ? 2
+      : 0;
+
+  return {
+    bullet,
+    roleMatch,
+    score: (roleMatch ? 100 : 0) + (bullet.includeByDefault ? 10 : 0) + strengthScore,
+    sourceIndex
+  };
 }
 
 function selectBullets(item, targetRole, maxBullets) {
   const bullets = item.bullets || [];
-
-  const primaryMatches = bullets.filter((bullet) => {
-    return bullet.includeByDefault && (bullet.targetRoles || []).includes(targetRole);
+  const roleContext = getRoleContext(targetRole);
+  const scored = bullets.map((bullet, sourceIndex) => scoreBullet(bullet, roleContext, sourceIndex));
+  const matched = scored.filter((entry) => entry.roleMatch);
+  const genericDefaults = scored.filter((entry) => {
+    return !entry.roleMatch && entry.bullet.includeByDefault && !(entry.bullet.targetRoles || []).length;
+  });
+  const fallbackDefaults = scored.filter((entry) => {
+    return !entry.roleMatch && entry.bullet.includeByDefault && (entry.bullet.targetRoles || []).length;
   });
 
-  const defaultBullets = bullets.filter((bullet) => bullet.includeByDefault);
+  const ranked = [...matched, ...genericDefaults, ...fallbackDefaults]
+    .sort((a, b) => b.score - a.score || a.sourceIndex - b.sourceIndex);
 
-  const supportingMatches = bullets.filter((bullet) => {
-    return (bullet.targetRoles || []).includes(targetRole);
-  });
+  const seenIds = new Set();
+  const seenText = new Set();
+  const selected = [];
 
-  const selected = [
-    ...primaryMatches,
-    ...defaultBullets,
-    ...supportingMatches
-  ];
+  ranked.forEach(({ bullet }) => {
+    const textKey = getBulletTextKey(bullet);
 
-  const seen = new Set();
-  const deduped = [];
-
-  selected.forEach((bullet) => {
-    if (!seen.has(bullet.id)) {
-      seen.add(bullet.id);
-      deduped.push(bullet);
+    if (seenIds.has(bullet.id) || seenText.has(textKey)) {
+      return;
     }
+
+    seenIds.add(bullet.id);
+    seenText.add(textKey);
+    selected.push(bullet);
   });
 
-  return deduped.slice(0, maxBullets);
+  return selected.slice(0, maxBullets);
 }
 
 function selectedByIds(items, selectedIds) {
@@ -115,6 +184,7 @@ function selectedByIds(items, selectedIds) {
 
 function groupSkills(skills, targetRole) {
   const grouped = {};
+  const roleId = getRoleDefinition(targetRole).id;
 
   skills.forEach((skill) => {
     if (!grouped[skill.category]) {
@@ -134,7 +204,7 @@ function groupSkills(skills, targetRole) {
     });
   });
 
-  const categoryOrder = skillCategoryOrderByRole[targetRole] || skillCategoryOrder;
+  const categoryOrder = skillCategoryOrderByRole[roleId] || skillCategoryOrder;
 
   const categories = Object.keys(grouped).sort((a, b) => {
     const aIndex = categoryOrder.indexOf(a);
@@ -162,7 +232,8 @@ function groupSkills(skills, targetRole) {
 }
 
 function getSkillGroupLimit(targetRole, category, fallbackLimit) {
-  return skillGroupLimitsByRole[targetRole]?.[category] ?? fallbackLimit;
+  const roleId = getRoleDefinition(targetRole).id;
+  return skillGroupLimitsByRole[roleId]?.[category] ?? fallbackLimit;
 }
 
 function buildVisibleSkillGroups(
@@ -238,42 +309,37 @@ function buildVisibleSkillGroups(
 }
 
 function buildResume(options = {}) {
-  const targetRole = options.targetRole || careerData.targetRoles[0];
-  const maxJobBullets = options.maxJobBullets ?? 2;
-  const maxProjectBullets = options.maxProjectBullets ?? 1;
-  const maxSkillGroups = options.maxSkillGroups ?? 6;
-  const maxSkillsPerGroup = options.maxSkillsPerGroup ?? 6;
+  const requestedRole = options.targetRole || careerData.targetRoles[0];
+  const roleContext = getRoleContext(requestedRole);
+  const family = careerData.roleFamilies[roleContext.role.familyId];
+  const layout = roleContext.role.layout || {};
+  const maxJobBullets = options.maxJobBullets ?? layout.maxJobBullets ?? 2;
+  const maxProjectBullets = options.maxProjectBullets ?? layout.maxProjectBullets ?? 1;
+  const maxSkillGroups = options.maxSkillGroups ?? layout.maxSkillGroups ?? family.defaultMaxSkillGroups ?? 6;
+  const maxSkillsPerGroup = options.maxSkillsPerGroup ?? layout.maxSkillsPerGroup ?? 6;
 
   const selectedJobs = selectedByIds(careerData.jobs, options.selectedJobIds);
   const selectedProjects = selectedByIds(careerData.projects, options.selectedProjectIds);
   const selectedEducation = selectedByIds(careerData.education, options.selectedEducationIds);
   const selectedCertifications = selectedByIds(careerData.certifications, options.selectedCertificationIds);
   const currentDate = options.currentDate || new Date();
-
   const skillMap = new Map();
 
-  addSkills(skillMap, careerData.roleSkillPriorities[targetRole], 25);
+  addSkills(skillMap, careerData.roleSkillPriorities[roleContext.roleId], 1);
 
-  const existingSkillNames = new Set(
-    [...skillMap.values()].map((skill) => skill.name.toLowerCase())
-  );
-
-  if (!existingSkillNames.has("python")) {
-    addSkill(skillMap, { category: "Programming & Scripting", name: "Python" }, 24);
-  }
-
-  if (!existingSkillNames.has("docker")) {
-    addSkill(skillMap, { category: "DevOps & Tooling", name: "Docker" }, 24);
-  }
+  addSkill(skillMap, { category: "Programming & Scripting", name: "Python", weight: 9 }, 1);
+  addSkill(skillMap, { category: "DevOps & Tooling", name: "Docker", weight: 8 }, 1);
 
   (careerData.certificationKnowledge || [])
-    .filter((entry) => !entry.targetRoles.length || entry.targetRoles.includes(targetRole))
+    .filter((entry) => {
+      return !entry.targetRoles.length || matchesRoleLabels(entry.targetRoles, roleContext);
+    })
     .forEach((entry) => addSkills(skillMap, entry.skillTags, 1));
 
   const jobsForResume = selectedJobs.map((job) => {
-    const roleBulletLimit = job.maxBulletsByTargetRole?.[targetRole];
-    const bulletLimit = roleBulletLimit ?? Math.max(maxJobBullets, 2);
-    const bullets = selectBullets(job, targetRole, bulletLimit);
+    const configuredLimit = getConfiguredRoleValue(job.maxBulletsByTargetRole, roleContext);
+    const bulletLimit = Math.max(2, Math.min(configuredLimit ?? maxJobBullets, maxJobBullets));
+    const bullets = selectBullets(job, roleContext.roleId, bulletLimit);
     bullets.forEach((bullet) => addSkills(skillMap, bullet.skillTags, 3));
 
     return {
@@ -284,9 +350,9 @@ function buildResume(options = {}) {
   });
 
   const projectsForResume = selectedProjects.map((project) => {
-    const roleBulletLimit = project.maxBulletsByTargetRole?.[targetRole];
-    const bulletLimit = roleBulletLimit ?? maxProjectBullets;
-    const bullets = selectBullets(project, targetRole, bulletLimit);
+    const configuredLimit = getConfiguredRoleValue(project.maxBulletsByTargetRole, roleContext);
+    const bulletLimit = Math.max(1, Math.min(configuredLimit ?? maxProjectBullets, maxProjectBullets));
+    const bullets = selectBullets(project, roleContext.roleId, bulletLimit);
     bullets.forEach((bullet) => addSkills(skillMap, bullet.skillTags, 3));
 
     return {
@@ -305,18 +371,20 @@ function buildResume(options = {}) {
     certificationStatus: getCertificationStatus(certification, currentDate),
     resumeDisplay: {
       ...(certification.resumeDisplay || {}),
-      dateText: getCertificationDateText(certification, currentDate)
+      dateText: getCertificationResumeDateText(certification, currentDate)
     }
   }));
 
   return {
-    targetRole,
+    targetRole: roleContext.roleId,
+    targetRoleLabel: roleContext.role.label,
+    roleFamily: family.label,
     contact: careerData.contactInfo,
-    headline: careerData.profile.headlinesByTargetRole[targetRole] || careerData.profile.headline,
-    summary: careerData.profile.summariesByTargetRole[targetRole] || careerData.profile.summary,
+    headline: roleContext.role.headline || careerData.profile.headline,
+    summary: roleContext.role.summary || careerData.profile.summary,
     skills: buildVisibleSkillGroups(
-      [...skillMap.values()],
-      targetRole,
+      [...skillMap.values()].map(({ categoryWeight, ...skill }) => skill),
+      roleContext.roleId,
       maxSkillGroups,
       maxSkillsPerGroup
     ),

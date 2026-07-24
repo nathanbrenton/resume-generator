@@ -40,6 +40,7 @@ const project202607xxModelHardwareFitExplorer = {
     "Computer Engineer — Physical AI Compute",
     "Associate Software Engineer — Reliability",
     "AI/ML Engineer",
+    "Video Systems Engineer — AI & Computer Vision Pipelines",
     "MLOps / AI Infrastructure",
     "Technical Coordinator"
   ],
@@ -233,6 +234,20 @@ const project202607xxModelHardwareFitExplorer = {
   },
 
   bullets: [
+    {
+      id: "model-hardware-fit-explorer-trl11-video-systems-001",
+      text: "Built a React/Vite tool comparing Hugging Face and GGUF model architecture, quantization profiles, and qualitative CPU, GPU, and memory constraints for local deployment.",
+      printText: "Compared model architecture, quantization, and CPU/GPU/memory constraints for local deployment suitability.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["Video Systems Engineer — AI & Computer Vision Pipelines"],
+      skillTags: [
+        { category: "AI & Computer Vision Operations", name: "model deployment analysis" },
+        { category: "Signal & Performance", name: "CPU/GPU/memory constraints" },
+        { category: "Signal & Performance", name: "performance analysis" },
+        { category: "Programming & APIs", name: "JavaScript" }
+      ]
+    },
     {
       id: "model-hardware-fit-explorer-blizzard-reliability-001",
       text: "Developed a React/Vite tool comparing model architecture, parameter scale, quantization, and qualitative CPU, GPU, and memory constraints to evaluate deployment suitability.",

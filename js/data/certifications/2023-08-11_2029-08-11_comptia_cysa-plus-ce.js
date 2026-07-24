@@ -1,5 +1,5 @@
 const cert20230811ComptiaCysaPlusCe = {
-  "id": "2023-08-11_2026-08-11_comptia_cysa-plus-ce",
+  "id": "2023-08-11_2029-08-11_comptia_cysa-plus-ce",
   "name": "CompTIA CySA+ ce",
   "vendor": "CompTIA",
   "type": "certification",
@@ -14,7 +14,7 @@ const cert20230811ComptiaCysaPlusCe = {
     "day": null
   },
   "expires": {
-    "year": 2026,
+    "year": 2029,
     "month": 8,
     "day": 11
   },
@@ -164,8 +164,8 @@ const cert20230811ComptiaCysaPlusCe = {
     ]
   },
   "sourceNotes": [
-    "The earned date comes from the existing certification record.",
-    "No renewal event is recorded; the expiration date is modeled as three years after issuance.",
+    "The earned date and August 11, 2029 expiration date are confirmed by the CompTIA CySA+ ce certificate.",
+    "No renewal event is recorded.",
     "CompTIA CS0-002 objectives were used to derive resume-safe knowledge metadata."
   ]
 };
