@@ -92,8 +92,11 @@ function main() {
     getRoleMatchLabels
   } = loadResumeData();
 
-  assert(careerData.roleDefinitions.length === 12,
-    `Expected 12 primary roles, found ${careerData.roleDefinitions.length}`);
+  const primaryRoles = careerData.roleDefinitions.filter((role) => role.isPrimary !== false);
+  const specializedRoles = careerData.roleDefinitions.filter((role) => role.isPrimary === false);
+
+  assert(primaryRoles.length === 12,
+    `Expected 12 primary roles, found ${primaryRoles.length}`);
   assert(careerData.targetRoles.length === careerData.roleDefinitions.length,
     "targetRoles and roleDefinitions lengths differ");
 
@@ -120,6 +123,38 @@ function main() {
     assert(typeof role.summary === "string" && role.summary.trim(), `${role.id} is missing a summary`);
     assert(Array.isArray(role.aliases), `${role.id} aliases must be an array`);
     assert(Array.isArray(role.modifierIds), `${role.id} modifierIds must be an array`);
+    assert(role.isPrimary === undefined || typeof role.isPrimary === "boolean",
+      `${role.id}.isPrimary must be a boolean when provided`);
+    assert(role.skillGroupLimits === undefined ||
+      (typeof role.skillGroupLimits === "object" && !Array.isArray(role.skillGroupLimits)),
+    `${role.id}.skillGroupLimits must be an object when provided`);
+
+    Object.entries(role.skillGroupLimits || {}).forEach(([category, limit]) => {
+      assert(typeof category === "string" && category.trim(),
+        `${role.id}.skillGroupLimits contains an empty category`);
+      assert(Number.isInteger(limit) && limit > 0 && limit <= 10,
+        `${role.id}.skillGroupLimits.${category} has malformed limit: ${limit}`);
+    });
+
+    const selectableItems = new Map([
+      ...careerData.jobs,
+      ...careerData.projects
+    ].map((item) => [item.id, item]));
+
+    Object.entries(role.preferredBulletIdsByItem || {}).forEach(([itemId, preferredBulletIds]) => {
+      const item = selectableItems.get(itemId);
+      assert(item, `${role.id}.preferredBulletIdsByItem references missing item: ${itemId}`);
+      assert(Array.isArray(preferredBulletIds) && preferredBulletIds.length > 0,
+        `${role.id}.preferredBulletIdsByItem.${itemId} must be a non-empty array`);
+      assert(new Set(preferredBulletIds).size === preferredBulletIds.length,
+        `${role.id}.preferredBulletIdsByItem.${itemId} contains duplicates`);
+
+      const validBulletIds = new Set((item.bullets || []).map((bullet) => bullet.id));
+      preferredBulletIds.forEach((bulletId) => {
+        assert(validBulletIds.has(bulletId),
+          `${role.id}.preferredBulletIdsByItem.${itemId} references missing bullet: ${bulletId}`);
+      });
+    });
 
     role.modifierIds.forEach((modifierId) => {
       assert(modifierIds.has(modifierId), `${role.id} references unknown modifier: ${modifierId}`);
@@ -218,7 +253,8 @@ function main() {
   const duplicateTextGroups = [...duplicateText.values()].filter((sources) => sources.length > 1);
 
   console.log("Role data checks passed.");
-  console.log(`Primary roles: ${careerData.roleDefinitions.length}`);
+  console.log(`Primary roles: ${primaryRoles.length}`);
+  console.log(`Specialized roles: ${specializedRoles.length}`);
   console.log(`Role families: ${familyIds.size}`);
   console.log(`Legacy role mappings: ${Object.keys(careerData.legacyRoleMappings).length}`);
   console.log(`Exact duplicate bullet-text groups retained in source: ${duplicateTextGroups.length}`);

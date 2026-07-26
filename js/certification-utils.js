@@ -86,5 +86,5 @@ function getCertificationResumeDateText(certification, currentDate = new Date())
 
 function getCertificationControlLabel(certification, currentDate = new Date()) {
   const name = certification.resumeDisplay?.name || certification.name;
-  return `${name} — ${getCertificationDateText(certification, currentDate)}`;
+  return `${name} — ${getCertificationResumeDateText(certification, currentDate)}`;
 }

@@ -27,7 +27,7 @@ function loadResumeData() {
     .join("\n\n");
 
   const context = vm.createContext({ console, Date, Map, Set });
-  vm.runInContext(`${source}\n\nglobalThis.__resumeTest = {\n  careerData,\n  certifications,\n  certificationKnowledge,\n  buildResume,\n  getCertificationStatus,\n  getCertificationDateText\n};`, context);
+  vm.runInContext(`${source}\n\nglobalThis.__resumeTest = {\n  careerData,\n  certifications,\n  certificationKnowledge,\n  buildResume,\n  getCertificationStatus,\n  getCertificationDateText,\n  getCertificationControlLabel\n};`, context);
 
   return context.__resumeTest;
 }
@@ -64,7 +64,8 @@ function main() {
     certificationKnowledge,
     buildResume,
     getCertificationStatus,
-    getCertificationDateText
+    getCertificationDateText,
+    getCertificationControlLabel
   } = loadResumeData();
 
   assert(certifications.length === 9, `Expected 9 certifications, found ${certifications.length}`);
@@ -183,7 +184,11 @@ function main() {
   );
   assert(
     getCertificationDateText(nonExpiringItil, fixedDate) === "Issued Jun 2021 · Does not expire",
-    "Certification controls should retain the non-expiring status"
+    "Certification status text should retain the non-expiring status for non-UI uses"
+  );
+  assert(
+    getCertificationControlLabel(nonExpiringItil, fixedDate) === "ITIL 4 Foundation — Issued Jun 2021",
+    "Certification controls must suppress the redundant non-expiring text"
   );
 
   console.log("Certification data checks passed.");

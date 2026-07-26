@@ -119,7 +119,8 @@ const roleModifiers = {
   integration: { label: "Integration" },
   "model-operations": { label: "Model Operations" },
   media: { label: "Media" },
-  transcode: { label: "Transcode" }
+  transcode: { label: "Transcode" },
+  "network-administration": { label: "Network Administration" }
 };
 
 const sharedEducationIds = [
@@ -442,6 +443,67 @@ const roleDefinitions = [
       ],
       educationIds: sharedEducationIds,
       certificationIds: []
+    }
+  },
+  {
+    id: "network-administrator-i",
+    label: "Network Administrator I",
+    familyId: "systems-infrastructure",
+    modifierIds: ["network-administration"],
+    isPrimary: false,
+    aliases: ["Network Administrator", "Junior Network Administrator"],
+    relevanceAliases: [
+      "Technical Support Engineer — Industrial Applications",
+      "Desktop Support Technician",
+      "Systems Administrator"
+    ],
+    headline: "Network Administrator I | Active Directory | Enterprise IT Support",
+    summary: "Systems and network-support professional with more than three years of enterprise IT experience spanning Active Directory, SCCM/MECM, ServiceNow, Splunk, PowerShell, Windows and macOS provisioning, VPN and access troubleshooting, printer and peripheral support, RHEL operations, disaster-recovery validation, and technical documentation.",
+    preferredBulletIdsByItem: {
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+        "roth-system-engineer-i-aveva-tech-support-001",
+        "roth-system-engineer-i-aveva-tech-support-002"
+      ],
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": [
+        "randstad-jr-deskside-technician-002",
+        "randstad-jr-deskside-technician-010"
+      ],
+      "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician": [
+        "adroit-smartshelf-jr-it-support-005",
+        "adroit-smartshelf-jr-it-support-004"
+      ]
+    },
+    selections: {
+      jobIds: [
+        "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+        "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician",
+        "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician"
+      ],
+      projectIds: [
+        "2026-06-xx_xxxx-xx-xx_offline-dev-lab"
+      ],
+      educationIds: [
+        "2021-06-01_2023-10-10_wgu_bs-cybersecurity-information-assurance",
+        "2025-09-01_2026-04-16_wgu_ms-software-engineering-ai-engineering"
+      ],
+      certificationIds: [
+        "2023-08-11_2029-08-11_comptia_cysa-plus-ce",
+        "2022-01-09_xxxx-xx-xx_comptia_project-plus"
+      ]
+    },
+    layout: {
+      maxJobBullets: 2,
+      maxProjectBullets: 1,
+      maxSkillGroups: 6,
+      maxSkillsPerGroup: 6
+    },
+    skillGroupLimits: {
+      "Systems & Infrastructure": 6,
+      "Automation & Scripting": 4,
+      "Monitoring & Support": 4,
+      "Networking & Security": 6,
+      "DevOps & Tooling": 2,
+      "Documentation & Collaboration": 4
     }
   },
   {

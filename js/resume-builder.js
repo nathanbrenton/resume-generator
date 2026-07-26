@@ -136,10 +136,17 @@ function scoreBullet(bullet, roleContext, sourceIndex) {
   };
 }
 
-function selectBullets(item, targetRole, maxBullets) {
+function selectBullets(item, targetRole, maxBullets, preferredBulletIds = []) {
   const bullets = item.bullets || [];
   const roleContext = getRoleContext(targetRole);
-  const scored = bullets.map((bullet, sourceIndex) => scoreBullet(bullet, roleContext, sourceIndex));
+  const bulletById = new Map(bullets.map((bullet) => [bullet.id, bullet]));
+  const preferred = preferredBulletIds
+    .map((bulletId) => bulletById.get(bulletId))
+    .filter(Boolean);
+  const preferredIds = new Set(preferred.map((bullet) => bullet.id));
+  const scored = bullets
+    .filter((bullet) => !preferredIds.has(bullet.id))
+    .map((bullet, sourceIndex) => scoreBullet(bullet, roleContext, sourceIndex));
   const matched = scored.filter((entry) => entry.roleMatch);
   const genericDefaults = scored.filter((entry) => {
     return !entry.roleMatch && entry.bullet.includeByDefault && !(entry.bullet.targetRoles || []).length;
@@ -150,12 +157,16 @@ function selectBullets(item, targetRole, maxBullets) {
 
   const ranked = [...matched, ...genericDefaults, ...fallbackDefaults]
     .sort((a, b) => b.score - a.score || a.sourceIndex - b.sourceIndex);
+  const orderedBullets = [
+    ...preferred,
+    ...ranked.map(({ bullet }) => bullet)
+  ];
 
   const seenIds = new Set();
   const seenText = new Set();
   const selected = [];
 
-  ranked.forEach(({ bullet }) => {
+  orderedBullets.forEach((bullet) => {
     const textKey = getBulletTextKey(bullet);
 
     if (seenIds.has(bullet.id) || seenText.has(textKey)) {
@@ -339,7 +350,8 @@ function buildResume(options = {}) {
   const jobsForResume = selectedJobs.map((job) => {
     const configuredLimit = getConfiguredRoleValue(job.maxBulletsByTargetRole, roleContext);
     const bulletLimit = Math.max(2, Math.min(configuredLimit ?? maxJobBullets, maxJobBullets));
-    const bullets = selectBullets(job, roleContext.roleId, bulletLimit);
+    const preferredBulletIds = roleContext.role.preferredBulletIdsByItem?.[job.id] || [];
+    const bullets = selectBullets(job, roleContext.roleId, bulletLimit, preferredBulletIds);
     bullets.forEach((bullet) => addSkills(skillMap, bullet.skillTags, 3));
 
     return {
@@ -352,7 +364,8 @@ function buildResume(options = {}) {
   const projectsForResume = selectedProjects.map((project) => {
     const configuredLimit = getConfiguredRoleValue(project.maxBulletsByTargetRole, roleContext);
     const bulletLimit = Math.max(1, Math.min(configuredLimit ?? maxProjectBullets, maxProjectBullets));
-    const bullets = selectBullets(project, roleContext.roleId, bulletLimit);
+    const preferredBulletIds = roleContext.role.preferredBulletIdsByItem?.[project.id] || [];
+    const bullets = selectBullets(project, roleContext.roleId, bulletLimit, preferredBulletIds);
     bullets.forEach((bullet) => addSkills(skillMap, bullet.skillTags, 3));
 
     return {

@@ -235,6 +235,28 @@ const roleModifierSkillWeights = {
     weightedSkill("Media Processing", "transcode operations", 6),
     weightedSkill("Media Processing", "delivery preparation", 5),
     weightedSkill("Media Processing", "automated QC", 5)
+  ],
+  "network-administration": [
+    weightedSkill("Systems & Infrastructure", "Active Directory", 10),
+    weightedSkill("Systems & Infrastructure", "Windows", 12),
+    weightedSkill("Systems & Infrastructure", "SCCM/MECM", 9),
+    weightedSkill("Systems & Infrastructure", "device provisioning", 10),
+    weightedSkill("Systems & Infrastructure", "printer and peripheral support", 10),
+    weightedSkill("Networking & Security", "network troubleshooting", 10),
+    weightedSkill("Networking & Security", "TCP/IP", 9),
+    weightedSkill("Networking & Security", "DNS", 8),
+    weightedSkill("Networking & Security", "VPN", 8),
+    weightedSkill("Networking & Security", "MFA", 7),
+    weightedSkill("Networking & Security", "BitLocker", 7),
+    weightedSkill("Monitoring & Support", "ServiceNow", 8),
+    weightedSkill("Monitoring & Support", "Splunk", 7),
+    weightedSkill("Automation & Scripting", "PowerShell", 8),
+    weightedSkill("Automation & Scripting", "Python", 12),
+    weightedSkill("Platform & Reliability", "disaster recovery exercises", 7),
+    weightedSkill("Documentation & Collaboration", "runbooks", 7),
+    weightedSkill("Documentation & Collaboration", "technical documentation", 7),
+    weightedSkill("Documentation & Collaboration", "customer service", 7),
+    weightedSkill("Documentation & Collaboration", "Microsoft Office 365", 7)
   ]
 };
 

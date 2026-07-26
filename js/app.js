@@ -117,9 +117,18 @@ function populateSelectionControls(targetRole) {
 function populateControls() {
   const targetRoleSelect = document.getElementById("targetRole");
 
-  targetRoleSelect.innerHTML = careerData.roleDefinitions
+  const primaryRoles = careerData.roleDefinitions.filter((role) => role.isPrimary !== false);
+  const specializedRoles = careerData.roleDefinitions.filter((role) => role.isPrimary === false);
+  const createRoleOptions = (roles) => roles
     .map((role) => `<option value="${role.id}">${role.label}</option>`)
     .join("");
+
+  targetRoleSelect.innerHTML = [
+    `<optgroup label="Primary Roles">${createRoleOptions(primaryRoles)}</optgroup>`,
+    specializedRoles.length
+      ? `<optgroup label="Specialized Roles">${createRoleOptions(specializedRoles)}</optgroup>`
+      : ""
+  ].join("");
 
   populateSelectionControls(targetRoleSelect.value);
 }

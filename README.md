@@ -36,6 +36,8 @@ Primary roles:
 
 All role selections explicitly define jobs, projects, education, and certifications. An empty array means “select none”; it no longer falls through to unrelated global defaults. Skill ranking is composed from family and modifier weights, while Python and Docker are enforced as single visible canonical skills for every generated resume.
 
+Job-specific variants may set `isPrimary: false`. The application keeps the 12 primary lanes in a `Primary Roles` option group and places these inherited variants under `Specialized Roles`; the first such variant is `Network Administrator I`. Specialized variants may also use validated `preferredBulletIdsByItem` overrides to select existing verified claims without copying bullet text.
+
 Validate the role configuration and generated-role invariants with:
 
 ```bash
