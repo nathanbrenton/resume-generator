@@ -53,7 +53,9 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     "Video Systems Engineer — AI & Computer Vision Pipelines": 1,
     "Software Engineer — Full Stack": 3,
     "AI-First Software Engineer": 3,
-    "Platform Engineer — Digital Workplace Automation": 3
+    "Platform Engineer — Digital Workplace Automation": 3,
+    "Cybersecurity Quality Engineer — Medical Devices": 2,
+    "QA Automation Engineer": 2
   },
 
   targetRoles: [
@@ -897,22 +899,28 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     },
     {
       id: "roth-system-engineer-i-006",
-      text: "Configured LDAP authentication for WebLogic Administration Console access and supported secure credential-management workflows using CyberArk and Keeper Password Manager.",
-      printText: "Configured LDAP authentication for WebLogic Admin Console and supported secure credential workflows.",
+      text: "Implemented and validated LDAP authentication for Oracle WebLogic across test, staging, and production environments, coordinating firewall access, Active Directory service-account provisioning, CyberArk credential management, and approved change controls.",
+      printText: "Implemented WebLogic LDAP authentication across test, staging, and production with firewall, AD service-account, CyberArk, and change-control coordination.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
         "Middleware Engineer",
         "Systems Administrator",
         "Linux Administrator",
-        "Cybersecurity Analyst"
+        "Cybersecurity Analyst",
+        "Cybersecurity Quality Engineer — Medical Devices",
+        "Application Support Analyst"
       ],
       skillTags: [
         { category: "Security", name: "LDAP" },
         { category: "Security", name: "Active Directory" },
+        { category: "Security", name: "LDAP service accounts" },
         { category: "Security", name: "CyberArk" },
-        { category: "Security", name: "Keeper Password Manager" },
         { category: "Security", name: "credential management" },
+        { category: "Networking", name: "firewalls" },
+        { category: "IT Service Management", name: "change management" },
+        { category: "IT Service Management", name: "deployment validation" },
+        { category: "Documentation", name: "cross-functional collaboration" },
         { category: "Middleware & Web Platforms", name: "WebLogic Administration Console" }
       ]
     },
@@ -980,22 +988,80 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     },
     {
       id: "roth-system-engineer-i-010",
-      text: "Improved operational visibility by configuring browser-based Tomcat log viewing and tracking platform work through ServiceNow and Azure DevOps.",
-      printText: "Improved visibility with browser-based Tomcat log access and ServiceNow/Azure DevOps tracking.",
-      includeByDefault: false,
-      strength: "supporting",
+      text: "Automated remote application deployments to Apache Tomcat and TomEE and provided browser-based log access for developers, reducing manual release steps and accelerating post-deployment troubleshooting.",
+      printText: "Automated remote Tomcat/TomEE deployments and browser-based developer log access, reducing manual release and troubleshooting steps.",
+      includeByDefault: true,
+      strength: "primary",
       targetRoles: [
         "Middleware Engineer",
         "Platform Engineer",
         "Support Engineer",
-        "Technical Coordinator"
+        "Technical Coordinator",
+        "Application Support Analyst",
+        "QA Automation Engineer",
+        "Software Engineer — Full Stack"
       ],
       skillTags: [
         { category: "Middleware & Web Platforms", name: "Apache Tomcat" },
+        { category: "Middleware & Web Platforms", name: "TomEE" },
+        { category: "DevOps & Tooling", name: "remote application deployment" },
+        { category: "DevOps & Tooling", name: "deployment automation" },
+        { category: "Testing & Delivery", name: "post-change validation" },
+        { category: "Linux & Systems Administration", name: "browser-based log access" },
         { category: "Linux & Systems Administration", name: "log analysis" },
-        { category: "Ticketing & Collaboration", name: "ServiceNow" },
-        { category: "Ticketing & Collaboration", name: "Azure DevOps" },
-        { category: "Programming & Scripting", name: "Bash" }
+        { category: "Documentation", name: "developer support" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-011",
+      text: "Deployed and updated Oracle Enterprise Manager agents, used emctl to verify agent and target health, reviewed alerts, and supported availability and capacity monitoring across enterprise environments.",
+      printText: "Deployed and updated OEM agents, used emctl to verify health, reviewed alerts, and supported availability and capacity monitoring.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Systems Administrator",
+        "Linux Administrator",
+        "Platform Engineer",
+        "Site Reliability Engineer",
+        "Application Support Analyst",
+        "QA Automation Engineer"
+      ],
+      skillTags: [
+        { category: "Monitoring & Support", name: "Oracle Enterprise Manager" },
+        { category: "Monitoring & Support", name: "OEM" },
+        { category: "Monitoring & Support", name: "availability monitoring" },
+        { category: "Monitoring & Support", name: "capacity monitoring" },
+        { category: "Monitoring & Support", name: "alert review" },
+        { category: "Middleware & Web Platforms", name: "emctl" },
+        { category: "Linux & Systems Administration", name: "service health validation" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-012",
+      text: "Developed Bash and Python monitoring scripts with email alerts for service availability and CPU, memory, and storage-capacity thresholds across enterprise environments.",
+      printText: "Developed Bash/Python monitoring with email alerts for availability and CPU, memory, and storage-capacity thresholds.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "IT Systems Engineer — Automation & Self-Service",
+        "Platform Engineer — Digital Workplace Automation",
+        "Platform Engineer",
+        "Site Reliability Engineer",
+        "Systems Administrator",
+        "Application Support Analyst",
+        "QA Automation Engineer"
+      ],
+      skillTags: [
+        { category: "Programming & Scripting", name: "Python" },
+        { category: "Programming & Scripting", name: "Bash" },
+        { category: "Automation & Scripting", name: "monitoring automation" },
+        { category: "Monitoring & Support", name: "availability monitoring" },
+        { category: "Monitoring & Support", name: "capacity monitoring" },
+        { category: "Monitoring & Support", name: "threshold alerting" },
+        { category: "Monitoring & Support", name: "email alerts" },
+        { category: "Monitoring & Support", name: "CPU monitoring" },
+        { category: "Monitoring & Support", name: "memory monitoring" },
+        { category: "Monitoring & Support", name: "storage monitoring" }
       ]
     }
   ],
@@ -1015,6 +1081,16 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     { category: "Linux & Systems Administration", name: "service management" },
     { category: "Linux & Systems Administration", name: "file permissions" },
     { category: "Linux & Systems Administration", name: "ownership management" },
+
+    { category: "Monitoring & Support", name: "Oracle Enterprise Manager" },
+    { category: "Monitoring & Support", name: "OEM" },
+    { category: "Monitoring & Support", name: "availability monitoring" },
+    { category: "Monitoring & Support", name: "capacity monitoring" },
+    { category: "Monitoring & Support", name: "threshold alerting" },
+    { category: "Monitoring & Support", name: "email alerts" },
+    { category: "Monitoring & Support", name: "CPU monitoring" },
+    { category: "Monitoring & Support", name: "memory monitoring" },
+    { category: "Monitoring & Support", name: "storage monitoring" },
 
     { category: "Middleware & Web Platforms", name: "Oracle WebLogic" },
     { category: "Middleware & Web Platforms", name: "Oracle WebLogic Administration Console" },

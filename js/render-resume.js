@@ -7,6 +7,10 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
+function editableAttributes(key) {
+  return ` data-edit-key="${escapeHtml(key)}"`;
+}
+
 function contactLink(label, value, hrefPrefix = "") {
   if (!value) {
     return "";
@@ -46,35 +50,39 @@ function renderContact(contact) {
 
   return `
     <header class="resume-header">
-      <h1>${escapeHtml(contact.name)}</h1>
-      <p class="headline">${renderHeadline(contact.headline)}</p>
-      <p class="contact-line">${items.join(" | ")}</p>
+      <h1${editableAttributes("contact:name")}>${escapeHtml(contact.name)}</h1>
+      <p class="headline"${editableAttributes("contact:headline")}>${renderHeadline(contact.headline)}</p>
+      <p class="contact-line"${editableAttributes("contact:details")}>${items.join(" | ")}</p>
     </header>
   `;
 }
 
-function renderSection(title, body) {
+function renderSection(title, body, sectionKey) {
   if (!body || !String(body).trim()) {
     return "";
   }
 
   return `
-    <section class="resume-section">
-      <h2>${escapeHtml(title)}</h2>
+    <section class="resume-section" data-section-key="${escapeHtml(sectionKey)}">
+      <h2${editableAttributes(`section:${sectionKey}:heading`)}>${escapeHtml(title)}</h2>
       ${body}
     </section>
   `;
 }
 
 function renderSummary(resume) {
-  return renderSection("Summary", `<p>${escapeHtml(resume.summary)}</p>`);
+  return renderSection(
+    "Summary",
+    `<p${editableAttributes("summary:text")}>${escapeHtml(resume.summary)}</p>`,
+    "summary"
+  );
 }
 
 function renderSkills(resume) {
   const body = `
     <div class="skills-grid">
       ${resume.skills.map((group) => `
-        <div class="skill-group">
+        <div class="skill-group"${editableAttributes(`skills:${group.category}`)}>
           <span class="skill-category">${escapeHtml(group.category)}:</span>
           <span>${escapeHtml(group.skills.join(", "))}</span>
         </div>
@@ -82,16 +90,16 @@ function renderSkills(resume) {
     </div>
   `;
 
-  return renderSection("Skills", body);
+  return renderSection("Skills", body, "skills");
 }
 
-function renderBullets(bullets) {
+function renderBullets(bullets, editKey) {
   if (!bullets || bullets.length === 0) {
     return "";
   }
 
   return `
-    <ul>
+    <ul${editableAttributes(editKey)}>
       ${bullets.map((bullet) => `<li>${escapeHtml(bullet.printText || bullet.text)}</li>`).join("")}
     </ul>
   `;
@@ -102,19 +110,19 @@ function renderExperience(resume) {
     <div class="entry">
       <div class="entry-header">
         <div>
-          <p class="entry-title">${escapeHtml(job.resumeTitle || job.title)}</p>
-          <p class="entry-subtitle">${escapeHtml(job.company)}${job.clientOrAssignment ? ` — ${escapeHtml(job.clientOrAssignment)}` : ""}</p>
+          <p class="entry-title"${editableAttributes(`job:${job.id}:title`)}>${escapeHtml(job.resumeTitle || job.title)}</p>
+          <p class="entry-subtitle"${editableAttributes(`job:${job.id}:subtitle`)}>${escapeHtml(job.company)}${job.clientOrAssignment ? ` — ${escapeHtml(job.clientOrAssignment)}` : ""}</p>
         </div>
         <div class="entry-meta">
-          <p>${escapeHtml(job.dateText)}</p>
-          <p>${escapeHtml(job.location?.city || "")}${job.location?.state ? `, ${escapeHtml(job.location.state)}` : ""}</p>
+          <p${editableAttributes(`job:${job.id}:dates`)}>${escapeHtml(job.dateText)}</p>
+          <p${editableAttributes(`job:${job.id}:location`)}>${escapeHtml(job.location?.city || "")}${job.location?.state ? `, ${escapeHtml(job.location.state)}` : ""}</p>
         </div>
       </div>
-      ${renderBullets(job.selectedBullets)}
+      ${renderBullets(job.selectedBullets, `job:${job.id}:bullets`)}
     </div>
   `).join("");
 
-  return renderSection("Experience", body);
+  return renderSection("Experience", body, "experience");
 }
 
 function renderProjects(resume) {
@@ -127,18 +135,18 @@ function renderProjects(resume) {
       <div class="entry">
         <div class="entry-header">
           <div>
-            <p class="entry-title">${escapeHtml(project.resumeName || project.name)}</p>
+            <p class="entry-title"${editableAttributes(`project:${project.id}:title`)}>${escapeHtml(project.resumeName || project.name)}</p>
           </div>
           <div class="entry-meta">
-            ${project.repositoryUrl ? `<p><a href="${escapeHtml(project.repositoryUrl)}">${escapeHtml(projectUrl)}</a></p>` : ""}
+            ${project.repositoryUrl ? `<p${editableAttributes(`project:${project.id}:url`)}><a href="${escapeHtml(project.repositoryUrl)}">${escapeHtml(projectUrl)}</a></p>` : ""}
           </div>
         </div>
-        ${renderBullets(project.selectedBullets)}
+        ${renderBullets(project.selectedBullets, `project:${project.id}:bullets`)}
       </div>
     `;
   }).join("");
 
-  return renderSection("Projects", body);
+  return renderSection("Projects", body, "projects");
 }
 
 function renderEducation(resume) {
@@ -148,7 +156,7 @@ function renderEducation(resume) {
     const dateText = item.resumeDisplay?.dateText || item.dateText || "";
 
     return `
-      <div class="education-item">
+      <div class="education-item"${editableAttributes(`education:${item.id}`)}>
         <div class="education-main">
           <strong>${escapeHtml(name)}</strong>${institution ? `, ${escapeHtml(institution)}` : ""}
         </div>
@@ -157,7 +165,7 @@ function renderEducation(resume) {
     `;
   }).join("");
 
-  return renderSection("Education", body);
+  return renderSection("Education", body, "education");
 }
 
 function renderCertifications(resume) {
@@ -172,7 +180,7 @@ function renderCertifications(resume) {
         const dateText = cert.resumeDisplay?.dateText || cert.status || "";
 
         return `
-          <div class="compact-cert-item${cert.certificationStatus === "expired" ? " compact-cert-item-expired" : ""}">
+          <div class="compact-cert-item${cert.certificationStatus === "expired" ? " compact-cert-item-expired" : ""}"${editableAttributes(`certification:${cert.id}`)}>
             <strong class="compact-cert-name">${escapeHtml(name)}</strong>
             ${dateText ? `<span class="compact-cert-date">${escapeHtml(dateText)}</span>` : ""}
           </div>
@@ -181,7 +189,7 @@ function renderCertifications(resume) {
     </div>
   `;
 
-  return renderSection("Certifications", body);
+  return renderSection("Certifications", body, "certifications");
 }
 
 function renderPageBreakGuides(pageCount = 4) {

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Resume Generator</title>
-  <link rel="stylesheet" href="./css/styles.css?v=20260722-certification-status">
+  <link rel="stylesheet" href="./css/styles.css?v=20260726-customization-storage">
 </head>
 <body>
   <main class="app-shell">
@@ -17,11 +17,22 @@
 
       <div class="control-group">
         <h2>Customize</h2>
-        <label class="customize-toggle">
-          <input id="customizeToggle" type="checkbox">
-          <span>Enable manual text editing</span>
-        </label>
-        <p class="customize-help">Edit text and lists directly in the resume preview. Changes are temporary and reset when a role or selection changes, or when the page reloads.</p>
+        <div class="customize-mode-options" role="radiogroup" aria-label="Manual editing mode">
+          <label class="customize-mode-option">
+            <input type="radio" name="customizeMode" value="off" checked>
+            <span><strong>Generated</strong> — no manual edits</span>
+          </label>
+          <label class="customize-mode-option">
+            <input type="radio" name="customizeMode" value="session">
+            <span><strong>One-off session</strong> — clears on reload</span>
+          </label>
+          <label class="customize-mode-option">
+            <input type="radio" name="customizeMode" value="persistent">
+            <span><strong>Persistent</strong> — saved in this browser</span>
+          </label>
+        </div>
+        <button id="resetCustomizeButton" class="reset-customization-button" type="button" disabled>Reset this role's edits</button>
+        <p id="customizeHelp" class="customize-help">Choose a manual-editing mode to edit text and lists directly in the preview.</p>
       </div>
 
       <div class="control-group">
@@ -64,6 +75,7 @@
   <script src="./js/data/jobs/2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician.js"></script>
   <script src="./js/data/jobs/2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician.js"></script>
   <script src="./js/data/jobs/2021-04-19_2022-07-13_paul-morte-technical-services_warehouse-technician.js"></script>
+  <script src="./js/data/jobs/2020-08-13_2021-04-14_mels-sewing-and-fabric-center_sewing-machine-technician.js"></script>
   <script src="./js/data/jobs/2017-03-15_2018-11-09_post-haste-digital_encode-transcode-specialist.js"></script>
   <script src="./js/data/jobs/2012-02-01_2014-04-14_roundabout-entertainment_encoding-operator.js"></script>
   <script src="./js/data/jobs/index.js"></script>
@@ -100,6 +112,7 @@
   <script src="./js/data/index.js"></script>
   <script src="./js/resume-builder.js"></script>
   <script src="./js/render-resume.js"></script>
+  <script src="./js/customization.js"></script>
   <script src="./js/app.js"></script>
 </body>
 </html>

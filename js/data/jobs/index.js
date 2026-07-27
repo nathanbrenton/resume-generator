@@ -2,8 +2,8 @@ const jobs = [
   job20240205RothStaffingCompaniesSystemEngineerI,
   job20220818RandstadTechnologiesJrDesksideTechnician,
   job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician,
-  job20210419PaulMorteTechnicalServicesWarehouseTechnician
-,
+  job20210419PaulMorteTechnicalServicesWarehouseTechnician,
+  job20200813MelsSewingAndFabricCenterSewingMachineTechnician,
   job20170315PostHasteDigitalEncodeTranscodeSpecialist
 ,
   job20120201RoundaboutEntertainmentEncodingOperator

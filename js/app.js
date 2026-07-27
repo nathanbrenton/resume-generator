@@ -148,20 +148,243 @@ function updateDebug(resume) {
   ].join("\n");
 }
 
-function setCustomizeMode(enabled) {
-  const resumePage = document.querySelector("#resumePreview .resume-page");
+const CUSTOMIZE_MODE_STORAGE_KEY = "resumeGenerator.customizeMode.v1";
+const sessionCustomizationState = resumeCustomization.createEmptyState();
+let persistentCustomizationState = resumeCustomization.loadPersistentState(window.localStorage);
 
-  if (!resumePage) {
+function getInitialCustomizeMode() {
+  try {
+    return window.localStorage.getItem(CUSTOMIZE_MODE_STORAGE_KEY) ===
+      resumeCustomization.MODES.PERSISTENT
+      ? resumeCustomization.MODES.PERSISTENT
+      : resumeCustomization.MODES.OFF;
+  } catch (error) {
+    console.warn("Unable to load the customization mode preference.", error);
+    return resumeCustomization.MODES.OFF;
+  }
+}
+
+function saveCustomizeModePreference(mode) {
+  try {
+    if (mode === resumeCustomization.MODES.PERSISTENT) {
+      window.localStorage.setItem(CUSTOMIZE_MODE_STORAGE_KEY, mode);
+    } else {
+      window.localStorage.removeItem(CUSTOMIZE_MODE_STORAGE_KEY);
+    }
+  } catch (error) {
+    console.warn("Unable to save the customization mode preference.", error);
+  }
+}
+
+let activeCustomizeMode = getInitialCustomizeMode();
+let customizationBaseline = new Map();
+let renderedRoleId = null;
+
+function getCustomizationState(mode) {
+  if (mode === resumeCustomization.MODES.SESSION) {
+    return sessionCustomizationState;
+  }
+
+  if (mode === resumeCustomization.MODES.PERSISTENT) {
+    return persistentCustomizationState;
+  }
+
+  return null;
+}
+
+function sanitizeManualHtml(html) {
+  const template = document.createElement("template");
+  template.innerHTML = String(html || "");
+
+  template.content
+    .querySelectorAll("script, style, iframe, object, embed, link, meta")
+    .forEach((element) => element.remove());
+
+  template.content.querySelectorAll("*").forEach((element) => {
+    [...element.attributes].forEach((attribute) => {
+      const attributeName = attribute.name.toLowerCase();
+      const attributeValue = attribute.value.trim().toLowerCase();
+
+      if (
+        attributeName.startsWith("on") ||
+        attributeName === "contenteditable" ||
+        attributeName === "data-edit-key" ||
+        (attributeName === "href" && attributeValue.startsWith("javascript:"))
+      ) {
+        element.removeAttribute(attribute.name);
+      }
+    });
+  });
+
+  return template.innerHTML;
+}
+
+function getEditableElements() {
+  return [...document.querySelectorAll("#resumePreview [data-edit-key]")];
+}
+
+function captureCustomizationBaseline() {
+  customizationBaseline = new Map(
+    getEditableElements().map((element) => [element.dataset.editKey, element.innerHTML])
+  );
+}
+
+function savePersistentCustomizations() {
+  persistentCustomizationState = resumeCustomization.normalizeState(
+    persistentCustomizationState
+  );
+  resumeCustomization.savePersistentState(
+    window.localStorage,
+    persistentCustomizationState
+  );
+}
+
+function captureManualEdits(mode = activeCustomizeMode, roleId = renderedRoleId) {
+  const state = getCustomizationState(mode);
+
+  if (!state || !roleId) {
     return;
   }
 
-  resumePage.contentEditable = enabled ? "true" : "false";
-  resumePage.spellcheck = enabled;
-  resumePage.classList.toggle("is-customizing", enabled);
-  resumePage.setAttribute(
-    "aria-label",
-    enabled ? "Editable resume preview" : "Resume preview"
-  );
+  getEditableElements().forEach((element) => {
+    const editKey = element.dataset.editKey;
+    const baselineHtml = customizationBaseline.get(editKey);
+
+    if (baselineHtml === undefined) {
+      return;
+    }
+
+    if (element.innerHTML === baselineHtml) {
+      resumeCustomization.removeRoleEdit(state, roleId, editKey);
+      return;
+    }
+
+    resumeCustomization.setRoleEdit(
+      state,
+      roleId,
+      editKey,
+      sanitizeManualHtml(element.innerHTML)
+    );
+  });
+
+  if (mode === resumeCustomization.MODES.PERSISTENT) {
+    savePersistentCustomizations();
+  }
+
+  updateCustomizeUi();
+}
+
+function applyManualEdits(mode = activeCustomizeMode, roleId = renderedRoleId) {
+  const state = getCustomizationState(mode);
+
+  if (!state || !roleId) {
+    return;
+  }
+
+  const edits = resumeCustomization.getRoleEdits(state, roleId);
+
+  getEditableElements().forEach((element) => {
+    const savedHtml = edits[element.dataset.editKey];
+
+    if (typeof savedHtml === "string") {
+      element.innerHTML = sanitizeManualHtml(savedHtml);
+    }
+  });
+}
+
+function getCustomizeHelpText(mode) {
+  if (mode === resumeCustomization.MODES.SESSION) {
+    return "Edits save automatically for this one-off page session and survive role or selection changes. Reloading the page clears them.";
+  }
+
+  if (mode === resumeCustomization.MODES.PERSISTENT) {
+    return "Edits save automatically in this browser and survive role or selection changes, page reloads, browser restarts, and computer reboots. Each target role has its own saved draft.";
+  }
+
+  return "Generated content is shown without manual overrides. Choose a manual-editing mode to edit text and lists directly in the preview.";
+}
+
+function updateCustomizeUi() {
+  const resumePage = document.querySelector("#resumePreview .resume-page");
+  const isEditing = activeCustomizeMode !== resumeCustomization.MODES.OFF;
+  const help = document.getElementById("customizeHelp");
+  const resetButton = document.getElementById("resetCustomizeButton");
+  const state = getCustomizationState(activeCustomizeMode);
+
+  document.querySelectorAll('input[name="customizeMode"]').forEach((input) => {
+    input.checked = input.value === activeCustomizeMode;
+  });
+
+  if (resumePage) {
+    resumePage.contentEditable = isEditing ? "true" : "false";
+    resumePage.spellcheck = isEditing;
+    resumePage.classList.toggle("is-customizing", isEditing);
+    resumePage.classList.toggle(
+      "is-customizing-session",
+      activeCustomizeMode === resumeCustomization.MODES.SESSION
+    );
+    resumePage.classList.toggle(
+      "is-customizing-persistent",
+      activeCustomizeMode === resumeCustomization.MODES.PERSISTENT
+    );
+    resumePage.setAttribute(
+      "aria-label",
+      isEditing ? "Editable resume preview" : "Resume preview"
+    );
+  }
+
+  if (help) {
+    help.textContent = getCustomizeHelpText(activeCustomizeMode);
+  }
+
+  if (resetButton) {
+    resetButton.disabled = !(
+      isEditing &&
+      state &&
+      renderedRoleId &&
+      resumeCustomization.hasRoleEdits(state, renderedRoleId)
+    );
+  }
+}
+
+function changeCustomizeMode(nextMode) {
+  const validModes = Object.values(resumeCustomization.MODES);
+
+  if (!validModes.includes(nextMode) || nextMode === activeCustomizeMode) {
+    updateCustomizeUi();
+    return;
+  }
+
+  const previousMode = activeCustomizeMode;
+  const previousState = getCustomizationState(previousMode);
+
+  if (previousState && renderedRoleId) {
+    captureManualEdits(previousMode, renderedRoleId);
+  }
+
+  const previousEdits = previousState && renderedRoleId
+    ? { ...resumeCustomization.getRoleEdits(previousState, renderedRoleId) }
+    : {};
+
+  activeCustomizeMode = nextMode;
+  saveCustomizeModePreference(nextMode);
+
+  const nextState = getCustomizationState(nextMode);
+
+  if (
+    nextState &&
+    renderedRoleId &&
+    Object.keys(previousEdits).length &&
+    !resumeCustomization.hasRoleEdits(nextState, renderedRoleId)
+  ) {
+    resumeCustomization.replaceRoleEdits(nextState, renderedRoleId, previousEdits);
+
+    if (nextMode === resumeCustomization.MODES.PERSISTENT) {
+      savePersistentCustomizations();
+    }
+  }
+
+  renderCurrentResume();
 }
 
 function renderCurrentResume() {
@@ -181,8 +404,11 @@ function renderCurrentResume() {
   });
 
   renderResume(resume, document.getElementById("resumePreview"));
+  renderedRoleId = role.id;
   updateDebug(resume);
-  setCustomizeMode(document.getElementById("customizeToggle")?.checked === true);
+  captureCustomizationBaseline();
+  applyManualEdits();
+  updateCustomizeUi();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -190,10 +416,12 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCurrentResume();
 
   document.getElementById("builderControls").addEventListener("change", (event) => {
-    if (event.target.id === "customizeToggle") {
-      setCustomizeMode(event.target.checked);
+    if (event.target.name === "customizeMode") {
+      changeCustomizeMode(event.target.value);
       return;
     }
+
+    captureManualEdits();
 
     if (event.target.id === "targetRole") {
       populateSelectionControls(event.target.value);
@@ -202,12 +430,37 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCurrentResume();
   });
 
-  document.getElementById("resumePreview").addEventListener("click", (event) => {
-    const customizeToggle = document.getElementById("customizeToggle");
+  document.getElementById("resumePreview").addEventListener("input", () => {
+    captureManualEdits();
+  });
 
-    if (customizeToggle.checked && event.target.closest("a")) {
+  document.getElementById("resumePreview").addEventListener("click", (event) => {
+    if (
+      activeCustomizeMode !== resumeCustomization.MODES.OFF &&
+      event.target.closest("a")
+    ) {
       event.preventDefault();
     }
+  });
+
+  document.getElementById("resetCustomizeButton").addEventListener("click", () => {
+    const state = getCustomizationState(activeCustomizeMode);
+
+    if (!state || !renderedRoleId) {
+      return;
+    }
+
+    resumeCustomization.resetRoleEdits(state, renderedRoleId);
+
+    if (activeCustomizeMode === resumeCustomization.MODES.PERSISTENT) {
+      savePersistentCustomizations();
+    }
+
+    renderCurrentResume();
+  });
+
+  window.addEventListener("beforeunload", () => {
+    captureManualEdits();
   });
 
   document.getElementById("printButton").addEventListener("click", () => window.print());

@@ -83,6 +83,44 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
 
   bullets: [
     {
+      id: "randstad-jr-deskside-technician-it-support-technician-001",
+      text: "Supported onboarding and offboarding through device imaging, provisioning, deployment, asset recovery, redeployment, and decommissioning across Windows, macOS, and iOS enterprise endpoints.",
+      printText: "Supported onboarding/offboarding through imaging, provisioning, recovery, redeployment, and decommissioning of Windows, macOS, and iOS devices.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["IT Support Technician"],
+      skillTags: [
+        { category: "Endpoint & Device Lifecycle", name: "onboarding" },
+        { category: "Endpoint & Device Lifecycle", name: "offboarding" },
+        { category: "Endpoint & Device Lifecycle", name: "endpoint imaging" },
+        { category: "Endpoint & Device Lifecycle", name: "device provisioning" },
+        { category: "Endpoint & Device Lifecycle", name: "asset recovery" },
+        { category: "Endpoint & Device Lifecycle", name: "device redeployment" },
+        { category: "Endpoint & Device Lifecycle", name: "device decommissioning" },
+        { category: "Operating Systems & Remote Support", name: "Windows" },
+        { category: "Operating Systems & Remote Support", name: "macOS" },
+        { category: "Operating Systems & Remote Support", name: "iOS" }
+      ]
+    },
+    {
+      id: "randstad-jr-deskside-technician-it-support-specialist-001",
+      text: "Supported Microsoft Office 365 applications and Windows and macOS endpoints across onsite and remote enterprise environments, resolving software, access, VPN, MFA, and hardware issues.",
+      printText: "Supported Microsoft 365, Windows/macOS endpoints, access, VPN, MFA, software, and hardware across onsite and remote environments.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: ["IT Support Specialist"],
+      skillTags: [
+        { category: "Microsoft 365 & Collaboration", name: "Microsoft Office 365" },
+        { category: "Enterprise Endpoint Support", name: "Windows" },
+        { category: "Enterprise Endpoint Support", name: "macOS" },
+        { category: "Identity, Access & Networking", name: "VPN" },
+        { category: "Identity, Access & Networking", name: "MFA" },
+        { category: "Enterprise Endpoint Support", name: "software troubleshooting" },
+        { category: "Enterprise Endpoint Support", name: "hardware troubleshooting" },
+        { category: "Support Operations", name: "remote support" }
+      ]
+    },
+    {
       id: "randstad-jr-deskside-technician-nakedmd-ai-application-001",
       text: "Automated hardware and software validation with PowerShell while supporting enterprise application, identity, access, VPN, encryption, and endpoint workflows.",
       printText: "Automated hardware/software validation with PowerShell while supporting application, identity, access, VPN, encryption, and endpoint workflows.",

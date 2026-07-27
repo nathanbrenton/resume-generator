@@ -37,6 +37,7 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
   includeByDefault: true,
 
   maxBulletsByTargetRole: {
+    "electromechanical-equipment-repair-technician": 2,
     "IT Systems Engineer — Automation & Self-Service": 1,
     "Application Support Analyst": 1,
     "Support Engineer — APIs & Technical Support": 2,

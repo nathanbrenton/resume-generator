@@ -13,7 +13,7 @@ const project202607xxResumeGenerator = {
     "structured resume data",
     "role-specific content composition",
     "printable resume layouts",
-    "temporary in-place editing",
+    "role-scoped session and persistent in-place editing",
     "AI-assisted development workflow"
   ],
 
@@ -22,10 +22,10 @@ const project202607xxResumeGenerator = {
   isCurrent: true,
 
   summary:
-    "Built a configurable JavaScript resume application that composes role-specific content from structured career data and produces printable, temporarily editable layouts.",
+    "Built a configurable JavaScript resume application that composes role-specific content from structured career data and produces printable layouts with role-scoped one-off and persistent editing.",
 
   context:
-    "The Resume Generator stores jobs, projects, education, certifications, skills, and target-role logic as structured JavaScript data. It supports role-specific selections, bullet and skill prioritization, one-page print layouts, validation scripts, and temporary in-place customization before printing.",
+    "The Resume Generator stores jobs, projects, education, certifications, skills, and target-role logic as structured JavaScript data. It supports role-specific selections, bullet and skill prioritization, one-page print layouts, validation scripts, and role-scoped one-off or persistent in-place customization before printing.",
 
   avoidOverstating: [
     "Do not imply automated applicant-tracking scoring, recruiter integrations, external production users, or persistent user accounts.",
@@ -54,7 +54,7 @@ const project202607xxResumeGenerator = {
     "role-specific content selection",
     "bullet and skill prioritization",
     "print-ready one-page layouts",
-    "temporary contenteditable customization",
+    "session and persistent contenteditable customization",
     "data consistency validation",
     "AI-assisted iterative development"
   ],
@@ -93,8 +93,8 @@ const project202607xxResumeGenerator = {
     },
     {
       id: "resume-generator-ai-first-001",
-      text: "Used AI-assisted development to rapidly build and refine a configurable JavaScript resume application with structured content data, role-specific selection logic, printable layouts, and temporary in-place editing.",
-      printText: "Used AI-assisted development to build a configurable JavaScript resume app with structured data, role-specific selection, print layouts, and in-place editing.",
+      text: "Used AI-assisted development to rapidly build and refine a configurable JavaScript resume application with structured content data, role-specific selection logic, printable layouts, and role-scoped session or persistent in-place editing.",
+      printText: "Used AI-assisted development to build a configurable JavaScript resume app with structured data, role-specific selection, print layouts, and persistent in-place editing.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [

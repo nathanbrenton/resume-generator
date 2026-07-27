@@ -28,14 +28,14 @@ const skillCategoryOrder = [
 const skillCategoryOrderByRole = Object.fromEntries(
   roleDefinitions.map((role) => {
     const family = roleFamilies[role.familyId];
-    return [role.id, family?.categoryOrder || skillCategoryOrder];
+    return [role.id, role.categoryOrder || family?.categoryOrder || skillCategoryOrder];
   })
 );
 
 const skillGroupLimitsByRole = Object.fromEntries(
   roleDefinitions.map((role) => {
     const limits = {};
-    const categoryOrder = roleFamilies[role.familyId]?.categoryOrder || [];
+    const categoryOrder = role.categoryOrder || roleFamilies[role.familyId]?.categoryOrder || [];
 
     categoryOrder.forEach((category) => {
       limits[category] = role.skillGroupLimits?.[category] ?? 6;

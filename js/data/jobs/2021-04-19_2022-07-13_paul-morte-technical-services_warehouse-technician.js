@@ -4,6 +4,7 @@ const job20210419PaulMorteTechnicalServicesWarehouseTechnician = {
   includeByDefault: false,
 
   maxBulletsByTargetRole: {
+    "electromechanical-equipment-repair-technician": 2,
     "Junior Operations Engineer": 1
   },
 
