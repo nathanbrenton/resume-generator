@@ -218,6 +218,11 @@ const project202607xxMetadataEditor = {
       targetRoles: [
         "AI-First Software Engineer"
       ],
+      focusAreas: [
+        "software-development",
+        "ai-ml",
+        "testing-validation"
+      ],
       skillTags: [
         { category: "AI-First Development", name: "AI-assisted development" },
         { category: "AI-First Development", name: "iterative development" },
@@ -236,6 +241,12 @@ const project202607xxMetadataEditor = {
       strength: "primary",
       targetRoles: [
         "Software Engineer — Full Stack"
+      ],
+      focusAreas: [
+        "software-development",
+        "api-integration",
+        "testing-validation",
+        "data-databases"
       ],
       skillTags: [
         { category: "Programming & Scripting", name: "TypeScript" },
@@ -278,6 +289,12 @@ const project202607xxMetadataEditor = {
         "Digital Media Technician",
         "Media Systems Technician",
         "Post-Production Technician"
+      ],
+      focusAreas: [
+        "software-development",
+        "testing-validation",
+        "data-databases",
+        "media-processing"
       ],
       skillTags: [
         { category: "Programming & Scripting", name: "TypeScript" },

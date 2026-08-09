@@ -463,6 +463,12 @@ const project20260501SignalStack = {
         "Linux Administrator",
         "Systems Administrator"
       ],
+      focusAreas: [
+        "software-development",
+        "ai-ml",
+        "api-integration",
+        "data-databases"
+      ],
       skillTags: [
         { category: "Web & API Development", name: "FastAPI" },
         { category: "Databases", name: "PostgreSQL" },
@@ -487,6 +493,11 @@ const project20260501SignalStack = {
         "Technical Coordinator",
         "Systems Administrator"
       ],
+      focusAreas: [
+        "automation",
+        "data-databases",
+        "monitoring-observability"
+      ],
       skillTags: [
         { category: "Web & API Development", name: "RSS ingestion" },
         { category: "Databases", name: "article normalization" },
@@ -505,6 +516,11 @@ const project20260501SignalStack = {
         "AI/ML Engineer",
         "Cybersecurity Analyst",
         "Security Analyst"
+      ],
+      focusAreas: [
+        "software-development",
+        "data-databases",
+        "ai-ml"
       ],
       skillTags: [
         { category: "Databases", name: "PostgreSQL" },
@@ -525,6 +541,10 @@ const project20260501SignalStack = {
         "Software Engineer",
         "Platform Engineer"
       ],
+      focusAreas: [
+        "ai-ml",
+        "data-databases"
+      ],
       skillTags: [
         { category: "AI/ML", name: "sentence-transformers" },
         { category: "AI/ML", name: "semantic embeddings" },
@@ -542,6 +562,10 @@ const project20260501SignalStack = {
         "AI/ML Engineer",
         "MLOps / AI Infrastructure",
         "Software Engineer"
+      ],
+      focusAreas: [
+        "ai-ml",
+        "testing-validation"
       ],
       skillTags: [
         { category: "AI/ML", name: "scikit-learn" },
@@ -563,6 +587,11 @@ const project20260501SignalStack = {
         "Security Analyst",
         "Technical Coordinator"
       ],
+      focusAreas: [
+        "ai-ml",
+        "testing-validation",
+        "data-databases"
+      ],
       skillTags: [
         { category: "AI/ML", name: "training/inference separation" },
         { category: "AI/ML", name: "ML lifecycle design" },
@@ -581,6 +610,10 @@ const project20260501SignalStack = {
         "Support Engineer",
         "Systems Administrator",
         "Technical Coordinator"
+      ],
+      focusAreas: [
+        "api-integration",
+        "software-development"
       ],
       skillTags: [
         { category: "Web & API Development", name: "FastAPI" },
@@ -603,6 +636,10 @@ const project20260501SignalStack = {
         "Media Systems Technician",
         "Post-Production Technician"
       ],
+      focusAreas: [
+        "software-development",
+        "customer-user-support"
+      ],
       skillTags: [
         { category: "Programming & Scripting", name: "JavaScript" },
         { category: "Web & API Development", name: "HTML" },
@@ -622,6 +659,10 @@ const project20260501SignalStack = {
         "Software Engineer",
         "Project Coordinator"
       ],
+      focusAreas: [
+        "documentation",
+        "stakeholder-support"
+      ],
       skillTags: [
         { category: "Documentation", name: "README documentation" },
         { category: "Documentation", name: "API examples" },
@@ -639,6 +680,11 @@ const project20260501SignalStack = {
         "Platform Engineer",
         "Linux Administrator",
         "Systems Administrator"
+      ],
+      focusAreas: [
+        "infrastructure-operations",
+        "ai-ml",
+        "data-databases"
       ],
       skillTags: [
         { category: "DevOps & Tooling", name: "Docker" },

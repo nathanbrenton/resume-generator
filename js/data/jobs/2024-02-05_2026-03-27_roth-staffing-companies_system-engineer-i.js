@@ -802,6 +802,10 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
         "Linux Administrator",
         "Platform Engineer"
       ],
+      focusAreas: [
+        "infrastructure-operations",
+        "performance-reliability"
+      ],
       skillTags: [
         { category: "Operating Systems", name: "RHEL 9" },
         { category: "Middleware & Web Platforms", name: "Oracle WebLogic" },
@@ -824,6 +828,11 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
         "Systems Administrator",
         "Technical Coordinator",
         "IT Operations Specialist"
+      ],
+      focusAreas: [
+        "deployment-change",
+        "testing-validation",
+        "stakeholder-support"
       ],
       skillTags: [
         { category: "IT Service Management", name: "change management" },
@@ -848,6 +857,11 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
         "Software Engineer — Full Stack",
         "AI-First Software Engineer"
       ],
+      focusAreas: [
+        "automation",
+        "testing-validation",
+        "performance-reliability"
+      ],
       skillTags: [
         { category: "Linux & Systems Administration", name: "systemd" },
         { category: "Linux & Systems Administration", name: "cron" },
@@ -868,6 +882,10 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
         "Systems Administrator",
         "Software Engineer"
       ],
+      focusAreas: [
+        "infrastructure-operations",
+        "stakeholder-support"
+      ],
       skillTags: [
         { category: "Middleware & Web Platforms", name: "Oracle WebLogic" },
         { category: "Middleware & Web Platforms", name: "Apache Tomcat" },
@@ -875,6 +893,32 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
         { category: "Middleware & Web Platforms", name: "JDK" },
         { category: "Cloud & Infrastructure", name: "AWS" },
         { category: "Cloud & Infrastructure", name: "application modernization" }
+      ]
+    },
+    {
+      id: "roth-system-engineer-i-fedramp-assessment-001",
+      text: "Remediated Oracle middleware vulnerabilities with CPU/PSU patching and implemented validated LDAP authentication with Active Directory service accounts and CyberArk credential controls across test, staging, and production under approved change procedures.",
+      printText: "Remediated middleware vulnerabilities and validated LDAP, AD service-account, and CyberArk controls across environments under approved changes.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Cybersecurity Analyst — FedRAMP Assessments"
+      ],
+      focusAreas: [
+        "security-compliance",
+        "identity-access",
+        "deployment-change"
+      ],
+      skillTags: [
+        { category: "Security", name: "vulnerability remediation" },
+        { category: "Security", name: "Oracle CPU/PSU patching" },
+        { category: "Security", name: "LDAP" },
+        { category: "Security", name: "Active Directory" },
+        { category: "Security", name: "LDAP service accounts" },
+        { category: "Security", name: "CyberArk" },
+        { category: "Security", name: "credential management" },
+        { category: "IT Service Management", name: "change management" },
+        { category: "IT Service Management", name: "deployment validation" }
       ]
     },
     {
@@ -888,6 +932,10 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
         "Systems Administrator",
         "Linux Administrator",
         "Cybersecurity Analyst"
+      ],
+      focusAreas: [
+        "security-compliance",
+        "deployment-change"
       ],
       skillTags: [
         { category: "Security", name: "vulnerability remediation" },
@@ -910,6 +958,12 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
         "Cybersecurity Analyst",
         "Cybersecurity Quality Engineer — Medical Devices",
         "Application Support Analyst"
+      ],
+      focusAreas: [
+        "identity-access",
+        "security-compliance",
+        "deployment-change",
+        "stakeholder-support"
       ],
       skillTags: [
         { category: "Security", name: "LDAP" },
@@ -936,6 +990,11 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
         "Platform Engineer",
         "Software Engineer"
       ],
+      focusAreas: [
+        "stakeholder-support",
+        "deployment-change",
+        "incident-analysis"
+      ],
       skillTags: [
         { category: "Middleware & Web Platforms", name: "Apache HTTP Server" },
         { category: "Middleware & Web Platforms", name: "Apache Tomcat" },
@@ -958,6 +1017,11 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
         "IT Operations Specialist",
         "Middleware Engineer"
       ],
+      focusAreas: [
+        "documentation",
+        "incident-analysis",
+        "stakeholder-support"
+      ],
       skillTags: [
         { category: "Documentation", name: "runbooks" },
         { category: "Documentation", name: "SOPs" },
@@ -977,6 +1041,11 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
         "Middleware Engineer",
         "Systems Administrator",
         "Platform Engineer"
+      ],
+      focusAreas: [
+        "infrastructure-operations",
+        "performance-reliability",
+        "data-databases"
       ],
       skillTags: [
         { category: "Middleware & Web Platforms", name: "IBM MQ" },
@@ -1000,6 +1069,12 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
         "Application Support Analyst",
         "QA Automation Engineer",
         "Software Engineer — Full Stack"
+      ],
+      focusAreas: [
+        "automation",
+        "deployment-change",
+        "incident-analysis",
+        "stakeholder-support"
       ],
       skillTags: [
         { category: "Middleware & Web Platforms", name: "Apache Tomcat" },
@@ -1026,6 +1101,11 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
         "Application Support Analyst",
         "QA Automation Engineer"
       ],
+      focusAreas: [
+        "monitoring-observability",
+        "performance-reliability",
+        "infrastructure-operations"
+      ],
       skillTags: [
         { category: "Monitoring & Support", name: "Oracle Enterprise Manager" },
         { category: "Monitoring & Support", name: "OEM" },
@@ -1038,8 +1118,8 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     },
     {
       id: "roth-system-engineer-i-012",
-      text: "Developed Bash and Python monitoring scripts with email alerts for service availability and CPU, memory, and storage-capacity thresholds across enterprise environments.",
-      printText: "Developed Bash/Python monitoring with email alerts for availability and CPU, memory, and storage-capacity thresholds.",
+      text: "Developed Bash monitoring scripts with email alerts for service availability and CPU, memory, and storage-capacity thresholds across enterprise environments.",
+      printText: "Developed Bash monitoring with email alerts for availability and CPU, memory, and storage-capacity thresholds.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -1051,8 +1131,12 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
         "Application Support Analyst",
         "QA Automation Engineer"
       ],
+      focusAreas: [
+        "automation",
+        "monitoring-observability",
+        "performance-reliability"
+      ],
       skillTags: [
-        { category: "Programming & Scripting", name: "Python" },
         { category: "Programming & Scripting", name: "Bash" },
         { category: "Automation & Scripting", name: "monitoring automation" },
         { category: "Monitoring & Support", name: "availability monitoring" },
@@ -1106,7 +1190,6 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     { category: "Middleware & Web Platforms", name: "runmqsc" },
 
     { category: "Programming & Scripting", name: "Bash" },
-    { category: "Programming & Scripting", name: "Python" },
     { category: "Programming & Scripting", name: "PowerShell" },
     { category: "Programming & Scripting", name: "WebLogic Scripting Tool" },
     { category: "Programming & Scripting", name: "regular expressions" },

@@ -43,7 +43,7 @@ const project202607xxCenturySolar = {
     "Do not imply real customers, production deployment, paid transactions, or public cloud hosting.",
     "Describe the application as a portfolio or commercial-style platform rather than an operating solar company.",
     "Do not imply that payment-card data enters the application; payment handling is intentionally scoped to external provider identifiers and minimal display metadata.",
-    "Keep this project unchecked by default for Software Engineer — Full Stack until the GUI and representative workflows have been exercised hands-on."
+    "When selected for a general software-engineering resume during active development, keep the wording explicitly portfolio/non-production and do not imply completed GUI validation or production readiness."
   ],
 
   targetRoles: [
@@ -148,12 +148,18 @@ const project202607xxCenturySolar = {
     },
     {
       id: "century-solar-full-stack-001",
-      text: "Developed a private, containerized React/TypeScript, FastAPI, and PostgreSQL business platform with complex operational workflows and automated pytest, Vitest, and Playwright coverage.",
-      printText: "Developed a private React/TypeScript, FastAPI, and PostgreSQL platform with complex workflows and automated test coverage.",
+      text: "Developed a containerized React/TypeScript, FastAPI, and PostgreSQL portfolio platform with complex operational workflows and automated pytest, Vitest, and Playwright coverage.",
+      printText: "Developed a React/TypeScript, FastAPI, and PostgreSQL portfolio platform with complex workflows and automated test coverage.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
         "Software Engineer — Full Stack"
+      ],
+      focusAreas: [
+        "software-development",
+        "testing-validation",
+        "api-integration",
+        "data-databases"
       ],
       skillTags: [
         { category: "Programming & Scripting", name: "Python" },
@@ -201,6 +207,12 @@ const project202607xxCenturySolar = {
         "Platform Engineer",
         "Support Engineer",
         "Technical Coordinator"
+      ],
+      focusAreas: [
+        "software-development",
+        "api-integration",
+        "data-databases",
+        "stakeholder-support"
       ],
       skillTags: [
         { category: "Programming & Scripting", name: "Python" },

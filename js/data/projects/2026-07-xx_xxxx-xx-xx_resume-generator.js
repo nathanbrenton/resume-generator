@@ -100,6 +100,11 @@ const project202607xxResumeGenerator = {
       targetRoles: [
         "AI-First Software Engineer"
       ],
+      focusAreas: [
+        "software-development",
+        "automation",
+        "ai-ml"
+      ],
       skillTags: [
         { category: "AI-First Development", name: "AI-assisted development" },
         { category: "AI-First Development", name: "prompt engineering" },
@@ -120,6 +125,11 @@ const project202607xxResumeGenerator = {
       targetRoles: [
         "Software Engineer",
         "Software Engineer — Full Stack"
+      ],
+      focusAreas: [
+        "software-development",
+        "automation",
+        "testing-validation"
       ],
       skillTags: [
         { category: "Programming & Scripting", name: "JavaScript" },

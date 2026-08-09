@@ -36,7 +36,9 @@ function loadResumeData() {
     roleModifierSkillWeights,
     buildResume,
     getRoleDefinition,
-    getRoleMatchLabels
+    getRoleMatchLabels,
+    bulletFocusAreas,
+    getBulletFocusAreas
   };`, context);
 
   return context.__roleTest;
@@ -89,7 +91,9 @@ function main() {
     roleFamilySkillWeights,
     roleModifierSkillWeights,
     buildResume,
-    getRoleMatchLabels
+    getRoleMatchLabels,
+    bulletFocusAreas,
+    getBulletFocusAreas
   } = loadResumeData();
 
   const primaryRoles = careerData.roleDefinitions.filter((role) => role.isPrimary !== false);
@@ -115,6 +119,21 @@ function main() {
   };
 
   const ownedAliases = new Map();
+  const validFocusAreas = new Set(Object.keys(bulletFocusAreas));
+
+  Object.entries(careerData.roleFamilies).forEach(([familyId, family]) => {
+    [
+      ["defaultMaxJobBullets", family.defaultMaxJobBullets, 1, 6],
+      ["defaultMaxJobBulletsWhenTwoJobs", family.defaultMaxJobBulletsWhenTwoJobs, 1, 6],
+      ["defaultMaxExperienceBullets", family.defaultMaxExperienceBullets, 2, 20],
+      ["defaultMinSupplementalBulletScore", family.defaultMinSupplementalBulletScore, 0, 500]
+    ].forEach(([field, value, minimum, maximum]) => {
+      assert(Number.isInteger(value) && value >= minimum && value <= maximum,
+        `${familyId}.${field} has malformed value: ${value}`);
+    });
+    assert(family.defaultMaxJobBulletsWhenTwoJobs >= family.defaultMaxJobBullets,
+      `${familyId}.defaultMaxJobBulletsWhenTwoJobs must not be lower than defaultMaxJobBullets`);
+  });
 
   careerData.roleDefinitions.forEach((role) => {
     assert(/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(role.id), `Malformed role ID: ${role.id}`);
@@ -147,6 +166,38 @@ function main() {
         `${role.id}.skillGroupLimits contains an empty category`);
       assert(Number.isInteger(limit) && limit > 0 && limit <= 10,
         `${role.id}.skillGroupLimits.${category} has malformed limit: ${limit}`);
+    });
+
+    assert(role.layout === undefined ||
+      (typeof role.layout === "object" && !Array.isArray(role.layout)),
+    `${role.id}.layout must be an object when provided`);
+
+    [
+      ["maxJobBullets", 1, 6],
+      ["maxJobBulletsWhenTwoJobs", 1, 6],
+      ["maxExperienceBullets", 2, 20],
+      ["minSupplementalBulletScore", 0, 500]
+    ].forEach(([field, minimum, maximum]) => {
+      const value = role.layout?.[field];
+      assert(value === undefined ||
+        (Number.isInteger(value) && value >= minimum && value <= maximum),
+      `${role.id}.layout.${field} has malformed value: ${value}`);
+    });
+
+    if (role.layout?.maxJobBulletsWhenTwoJobs !== undefined) {
+      const baseline = role.layout.maxJobBullets ??
+        careerData.roleFamilies[role.familyId].defaultMaxJobBullets;
+      assert(role.layout.maxJobBulletsWhenTwoJobs >= baseline,
+        `${role.id}.layout.maxJobBulletsWhenTwoJobs must not be lower than its base limit`);
+    }
+
+    assert(role.preferredFocusAreas === undefined || Array.isArray(role.preferredFocusAreas),
+      `${role.id}.preferredFocusAreas must be an array when provided`);
+    assert(new Set(role.preferredFocusAreas || []).size === (role.preferredFocusAreas || []).length,
+      `${role.id}.preferredFocusAreas contains duplicates`);
+    (role.preferredFocusAreas || []).forEach((focusArea) => {
+      assert(validFocusAreas.has(focusArea),
+        `${role.id}.preferredFocusAreas references unknown focus area: ${focusArea}`);
     });
 
     const selectableItems = new Map([
@@ -222,6 +273,28 @@ function main() {
       const sources = duplicateText.get(textKey) || [];
       sources.push(`${item.id}.${bullet.id}`);
       duplicateText.set(textKey, sources);
+
+      assert(bullet.focusAreas === undefined || Array.isArray(bullet.focusAreas),
+        `${item.id}.${bullet.id}.focusAreas must be an array when provided`);
+      assert(new Set(bullet.focusAreas || []).size === (bullet.focusAreas || []).length,
+        `${item.id}.${bullet.id}.focusAreas contains duplicates`);
+      (bullet.focusAreas || []).forEach((focusArea) => {
+        assert(validFocusAreas.has(focusArea),
+          `${item.id}.${bullet.id}.focusAreas references unknown focus area: ${focusArea}`);
+      });
+
+      assert(bullet.targetRoleFamilies === undefined || Array.isArray(bullet.targetRoleFamilies),
+        `${item.id}.${bullet.id}.targetRoleFamilies must be an array when provided`);
+      assert(new Set(bullet.targetRoleFamilies || []).size ===
+        (bullet.targetRoleFamilies || []).length,
+      `${item.id}.${bullet.id}.targetRoleFamilies contains duplicates`);
+      (bullet.targetRoleFamilies || []).forEach((familyId) => {
+        assert(familyIds.has(familyId),
+          `${item.id}.${bullet.id}.targetRoleFamilies references unknown family: ${familyId}`);
+      });
+
+      assert(getBulletFocusAreas(bullet).length > 0,
+        `${item.id}.${bullet.id} must resolve to at least one focus area`);
     });
   });
 
@@ -262,6 +335,31 @@ function main() {
         `${role.id} selected expired certification ${certification.id} by default`);
     });
   });
+
+  const twoJobRoleId = "technology-engineer-software-qa-cybersecurity";
+  const twoJobSelections = careerData.roleDefaultSelections[twoJobRoleId];
+  const twoJobResume = buildResume({
+    targetRole: twoJobRoleId,
+    selectedJobIds: twoJobSelections.jobIds,
+    selectedProjectIds: twoJobSelections.projectIds,
+    selectedEducationIds: twoJobSelections.educationIds,
+    selectedCertificationIds: twoJobSelections.certificationIds,
+    currentDate: fixedDate
+  });
+
+  assert(twoJobResume.jobs.length === 2,
+    `${twoJobRoleId} must remain a two-job dynamic-bullet test fixture`);
+  twoJobResume.jobs.forEach((job) => {
+    assert(job.selectedBullets.length === 3,
+      `${twoJobRoleId} must select three bullets for ${job.id}`);
+    assert(new Set(job.selectedBullets.map((bullet) => normalize(bullet.printText || bullet.text))).size ===
+      job.selectedBullets.length,
+    `${twoJobRoleId}.${job.id} generated duplicate bullet text`);
+    assert(new Set(job.selectedBullets.flatMap((bullet) => getBulletFocusAreas(bullet))).size >= 3,
+      `${twoJobRoleId}.${job.id} must cover at least three focus areas`);
+  });
+  assert(twoJobResume.jobs.reduce((count, job) => count + job.selectedBullets.length, 0) === 6,
+    `${twoJobRoleId} must respect the six-bullet experience budget`);
 
   const helpDeskRoleId = "it-support-technician";
   const helpDeskSelections = careerData.roleDefaultSelections[helpDeskRoleId];
@@ -417,6 +515,91 @@ function main() {
     "2022-01-09_xxxx-xx-xx_comptia_project-plus"
   ].join("|"), `${legalSupportRoleId} generated unexpected certification selections`);
 
+  const fullStackRoleId = "full-stack-software-engineer";
+  const fullStackSelections = careerData.roleDefaultSelections[fullStackRoleId];
+  const fullStackResume = buildResume({
+    targetRole: fullStackRoleId,
+    selectedJobIds: fullStackSelections.jobIds,
+    selectedProjectIds: fullStackSelections.projectIds,
+    selectedEducationIds: fullStackSelections.educationIds,
+    selectedCertificationIds: fullStackSelections.certificationIds,
+    currentDate: fixedDate
+  });
+  const fullStackSkillNames = fullStackResume.skills
+    .flatMap((group) => group.skills)
+    .map(normalize);
+  const fullStackRoth = fullStackResume.jobs.find((job) => {
+    return job.id === "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i";
+  });
+  const fullStackRandstad = fullStackResume.jobs.find((job) => {
+    return job.id === "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician";
+  });
+  const fullStackCenturySolar = fullStackResume.projects.find((project) => {
+    return project.id === "2026-07-xx_xxxx-xx-xx_century-solar";
+  });
+  const fullStackMetadataEditor = fullStackResume.projects.find((project) => {
+    return project.id === "2026-07-xx_xxxx-xx-xx_metadata-editor";
+  });
+  const fullStackSignalStack = fullStackResume.projects.find((project) => {
+    return project.id === "2026-05-01_2026-06-01_signalstack";
+  });
+  const rothSource = careerData.jobs.find((job) => {
+    return job.id === "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i";
+  });
+
+  assert(fullStackResume.headline ===
+    "Full-Stack Software Engineer | Python, React & TypeScript | Linux",
+    `${fullStackRoleId} generated an unexpected headline`);
+  assert(fullStackResume.jobs.map((job) => job.id).join("|") === [
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+    "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+  ].join("|"), `${fullStackRoleId} generated unexpected work-history selections`);
+  assert(fullStackRoth?.selectedBullets.map((bullet) => bullet.id).join("|") === [
+    "roth-system-engineer-i-full-stack-001",
+    "roth-system-engineer-i-010",
+    "roth-system-engineer-i-012"
+  ].join("|"), `${fullStackRoleId} must select deployment/automation/reliability Roth evidence`);
+  assert(fullStackRandstad?.selectedBullets.map((bullet) => bullet.id).join("|") === [
+    "randstad-jr-deskside-technician-006",
+    "randstad-jr-deskside-technician-full-stack-001"
+  ].join("|"), `${fullStackRoleId} must select PowerShell and enterprise-support Randstad evidence`);
+  assert(fullStackResume.projects.map((project) => project.id).join("|") === [
+    "2026-07-xx_xxxx-xx-xx_century-solar",
+    "2026-07-xx_xxxx-xx-xx_metadata-editor",
+    "2026-05-01_2026-06-01_signalstack"
+  ].join("|"), `${fullStackRoleId} generated unexpected project selections`);
+  assert(fullStackCenturySolar?.selectedBullets.map((bullet) => bullet.id).join("|") === [
+    "century-solar-full-stack-001",
+    "century-solar-001"
+  ].join("|"), `${fullStackRoleId} must select Century Solar stack and workflow evidence`);
+  assert(fullStackCenturySolar?.selectedBullets[0]?.printText.includes("portfolio platform"),
+    `${fullStackRoleId} must keep Century Solar explicitly portfolio/non-production`);
+  assert(fullStackMetadataEditor?.selectedBullets.map((bullet) => bullet.id).join("|") === [
+    "metadata-editor-full-stack-001",
+    "metadata-editor-trl11-video-systems-001"
+  ].join("|"), `${fullStackRoleId} must select Metadata Editor application and media-processing evidence`);
+  assert(fullStackSignalStack?.selectedBullets.map((bullet) => bullet.id).join("|") === [
+    "signalstack-full-stack-001",
+    "signalstack-007"
+  ].join("|"), `${fullStackRoleId} must select SignalStack platform and API evidence`);
+  ["python", "docker", "react", "typescript", "fastapi", "postgresql", "playwright"].forEach((skill) => {
+    assert(fullStackSkillNames.includes(skill),
+      `${fullStackRoleId} must display ${skill}`);
+  });
+  assert(!fullStackRoth?.selectedBullets.some((bullet) => normalize(bullet.printText).includes("python")),
+    `${fullStackRoleId} must not attribute Python to Roth professional experience`);
+  assert(!rothSource?.skillTags.some((skill) => normalize(skill.name) === "python"),
+    "Roth professional skill tags must not claim unverified Python experience");
+  assert(!rothSource?.bullets.some((bullet) => {
+    return normalize(bullet.text).includes("python") ||
+      normalize(bullet.printText).includes("python") ||
+      (bullet.skillTags || []).some((skill) => normalize(skill.name) === "python");
+  }), "Roth professional bullets must not claim unverified Python experience");
+  assert(fullStackResume.certifications.map((entry) => entry.id).join("|") === [
+    "2023-08-11_2029-08-11_comptia_cysa-plus-ce",
+    "2022-01-09_xxxx-xx-xx_comptia_project-plus"
+  ].join("|"), `${fullStackRoleId} generated unexpected certification selections`);
+
   const aiQualityRoleId = "ai-quality-engineer-i";
   const aiQualitySelections = careerData.roleDefaultSelections[aiQualityRoleId];
   const aiQualityResume = buildResume({
@@ -456,8 +639,8 @@ function main() {
     "2026-07-xx_xxxx-xx-xx_metadata-editor"
   ].join("|"), `${aiQualityRoleId} generated unexpected project selections`);
   [aiQualityRoth, aiQualityAwm].forEach((job) => {
-    assert(job?.selectedBullets.length === 2,
-      `${aiQualityRoleId} must select two bullets for ${job?.id || "each work-history entry"}`);
+    assert(job?.selectedBullets.length === 3,
+      `${aiQualityRoleId} must select three diverse bullets when two jobs are selected for ${job?.id || "each work-history entry"}`);
   });
   [aiQualityHuggingFace, aiQualitySignalStack, aiQualityMetadataEditor].forEach((project) => {
     assert(project?.selectedBullets.length === 2,
@@ -772,8 +955,8 @@ function main() {
     "2026-07-xx_xxxx-xx-xx_resume-generator"
   ].join("|"), `${digitalBankingRoleId} generated unexpected project selections`);
   [digitalBankingRoth, digitalBankingRandstad].forEach((job) => {
-    assert(job?.selectedBullets.length === 2,
-      `${digitalBankingRoleId} must select two bullets for ${job?.id || "each work-history entry"}`);
+    assert(job?.selectedBullets.length === 3,
+      `${digitalBankingRoleId} must select three diverse bullets when two jobs are selected for ${job?.id || "each work-history entry"}`);
   });
   [digitalBankingMetadataEditor, digitalBankingSignalStack, digitalBankingResumeGenerator]
     .forEach((project) => {

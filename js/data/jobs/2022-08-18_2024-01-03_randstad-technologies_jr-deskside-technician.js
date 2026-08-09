@@ -553,6 +553,11 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
         "Desktop Support Technician",
         "Deskside Support Technician"
       ],
+      focusAreas: [
+        "customer-user-support",
+        "incident-analysis",
+        "hardware-repair"
+      ],
       skillTags: [
         { category: "Ticketing & Collaboration", name: "ServiceNow" },
         { category: "Operating Systems", name: "Windows" },
@@ -576,6 +581,11 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
         "Systems Administrator",
         "IT Operations Specialist"
       ],
+      focusAreas: [
+        "infrastructure-operations",
+        "identity-access",
+        "customer-user-support"
+      ],
       skillTags: [
         { category: "IT Service Management", name: "asset lifecycle support" },
         { category: "Hardware / Repair", name: "laptop imaging" },
@@ -596,6 +606,11 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
         "IT Support Specialist",
         "Desktop Support Technician",
         "Systems Administrator"
+      ],
+      focusAreas: [
+        "identity-access",
+        "infrastructure-operations",
+        "customer-user-support"
       ],
       skillTags: [
         { category: "Operating Systems", name: "Windows" },
@@ -619,6 +634,10 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
         "Desktop Support Technician",
         "Deskside Support Technician"
       ],
+      focusAreas: [
+        "customer-user-support",
+        "incident-analysis"
+      ],
       skillTags: [
         { category: "Ticketing & Collaboration", name: "ServiceNow" },
         { category: "IT Service Management", name: "incident management" },
@@ -637,6 +656,10 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
         "IT Support Specialist",
         "Desktop Support Technician",
         "Technical Support Specialist"
+      ],
+      focusAreas: [
+        "customer-user-support",
+        "stakeholder-support"
       ],
       skillTags: [
         { category: "IT Service Management", name: "service requests" },
@@ -658,6 +681,10 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
         "Software Engineer — Full Stack",
         "AI-First Software Engineer"
       ],
+      focusAreas: [
+        "automation",
+        "testing-validation"
+      ],
       skillTags: [
         { category: "Programming & Scripting", name: "PowerShell" },
         { category: "Cloud & Infrastructure", name: "endpoint management" },
@@ -676,6 +703,10 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
         "IT Support Specialist",
         "Desktop Support Technician",
         "Deskside Support Technician"
+      ],
+      focusAreas: [
+        "hardware-repair",
+        "customer-user-support"
       ],
       skillTags: [
         { category: "Hardware / Repair", name: "Lenovo laptops" },
@@ -698,6 +729,11 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
         "Systems Administrator",
         "Hardware Repair Technician"
       ],
+      focusAreas: [
+        "identity-access",
+        "security-compliance",
+        "customer-user-support"
+      ],
       skillTags: [
         { category: "Security", name: "BitLocker" },
         { category: "Security", name: "data-retention workflows" },
@@ -716,6 +752,11 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
         "Technical Coordinator",
         "Support Engineer",
         "IT Support Specialist"
+      ],
+      focusAreas: [
+        "security-compliance",
+        "infrastructure-operations",
+        "stakeholder-support"
       ],
       skillTags: [
         { category: "IT Service Management", name: "asset lifecycle support" },
@@ -736,6 +777,11 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
         "Desktop Support Technician",
         "Deskside Support Technician",
         "Support Engineer"
+      ],
+      focusAreas: [
+        "hardware-repair",
+        "customer-user-support",
+        "infrastructure-operations"
       ],
       skillTags: [
         { category: "Hardware / Repair", name: "docking stations" },

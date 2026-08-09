@@ -231,7 +231,9 @@ a {
 
 .skill-group {
   break-inside: avoid;
+  line-height: 1.32;
   margin-bottom: 3px;
+  padding-top: 1px;
 }
 
 .skill-category {

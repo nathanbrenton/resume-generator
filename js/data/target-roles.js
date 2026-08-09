@@ -2,6 +2,10 @@ const roleFamilies = {
   "systems-infrastructure": {
     label: "Systems Administration & Infrastructure",
     defaultMaxSkillGroups: 6,
+    defaultMaxJobBullets: 2,
+    defaultMaxJobBulletsWhenTwoJobs: 3,
+    defaultMaxExperienceBullets: 6,
+    defaultMinSupplementalBulletScore: 40,
     categoryOrder: [
       "Systems & Infrastructure",
       "Middleware & Applications",
@@ -16,6 +20,10 @@ const roleFamilies = {
   "platform-reliability": {
     label: "Platform & Reliability",
     defaultMaxSkillGroups: 7,
+    defaultMaxJobBullets: 2,
+    defaultMaxJobBulletsWhenTwoJobs: 3,
+    defaultMaxExperienceBullets: 6,
+    defaultMinSupplementalBulletScore: 40,
     categoryOrder: [
       "Platform & Reliability",
       "Systems & Infrastructure",
@@ -32,6 +40,10 @@ const roleFamilies = {
   "application-support": {
     label: "Application & Technical Support",
     defaultMaxSkillGroups: 7,
+    defaultMaxJobBullets: 2,
+    defaultMaxJobBulletsWhenTwoJobs: 3,
+    defaultMaxExperienceBullets: 6,
+    defaultMinSupplementalBulletScore: 40,
     categoryOrder: [
       "Application Support",
       "Monitoring & Support",
@@ -48,6 +60,10 @@ const roleFamilies = {
   "software-engineering": {
     label: "Software Engineering",
     defaultMaxSkillGroups: 7,
+    defaultMaxJobBullets: 2,
+    defaultMaxJobBulletsWhenTwoJobs: 3,
+    defaultMaxExperienceBullets: 6,
+    defaultMinSupplementalBulletScore: 40,
     categoryOrder: [
       "Programming & Scripting",
       "Frontend Development",
@@ -63,6 +79,10 @@ const roleFamilies = {
   "applied-ai-automation": {
     label: "Applied AI & Automation",
     defaultMaxSkillGroups: 7,
+    defaultMaxJobBullets: 2,
+    defaultMaxJobBulletsWhenTwoJobs: 3,
+    defaultMaxExperienceBullets: 6,
+    defaultMinSupplementalBulletScore: 40,
     categoryOrder: [
       "AI Applications",
       "Automation & Integration",
@@ -79,6 +99,10 @@ const roleFamilies = {
   "ai-infrastructure": {
     label: "AI Infrastructure & Model Operations",
     defaultMaxSkillGroups: 7,
+    defaultMaxJobBullets: 2,
+    defaultMaxJobBulletsWhenTwoJobs: 3,
+    defaultMaxExperienceBullets: 6,
+    defaultMinSupplementalBulletScore: 40,
     categoryOrder: [
       "AI Infrastructure",
       "Systems & Infrastructure",
@@ -94,6 +118,10 @@ const roleFamilies = {
   "media-systems": {
     label: "Media Systems & Processing",
     defaultMaxSkillGroups: 6,
+    defaultMaxJobBullets: 2,
+    defaultMaxJobBulletsWhenTwoJobs: 3,
+    defaultMaxExperienceBullets: 6,
+    defaultMinSupplementalBulletScore: 40,
     categoryOrder: [
       "Media Processing",
       "Media Systems Support",
@@ -115,12 +143,21 @@ const roleModifiers = {
   "production-support": { label: "Production Support" },
   "developer-support": { label: "Developer Support" },
   "full-stack": { label: "Full-Stack" },
+  "mission-operations-full-stack": { label: "Mission Operations Full Stack" },
   "internal-operations-software": { label: "Internal Operations Software" },
   "healthcare-operations-software": { label: "Healthcare Operations Software" },
   "digital-banking-web-development": { label: "Digital Banking Web Development" },
+  "life-insurance-application-development": { label: "Life Insurance Application Development" },
   "forward-deployed-engineering": { label: "Forward Deployed Engineering" },
   "cybersecurity-quality-engineering": { label: "Cybersecurity Quality Engineering" },
+  "cloud-security-operations": { label: "Cloud Security Operations" },
+  "fedramp-security-assessments": { label: "FedRAMP Security Assessments" },
+  "identity-access-management": { label: "Identity & Access Management" },
+  "corporate-it-operations": { label: "Corporate IT Operations" },
   "qa-automation-engineering": { label: "QA Automation Engineering" },
+  "web-api-test-automation": { label: "Web & API Test Automation" },
+  "payments-software-quality": { label: "Payments Software Quality" },
+  "technology-generalist": { label: "Software, QA & Cybersecurity" },
   "applied-ai": { label: "Applied AI" },
   "ai-quality-assurance": { label: "AI Quality & Process Assurance" },
   "sales-engineering-software-qa": { label: "Sales Engineering & Software QA" },
@@ -133,7 +170,11 @@ const roleModifiers = {
   "legal-services-it-support": { label: "Legal Services IT Support" },
   "help-desk-device-lifecycle": { label: "Help Desk & Device Lifecycle" },
   "product-operations-sustainment": { label: "Product Operations & Sustainment" },
-  "hardware-repair": { label: "Hardware / Electromechanical Repair" }
+  "infotainment-quality-engineering": { label: "Infotainment Quality Engineering" },
+  "hardware-repair": { label: "Hardware / Electromechanical Repair" },
+  "music-technology-support": { label: "Music Technology Support" },
+  "music-content-protection": { label: "Music Content Protection" },
+  "recorded-music-release-planning": { label: "Recorded Music Release Planning" }
 };
 
 const sharedEducationIds = [
@@ -351,25 +392,57 @@ const roleDefinitions = [
     familyId: "software-engineering",
     modifierIds: ["full-stack"],
     aliases: ["Software Engineer", "Software Engineer — Full Stack", "AI-First Software Engineer"],
-    headline: "Full-Stack Software Engineer | React | TypeScript | Python",
-    summary: "Software engineering master’s graduate and systems engineer building React/TypeScript and Python/FastAPI applications with PostgreSQL, REST APIs, containerized services, automated testing, complex workflow interfaces, and technical documentation.",
+    headline: "Full-Stack Software Engineer | Python, React & TypeScript | Linux",
+    summary: "Software engineer with an enterprise systems engineering background, building full-stack applications with Python, FastAPI, React, TypeScript, PostgreSQL, REST APIs, Docker, and automated testing. Combines application development with professional Linux platform, deployment, troubleshooting, monitoring, and production-reliability experience.",
+    preferredBulletIdsByItem: {
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+        "roth-system-engineer-i-full-stack-001",
+        "roth-system-engineer-i-010",
+        "roth-system-engineer-i-012"
+      ],
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": [
+        "randstad-jr-deskside-technician-006",
+        "randstad-jr-deskside-technician-full-stack-001"
+      ],
+      "2026-07-xx_xxxx-xx-xx_century-solar": [
+        "century-solar-full-stack-001",
+        "century-solar-001"
+      ],
+      "2026-07-xx_xxxx-xx-xx_metadata-editor": [
+        "metadata-editor-full-stack-001",
+        "metadata-editor-trl11-video-systems-001"
+      ],
+      "2026-05-01_2026-06-01_signalstack": [
+        "signalstack-full-stack-001",
+        "signalstack-007"
+      ]
+    },
     selections: {
       jobIds: [
         "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
         "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
       ],
       projectIds: [
+        "2026-07-xx_xxxx-xx-xx_century-solar",
         "2026-07-xx_xxxx-xx-xx_metadata-editor",
-        "2026-07-xx_xxxx-xx-xx_react-audio-player",
         "2026-05-01_2026-06-01_signalstack"
       ],
       educationIds: [
         ...sharedEducationIds,
         "2019-01-29_2019-05-12_udacity_front-end-web-developer-nanodegree"
       ],
-      certificationIds: []
+      certificationIds: [
+        "2023-08-11_2029-08-11_comptia_cysa-plus-ce",
+        "2022-01-09_xxxx-xx-xx_comptia_project-plus"
+      ]
     },
-    layout: { maxSkillGroups: 7 }
+    layout: {
+      maxSkillGroups: 6,
+      maxJobBullets: 2,
+      maxJobBulletsWhenTwoJobs: 3,
+      maxExperienceBullets: 5,
+      maxProjectBullets: 2
+    }
   },
   {
     id: "applied-ai-engineer",
@@ -480,6 +553,91 @@ const roleDefinitions = [
       ],
       educationIds: sharedEducationIds,
       certificationIds: []
+    }
+  },
+  {
+    id: "technology-engineer-software-qa-cybersecurity",
+    label: "Technology Engineer — Software, QA & Cybersecurity",
+    familyId: "software-engineering",
+    modifierIds: ["technology-generalist"],
+    isPrimary: false,
+    aliases: [
+      "Software, QA & Cybersecurity Engineer",
+      "Software Quality & Security Engineer",
+      "Technology Engineering Specialist"
+    ],
+    relevanceAliases: [
+      "Software Engineer",
+      "QA Automation Engineer",
+      "Cybersecurity Analyst",
+      "Application Support Engineer",
+      "Systems Automation Engineer",
+      "DevOps Engineer"
+    ],
+    headline: "Technology Engineer | Software Development | QA Automation | Cybersecurity",
+    summary: "Technology engineer with enterprise systems and production-support experience plus hands-on full-stack application development and automated testing. Builds Python/FastAPI, React/TypeScript, PostgreSQL, REST API, and containerized Docker solutions; develops pytest, Playwright, smoke, integration, regression, and synthetic-transaction tests; and applies Linux, Splunk, Active Directory, IAM, vulnerability-management, and change-control practices.",
+    categoryOrder: [
+      "Software Development",
+      "QA Automation & Validation",
+      "Cybersecurity & Identity",
+      "Systems & Application Support",
+      "APIs & Data",
+      "DevOps & Tooling",
+      "Programming & Scripting",
+      "Documentation & Collaboration",
+      "Other"
+    ],
+    preferredBulletIdsByItem: {
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+        "roth-system-engineer-i-012",
+        "roth-system-engineer-i-006"
+      ],
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": [
+        "randstad-jr-deskside-technician-006",
+        "randstad-jr-deskside-technician-002"
+      ],
+      "2026-07-xx_xxxx-xx-xx_century-solar": [
+        "century-solar-nakedmd-ai-application-001"
+      ],
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab": [
+        "offline-dev-lab-application-support-001"
+      ],
+      "2026-05-01_2026-06-01_signalstack": [
+        "signalstack-nakedmd-ai-application-001"
+      ]
+    },
+    selections: {
+      jobIds: [
+        "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+        "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+      ],
+      projectIds: [
+        "2026-07-xx_xxxx-xx-xx_century-solar",
+        "2026-06-xx_xxxx-xx-xx_offline-dev-lab",
+        "2026-05-01_2026-06-01_signalstack"
+      ],
+      educationIds: sharedEducationIds,
+      certificationIds: [
+        "2023-08-11_2029-08-11_comptia_cysa-plus-ce",
+        "2023-08-28_2026-08-28_comptia_pentest-plus-ce",
+        "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation"
+      ]
+    },
+    layout: {
+      maxJobBullets: 2,
+      maxProjectBullets: 1,
+      maxSkillGroups: 8,
+      maxSkillsPerGroup: 6
+    },
+    skillGroupLimits: {
+      "Software Development": 6,
+      "QA Automation & Validation": 6,
+      "Cybersecurity & Identity": 6,
+      "Systems & Application Support": 6,
+      "APIs & Data": 6,
+      "DevOps & Tooling": 6,
+      "Programming & Scripting": 6,
+      "Documentation & Collaboration": 5
     }
   },
   {
@@ -1339,6 +1497,95 @@ const roleDefinitions = [
     }
   },
   {
+    id: "illustrations-application-developer",
+    label: "Illustrations Application Developer — Life Insurance",
+    familyId: "software-engineering",
+    modifierIds: ["full-stack", "life-insurance-application-development"],
+    isPrimary: false,
+    aliases: [
+      "Illustrations Application Developer",
+      "Life Insurance Application Developer",
+      "Insurance Application Developer",
+      "Financial Services Application Developer"
+    ],
+    relevanceAliases: [
+      "Application Developer",
+      "Web Developer I — Digital Banking",
+      "Software Engineer — Full Stack",
+      "Software Engineer — Healthcare Operations"
+    ],
+    headline: "Illustrations Application Developer | JavaScript | SQL | Full-Stack",
+    summary: "Software engineering master’s graduate and former Pacific Life systems engineer with direct experience supporting business-critical application environments, staged deployments, post-change validation, developer troubleshooting, and technical documentation. Builds full-stack applications with React, TypeScript/JavaScript, Python/FastAPI, PostgreSQL/SQL, REST APIs, Docker, Git, and automated testing, combining financial-services environment familiarity with hands-on application development and quality-focused delivery.",
+    categoryOrder: [
+      "Application Development & SDLC",
+      "Web UI & Frontend",
+      "APIs & Backend Services",
+      "SQL & Data",
+      "Testing & Quality",
+      "Release & Production Support",
+      "Financial Services & Business Context",
+      "Documentation & Collaboration",
+      "Programming & Scripting",
+      "DevOps & Tooling",
+      "Other"
+    ],
+    preferredBulletIdsByItem: {
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+        "roth-system-engineer-i-010",
+        "roth-system-engineer-i-007"
+      ],
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": [
+        "randstad-jr-deskside-technician-application-support-001",
+        "randstad-jr-deskside-technician-application-support-003"
+      ],
+      "2026-07-xx_xxxx-xx-xx_century-solar": [
+        "century-solar-full-stack-001"
+      ],
+      "2026-07-xx_xxxx-xx-xx_metadata-editor": [
+        "metadata-editor-full-stack-001"
+      ],
+      "2026-07-xx_xxxx-xx-xx_resume-generator": [
+        "resume-generator-001"
+      ]
+    },
+    selections: {
+      jobIds: [
+        "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+        "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+      ],
+      projectIds: [
+        "2026-07-xx_xxxx-xx-xx_century-solar",
+        "2026-07-xx_xxxx-xx-xx_metadata-editor",
+        "2026-07-xx_xxxx-xx-xx_resume-generator"
+      ],
+      educationIds: [
+        ...sharedEducationIds,
+        "2019-01-29_2019-05-12_udacity_front-end-web-developer-nanodegree"
+      ],
+      certificationIds: [
+        "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation"
+      ]
+    },
+    layout: {
+      maxJobBullets: 2,
+      maxProjectBullets: 1,
+      maxSkillGroups: 9,
+      maxSkillsPerGroup: 7
+    },
+    skillGroupLimits: {
+      "Application Development & SDLC": 7,
+      "Web UI & Frontend": 7,
+      "APIs & Backend Services": 7,
+      "SQL & Data": 7,
+      "Testing & Quality": 7,
+      "Release & Production Support": 7,
+      "Financial Services & Business Context": 5,
+      "Documentation & Collaboration": 6,
+      "Programming & Scripting": 5,
+      "DevOps & Tooling": 6
+    }
+  },
+  {
     id: "forward-deployed-software-engineer-intern",
     label: "Forward Deployed Software Engineer Intern",
     familyId: "software-engineering",
@@ -1420,6 +1667,94 @@ const roleDefinitions = [
       "Production Support & Reliability": 7,
       "Documentation & Collaboration": 6,
       "DevOps & Tooling": 5
+    }
+  },
+  {
+    id: "full-stack-engineer-mission-operations",
+    label: "Full Stack Engineer — Mission Operations",
+    familyId: "software-engineering",
+    modifierIds: ["full-stack", "mission-operations-full-stack"],
+    isPrimary: false,
+    aliases: [
+      "Full Stack Engineer",
+      "Full Stack Software Engineer — Mission Operations",
+      "Operational Applications Engineer",
+      "Software Engineer — Operations Automation"
+    ],
+    relevanceAliases: [
+      "Software Engineer — Full Stack",
+      "Forward Deployed Software Engineer",
+      "IT Systems Engineer — Automation & Self-Service",
+      "Platform Engineer"
+    ],
+    headline: "Full Stack Engineer | Python, FastAPI, React | Operational Automation",
+    summary: "Software engineering master’s graduate and former enterprise systems engineer building full-stack operational applications with Python, FastAPI, React, TypeScript, PostgreSQL, REST APIs, Docker, Git, and automated testing. Combines application development with production support, monitoring automation, deployment validation, log analysis, and cross-functional troubleshooting to translate operational requirements into maintainable internal tools and customer-facing workflows.",
+    categoryOrder: [
+      "Operational Application Engineering",
+      "Full-Stack Development",
+      "APIs & Services",
+      "Data & Storage",
+      "Testing & Reliability",
+      "Security & Access",
+      "Documentation & Collaboration",
+      "Programming & Scripting",
+      "DevOps & Tooling",
+      "Other"
+    ],
+    preferredBulletIdsByItem: {
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+        "roth-system-engineer-i-012",
+        "roth-system-engineer-i-010"
+      ],
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": [
+        "randstad-jr-deskside-technician-application-support-003",
+        "randstad-jr-deskside-technician-application-support-001"
+      ],
+      "2026-07-xx_xxxx-xx-xx_century-solar": [
+        "century-solar-full-stack-001"
+      ],
+      "2026-07-xx_xxxx-xx-xx_metadata-editor": [
+        "metadata-editor-full-stack-001"
+      ],
+      "2026-05-01_2026-06-01_signalstack": [
+        "signalstack-full-stack-001"
+      ]
+    },
+    selections: {
+      jobIds: [
+        "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+        "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+      ],
+      projectIds: [
+        "2026-07-xx_xxxx-xx-xx_century-solar",
+        "2026-07-xx_xxxx-xx-xx_metadata-editor",
+        "2026-05-01_2026-06-01_signalstack"
+      ],
+      educationIds: [
+        ...sharedEducationIds,
+        "2019-01-29_2019-05-12_udacity_front-end-web-developer-nanodegree"
+      ],
+      certificationIds: [
+        "2023-08-11_2029-08-11_comptia_cysa-plus-ce",
+        "2023-08-28_2026-08-28_comptia_pentest-plus-ce"
+      ]
+    },
+    layout: {
+      maxJobBullets: 2,
+      maxProjectBullets: 1,
+      maxSkillGroups: 9,
+      maxSkillsPerGroup: 6
+    },
+    skillGroupLimits: {
+      "Operational Application Engineering": 7,
+      "Full-Stack Development": 7,
+      "APIs & Services": 7,
+      "Data & Storage": 7,
+      "Testing & Reliability": 7,
+      "Security & Access": 6,
+      "Documentation & Collaboration": 6,
+      "Programming & Scripting": 5,
+      "DevOps & Tooling": 6
     }
   },
   {
@@ -1512,6 +1847,339 @@ const roleDefinitions = [
     }
   },
   {
+    id: "associate-cyber-operations-cloud-security",
+    label: "Associate, Cyber Operations — Cloud Security",
+    familyId: "platform-reliability",
+    modifierIds: ["cloud-security-operations"],
+    isPrimary: false,
+    aliases: [
+      "Associate Cyber Operations Cloud Security",
+      "Cyber Operations Associate — Cloud Security",
+      "Cloud Security Operations Associate",
+      "Cloud Security Analyst"
+    ],
+    relevanceAliases: [
+      "Cybersecurity Analyst",
+      "Security Operations Analyst",
+      "SOC Analyst",
+      "Incident Response Analyst",
+      "Vulnerability Analyst"
+    ],
+    headline: "Cloud Security Operations Associate | Monitoring | Vulnerability Response",
+    summary: "Cybersecurity and systems professional with a B.S. in Cybersecurity and Information Assurance, active CySA+ and PenTest+ certifications, and enterprise experience investigating incidents with logs and Splunk, remediating vulnerabilities, supporting identity and credential controls, reviewing alerts, automating monitoring, and documenting repeatable operational procedures. Brings formal cloud-security education, AWS-related modernization exposure, and hands-on Python, Bash, Linux, Docker, security scanning, and access-control projects while continuing to develop direct cloud-security platform experience.",
+    categoryOrder: [
+      "Cloud Security Foundations",
+      "Security Monitoring & Incident Response",
+      "Vulnerability & Configuration Management",
+      "Identity & Access Security",
+      "Governance, Risk & Controls",
+      "Automation & Engineering",
+      "Documentation & Knowledge Transfer",
+      "Systems & Infrastructure",
+      "DevOps & Tooling",
+      "Other"
+    ],
+    preferredBulletIdsByItem: {
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+        "roth-system-engineer-i-005",
+        "roth-system-engineer-i-011"
+      ],
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": [
+        "randstad-jr-deskside-technician-blizzard-reliability-001",
+        "randstad-jr-deskside-technician-api-support-002"
+      ],
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab": [
+        "offline-dev-lab-005"
+      ],
+      "2026-07-xx_xxxx-xx-xx_century-solar": [
+        "century-solar-nakedmd-ai-application-001"
+      ]
+    },
+    selections: {
+      jobIds: [
+        "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+        "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+      ],
+      projectIds: [
+        "2026-06-xx_xxxx-xx-xx_offline-dev-lab",
+        "2026-07-xx_xxxx-xx-xx_century-solar"
+      ],
+      educationIds: [
+        "2021-06-01_2023-10-10_wgu_bs-cybersecurity-information-assurance",
+        "2025-09-01_2026-04-16_wgu_ms-software-engineering-ai-engineering"
+      ],
+      certificationIds: [
+        "2023-08-11_2029-08-11_comptia_cysa-plus-ce",
+        "2023-08-28_2026-08-28_comptia_pentest-plus-ce"
+      ]
+    },
+    layout: {
+      maxJobBullets: 2,
+      maxProjectBullets: 1,
+      maxSkillGroups: 9,
+      maxSkillsPerGroup: 7
+    },
+    skillGroupLimits: {
+      "Cloud Security Foundations": 7,
+      "Security Monitoring & Incident Response": 7,
+      "Vulnerability & Configuration Management": 7,
+      "Identity & Access Security": 7,
+      "Governance, Risk & Controls": 6,
+      "Automation & Engineering": 6,
+      "Documentation & Knowledge Transfer": 6,
+      "Systems & Infrastructure": 6,
+      "DevOps & Tooling": 5
+    }
+  },
+  {
+    id: "cybersecurity-analyst-fedramp-assessments",
+    label: "Cybersecurity Analyst — FedRAMP Assessments",
+    familyId: "systems-infrastructure",
+    modifierIds: ["fedramp-security-assessments"],
+    isPrimary: false,
+    aliases: [
+      "Cybersecurity Analyst — FedRAMP",
+      "FedRAMP Cybersecurity Analyst",
+      "Security Assessment Analyst — FedRAMP",
+      "Cloud Security Assessment Analyst"
+    ],
+    relevanceAliases: [
+      "Cybersecurity Analyst",
+      "Security Compliance Analyst",
+      "GRC Analyst",
+      "Security Control Assessor",
+      "Cloud Security Analyst",
+      "Vulnerability Analyst"
+    ],
+    headline: "Cybersecurity Analyst | FedRAMP & NIST RMF Foundations | Python Automation",
+    summary: "Cybersecurity analyst with a B.S. in Cybersecurity and Information Assurance, active CySA+ and PenTest+ certifications, and enterprise experience remediating middleware vulnerabilities, supporting LDAP, Active Directory, and CyberArk controls, analyzing logs and alerts, and automating monitoring with Python and Bash. Brings foundational FedRAMP, FISMA, NIST RMF, cloud-security, vulnerability-assessment, and reporting knowledge from formal education and certifications, along with disciplined change management, documentation, and cross-functional communication.",
+    categoryOrder: [
+      "FedRAMP, FISMA & NIST Foundations",
+      "Security Assessment & Evidence",
+      "Vulnerability & Configuration Analysis",
+      "Security Monitoring & Incident Response",
+      "Automation & Reporting",
+      "Identity & Access Security",
+      "Cloud & Systems Foundations",
+      "Documentation & Stakeholder Communication",
+      "DevOps & Tooling",
+      "Other"
+    ],
+    preferredBulletIdsByItem: {
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+        "roth-system-engineer-i-fedramp-assessment-001",
+        "roth-system-engineer-i-012"
+      ],
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": [
+        "randstad-jr-deskside-technician-api-support-001",
+        "randstad-jr-deskside-technician-api-support-002"
+      ],
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab": [
+        "offline-dev-lab-fedramp-assessment-001"
+      ]
+    },
+    selections: {
+      jobIds: [
+        "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+        "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+      ],
+      projectIds: [
+        "2026-06-xx_xxxx-xx-xx_offline-dev-lab"
+      ],
+      educationIds: [
+        "2021-06-01_2023-10-10_wgu_bs-cybersecurity-information-assurance",
+        "2025-09-01_2026-04-16_wgu_ms-software-engineering-ai-engineering"
+      ],
+      certificationIds: [
+        "2023-08-11_2029-08-11_comptia_cysa-plus-ce",
+        "2023-08-28_2026-08-28_comptia_pentest-plus-ce"
+      ]
+    },
+    layout: {
+      maxJobBullets: 2,
+      maxProjectBullets: 1,
+      maxSkillGroups: 9,
+      maxSkillsPerGroup: 7
+    },
+    skillGroupLimits: {
+      "FedRAMP, FISMA & NIST Foundations": 7,
+      "Security Assessment & Evidence": 7,
+      "Vulnerability & Configuration Analysis": 7,
+      "Security Monitoring & Incident Response": 7,
+      "Automation & Reporting": 7,
+      "Identity & Access Security": 7,
+      "Cloud & Systems Foundations": 6,
+      "Documentation & Stakeholder Communication": 7,
+      "DevOps & Tooling": 5
+    }
+  },
+  {
+    id: "user-access-management-analyst",
+    label: "User Access Management Analyst",
+    familyId: "systems-infrastructure",
+    modifierIds: ["identity-access-management"],
+    isPrimary: false,
+    aliases: [
+      "UAM Analyst",
+      "Identity and Access Management Analyst",
+      "IAM Analyst",
+      "Access Management Analyst",
+      "Identity Operations Analyst"
+    ],
+    relevanceAliases: [
+      "Cybersecurity Analyst",
+      "IT Security Analyst",
+      "Access Administrator",
+      "Identity Governance Analyst",
+      "Identity and Access Administrator"
+    ],
+    headline: "User Access Management Analyst | Active Directory | LDAP & CyberArk",
+    summary: "Identity and access support professional with enterprise experience supporting Active Directory, LDAP authentication, service-account provisioning, CyberArk credential management, MFA, onboarding and offboarding, access troubleshooting, ServiceNow workflows, and change-controlled production environments. Combines a B.S. in Cybersecurity and Information Assurance, active CySA+ and PenTest+ certifications, and Python, PowerShell, and Bash automation skills to support accurate, secure, and well-documented access operations.",
+    categoryOrder: [
+      "Identity & Access Administration",
+      "Directory & Authentication Services",
+      "Privileged Access & Credential Security",
+      "Security Controls & Compliance",
+      "Service Delivery & Access Support",
+      "Automation & Data Management",
+      "Monitoring, Audit & Reporting",
+      "Documentation & Collaboration",
+      "Systems & Infrastructure",
+      "DevOps & Tooling",
+      "Other"
+    ],
+    preferredBulletIdsByItem: {
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+        "roth-system-engineer-i-006",
+        "roth-system-engineer-i-011"
+      ],
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": [
+        "randstad-jr-deskside-technician-application-support-001",
+        "randstad-jr-deskside-technician-it-support-technician-001"
+      ],
+      "2026-07-xx_xxxx-xx-xx_century-solar": [
+        "century-solar-nakedmd-ai-application-001"
+      ]
+    },
+    selections: {
+      jobIds: [
+        "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+        "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+      ],
+      projectIds: [
+        "2026-07-xx_xxxx-xx-xx_century-solar"
+      ],
+      educationIds: [
+        "2021-06-01_2023-10-10_wgu_bs-cybersecurity-information-assurance",
+        "2025-09-01_2026-04-16_wgu_ms-software-engineering-ai-engineering"
+      ],
+      certificationIds: [
+        "2023-08-11_2029-08-11_comptia_cysa-plus-ce",
+        "2023-08-28_2026-08-28_comptia_pentest-plus-ce",
+        "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation"
+      ]
+    },
+    layout: {
+      maxJobBullets: 2,
+      maxProjectBullets: 1,
+      maxSkillGroups: 9,
+      maxSkillsPerGroup: 7
+    },
+    skillGroupLimits: {
+      "Identity & Access Administration": 7,
+      "Directory & Authentication Services": 7,
+      "Privileged Access & Credential Security": 6,
+      "Security Controls & Compliance": 7,
+      "Service Delivery & Access Support": 7,
+      "Automation & Data Management": 6,
+      "Monitoring, Audit & Reporting": 6,
+      "Documentation & Collaboration": 6,
+      "Systems & Infrastructure": 5,
+      "DevOps & Tooling": 4
+    }
+  },
+  {
+    id: "it-support-analyst-corporate-systems",
+    label: "IT Support Analyst — Corporate Systems",
+    familyId: "application-support",
+    modifierIds: ["endpoint-support", "help-desk-device-lifecycle", "corporate-it-operations"],
+    isPrimary: false,
+    aliases: [
+      "IT Support Analyst",
+      "Corporate IT Support Analyst",
+      "End User Support Analyst",
+      "Desktop Support Analyst",
+      "IT Operations Analyst"
+    ],
+    relevanceAliases: [
+      "IT Support Specialist",
+      "IT Support Technician",
+      "Desktop Support Technician",
+      "Deskside Support Technician",
+      "Systems Administrator"
+    ],
+    headline: "IT Support Analyst | Endpoint Support | Onboarding & Asset Lifecycle",
+    summary: "Enterprise IT support professional with more than three years of experience supporting Windows and macOS endpoints, Microsoft 365, Active Directory, onboarding and offboarding, device imaging and provisioning, asset recovery, hardware and software troubleshooting, printers and peripherals, network access, and technical documentation. Also brings hands-on experience with inventory and repair workflows, vendor and logistics coordination, and troubleshooting connected camera and sensor systems.",
+    categoryOrder: [
+      "End-User & Endpoint Support",
+      "Onboarding & Device Lifecycle",
+      "Asset & Inventory Operations",
+      "Identity, Access & Networking",
+      "Business Applications & Collaboration",
+      "Facilities & Connected Systems",
+      "Support Operations",
+      "Documentation & Administration",
+      "Programming & Scripting",
+      "DevOps & Tooling",
+      "Other"
+    ],
+    preferredBulletIdsByItem: {
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": [
+        "randstad-jr-deskside-technician-it-support-specialist-001",
+        "randstad-jr-deskside-technician-it-support-technician-001"
+      ],
+      "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician": [
+        "adroit-smartshelf-jr-it-support-005",
+        "adroit-smartshelf-jr-it-support-004"
+      ],
+      "2021-04-19_2022-07-13_paul-morte-technical-services_warehouse-technician": [
+        "paul-morte-warehouse-technician-junior-operations-001",
+        "paul-morte-warehouse-technician-004"
+      ]
+    },
+    selections: {
+      jobIds: [
+        "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician",
+        "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician",
+        "2021-04-19_2022-07-13_paul-morte-technical-services_warehouse-technician"
+      ],
+      projectIds: [],
+      educationIds: sharedEducationIds,
+      certificationIds: [
+        "2023-08-11_2029-08-11_comptia_cysa-plus-ce",
+        "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation"
+      ]
+    },
+    layout: {
+      maxJobBullets: 2,
+      maxProjectBullets: 1,
+      maxSkillGroups: 9,
+      maxSkillsPerGroup: 7
+    },
+    skillGroupLimits: {
+      "End-User & Endpoint Support": 7,
+      "Onboarding & Device Lifecycle": 7,
+      "Asset & Inventory Operations": 7,
+      "Identity, Access & Networking": 7,
+      "Business Applications & Collaboration": 6,
+      "Facilities & Connected Systems": 6,
+      "Support Operations": 7,
+      "Documentation & Administration": 6,
+      "Programming & Scripting": 3,
+      "DevOps & Tooling": 2
+    }
+  },
+  {
     id: "qa-automation-engineer",
     label: "QA Automation Engineer",
     familyId: "software-engineering",
@@ -1592,6 +2260,481 @@ const roleDefinitions = [
       "DevOps & Test Environments": 6,
       "Agile & Collaboration": 5,
       "Documentation & Quality Process": 6
+    }
+  },
+  {
+    id: "qa-automation-engineer-web-api",
+    label: "QA Automation Engineer — Web & API",
+    familyId: "software-engineering",
+    modifierIds: ["qa-automation-engineering", "web-api-test-automation"],
+    isPrimary: false,
+    aliases: [
+      "QA Automation Engineer — Web and API",
+      "Web Application QA Automation Engineer",
+      "API Test Automation Engineer",
+      "Software Development Engineer in Test — Web & API"
+    ],
+    relevanceAliases: [
+      "QA Automation Engineer",
+      "Software QA Engineer",
+      "QA Engineer",
+      "Test Automation Engineer",
+      "Software Development Engineer in Test"
+    ],
+    headline: "QA Automation Engineer | Playwright | Web, API & Regression Testing",
+    summary: "Software engineering master’s graduate with enterprise production-support experience and hands-on automation for web applications and REST APIs using Python, pytest, Playwright, Vitest, FastAPI, React, TypeScript, PostgreSQL, Docker, and Git. Builds browser, API, integration, regression, smoke, and synthetic-transaction tests; investigates failures through logs and system behavior; validates changes across environments; and maintains clear test documentation and repeatable workflows.",
+    categoryOrder: [
+      "Web & API Test Automation",
+      "Browser & End-to-End Testing",
+      "API & Integration Testing",
+      "Test Strategy & Quality Engineering",
+      "Defect Analysis & Reliability",
+      "Programming & Web Stack",
+      "CI/CD & Test Environments",
+      "Documentation & Collaboration",
+      "Other"
+    ],
+    preferredBulletIdsByItem: {
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+        "roth-system-engineer-i-012",
+        "roth-system-engineer-i-010"
+      ],
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": [
+        "randstad-jr-deskside-technician-application-support-003",
+        "randstad-jr-deskside-technician-application-support-001"
+      ],
+      "2026-07-xx_xxxx-xx-xx_century-solar": [
+        "century-solar-ust-infrastructure-001"
+      ],
+      "2026-05-01_2026-06-01_signalstack": [
+        "signalstack-api-support-001"
+      ],
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab": [
+        "offline-dev-lab-application-support-001"
+      ]
+    },
+    selections: {
+      jobIds: [
+        "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+        "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+      ],
+      projectIds: [
+        "2026-07-xx_xxxx-xx-xx_century-solar",
+        "2026-05-01_2026-06-01_signalstack",
+        "2026-06-xx_xxxx-xx-xx_offline-dev-lab"
+      ],
+      educationIds: sharedEducationIds,
+      certificationIds: []
+    },
+    layout: {
+      maxJobBullets: 2,
+      maxProjectBullets: 1,
+      maxSkillGroups: 8,
+      maxSkillsPerGroup: 7
+    },
+    skillGroupLimits: {
+      "Web & API Test Automation": 7,
+      "Browser & End-to-End Testing": 7,
+      "API & Integration Testing": 7,
+      "Test Strategy & Quality Engineering": 7,
+      "Defect Analysis & Reliability": 7,
+      "Programming & Web Stack": 7,
+      "CI/CD & Test Environments": 7,
+      "Documentation & Collaboration": 6
+    }
+  },
+  {
+    id: "qa-engineer-i-payments",
+    label: "QA Engineer I — Payments",
+    familyId: "software-engineering",
+    modifierIds: ["qa-automation-engineering", "payments-software-quality"],
+    isPrimary: false,
+    aliases: [
+      "QA Engineer I",
+      "Payments QA Engineer",
+      "Fintech QA Engineer",
+      "Software Quality Assurance Engineer I"
+    ],
+    relevanceAliases: [
+      "QA Automation Engineer",
+      "Software QA Engineer",
+      "Quality Assurance Engineer",
+      "Software Test Engineer",
+      "QA Analyst"
+    ],
+    headline: "QA Engineer I | Test Planning | Regression, API & Release Validation",
+    summary: "Software engineering master’s graduate with enterprise production-support experience and hands-on software testing across Python, pytest, Playwright, Vitest, REST APIs, React, TypeScript, PostgreSQL, Docker, and Git. Develops repeatable test workflows, validates requirements and releases, investigates defects through logs and system behavior, documents findings clearly, and collaborates across engineering and operations to improve application quality. Active CySA+ certification adds security awareness relevant to payment and other sensitive software environments.",
+    categoryOrder: [
+      "QA Planning & Test Design",
+      "Manual & Automated Testing",
+      "Regression & Release Validation",
+      "API & Data Validation",
+      "Defect Tracking & Metrics",
+      "Security & Payment-System Awareness",
+      "Programming & Web Stack",
+      "DevOps & Test Environments",
+      "Documentation & Collaboration",
+      "Other"
+    ],
+    preferredBulletIdsByItem: {
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+        "roth-system-engineer-i-010",
+        "roth-system-engineer-i-008"
+      ],
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": [
+        "randstad-jr-deskside-technician-application-support-003",
+        "randstad-jr-deskside-technician-api-support-002"
+      ],
+      "2026-07-xx_xxxx-xx-xx_century-solar": [
+        "century-solar-ust-infrastructure-001"
+      ],
+      "2026-07-xx_xxxx-xx-xx_metadata-editor": [
+        "metadata-editor-application-support-001"
+      ],
+      "2026-05-01_2026-06-01_signalstack": [
+        "signalstack-api-support-001"
+      ]
+    },
+    selections: {
+      jobIds: [
+        "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+        "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+      ],
+      projectIds: [
+        "2026-07-xx_xxxx-xx-xx_century-solar",
+        "2026-07-xx_xxxx-xx-xx_metadata-editor",
+        "2026-05-01_2026-06-01_signalstack"
+      ],
+      educationIds: sharedEducationIds,
+      certificationIds: [
+        "2023-08-11_2029-08-11_comptia_cysa-plus-ce"
+      ]
+    },
+    layout: {
+      maxJobBullets: 2,
+      maxProjectBullets: 1,
+      maxSkillGroups: 9,
+      maxSkillsPerGroup: 7
+    },
+    skillGroupLimits: {
+      "QA Planning & Test Design": 7,
+      "Manual & Automated Testing": 7,
+      "Regression & Release Validation": 7,
+      "API & Data Validation": 7,
+      "Defect Tracking & Metrics": 7,
+      "Security & Payment-System Awareness": 6,
+      "Programming & Web Stack": 7,
+      "DevOps & Test Environments": 7,
+      "Documentation & Collaboration": 6
+    }
+  },
+  {
+    id: "infotainment-quality-engineer-i",
+    label: "Infotainment Quality Engineer I",
+    familyId: "application-support",
+    modifierIds: ["infotainment-quality-engineering"],
+    isPrimary: false,
+    aliases: [
+      "Automotive Infotainment Quality Engineer",
+      "Infotainment QA Engineer",
+      "Connected Systems Quality Engineer"
+    ],
+    relevanceAliases: [
+      "Infotainment Engineer I",
+      "Quality Engineer I",
+      "Quality Assurance Engineer",
+      "Systems Test Engineer"
+    ],
+    headline: "Infotainment Quality Engineer I | System Validation | Root-Cause Analysis",
+    summary: "Quality-focused systems and software engineering professional with experience validating releases across environments, investigating hardware and software failures, supporting field-deployed camera and sensor systems, applying firmware updates, testing audio equipment, and documenting findings for cross-functional teams. Combines enterprise change-control discipline with hands-on electronics, media-system, Python, and automated-testing experience relevant to connected infotainment quality.",
+    categoryOrder: [
+      "Infotainment & Connected-System Quality",
+      "Test Planning & Validation",
+      "Root-Cause & Failure Analysis",
+      "Hardware, Firmware & Field Systems",
+      "Media, Audio & Visualization",
+      "Automation & Development",
+      "Release & Change Quality",
+      "Documentation & Collaboration",
+      "Other"
+    ],
+    preferredBulletIdsByItem: {
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+        "roth-system-engineer-i-002",
+        "roth-system-engineer-i-008"
+      ],
+      "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician": [
+        "adroit-smartshelf-jr-it-support-005",
+        "adroit-smartshelf-jr-it-support-006"
+      ],
+      "2021-04-19_2022-07-13_paul-morte-technical-services_warehouse-technician": [
+        "paul-morte-warehouse-technician-003",
+        "paul-morte-warehouse-technician-007"
+      ],
+      "2026-07-xx_xxxx-xx-xx_react-audio-player": [
+        "react-audio-player-trl11-video-systems-001"
+      ],
+      "2026-07-xx_xxxx-xx-xx_metadata-editor": [
+        "metadata-editor-trl11-video-systems-001"
+      ]
+    },
+    selections: {
+      jobIds: [
+        "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+        "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician",
+        "2021-04-19_2022-07-13_paul-morte-technical-services_warehouse-technician"
+      ],
+      projectIds: [
+        "2026-07-xx_xxxx-xx-xx_react-audio-player",
+        "2026-07-xx_xxxx-xx-xx_metadata-editor"
+      ],
+      educationIds: sharedEducationIds,
+      certificationIds: [
+        "2022-01-09_xxxx-xx-xx_comptia_project-plus",
+        "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation"
+      ]
+    },
+    layout: {
+      maxJobBullets: 2,
+      maxProjectBullets: 1,
+      maxSkillGroups: 9,
+      maxSkillsPerGroup: 7
+    },
+    skillGroupLimits: {
+      "Infotainment & Connected-System Quality": 7,
+      "Test Planning & Validation": 7,
+      "Root-Cause & Failure Analysis": 7,
+      "Hardware, Firmware & Field Systems": 7,
+      "Media, Audio & Visualization": 7,
+      "Automation & Development": 6,
+      "Release & Change Quality": 6,
+      "Documentation & Collaboration": 7
+    }
+  },
+  {
+    id: "manager-tech-support-music-technology",
+    label: "Manager, Tech Support — Music Technology",
+    familyId: "application-support",
+    modifierIds: ["endpoint-support", "music-technology-support"],
+    isPrimary: false,
+    aliases: [
+      "Manager, Tech Support",
+      "Technology Support Manager — Music",
+      "IT Support Manager — Music Technology"
+    ],
+    relevanceAliases: [
+      "IT Support Manager",
+      "Desktop Support Manager",
+      "Service Desk Manager",
+      "Technology Support Lead"
+    ],
+    headline: "Enterprise Tech Support | Windows, macOS, SCCM/MECM & JAMF",
+    summary: "Enterprise technology support professional with hands-on experience supporting Windows, macOS, and iOS endpoints; Microsoft 365; ServiceNow; SCCM/MECM; JAMF; Active Directory; device provisioning; incident triage; and customer-facing support. Brings additional Linux application-support, automation, deployment, monitoring, documentation, and cross-functional coordination experience, with ITIL discipline and a strong service-first approach suited to a high-visibility music-technology environment.",
+    categoryOrder: [
+      "Enterprise Tech Support",
+      "Endpoint Management & Lifecycle",
+      "Incident, Escalation & Service Delivery",
+      "Windows, Apple & Productivity Platforms",
+      "Networking & Access Support",
+      "Automation & Operational Tooling",
+      "Documentation & Team Coordination",
+      "Media & AV Technology",
+      "Other"
+    ],
+    preferredBulletIdsByItem: {
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+        "roth-system-engineer-i-010",
+        "roth-system-engineer-i-008",
+        "roth-system-engineer-i-002"
+      ],
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": [
+        "randstad-jr-deskside-technician-002",
+        "randstad-jr-deskside-technician-004",
+        "randstad-jr-deskside-technician-005"
+      ],
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab": [
+        "offline-dev-lab-006"
+      ]
+    },
+    selections: {
+      jobIds: [
+        "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+        "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+      ],
+      projectIds: [
+        "2026-06-xx_xxxx-xx-xx_offline-dev-lab"
+      ],
+      educationIds: sharedEducationIds,
+      certificationIds: [
+        "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation",
+        "2022-01-09_xxxx-xx-xx_comptia_project-plus"
+      ]
+    },
+    layout: {
+      maxJobBullets: 3,
+      maxProjectBullets: 1,
+      maxSkillGroups: 8,
+      maxSkillsPerGroup: 7
+    },
+    skillGroupLimits: {
+      "Enterprise Tech Support": 7,
+      "Endpoint Management & Lifecycle": 7,
+      "Incident, Escalation & Service Delivery": 7,
+      "Windows, Apple & Productivity Platforms": 7,
+      "Networking & Access Support": 6,
+      "Automation & Operational Tooling": 6,
+      "Documentation & Team Coordination": 7,
+      "Media & AV Technology": 5
+    }
+  },
+  {
+    id: "content-protection-representative-music",
+    label: "Content Protection Representative — Music",
+    familyId: "media-systems",
+    modifierIds: ["music-content-protection"],
+    isPrimary: false,
+    aliases: [
+      "Content Protection Representative",
+      "Music Content Protection Representative",
+      "Digital Content Protection Analyst"
+    ],
+    relevanceAliases: [
+      "Content Protection Analyst",
+      "Anti-Piracy Analyst",
+      "Digital Rights Analyst",
+      "Media Content Reviewer"
+    ],
+    headline: "Content Protection | Digital Media Review | Metadata & Watermarking",
+    summary: "Digital-media and cybersecurity professional with hands-on experience reviewing sensitive audio/video assets, applying forensic and visible watermarking, validating metadata and file naming, preparing platform-specific deliverables, and coordinating accurate media workflows under deadline. Combines recorded-media technology experience with a B.S. in Cybersecurity, active CySA+ certification, Microsoft 365 proficiency, careful documentation, and strong attention to detail relevant to content review and intellectual-property protection.",
+    categoryOrder: [
+      "Content Protection & Rights Awareness",
+      "Digital Media & Music Platforms",
+      "Media Asset Review & Validation",
+      "Watermarking & Controlled Content",
+      "Metadata, Naming & Delivery",
+      "Investigation & Quality Control",
+      "Office, Documentation & Collaboration",
+      "Security & Technical Foundations",
+      "Other"
+    ],
+    preferredBulletIdsByItem: {
+      "2017-03-15_2018-11-09_post-haste-digital_encode-transcode-specialist": [
+        "post-haste-digital-encode-transcode-specialist-003",
+        "post-haste-digital-encode-transcode-specialist-002",
+        "post-haste-digital-encode-transcode-specialist-010"
+      ],
+      "2012-02-01_2014-04-14_roundabout-entertainment_encoding-operator": [
+        "roundabout-entertainment-encoding-operator-003",
+        "roundabout-entertainment-encoding-operator-007",
+        "roundabout-entertainment-encoding-operator-010"
+      ],
+      "2026-07-xx_xxxx-xx-xx_metadata-editor": [
+        "metadata-editor-001"
+      ]
+    },
+    selections: {
+      jobIds: [
+        "2017-03-15_2018-11-09_post-haste-digital_encode-transcode-specialist",
+        "2012-02-01_2014-04-14_roundabout-entertainment_encoding-operator"
+      ],
+      projectIds: [
+        "2026-07-xx_xxxx-xx-xx_metadata-editor"
+      ],
+      educationIds: sharedEducationIds,
+      certificationIds: [
+        "2023-08-11_2029-08-11_comptia_cysa-plus-ce"
+      ]
+    },
+    layout: {
+      maxJobBullets: 3,
+      maxProjectBullets: 1,
+      maxSkillGroups: 8,
+      maxSkillsPerGroup: 7
+    },
+    skillGroupLimits: {
+      "Content Protection & Rights Awareness": 6,
+      "Digital Media & Music Platforms": 7,
+      "Media Asset Review & Validation": 7,
+      "Watermarking & Controlled Content": 6,
+      "Metadata, Naming & Delivery": 7,
+      "Investigation & Quality Control": 6,
+      "Office, Documentation & Collaboration": 7,
+      "Security & Technical Foundations": 6
+    }
+  },
+  {
+    id: "coordinator-release-planning-recorded-music",
+    label: "Coordinator, Release Planning — Recorded Music",
+    familyId: "media-systems",
+    modifierIds: ["recorded-music-release-planning"],
+    isPrimary: false,
+    aliases: [
+      "Coordinator, Release Planning",
+      "Recorded Music Release Planning Coordinator",
+      "Catalog Release Planning Coordinator"
+    ],
+    relevanceAliases: [
+      "Release Coordinator",
+      "Catalog Coordinator",
+      "Music Operations Coordinator",
+      "Media Asset Coordinator"
+    ],
+    headline: "Release Planning Coordinator | Media Assets | Metadata & Workflow Tracking",
+    summary: "Recorded-media operations professional with experience coordinating high-volume audio/video workflows, metadata and naming requirements, localization, quality-control readiness, client specifications, asset preparation, and time-sensitive deliveries for major studio and platform workflows. Brings hands-on release and track metadata development, strong process documentation, Project+ certification, and a detail-oriented approach to schedule tracking, asset transfers, and cross-functional release support.",
+    categoryOrder: [
+      "Release Planning & Catalog Operations",
+      "Audio, Video & Media Assets",
+      "Metadata, Naming & Asset Tracking",
+      "Workflow, Schedule & Deadline Coordination",
+      "Quality Control & Delivery Readiness",
+      "Localization & Platform Deliverables",
+      "Process Documentation & Training Support",
+      "Office, Project & Collaboration Tools",
+      "Other"
+    ],
+    preferredBulletIdsByItem: {
+      "2017-03-15_2018-11-09_post-haste-digital_encode-transcode-specialist": [
+        "post-haste-digital-encode-transcode-specialist-002",
+        "post-haste-digital-encode-transcode-specialist-006",
+        "post-haste-digital-encode-transcode-specialist-010"
+      ],
+      "2012-02-01_2014-04-14_roundabout-entertainment_encoding-operator": [
+        "roundabout-entertainment-encoding-operator-007",
+        "roundabout-entertainment-encoding-operator-010",
+        "roundabout-entertainment-encoding-operator-004"
+      ],
+      "2026-07-xx_xxxx-xx-xx_metadata-editor": [
+        "metadata-editor-001"
+      ]
+    },
+    selections: {
+      jobIds: [
+        "2017-03-15_2018-11-09_post-haste-digital_encode-transcode-specialist",
+        "2012-02-01_2014-04-14_roundabout-entertainment_encoding-operator"
+      ],
+      projectIds: [
+        "2026-07-xx_xxxx-xx-xx_metadata-editor"
+      ],
+      educationIds: sharedEducationIds,
+      certificationIds: [
+        "2022-01-09_xxxx-xx-xx_comptia_project-plus"
+      ]
+    },
+    layout: {
+      maxJobBullets: 3,
+      maxProjectBullets: 1,
+      maxSkillGroups: 8,
+      maxSkillsPerGroup: 7
+    },
+    skillGroupLimits: {
+      "Release Planning & Catalog Operations": 7,
+      "Audio, Video & Media Assets": 7,
+      "Metadata, Naming & Asset Tracking": 7,
+      "Workflow, Schedule & Deadline Coordination": 7,
+      "Quality Control & Delivery Readiness": 7,
+      "Localization & Platform Deliverables": 6,
+      "Process Documentation & Training Support": 6,
+      "Office, Project & Collaboration Tools": 7
     }
   },
   {

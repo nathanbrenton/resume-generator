@@ -400,6 +400,11 @@ const project202606xxOfflineDevLab = {
         "AI/ML Engineer",
         "MLOps / AI Infrastructure"
       ],
+      focusAreas: [
+        "infrastructure-operations",
+        "automation",
+        "testing-validation"
+      ],
       skillTags: [
         { category: "Operating Systems", name: "Debian 13" },
         { category: "Linux & Systems Administration", name: "local APT repository" },
@@ -420,6 +425,12 @@ const project202606xxOfflineDevLab = {
         "Systems Administrator",
         "MLOps / AI Infrastructure"
       ],
+      focusAreas: [
+        "software-development",
+        "data-databases",
+        "testing-validation",
+        "infrastructure-operations"
+      ],
       skillTags: [
         { category: "Web & API Development", name: "FastAPI" },
         { category: "Databases", name: "PostgreSQL" },
@@ -438,6 +449,11 @@ const project202606xxOfflineDevLab = {
         "Systems Administrator",
         "Platform Engineer",
         "Support Engineer"
+      ],
+      focusAreas: [
+        "automation",
+        "testing-validation",
+        "security-compliance"
       ],
       skillTags: [
         { category: "Programming & Scripting", name: "Bash" },
@@ -459,6 +475,10 @@ const project202606xxOfflineDevLab = {
         "Systems Administrator",
         "MLOps / AI Infrastructure"
       ],
+      focusAreas: [
+        "infrastructure-operations",
+        "automation"
+      ],
       skillTags: [
         { category: "Linux & Systems Administration", name: "package management" },
         { category: "DevOps & Tooling", name: "Python wheelhouse" },
@@ -478,12 +498,41 @@ const project202606xxOfflineDevLab = {
         "Software Engineer",
         "Linux Administrator"
       ],
+      focusAreas: [
+        "testing-validation",
+        "security-compliance",
+        "automation"
+      ],
       skillTags: [
         { category: "Security", name: "bandit" },
         { category: "Security", name: "pip-audit" },
         { category: "Security", name: "dependency vulnerability scanning" },
         { category: "DevOps & Tooling", name: "pytest" },
         { category: "DevOps & Tooling", name: "ruff" }
+      ]
+    },
+    {
+      id: "offline-dev-lab-fedramp-assessment-001",
+      text: "Created repeatable security and quality checks with pytest, ruff, bandit, and pip-audit, and documented validation, configuration, diagnostics evidence, and operational flows in runbooks and diagrams.",
+      printText: "Built repeatable security checks and documented validation, diagnostics evidence, and operational flows in runbooks and diagrams.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "Cybersecurity Analyst — FedRAMP Assessments"
+      ],
+      focusAreas: [
+        "security-compliance",
+        "testing-validation",
+        "documentation"
+      ],
+      skillTags: [
+        { category: "Security", name: "dependency vulnerability scanning" },
+        { category: "Security", name: "Bandit" },
+        { category: "Security", name: "pip-audit" },
+        { category: "Testing & Quality", name: "pytest" },
+        { category: "Documentation", name: "validation evidence documentation" },
+        { category: "Documentation", name: "runbooks" },
+        { category: "Documentation", name: "technical documentation" }
       ]
     },
     {
@@ -497,6 +546,10 @@ const project202606xxOfflineDevLab = {
         "Systems Administrator",
         "Technical Coordinator",
         "Support Engineer"
+      ],
+      focusAreas: [
+        "documentation",
+        "infrastructure-operations"
       ],
       skillTags: [
         { category: "Documentation", name: "PlantUML" },
@@ -517,6 +570,11 @@ const project202606xxOfflineDevLab = {
         "Systems Administrator",
         "Platform Engineer"
       ],
+      focusAreas: [
+        "incident-analysis",
+        "data-databases",
+        "testing-validation"
+      ],
       skillTags: [
         { category: "Databases", name: "PostgreSQL" },
         { category: "Networking", name: "port mapping" },
@@ -535,6 +593,11 @@ const project202606xxOfflineDevLab = {
         "Systems Administrator",
         "Linux Administrator",
         "Platform Engineer"
+      ],
+      focusAreas: [
+        "monitoring-observability",
+        "incident-analysis",
+        "documentation"
       ],
       skillTags: [
         { category: "IT Service Management", name: "diagnostics collection" },

@@ -53,7 +53,22 @@ Primary roles:
 
 All role selections explicitly define jobs, projects, education, and certifications. An empty array means “select none”; it no longer falls through to unrelated global defaults. Skill ranking is composed from family and modifier weights, while Python and Docker are enforced as single visible canonical skills for every generated resume.
 
-Job-specific variants may set `isPrimary: false`. The application keeps the 12 primary lanes in a `Primary Roles` option group and places inherited variants under `Specialized Roles`. Current specialized variants are `AI Quality Engineer I`, `Associate Programmer — Internal Operations`, `IT Support Specialist`, `IT Support Specialist — Legal Services`, `IT Support Technician`, `Network Administrator I`, `Electromechanical / Equipment Repair Technician`, `Product Operations Specialist — UAS Systems`, `Sales Engineer I / Software QA Engineer`, `Software Engineer — Healthcare Operations`, `Web Developer I — Digital Banking`, `Forward Deployed Software Engineer Intern`, `Cybersecurity Quality Engineer — Medical Devices`, and `QA Automation Engineer`. Specialized variants may also use validated `preferredBulletIdsByItem` overrides to select existing verified claims without copying bullet text, and may provide a role-specific skill-category order when the shared family order is not sufficiently precise.
+Job-specific variants may set `isPrimary: false`. The application keeps the 12 primary lanes in a `Primary Roles` option group and places inherited variants under `Specialized Roles`. Specialized variants may use validated `preferredBulletIdsByItem` overrides to select existing verified claims without copying bullet text, and may provide role-specific skill-category orders and bullet-budget overrides when the shared family behavior is not sufficiently precise.
+
+### Relevance- and diversity-aware bullet selection
+
+Experience bullets are selected with a weighted, greedy ranking rather than source order alone. Explicit preferred bullet IDs remain first, followed by candidates scored for exact target-role relevance, role-family relevance, weighted skill overlap, default inclusion, and claim strength. Repeated focus areas, skill sets, and substantially similar wording receive a redundancy penalty so later bullets add distinct evidence.
+
+Each bullet may define canonical `focusAreas` and optional `targetRoleFamilies`. When `focusAreas` are omitted, the builder derives them from bullet text and skill tags using the centralized taxonomy in `js/taxonomies.js`. Explicit focus areas take precedence over inference.
+
+Role families default to two bullets per job. When exactly two jobs are selected, the builder may expand to three bullets per job, subject to a six-bullet experience budget and a minimum relevance threshold for each supplemental third bullet. Configure exceptions through role `layout` values:
+
+- `maxJobBullets`
+- `maxJobBulletsWhenTwoJobs`
+- `maxExperienceBullets`
+- `minSupplementalBulletScore`
+
+The validation script checks bullet IDs, focus-area metadata, target-role-family references, bullet budgets, duplicate text, and the two-job three-bullet behavior.
 
 Validate the role configuration and generated-role invariants with:
 

@@ -120,65 +120,235 @@ function getBulletTextKey(bullet) {
   return normalizeComparableText(bullet.printText || bullet.text || bullet.id);
 }
 
-function scoreBullet(bullet, roleContext, sourceIndex) {
+function getBulletSkillKeys(bullet) {
+  return new Set((bullet.skillTags || []).map((skill) => toSkillKey(skill)).filter(Boolean));
+}
+
+function getBulletTextTokens(bullet) {
+  return new Set(getBulletTextKey(bullet)
+    .split(" ")
+    .filter((token) => token.length >= 4));
+}
+
+function getRoleReferenceDefinition(roleReference) {
+  return careerData.roleDefinitions.find((role) => {
+    return getRoleMatchLabels(role.id).includes(roleReference);
+  });
+}
+
+function getBulletTargetFamilyIds(bullet) {
+  const familyIds = new Set(bullet.targetRoleFamilies || []);
+
+  (bullet.targetRoles || []).forEach((roleReference) => {
+    const referencedRole = getRoleReferenceDefinition(roleReference);
+
+    if (referencedRole) {
+      familyIds.add(referencedRole.familyId);
+    }
+  });
+
+  return familyIds;
+}
+
+function inferBulletFocusAreas(bullet) {
+  const searchableText = normalizeComparableText([
+    bullet.text,
+    bullet.printText,
+    ...(bullet.skillTags || []).flatMap((skill) => [skill.category, skill.name])
+  ].filter(Boolean).join(" "));
+
+  return bulletFocusAreaRules
+    .filter((rule) => rule.terms.some((term) => searchableText.includes(normalizeComparableText(term))))
+    .map((rule) => rule.id);
+}
+
+function getBulletFocusAreas(bullet) {
+  const configuredFocusAreas = [...new Set(bullet.focusAreas || [])]
+    .filter((focusArea) => Object.prototype.hasOwnProperty.call(bulletFocusAreas, focusArea));
+
+  if (configuredFocusAreas.length > 0) {
+    return configuredFocusAreas;
+  }
+
+  return [...new Set(inferBulletFocusAreas(bullet))]
+    .filter((focusArea) => Object.prototype.hasOwnProperty.call(bulletFocusAreas, focusArea));
+}
+
+function getRoleSkillProfile(roleContext) {
+  const skillWeights = new Map();
+  const categoryWeights = new Map();
+
+  (careerData.roleSkillPriorities[roleContext.roleId] || []).forEach((skill) => {
+    const skillKey = toSkillKey(skill);
+    const weight = Number.isFinite(skill.weight) ? skill.weight : 1;
+    skillWeights.set(skillKey, Math.max(skillWeights.get(skillKey) || 0, weight));
+    categoryWeights.set(
+      normalizeComparableText(skill.category),
+      Math.max(categoryWeights.get(normalizeComparableText(skill.category)) || 0, weight)
+    );
+  });
+
+  return { skillWeights, categoryWeights };
+}
+
+function scoreBullet(bullet, roleContext, sourceIndex, roleSkillProfile) {
   const roleMatch = matchesRoleLabels(bullet.targetRoles, roleContext);
+  const familyMatch = getBulletTargetFamilyIds(bullet).has(roleContext.role.familyId);
+  const targetRoles = bullet.targetRoles || [];
+  const bulletSkillKeys = getBulletSkillKeys(bullet);
+  const focusAreas = getBulletFocusAreas(bullet);
+  const preferredFocusAreas = new Set(roleContext.role.preferredFocusAreas || []);
+  let skillOverlapScore = 0;
+  let categoryOverlapScore = 0;
+  let preferredFocusScore = 0;
+
+  (bullet.skillTags || []).forEach((skill) => {
+    skillOverlapScore += roleSkillProfile.skillWeights.get(toSkillKey(skill)) || 0;
+    categoryOverlapScore += Math.min(
+      roleSkillProfile.categoryWeights.get(normalizeComparableText(skill.category)) || 0,
+      4
+    );
+  });
+
+  focusAreas.forEach((focusArea) => {
+    if (preferredFocusAreas.has(focusArea)) {
+      preferredFocusScore += 12;
+    }
+  });
+
   const strengthScore = bullet.strength === "primary"
-    ? 6
+    ? 18
     : bullet.strength === "supporting"
-      ? 2
+      ? 8
       : 0;
+  const targetedElsewherePenalty = targetRoles.length > 0 && !roleMatch && !familyMatch ? 20 : 0;
+  const baseScore =
+    (roleMatch ? 240 : 0) +
+    (familyMatch ? 80 : 0) +
+    Math.min(skillOverlapScore * 3, 120) +
+    Math.min(categoryOverlapScore, 20) +
+    preferredFocusScore +
+    (bullet.includeByDefault ? 20 : 0) +
+    strengthScore -
+    targetedElsewherePenalty;
 
   return {
     bullet,
     roleMatch,
-    score: (roleMatch ? 100 : 0) + (bullet.includeByDefault ? 10 : 0) + strengthScore,
+    familyMatch,
+    focusAreas: new Set(focusAreas),
+    skillKeys: bulletSkillKeys,
+    textTokens: getBulletTextTokens(bullet),
+    baseScore,
     sourceIndex
   };
 }
 
-function selectBullets(item, targetRole, maxBullets, preferredBulletIds = []) {
+function setOverlapRatio(left, right) {
+  if (!left.size || !right.size) {
+    return 0;
+  }
+
+  let intersectionSize = 0;
+  left.forEach((value) => {
+    if (right.has(value)) {
+      intersectionSize += 1;
+    }
+  });
+
+  return intersectionSize / Math.min(left.size, right.size);
+}
+
+function calculateRedundancyPenalty(candidate, selectedEntries) {
+  return selectedEntries.reduce((penalty, selectedEntry) => {
+    const focusOverlap = setOverlapRatio(candidate.focusAreas, selectedEntry.focusAreas);
+    const skillOverlap = setOverlapRatio(candidate.skillKeys, selectedEntry.skillKeys);
+    const textOverlap = setOverlapRatio(candidate.textTokens, selectedEntry.textTokens);
+
+    return penalty +
+      (focusOverlap * 28) +
+      (skillOverlap * 32) +
+      (textOverlap >= 0.55 ? textOverlap * 28 : 0);
+  }, 0);
+}
+
+function selectBullets(
+  item,
+  targetRole,
+  maxBullets,
+  preferredBulletIds = [],
+  selectionOptions = {}
+) {
   const bullets = item.bullets || [];
   const roleContext = getRoleContext(targetRole);
+  const roleSkillProfile = getRoleSkillProfile(roleContext);
   const bulletById = new Map(bullets.map((bullet) => [bullet.id, bullet]));
-  const preferred = preferredBulletIds
-    .map((bulletId) => bulletById.get(bulletId))
-    .filter(Boolean);
-  const preferredIds = new Set(preferred.map((bullet) => bullet.id));
-  const scored = bullets
-    .filter((bullet) => !preferredIds.has(bullet.id))
-    .map((bullet, sourceIndex) => scoreBullet(bullet, roleContext, sourceIndex));
-  const matched = scored.filter((entry) => entry.roleMatch);
-  const genericDefaults = scored.filter((entry) => {
-    return !entry.roleMatch && entry.bullet.includeByDefault && !(entry.bullet.targetRoles || []).length;
-  });
-  const fallbackDefaults = scored.filter((entry) => {
-    return !entry.roleMatch && entry.bullet.includeByDefault && (entry.bullet.targetRoles || []).length;
-  });
-
-  const ranked = [...matched, ...genericDefaults, ...fallbackDefaults]
-    .sort((a, b) => b.score - a.score || a.sourceIndex - b.sourceIndex);
-  const orderedBullets = [
-    ...preferred,
-    ...ranked.map(({ bullet }) => bullet)
-  ];
-
+  const scoredById = new Map(bullets.map((bullet, sourceIndex) => {
+    return [bullet.id, scoreBullet(bullet, roleContext, sourceIndex, roleSkillProfile)];
+  }));
+  const primaryBulletLimit = selectionOptions.primaryBulletLimit ?? Math.min(2, maxBullets);
+  const minSupplementalScore = selectionOptions.minSupplementalScore ?? 40;
   const seenIds = new Set();
   const seenText = new Set();
-  const selected = [];
+  const selectedEntries = [];
 
-  orderedBullets.forEach((bullet) => {
-    const textKey = getBulletTextKey(bullet);
+  preferredBulletIds.forEach((bulletId) => {
+    const bullet = bulletById.get(bulletId);
+    const entry = scoredById.get(bulletId);
+    const textKey = bullet ? getBulletTextKey(bullet) : "";
 
-    if (seenIds.has(bullet.id) || seenText.has(textKey)) {
+    if (!bullet || !entry || seenIds.has(bullet.id) || seenText.has(textKey)) {
       return;
     }
 
     seenIds.add(bullet.id);
     seenText.add(textKey);
-    selected.push(bullet);
+    selectedEntries.push(entry);
   });
 
-  return selected.slice(0, maxBullets);
+  const candidates = [...scoredById.values()]
+    .filter((entry) => {
+      const bullet = entry.bullet;
+      return !seenIds.has(bullet.id) &&
+        !seenText.has(getBulletTextKey(bullet)) &&
+        (entry.roleMatch || entry.familyMatch || bullet.includeByDefault);
+    });
+
+  while (selectedEntries.length < maxBullets && candidates.length > 0) {
+    const ranked = candidates
+      .filter((entry) => {
+        return !seenIds.has(entry.bullet.id) &&
+          !seenText.has(getBulletTextKey(entry.bullet));
+      })
+      .map((entry) => ({
+        entry,
+        adjustedScore: entry.baseScore - calculateRedundancyPenalty(entry, selectedEntries)
+      }))
+      .sort((left, right) => {
+        return right.adjustedScore - left.adjustedScore ||
+          right.entry.baseScore - left.entry.baseScore ||
+          left.entry.sourceIndex - right.entry.sourceIndex;
+      });
+    const next = ranked[0];
+
+    if (!next) {
+      break;
+    }
+
+    if (selectedEntries.length >= primaryBulletLimit && next.adjustedScore < minSupplementalScore) {
+      break;
+    }
+
+    const textKey = getBulletTextKey(next.entry.bullet);
+    selectedEntries.push(next.entry);
+    seenIds.add(next.entry.bullet.id);
+    seenText.add(textKey);
+
+    const candidateIndex = candidates.indexOf(next.entry);
+    candidates.splice(candidateIndex, 1);
+  }
+
+  return selectedEntries.slice(0, maxBullets).map(({ bullet }) => bullet);
 }
 
 function selectedByIds(items, selectedIds) {
@@ -324,13 +494,33 @@ function buildResume(options = {}) {
   const roleContext = getRoleContext(requestedRole);
   const family = careerData.roleFamilies[roleContext.role.familyId];
   const layout = roleContext.role.layout || {};
-  const maxJobBullets = options.maxJobBullets ?? layout.maxJobBullets ?? 2;
+  const selectedJobs = selectedByIds(careerData.jobs, options.selectedJobIds);
+  const selectedProjects = selectedByIds(careerData.projects, options.selectedProjectIds);
+  const baseMaxJobBullets = options.maxJobBullets ??
+    layout.maxJobBullets ??
+    family.defaultMaxJobBullets ??
+    2;
+  const maxJobBulletsWhenTwoJobs = options.maxJobBulletsWhenTwoJobs ??
+    layout.maxJobBulletsWhenTwoJobs ??
+    family.defaultMaxJobBulletsWhenTwoJobs ??
+    Math.max(baseMaxJobBullets, 3);
+  const maxJobBullets = selectedJobs.length === 2
+    ? Math.max(baseMaxJobBullets, maxJobBulletsWhenTwoJobs)
+    : baseMaxJobBullets;
+  const familyExperienceBulletLimit = selectedJobs.length === 2
+    ? family.defaultMaxExperienceBullets
+    : undefined;
+  const maxExperienceBullets = options.maxExperienceBullets ??
+    layout.maxExperienceBullets ??
+    familyExperienceBulletLimit ??
+    (maxJobBullets * Math.max(selectedJobs.length, 1));
+  const minSupplementalBulletScore = options.minSupplementalBulletScore ??
+    layout.minSupplementalBulletScore ??
+    family.defaultMinSupplementalBulletScore ??
+    40;
   const maxProjectBullets = options.maxProjectBullets ?? layout.maxProjectBullets ?? 1;
   const maxSkillGroups = options.maxSkillGroups ?? layout.maxSkillGroups ?? family.defaultMaxSkillGroups ?? 6;
   const maxSkillsPerGroup = options.maxSkillsPerGroup ?? layout.maxSkillsPerGroup ?? 6;
-
-  const selectedJobs = selectedByIds(careerData.jobs, options.selectedJobIds);
-  const selectedProjects = selectedByIds(careerData.projects, options.selectedProjectIds);
   const selectedEducation = selectedByIds(careerData.education, options.selectedEducationIds);
   const selectedCertifications = selectedByIds(careerData.certifications, options.selectedCertificationIds);
   const currentDate = options.currentDate || new Date();
@@ -347,12 +537,33 @@ function buildResume(options = {}) {
     })
     .forEach((entry) => addSkills(skillMap, entry.skillTags, 1));
 
-  const jobsForResume = selectedJobs.map((job) => {
+  let remainingExperienceBulletBudget = maxExperienceBullets;
+  const jobsForResume = selectedJobs.map((job, jobIndex) => {
     const configuredLimit = getConfiguredRoleValue(job.maxBulletsByTargetRole, roleContext);
-    const bulletLimit = Math.max(2, Math.min(configuredLimit ?? maxJobBullets, maxJobBullets));
+    const remainingJobs = selectedJobs.length - jobIndex;
+    const reservedForRemainingJobs = Math.max(remainingJobs - 1, 0) * Math.min(2, maxJobBullets);
+    const budgetLimit = Math.max(
+      Math.min(2, maxJobBullets),
+      remainingExperienceBulletBudget - reservedForRemainingJobs
+    );
+    const configuredItemLimit = configuredLimit === undefined
+      ? maxJobBullets
+      : selectedJobs.length === 2 && configuredLimit >= baseMaxJobBullets
+        ? maxJobBullets
+        : configuredLimit;
+    const bulletLimit = Math.max(
+      Math.min(2, maxJobBullets),
+      Math.min(configuredItemLimit, maxJobBullets, budgetLimit)
+    );
     const preferredBulletIds = roleContext.role.preferredBulletIdsByItem?.[job.id] || [];
-    const bullets = selectBullets(job, roleContext.roleId, bulletLimit, preferredBulletIds);
-    bullets.forEach((bullet) => addSkills(skillMap, bullet.skillTags, 3));
+    const bullets = selectBullets(job, roleContext.roleId, bulletLimit, preferredBulletIds, {
+      primaryBulletLimit: Math.min(baseMaxJobBullets, bulletLimit),
+      minSupplementalScore: minSupplementalBulletScore
+    });
+    bullets.slice(0, baseMaxJobBullets).forEach((bullet) => {
+      addSkills(skillMap, bullet.skillTags, 3);
+    });
+    remainingExperienceBulletBudget -= bullets.length;
 
     return {
       ...job,
@@ -365,7 +576,10 @@ function buildResume(options = {}) {
     const configuredLimit = getConfiguredRoleValue(project.maxBulletsByTargetRole, roleContext);
     const bulletLimit = Math.max(1, Math.min(configuredLimit ?? maxProjectBullets, maxProjectBullets));
     const preferredBulletIds = roleContext.role.preferredBulletIdsByItem?.[project.id] || [];
-    const bullets = selectBullets(project, roleContext.roleId, bulletLimit, preferredBulletIds);
+    const bullets = selectBullets(project, roleContext.roleId, bulletLimit, preferredBulletIds, {
+      primaryBulletLimit: bulletLimit,
+      minSupplementalScore: 0
+    });
     bullets.forEach((bullet) => addSkills(skillMap, bullet.skillTags, 3));
 
     return {
