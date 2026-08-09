@@ -36,6 +36,13 @@ const eduUdacityFrontEndWebDeveloperNanodegree = {
     "AI/ML Engineer"
   ],
 
+  resumeSkillTags: [
+    { category: "Frontend Development", name: "HTML" },
+    { category: "Frontend Development", name: "CSS" },
+    { category: "Programming & Scripting", name: "JavaScript" },
+    { category: "Frontend Development", name: "responsive web design" },
+    { category: "DevOps & Tooling", name: "Git" }
+  ],
   skillTags: [
     { category: "Web & API Development", name: "HTML" },
     { category: "Web & API Development", name: "CSS" },

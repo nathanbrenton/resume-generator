@@ -359,7 +359,7 @@ const project202607xxModelHardwareFitExplorer = {
     },
     {
       id: "model-hardware-fit-explorer-005",
-      text: "Used JavaScript, React, Vite, Hugging Face model cards, and configuration files to build a portfolio-ready AI infrastructure support tool.",
+      text: "Used JavaScript, React, Vite, Hugging Face model cards, and configuration files to build a model-metadata and local hardware-fit comparison application.",
       printText: "Built an AI infrastructure support tool with JavaScript, React, Vite, Hugging Face model cards, and configs.",
       includeByDefault: true,
       strength: "primary",

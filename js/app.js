@@ -48,9 +48,16 @@ function createCertificationControls(targetRole, currentDate = new Date()) {
     careerData.certifications
   );
 
+  const role = getRoleDefinition(targetRole);
+  const minDaysRemaining = role.certificationMinDaysRemaining || 0;
   const selectedIds = configuredIds.filter((id) => {
     const certification = careerData.certifications.find((entry) => entry.id === id);
-    return certification && getCertificationStatus(certification, currentDate) !== "expired";
+    if (!certification || getCertificationStatus(certification, currentDate) === "expired") {
+      return false;
+    }
+
+    const daysRemaining = getCertificationDaysRemaining(certification, currentDate);
+    return daysRemaining === null || daysRemaining >= minDaysRemaining;
   });
 
   const currentCertifications = careerData.certifications.filter((certification) => {
@@ -117,18 +124,13 @@ function populateSelectionControls(targetRole) {
 function populateControls() {
   const targetRoleSelect = document.getElementById("targetRole");
 
-  const primaryRoles = careerData.roleDefinitions.filter((role) => role.isPrimary !== false);
-  const specializedRoles = careerData.roleDefinitions.filter((role) => role.isPrimary === false);
+  const durableRoles = careerData.targetRoles.map((roleId) => getRoleDefinition(roleId));
   const createRoleOptions = (roles) => roles
     .map((role) => `<option value="${role.id}">${role.label}</option>`)
     .join("");
 
-  targetRoleSelect.innerHTML = [
-    `<optgroup label="Primary Roles">${createRoleOptions(primaryRoles)}</optgroup>`,
-    specializedRoles.length
-      ? `<optgroup label="Specialized Roles">${createRoleOptions(specializedRoles)}</optgroup>`
-      : ""
-  ].join("");
+  targetRoleSelect.innerHTML =
+    `<optgroup label="Resume Starting Points">${createRoleOptions(durableRoles)}</optgroup>`;
 
   populateSelectionControls(targetRoleSelect.value);
 }

@@ -33,6 +33,27 @@ function getCertificationStatus(certification, currentDate = new Date()) {
     : "expired";
 }
 
+
+function getCertificationDaysRemaining(certification, currentDate = new Date()) {
+  if (!certification?.doesExpire) {
+    return Number.POSITIVE_INFINITY;
+  }
+
+  const expirationDate = certificationDateToLocalDate(certification.expires, false);
+  if (!expirationDate) {
+    return null;
+  }
+
+  const currentDay = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth(),
+    currentDate.getDate(),
+    0, 0, 0, 0
+  );
+
+  return Math.round((expirationDate.getTime() - currentDay.getTime()) / 86400000);
+}
+
 function certificationMonthName(month) {
   const monthNames = [
     "Jan", "Feb", "Mar", "Apr", "May", "Jun",

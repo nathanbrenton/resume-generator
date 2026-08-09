@@ -27,7 +27,7 @@ function loadResumeData() {
     .join("\n\n");
 
   const context = vm.createContext({ console, Date, Map, Set });
-  vm.runInContext(`${source}\n\nglobalThis.__resumeTest = {\n  careerData,\n  certifications,\n  certificationKnowledge,\n  buildResume,\n  getCertificationStatus,\n  getCertificationDateText,\n  getCertificationControlLabel\n};`, context);
+  vm.runInContext(`${source}\n\nglobalThis.__resumeTest = {\n  careerData,\n  certifications,\n  certificationKnowledge,\n  buildResume,\n  getCertificationStatus,\n  getCertificationDaysRemaining,\n  getCertificationDateText,\n  getCertificationControlLabel\n};`, context);
 
   return context.__resumeTest;
 }
@@ -64,6 +64,7 @@ function main() {
     certificationKnowledge,
     buildResume,
     getCertificationStatus,
+    getCertificationDaysRemaining,
     getCertificationDateText,
     getCertificationControlLabel
   } = loadResumeData();
@@ -119,6 +120,7 @@ function main() {
     selectedCertificationIds: [],
     maxSkillGroups: 99,
     maxSkillsPerGroup: 99,
+    maxSkillsTotal: 999,
     currentDate: fixedDate
   });
 
@@ -139,6 +141,7 @@ function main() {
       selectedCertificationIds: [],
       maxSkillGroups: 6,
       maxSkillsPerGroup: 6,
+      maxSkillsTotal: 36,
       currentDate: fixedDate
     });
 
@@ -162,6 +165,7 @@ function main() {
     selectedCertificationIds: [expiredAPlus.id, currentPenTest.id, currentCysa.id, nonExpiringItil.id],
     maxSkillGroups: 99,
     maxSkillsPerGroup: 99,
+    maxSkillsTotal: 999,
     currentDate: fixedDate
   });
 
@@ -189,6 +193,20 @@ function main() {
   assert(
     getCertificationControlLabel(nonExpiringItil, fixedDate) === "ITIL 4 Foundation — Issued Jun 2021",
     "Certification controls must suppress the redundant non-expiring text"
+  );
+
+  const evergreenDate = new Date(2026, 7, 8, 12, 0, 0);
+  assert(
+    getCertificationDaysRemaining(currentPenTest, evergreenDate) === 20,
+    "PenTest+ should have 20 days remaining on the refactor validation date"
+  );
+  const evergreenResume = buildResume({
+    targetRole: "full-stack-software-engineer",
+    currentDate: evergreenDate
+  });
+  assert(
+    !evergreenResume.certifications.some((entry) => entry.id === currentPenTest.id),
+    "Evergreen durable roles should not default-select a certification inside the 60-day horizon"
   );
 
   console.log("Certification data checks passed.");

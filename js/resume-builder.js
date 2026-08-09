@@ -23,23 +23,23 @@ function addSkill(skillMap, skill, weight = 1) {
   const key = toSkillKey(skill);
   const configuredWeight = Number.isFinite(skill.weight) ? skill.weight : 1;
   const contribution = configuredWeight * weight;
+  const category = typeof getCanonicalSkillCategory === "function"
+    ? getCanonicalSkillCategory(skill.name, normalizeText(skill.category))
+    : normalizeText(skill.category);
 
   if (!skillMap.has(key)) {
     skillMap.set(key, {
-      category: normalizeText(skill.category),
+      category,
       name: normalizeText(skill.name),
-      weight: 0,
-      categoryWeight: Number.NEGATIVE_INFINITY
+      weight: 0
     });
   }
 
   const storedSkill = skillMap.get(key);
   storedSkill.weight += contribution;
-
-  if (contribution > storedSkill.categoryWeight) {
-    storedSkill.category = normalizeText(skill.category);
-    storedSkill.categoryWeight = contribution;
-  }
+  storedSkill.category = typeof getCanonicalSkillCategory === "function"
+    ? getCanonicalSkillCategory(storedSkill.name, storedSkill.category)
+    : storedSkill.category;
 }
 
 function addSkills(skillMap, skills, weight = 1) {
@@ -150,6 +150,16 @@ function getBulletTargetFamilyIds(bullet) {
   return familyIds;
 }
 
+function focusTermMatches(searchableText, term) {
+  const normalizedTerm = normalizeComparableText(term);
+
+  if (["ai", "api", "ml"].includes(normalizedTerm)) {
+    return new RegExp(`(?:^|[^a-z0-9])${normalizedTerm}(?:$|[^a-z0-9])`).test(searchableText);
+  }
+
+  return searchableText.includes(normalizedTerm);
+}
+
 function inferBulletFocusAreas(bullet) {
   const searchableText = normalizeComparableText([
     bullet.text,
@@ -158,7 +168,7 @@ function inferBulletFocusAreas(bullet) {
   ].filter(Boolean).join(" "));
 
   return bulletFocusAreaRules
-    .filter((rule) => rule.terms.some((term) => searchableText.includes(normalizeComparableText(term))))
+    .filter((rule) => rule.terms.some((term) => focusTermMatches(searchableText, term)))
     .map((rule) => rule.id);
 }
 
@@ -200,35 +210,47 @@ function scoreBullet(bullet, roleContext, sourceIndex, roleSkillProfile) {
   const preferredFocusAreas = new Set(roleContext.role.preferredFocusAreas || []);
   let skillOverlapScore = 0;
   let categoryOverlapScore = 0;
+  let matchedSkillCount = 0;
   let preferredFocusScore = 0;
 
   (bullet.skillTags || []).forEach((skill) => {
-    skillOverlapScore += roleSkillProfile.skillWeights.get(toSkillKey(skill)) || 0;
+    const skillWeight = roleSkillProfile.skillWeights.get(toSkillKey(skill)) || 0;
+    if (skillWeight > 0) {
+      matchedSkillCount += 1;
+      skillOverlapScore += skillWeight;
+    }
     categoryOverlapScore += Math.min(
-      roleSkillProfile.categoryWeights.get(normalizeComparableText(skill.category)) || 0,
-      4
+      roleSkillProfile.categoryWeights.get(normalizeComparableText(
+        typeof getCanonicalSkillCategory === "function"
+          ? getCanonicalSkillCategory(skill.name, skill.category)
+          : skill.category
+      )) || 0,
+      3
     );
   });
 
   focusAreas.forEach((focusArea) => {
     if (preferredFocusAreas.has(focusArea)) {
-      preferredFocusScore += 12;
+      preferredFocusScore += 10;
     }
   });
 
+  const normalizedSkillOverlap = matchedSkillCount > 0
+    ? Math.min((skillOverlapScore / Math.sqrt(matchedSkillCount)) * 1.5, 40)
+    : 0;
   const strengthScore = bullet.strength === "primary"
-    ? 18
+    ? 14
     : bullet.strength === "supporting"
-      ? 8
+      ? 6
       : 0;
-  const targetedElsewherePenalty = targetRoles.length > 0 && !roleMatch && !familyMatch ? 20 : 0;
+  const targetedElsewherePenalty = targetRoles.length > 0 && !roleMatch && !familyMatch ? 8 : 0;
   const baseScore =
-    (roleMatch ? 240 : 0) +
-    (familyMatch ? 80 : 0) +
-    Math.min(skillOverlapScore * 3, 120) +
-    Math.min(categoryOverlapScore, 20) +
-    preferredFocusScore +
-    (bullet.includeByDefault ? 20 : 0) +
+    (roleMatch ? 42 : 0) +
+    (familyMatch ? 32 : 0) +
+    normalizedSkillOverlap +
+    Math.min(categoryOverlapScore, 12) +
+    Math.min(preferredFocusScore, 20) +
+    (bullet.includeByDefault ? 6 : 0) +
     strengthScore -
     targetedElsewherePenalty;
 
@@ -266,9 +288,9 @@ function calculateRedundancyPenalty(candidate, selectedEntries) {
     const textOverlap = setOverlapRatio(candidate.textTokens, selectedEntry.textTokens);
 
     return penalty +
-      (focusOverlap * 28) +
-      (skillOverlap * 32) +
-      (textOverlap >= 0.55 ? textOverlap * 28 : 0);
+      (focusOverlap * 14) +
+      (skillOverlap * 16) +
+      (textOverlap >= 0.55 ? textOverlap * 18 : 0);
   }, 0);
 }
 
@@ -282,35 +304,23 @@ function selectBullets(
   const bullets = item.bullets || [];
   const roleContext = getRoleContext(targetRole);
   const roleSkillProfile = getRoleSkillProfile(roleContext);
-  const bulletById = new Map(bullets.map((bullet) => [bullet.id, bullet]));
-  const scoredById = new Map(bullets.map((bullet, sourceIndex) => {
-    return [bullet.id, scoreBullet(bullet, roleContext, sourceIndex, roleSkillProfile)];
-  }));
+  const preferredIdSet = new Set(preferredBulletIds);
+  const minPrimaryScore = selectionOptions.minPrimaryScore ?? 18;
   const primaryBulletLimit = selectionOptions.primaryBulletLimit ?? Math.min(2, maxBullets);
-  const minSupplementalScore = selectionOptions.minSupplementalScore ?? 40;
+  const minSupplementalScore = selectionOptions.minSupplementalScore ?? 30;
   const seenIds = new Set();
   const seenText = new Set();
   const selectedEntries = [];
 
-  preferredBulletIds.forEach((bulletId) => {
-    const bullet = bulletById.get(bulletId);
-    const entry = scoredById.get(bulletId);
-    const textKey = bullet ? getBulletTextKey(bullet) : "";
-
-    if (!bullet || !entry || seenIds.has(bullet.id) || seenText.has(textKey)) {
-      return;
-    }
-
-    seenIds.add(bullet.id);
-    seenText.add(textKey);
-    selectedEntries.push(entry);
-  });
-
-  const candidates = [...scoredById.values()]
+  const candidates = bullets
+    .map((bullet, sourceIndex) => scoreBullet(bullet, roleContext, sourceIndex, roleSkillProfile))
     .filter((entry) => {
       const bullet = entry.bullet;
-      return !seenIds.has(bullet.id) &&
-        !seenText.has(getBulletTextKey(bullet)) &&
+      const historicalBullet = bullet.catalogStatus === "historical-targeted";
+      const historicalPreset = roleContext.role.catalogStatus === "historical-preset";
+      const catalogEligible = !historicalBullet || (historicalPreset && entry.roleMatch);
+
+      return catalogEligible &&
         (entry.roleMatch || entry.familyMatch || bullet.includeByDefault);
     });
 
@@ -322,7 +332,10 @@ function selectBullets(
       })
       .map((entry) => ({
         entry,
-        adjustedScore: entry.baseScore - calculateRedundancyPenalty(entry, selectedEntries)
+        adjustedScore:
+          entry.baseScore -
+          calculateRedundancyPenalty(entry, selectedEntries) +
+          (preferredIdSet.has(entry.bullet.id) ? 8 : 0)
       }))
       .sort((left, right) => {
         return right.adjustedScore - left.adjustedScore ||
@@ -335,7 +348,10 @@ function selectBullets(
       break;
     }
 
-    if (selectedEntries.length >= primaryBulletLimit && next.adjustedScore < minSupplementalScore) {
+    const minimumScore = selectedEntries.length < primaryBulletLimit
+      ? minPrimaryScore
+      : minSupplementalScore;
+    if (next.adjustedScore < minimumScore) {
       break;
     }
 
@@ -343,9 +359,6 @@ function selectBullets(
     selectedEntries.push(next.entry);
     seenIds.add(next.entry.bullet.id);
     seenText.add(textKey);
-
-    const candidateIndex = candidates.indexOf(next.entry);
-    candidates.splice(candidateIndex, 1);
   }
 
   return selectedEntries.slice(0, maxBullets).map(({ bullet }) => bullet);
@@ -422,6 +435,7 @@ function buildVisibleSkillGroups(
   targetRole,
   maxSkillGroups,
   maxSkillsPerGroup,
+  maxSkillsTotal = Number.POSITIVE_INFINITY,
   requiredSkillNames = ["Python", "Docker"]
 ) {
   const allGroups = groupSkills(skills, targetRole);
@@ -444,17 +458,11 @@ function buildVisibleSkillGroups(
     }
 
     const requiredCategories = new Set(requiredLocations.map((entry) => entry.group.category));
-    let replacementIndex = -1;
-
     for (let index = selectedGroups.length - 1; index >= 0; index -= 1) {
       if (!requiredCategories.has(selectedGroups[index].category)) {
-        replacementIndex = index;
+        selectedGroups[index] = group;
         break;
       }
-    }
-
-    if (replacementIndex >= 0) {
-      selectedGroups[replacementIndex] = group;
     }
   });
 
@@ -463,22 +471,16 @@ function buildVisibleSkillGroups(
 
   const visibleGroups = selectedGroups.map((group) => {
     const groupLimit = getSkillGroupLimit(targetRole, group.category, maxSkillsPerGroup);
-
-    return {
-      ...group,
-      skills: group.skills.slice(0, groupLimit)
-    };
+    return { ...group, skills: group.skills.slice(0, groupLimit) };
   });
 
   requiredLocations.forEach(({ skillName, group }) => {
     const visibleGroup = visibleGroups.find((entry) => entry.category === group.category);
-
     if (!visibleGroup || visibleGroup.skills.includes(skillName)) {
       return;
     }
 
     const groupLimit = getSkillGroupLimit(targetRole, group.category, maxSkillsPerGroup);
-
     if (visibleGroup.skills.length < groupLimit) {
       visibleGroup.skills.push(skillName);
     } else if (groupLimit > 0) {
@@ -486,7 +488,21 @@ function buildVisibleSkillGroups(
     }
   });
 
-  return visibleGroups;
+  const requiredNames = new Set(requiredSkillNames);
+  let totalSkills = visibleGroups.reduce((total, group) => total + group.skills.length, 0);
+
+  for (let groupIndex = visibleGroups.length - 1; totalSkills > maxSkillsTotal && groupIndex >= 0; groupIndex -= 1) {
+    const group = visibleGroups[groupIndex];
+    for (let skillIndex = group.skills.length - 1; totalSkills > maxSkillsTotal && skillIndex >= 0; skillIndex -= 1) {
+      if (requiredNames.has(group.skills[skillIndex])) {
+        continue;
+      }
+      group.skills.splice(skillIndex, 1);
+      totalSkills -= 1;
+    }
+  }
+
+  return visibleGroups.filter((group) => group.skills.length > 0);
 }
 
 function buildResume(options = {}) {
@@ -494,8 +510,38 @@ function buildResume(options = {}) {
   const roleContext = getRoleContext(requestedRole);
   const family = careerData.roleFamilies[roleContext.role.familyId];
   const layout = roleContext.role.layout || {};
-  const selectedJobs = selectedByIds(careerData.jobs, options.selectedJobIds);
-  const selectedProjects = selectedByIds(careerData.projects, options.selectedProjectIds);
+  const defaultSelections = careerData.roleDefaultSelections?.[roleContext.roleId] || {};
+  const selectedJobs = selectedByIds(
+    careerData.jobs,
+    options.selectedJobIds ?? defaultSelections.jobIds
+  );
+  const selectedProjects = selectedByIds(
+    careerData.projects,
+    options.selectedProjectIds ?? defaultSelections.projectIds
+  );
+  const selectedEducation = selectedByIds(
+    careerData.education,
+    options.selectedEducationIds ?? defaultSelections.educationIds
+  );
+  const selectedCertificationIds = options.selectedCertificationIds ?? defaultSelections.certificationIds;
+  const currentDate = options.currentDate || new Date();
+  let selectedCertifications = selectedByIds(careerData.certifications, selectedCertificationIds);
+
+  if (options.selectedCertificationIds === undefined) {
+    selectedCertifications = selectedCertifications.filter((certification) => {
+      if (getCertificationStatus(certification, currentDate) === "expired") {
+        return false;
+      }
+
+      if (!roleContext.role.certificationMinDaysRemaining) {
+        return true;
+      }
+
+      const daysRemaining = getCertificationDaysRemaining(certification, currentDate);
+      return daysRemaining === null || daysRemaining >= roleContext.role.certificationMinDaysRemaining;
+    });
+  }
+
   const baseMaxJobBullets = options.maxJobBullets ??
     layout.maxJobBullets ??
     family.defaultMaxJobBullets ??
@@ -507,62 +553,72 @@ function buildResume(options = {}) {
   const maxJobBullets = selectedJobs.length === 2
     ? Math.max(baseMaxJobBullets, maxJobBulletsWhenTwoJobs)
     : baseMaxJobBullets;
-  const familyExperienceBulletLimit = selectedJobs.length === 2
-    ? family.defaultMaxExperienceBullets
-    : undefined;
   const maxExperienceBullets = options.maxExperienceBullets ??
     layout.maxExperienceBullets ??
-    familyExperienceBulletLimit ??
+    family.defaultMaxExperienceBullets ??
     (maxJobBullets * Math.max(selectedJobs.length, 1));
+  const minPrimaryBulletScore = options.minPrimaryBulletScore ??
+    layout.minPrimaryBulletScore ??
+    family.defaultMinPrimaryBulletScore ??
+    18;
   const minSupplementalBulletScore = options.minSupplementalBulletScore ??
     layout.minSupplementalBulletScore ??
     family.defaultMinSupplementalBulletScore ??
-    40;
+    30;
   const maxProjectBullets = options.maxProjectBullets ?? layout.maxProjectBullets ?? 1;
-  const maxSkillGroups = options.maxSkillGroups ?? layout.maxSkillGroups ?? family.defaultMaxSkillGroups ?? 6;
+  const maxProjectBulletsTotal = options.maxProjectBulletsTotal ??
+    layout.maxProjectBulletsTotal ??
+    family.defaultMaxProjectBulletsTotal ??
+    (maxProjectBullets * Math.max(selectedProjects.length, 1));
+  const maxSkillGroups = options.maxSkillGroups ??
+    layout.maxSkillGroups ??
+    family.defaultMaxSkillGroups ??
+    6;
   const maxSkillsPerGroup = options.maxSkillsPerGroup ?? layout.maxSkillsPerGroup ?? 6;
-  const selectedEducation = selectedByIds(careerData.education, options.selectedEducationIds);
-  const selectedCertifications = selectedByIds(careerData.certifications, options.selectedCertificationIds);
-  const currentDate = options.currentDate || new Date();
+  const maxSkillsTotal = options.maxSkillsTotal ??
+    layout.maxSkillsTotal ??
+    family.defaultMaxSkillsTotal ??
+    (maxSkillGroups * maxSkillsPerGroup);
   const skillMap = new Map();
 
   addSkills(skillMap, careerData.roleSkillPriorities[roleContext.roleId], 1);
-
-  addSkill(skillMap, { category: "Programming & Scripting", name: "Python", weight: 9 }, 1);
-  addSkill(skillMap, { category: "DevOps & Tooling", name: "Docker", weight: 8 }, 1);
+  addSkills(skillMap, careerData.pinnedResumeSkills || pinnedResumeSkills, 1);
 
   (careerData.certificationKnowledge || [])
     .filter((entry) => {
       return !entry.targetRoles.length || matchesRoleLabels(entry.targetRoles, roleContext);
     })
-    .forEach((entry) => addSkills(skillMap, entry.skillTags, 1));
+    .forEach((entry) => addSkills(skillMap, entry.skillTags, 0.5));
 
   let remainingExperienceBulletBudget = maxExperienceBullets;
   const jobsForResume = selectedJobs.map((job, jobIndex) => {
-    const configuredLimit = getConfiguredRoleValue(job.maxBulletsByTargetRole, roleContext);
+    if (remainingExperienceBulletBudget <= 0) {
+      return {
+        ...job,
+        dateText: formatDateRange(job.start, job.end, job.isCurrent),
+        selectedBullets: []
+      };
+    }
+
+    const configuredLimit = roleContext.role.catalogStatus === "historical-preset"
+      ? getConfiguredRoleValue(job.maxBulletsByTargetRole, roleContext)
+      : undefined;
     const remainingJobs = selectedJobs.length - jobIndex;
-    const reservedForRemainingJobs = Math.max(remainingJobs - 1, 0) * Math.min(2, maxJobBullets);
-    const budgetLimit = Math.max(
-      Math.min(2, maxJobBullets),
-      remainingExperienceBulletBudget - reservedForRemainingJobs
+    const reserveOnePerRemainingJob = Math.max(remainingJobs - 1, 0);
+    const availableForThisJob = Math.max(
+      1,
+      remainingExperienceBulletBudget - reserveOnePerRemainingJob
     );
-    const configuredItemLimit = configuredLimit === undefined
-      ? maxJobBullets
-      : selectedJobs.length === 2 && configuredLimit >= baseMaxJobBullets
-        ? maxJobBullets
-        : configuredLimit;
-    const bulletLimit = Math.max(
-      Math.min(2, maxJobBullets),
-      Math.min(configuredItemLimit, maxJobBullets, budgetLimit)
-    );
+    const configuredItemLimit = configuredLimit === undefined ? maxJobBullets : configuredLimit;
+    const bulletLimit = Math.min(configuredItemLimit, maxJobBullets, availableForThisJob);
     const preferredBulletIds = roleContext.role.preferredBulletIdsByItem?.[job.id] || [];
     const bullets = selectBullets(job, roleContext.roleId, bulletLimit, preferredBulletIds, {
       primaryBulletLimit: Math.min(baseMaxJobBullets, bulletLimit),
+      minPrimaryScore: minPrimaryBulletScore,
       minSupplementalScore: minSupplementalBulletScore
     });
-    bullets.slice(0, baseMaxJobBullets).forEach((bullet) => {
-      addSkills(skillMap, bullet.skillTags, 3);
-    });
+
+    bullets.forEach((bullet) => addSkills(skillMap, bullet.skillTags, 3));
     remainingExperienceBulletBudget -= bullets.length;
 
     return {
@@ -572,15 +628,26 @@ function buildResume(options = {}) {
     };
   });
 
+  let remainingProjectBulletBudget = maxProjectBulletsTotal;
   const projectsForResume = selectedProjects.map((project) => {
-    const configuredLimit = getConfiguredRoleValue(project.maxBulletsByTargetRole, roleContext);
-    const bulletLimit = Math.max(1, Math.min(configuredLimit ?? maxProjectBullets, maxProjectBullets));
+    const configuredLimit = roleContext.role.catalogStatus === "historical-preset"
+      ? getConfiguredRoleValue(project.maxBulletsByTargetRole, roleContext)
+      : undefined;
+    const bulletLimit = Math.max(
+      0,
+      Math.min(configuredLimit ?? maxProjectBullets, maxProjectBullets, remainingProjectBulletBudget)
+    );
     const preferredBulletIds = roleContext.role.preferredBulletIdsByItem?.[project.id] || [];
-    const bullets = selectBullets(project, roleContext.roleId, bulletLimit, preferredBulletIds, {
-      primaryBulletLimit: bulletLimit,
-      minSupplementalScore: 0
-    });
+    const bullets = bulletLimit > 0
+      ? selectBullets(project, roleContext.roleId, bulletLimit, preferredBulletIds, {
+          primaryBulletLimit: Math.min(1, bulletLimit),
+          minPrimaryScore: minPrimaryBulletScore,
+          minSupplementalScore: minSupplementalBulletScore
+        })
+      : [];
+
     bullets.forEach((bullet) => addSkills(skillMap, bullet.skillTags, 3));
+    remainingProjectBulletBudget -= bullets.length;
 
     return {
       ...project,
@@ -589,8 +656,10 @@ function buildResume(options = {}) {
     };
   });
 
+  // Education is valid evidence, but it should not outrank professional or
+  // independent-project evidence in the generated skill section.
   selectedEducation.forEach((entry) => {
-    addSkills(skillMap, entry.resumeSkillTags || entry.skillTags, 1);
+    addSkills(skillMap, entry.resumeSkillTags || entry.skillTags, 0.35);
   });
 
   const certificationsForResume = selectedCertifications.map((certification) => ({
@@ -610,13 +679,14 @@ function buildResume(options = {}) {
     headline: roleContext.role.headline || careerData.profile.headline,
     summary: roleContext.role.summary || careerData.profile.summary,
     skills: buildVisibleSkillGroups(
-      [...skillMap.values()].map(({ categoryWeight, ...skill }) => skill),
+      [...skillMap.values()],
       roleContext.roleId,
       maxSkillGroups,
-      maxSkillsPerGroup
+      maxSkillsPerGroup,
+      maxSkillsTotal
     ),
-    jobs: jobsForResume,
-    projects: projectsForResume,
+    jobs: jobsForResume.filter((job) => job.selectedBullets.length > 0),
+    projects: projectsForResume.filter((project) => project.selectedBullets.length > 0),
     education: selectedEducation,
     certifications: certificationsForResume
   };

@@ -1,137 +1,179 @@
 const roleFamilies = {
-  "systems-infrastructure": {
-    label: "Systems Administration & Infrastructure",
+  "systems-middleware": {
+    label: "Linux / Systems / Middleware",
     defaultMaxSkillGroups: 6,
+    defaultMaxSkillsTotal: 28,
     defaultMaxJobBullets: 2,
     defaultMaxJobBulletsWhenTwoJobs: 3,
     defaultMaxExperienceBullets: 6,
-    defaultMinSupplementalBulletScore: 40,
+    defaultMaxProjectBulletsTotal: 4,
+    defaultMinPrimaryBulletScore: 18,
+    defaultMinSupplementalBulletScore: 30,
     categoryOrder: [
-      "Systems & Infrastructure",
-      "Middleware & Applications",
-      "Automation & Scripting",
-      "Monitoring & Support",
-      "Networking & Security",
-      "DevOps & Tooling",
-      "Documentation & Collaboration",
-      "Other"
+      "Systems & Infrastructure", "Middleware & Applications", "Automation & Scripting",
+      "Monitoring & Support", "Platform & Reliability", "Identity & Access",
+      "Networking & Security", "DevOps & Tooling", "Documentation & Collaboration", "Other"
     ]
   },
   "platform-reliability": {
-    label: "Platform & Reliability",
+    label: "Platform / Reliability / Automation",
     defaultMaxSkillGroups: 7,
+    defaultMaxSkillsTotal: 30,
     defaultMaxJobBullets: 2,
     defaultMaxJobBulletsWhenTwoJobs: 3,
     defaultMaxExperienceBullets: 6,
-    defaultMinSupplementalBulletScore: 40,
+    defaultMaxProjectBulletsTotal: 4,
+    defaultMinPrimaryBulletScore: 18,
+    defaultMinSupplementalBulletScore: 30,
     categoryOrder: [
-      "Platform & Reliability",
-      "Systems & Infrastructure",
-      "Automation & Scripting",
-      "Monitoring & Support",
-      "DevOps & Tooling",
-      "Databases & Data",
-      "Networking & Security",
-      "Testing & Quality",
-      "Documentation & Collaboration",
-      "Other"
+      "Platform & Reliability", "Systems & Infrastructure", "Automation & Scripting",
+      "Monitoring & Support", "DevOps & Tooling", "Testing & Quality",
+      "Backend & APIs", "Databases & Data", "Documentation & Collaboration", "Other"
     ]
   },
   "application-support": {
-    label: "Application & Technical Support",
+    label: "Application / Production / Developer Support",
     defaultMaxSkillGroups: 7,
+    defaultMaxSkillsTotal: 30,
     defaultMaxJobBullets: 2,
     defaultMaxJobBulletsWhenTwoJobs: 3,
     defaultMaxExperienceBullets: 6,
-    defaultMinSupplementalBulletScore: 40,
+    defaultMaxProjectBulletsTotal: 4,
+    defaultMinPrimaryBulletScore: 18,
+    defaultMinSupplementalBulletScore: 30,
     categoryOrder: [
-      "Application Support",
-      "Monitoring & Support",
-      "Enterprise Support",
-      "Backend & APIs",
-      "Databases & Data",
-      "Automation & Scripting",
-      "Testing & Quality",
-      "DevOps & Tooling",
-      "Documentation & Collaboration",
-      "Other"
+      "Application Support", "Monitoring & Support", "Enterprise Support",
+      "Middleware & Applications", "Backend & APIs", "Automation & Scripting",
+      "Testing & Quality", "Systems & Infrastructure", "Documentation & Collaboration", "Other"
+    ]
+  },
+  "endpoint-support": {
+    label: "IT / Endpoint Support",
+    defaultMaxSkillGroups: 6,
+    defaultMaxSkillsTotal: 26,
+    defaultMaxJobBullets: 2,
+    defaultMaxJobBulletsWhenTwoJobs: 3,
+    defaultMaxExperienceBullets: 6,
+    defaultMaxProjectBulletsTotal: 2,
+    defaultMinPrimaryBulletScore: 18,
+    defaultMinSupplementalBulletScore: 30,
+    categoryOrder: [
+      "Endpoint & IT Support", "Enterprise Support", "Identity & Access",
+      "Customer & User Support", "Automation & Scripting", "Networking & Security",
+      "Hardware & Field Systems", "Documentation & Collaboration", "DevOps & Tooling", "Other"
     ]
   },
   "software-engineering": {
     label: "Software Engineering",
-    defaultMaxSkillGroups: 7,
+    defaultMaxSkillGroups: 6,
+    defaultMaxSkillsTotal: 30,
+    defaultMaxJobBullets: 2,
+    defaultMaxJobBulletsWhenTwoJobs: 3,
+    defaultMaxExperienceBullets: 5,
+    defaultMaxProjectBulletsTotal: 5,
+    defaultMinPrimaryBulletScore: 18,
+    defaultMinSupplementalBulletScore: 30,
+    categoryOrder: [
+      "Programming & Scripting", "Frontend Development", "Backend & APIs",
+      "Databases & Data", "Testing & Quality", "DevOps & Tooling",
+      "AI Applications", "Documentation & Collaboration", "Other"
+    ]
+  },
+  "quality-engineering": {
+    label: "QA / Test Automation",
+    defaultMaxSkillGroups: 6,
+    defaultMaxSkillsTotal: 28,
+    defaultMaxJobBullets: 2,
+    defaultMaxJobBulletsWhenTwoJobs: 3,
+    defaultMaxExperienceBullets: 5,
+    defaultMaxProjectBulletsTotal: 5,
+    defaultMinPrimaryBulletScore: 18,
+    defaultMinSupplementalBulletScore: 30,
+    categoryOrder: [
+      "Testing & Quality", "Programming & Scripting", "Backend & APIs",
+      "Databases & Data", "Frontend Development", "DevOps & Tooling",
+      "Documentation & Collaboration", "Other"
+    ]
+  },
+  "security-identity": {
+    label: "Cybersecurity / Security Quality / IAM",
+    defaultMaxSkillGroups: 6,
+    defaultMaxSkillsTotal: 28,
     defaultMaxJobBullets: 2,
     defaultMaxJobBulletsWhenTwoJobs: 3,
     defaultMaxExperienceBullets: 6,
-    defaultMinSupplementalBulletScore: 40,
+    defaultMaxProjectBulletsTotal: 3,
+    defaultMinPrimaryBulletScore: 18,
+    defaultMinSupplementalBulletScore: 30,
     categoryOrder: [
-      "Programming & Scripting",
-      "Frontend Development",
-      "Backend & APIs",
-      "Databases & Data",
-      "Testing & Quality",
-      "DevOps & Tooling",
-      "AI Applications",
-      "Documentation & Collaboration",
-      "Other"
+      "Security & Compliance", "Identity & Access", "Systems & Infrastructure",
+      "Monitoring & Support", "Enterprise Support", "Testing & Quality",
+      "Networking & Security", "Automation & Scripting", "DevOps & Tooling",
+      "Documentation & Collaboration", "Other"
     ]
   },
   "applied-ai-automation": {
-    label: "Applied AI & Automation",
+    label: "Applied AI / Automation & Integration",
     defaultMaxSkillGroups: 7,
+    defaultMaxSkillsTotal: 30,
     defaultMaxJobBullets: 2,
     defaultMaxJobBulletsWhenTwoJobs: 3,
-    defaultMaxExperienceBullets: 6,
-    defaultMinSupplementalBulletScore: 40,
+    defaultMaxExperienceBullets: 5,
+    defaultMaxProjectBulletsTotal: 5,
+    defaultMinPrimaryBulletScore: 18,
+    defaultMinSupplementalBulletScore: 30,
     categoryOrder: [
-      "AI Applications",
-      "Automation & Integration",
-      "Programming & Scripting",
-      "Backend & APIs",
-      "Databases & Data",
-      "Testing & Quality",
-      "DevOps & Tooling",
-      "Human Review & Validation",
-      "Documentation & Collaboration",
-      "Other"
+      "AI Applications", "Human Review & Validation", "Programming & Scripting",
+      "Automation & Integration", "Backend & APIs", "Databases & Data",
+      "Testing & Quality", "DevOps & Tooling", "Documentation & Collaboration", "Other"
     ]
   },
   "ai-infrastructure": {
-    label: "AI Infrastructure & Model Operations",
+    label: "AI Infrastructure / Model Operations",
     defaultMaxSkillGroups: 7,
+    defaultMaxSkillsTotal: 30,
     defaultMaxJobBullets: 2,
     defaultMaxJobBulletsWhenTwoJobs: 3,
-    defaultMaxExperienceBullets: 6,
-    defaultMinSupplementalBulletScore: 40,
+    defaultMaxExperienceBullets: 5,
+    defaultMaxProjectBulletsTotal: 5,
+    defaultMinPrimaryBulletScore: 18,
+    defaultMinSupplementalBulletScore: 30,
     categoryOrder: [
-      "AI Infrastructure",
-      "Systems & Infrastructure",
-      "Programming & Scripting",
-      "DevOps & Tooling",
-      "Performance & Validation",
-      "Backend & APIs",
-      "Testing & Quality",
-      "Documentation & Collaboration",
-      "Other"
+      "AI Infrastructure", "Performance & Validation", "Systems & Infrastructure",
+      "Programming & Scripting", "Automation & Scripting", "DevOps & Tooling",
+      "Testing & Quality", "Backend & APIs", "Documentation & Collaboration", "Other"
     ]
   },
   "media-systems": {
-    label: "Media Systems & Processing",
+    label: "Media Systems / Digital Media Technology",
     defaultMaxSkillGroups: 6,
+    defaultMaxSkillsTotal: 28,
     defaultMaxJobBullets: 2,
     defaultMaxJobBulletsWhenTwoJobs: 3,
     defaultMaxExperienceBullets: 6,
-    defaultMinSupplementalBulletScore: 40,
+    defaultMaxProjectBulletsTotal: 4,
+    defaultMinPrimaryBulletScore: 18,
+    defaultMinSupplementalBulletScore: 30,
     categoryOrder: [
-      "Media Processing",
-      "Media Systems Support",
-      "Signal Processing",
-      "Automation & Scripting",
-      "Systems & Infrastructure",
-      "DevOps & Tooling",
-      "Testing & Quality",
-      "Documentation & Collaboration",
-      "Other"
+      "Media Processing", "Media Systems Support", "Signal Processing",
+      "Automation & Scripting", "Systems & Infrastructure", "Testing & Quality",
+      "DevOps & Tooling", "Documentation & Collaboration", "Other"
+    ]
+  },
+  "technical-field": {
+    label: "Technical / Electronics / Field Systems",
+    defaultMaxSkillGroups: 6,
+    defaultMaxSkillsTotal: 26,
+    defaultMaxJobBullets: 2,
+    defaultMaxJobBulletsWhenTwoJobs: 3,
+    defaultMaxExperienceBullets: 6,
+    defaultMaxProjectBulletsTotal: 2,
+    defaultMinPrimaryBulletScore: 18,
+    defaultMinSupplementalBulletScore: 30,
+    categoryOrder: [
+      "Hardware & Field Systems", "Systems & Infrastructure", "Networking & Security",
+      "Monitoring & Support", "Customer & User Support", "Media Systems Support",
+      "Automation & Scripting", "DevOps & Tooling", "Documentation & Collaboration", "Other"
     ]
   }
 };
@@ -143,36 +185,39 @@ const roleModifiers = {
   "production-support": { label: "Production Support" },
   "developer-support": { label: "Developer Support" },
   "full-stack": { label: "Full-Stack" },
-  "mission-operations-full-stack": { label: "Mission Operations Full Stack" },
-  "internal-operations-software": { label: "Internal Operations Software" },
-  "healthcare-operations-software": { label: "Healthcare Operations Software" },
-  "digital-banking-web-development": { label: "Digital Banking Web Development" },
-  "life-insurance-application-development": { label: "Life Insurance Application Development" },
-  "forward-deployed-engineering": { label: "Forward Deployed Engineering" },
-  "cybersecurity-quality-engineering": { label: "Cybersecurity Quality Engineering" },
-  "cloud-security-operations": { label: "Cloud Security Operations" },
-  "fedramp-security-assessments": { label: "FedRAMP Security Assessments" },
+  "backend-application": { label: "Backend / Application" },
+  "test-automation": { label: "Test Automation" },
+  "security-quality": { label: "Security Quality" },
+  "mission-operations-full-stack": { label: "Mission Operations" },
+  "internal-operations-software": { label: "Internal Operations" },
+  "healthcare-operations-software": { label: "Healthcare Operations" },
+  "digital-banking-web-development": { label: "Digital Banking" },
+  "life-insurance-application-development": { label: "Life Insurance" },
+  "forward-deployed-engineering": { label: "Forward Deployed" },
+  "cybersecurity-quality-engineering": { label: "Cybersecurity Quality" },
+  "cloud-security-operations": { label: "Cloud Security" },
+  "fedramp-security-assessments": { label: "Security Assessments" },
   "identity-access-management": { label: "Identity & Access Management" },
-  "corporate-it-operations": { label: "Corporate IT Operations" },
-  "qa-automation-engineering": { label: "QA Automation Engineering" },
-  "web-api-test-automation": { label: "Web & API Test Automation" },
-  "payments-software-quality": { label: "Payments Software Quality" },
-  "technology-generalist": { label: "Software, QA & Cybersecurity" },
+  "corporate-it-operations": { label: "Corporate IT" },
+  "qa-automation-engineering": { label: "QA Automation" },
+  "web-api-test-automation": { label: "Web & API Testing" },
+  "payments-software-quality": { label: "Payments Quality" },
+  "technology-generalist": { label: "Technology Generalist" },
   "applied-ai": { label: "Applied AI" },
-  "ai-quality-assurance": { label: "AI Quality & Process Assurance" },
-  "sales-engineering-software-qa": { label: "Sales Engineering & Software QA" },
+  "ai-quality-assurance": { label: "AI Quality" },
+  "sales-engineering-software-qa": { label: "Sales Engineering / QA" },
   integration: { label: "Integration" },
   "model-operations": { label: "Model Operations" },
   media: { label: "Media" },
   transcode: { label: "Transcode" },
   "network-administration": { label: "Network Administration" },
-  "endpoint-support": { label: "Enterprise Endpoint Support" },
-  "legal-services-it-support": { label: "Legal Services IT Support" },
-  "help-desk-device-lifecycle": { label: "Help Desk & Device Lifecycle" },
-  "product-operations-sustainment": { label: "Product Operations & Sustainment" },
-  "infotainment-quality-engineering": { label: "Infotainment Quality Engineering" },
+  "endpoint-support": { label: "Endpoint Support" },
+  "legal-services-it-support": { label: "Legal Services" },
+  "help-desk-device-lifecycle": { label: "Help Desk / Device Lifecycle" },
+  "product-operations-sustainment": { label: "Product Operations / Sustainment" },
+  "infotainment-quality-engineering": { label: "Infotainment Quality" },
   "hardware-repair": { label: "Hardware / Electromechanical Repair" },
-  "music-technology-support": { label: "Music Technology Support" },
+  "music-technology-support": { label: "Music Technology" },
   "music-content-protection": { label: "Music Content Protection" },
   "recorded-music-release-planning": { label: "Recorded Music Release Planning" }
 };
@@ -2761,36 +2806,322 @@ const roleDefinitions = [
   }
 ];
 
+
+// Durable role catalog -------------------------------------------------------
+//
+// Posting-specific role definitions remain in this file as hidden historical
+// presets so stable IDs, saved customizations, and old bullet references keep
+// resolving. Only the durable roles below are exposed in the dropdown.
+roleDefinitions.push({
+  id: "cybersecurity-security-quality-engineer",
+  label: "Cybersecurity / Security Quality Engineer",
+  familyId: "security-identity",
+  modifierIds: ["security-quality"],
+  aliases: [
+    "Security Quality Engineer",
+    "Cybersecurity Engineer",
+    "Security Engineer",
+    "Cybersecurity Analyst"
+  ],
+  headline: "CYBERSECURITY / SECURITY QUALITY ENGINEER | SYSTEMS, VALIDATION & IAM",
+  summary: "Cybersecurity and systems professional combining enterprise middleware and identity-support experience with vulnerability remediation, security-focused validation, incident analysis, documentation, and independent software quality work.",
+  preferredFocusAreas: [
+    "security-compliance",
+    "identity-access",
+    "testing-validation",
+    "incident-analysis",
+    "infrastructure-operations"
+  ],
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+    ],
+    projectIds: [
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab",
+      "2026-07-xx_xxxx-xx-xx_century-solar"
+    ],
+    educationIds: sharedEducationIds,
+    certificationIds: [
+      "2023-08-11_2029-08-11_comptia_cysa-plus-ce",
+      "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation"
+    ]
+  }
+});
+
+const durableRoleIds = [
+  "full-stack-software-engineer",
+  "qa-automation-engineer",
+  "application-production-support-engineer",
+  "linux-middleware-administrator",
+  "platform-reliability-engineer",
+  "it-support-specialist",
+  "user-access-management-analyst",
+  "cybersecurity-security-quality-engineer",
+  "applied-ai-engineer",
+  "ai-infrastructure-model-operations",
+  "media-systems-technician",
+  "electromechanical-equipment-repair-technician"
+];
+
+const historicalRoleBaseMappings = {
+  "systems-administrator": "linux-middleware-administrator",
+  "systems-automation-engineer": "platform-reliability-engineer",
+  "technical-developer-support-engineer": "application-production-support-engineer",
+  "ai-automation-integration-engineer": "applied-ai-engineer",
+  "encoding-transcode-technician": "media-systems-technician",
+  "technology-engineer-software-qa-cybersecurity": "cybersecurity-security-quality-engineer",
+  "associate-programmer-internal-operations": "full-stack-software-engineer",
+  "ai-quality-engineer-i": "qa-automation-engineer",
+  "it-support-specialist-legal-services": "it-support-specialist",
+  "it-support-technician": "it-support-specialist",
+  "network-administrator-i": "linux-middleware-administrator",
+  "product-operations-specialist-uas-systems": "electromechanical-equipment-repair-technician",
+  "software-engineer-healthcare-operations": "full-stack-software-engineer",
+  "sales-engineer-software-qa-engineer": "application-production-support-engineer",
+  "web-developer-i-digital-banking": "full-stack-software-engineer",
+  "illustrations-application-developer": "full-stack-software-engineer",
+  "forward-deployed-software-engineer-intern": "full-stack-software-engineer",
+  "full-stack-engineer-mission-operations": "full-stack-software-engineer",
+  "cybersecurity-quality-engineer-medical-devices": "cybersecurity-security-quality-engineer",
+  "associate-cyber-operations-cloud-security": "cybersecurity-security-quality-engineer",
+  "cybersecurity-analyst-fedramp-assessments": "cybersecurity-security-quality-engineer",
+  "it-support-analyst-corporate-systems": "it-support-specialist",
+  "qa-automation-engineer-web-api": "qa-automation-engineer",
+  "qa-engineer-i-payments": "qa-automation-engineer",
+  "infotainment-quality-engineer-i": "qa-automation-engineer",
+  "manager-tech-support-music-technology": "it-support-specialist",
+  "content-protection-representative-music": "media-systems-technician",
+  "coordinator-release-planning-recorded-music": "media-systems-technician"
+};
+
+const durableRoleOverrides = {
+  "linux-middleware-administrator": {
+    label: "Linux / Systems / Middleware Administrator",
+    familyId: "systems-middleware",
+    modifierIds: ["middleware"],
+    aliases: ["Linux Administrator", "Middleware Engineer", "Systems Administrator", "IT Operations Specialist"],
+    headline: "LINUX / SYSTEMS / MIDDLEWARE ADMINISTRATOR | RHEL | AUTOMATION",
+    summary: "Linux and middleware support professional with hands-on experience supporting RHEL application environments, Oracle WebLogic, Apache Tomcat/TomEE, IBM MQ, deployments, upgrades, patching, recovery automation, log analysis, and repeatable operational validation."
+  },
+  "platform-reliability-engineer": {
+    label: "Platform / Reliability / Automation Engineer",
+    familyId: "platform-reliability",
+    modifierIds: ["reliability", "automation"],
+    aliases: ["Platform Engineer", "Site Reliability Engineer", "DevOps Engineer", "Systems Automation Engineer"],
+    headline: "PLATFORM / RELIABILITY / AUTOMATION ENGINEER | LINUX | PYTHON & BASH",
+    summary: "Platform and reliability engineer combining enterprise RHEL application operations with independent containerized Python services, reproducible environments, monitoring, deployment validation, recovery automation, and test-driven operational tooling."
+  },
+  "application-production-support-engineer": {
+    label: "Application / Production / Developer Support Engineer",
+    familyId: "application-support",
+    modifierIds: ["production-support", "developer-support"],
+    aliases: ["Application Support Analyst", "Production Support Engineer", "Developer Support Engineer", "Technical Support Engineer", "API Support Engineer"],
+    headline: "APPLICATION / PRODUCTION / DEVELOPER SUPPORT ENGINEER | LINUX | APIs",
+    summary: "Application support engineer with enterprise RHEL middleware, deployment, incident-analysis, developer-support, log-analysis, ServiceNow, Splunk, Bash, and validation experience, reinforced by independent Python/FastAPI application projects."
+  },
+  "full-stack-software-engineer": {
+    familyId: "software-engineering",
+    modifierIds: ["full-stack", "backend-application"],
+    headline: "FULL-STACK SOFTWARE ENGINEER | PYTHON, REACT & TYPESCRIPT | LINUX",
+    certificationMinDaysRemaining: 60,
+    layout: {
+      maxSkillGroups: 6,
+      maxSkillsPerGroup: 6,
+      maxSkillsTotal: 30,
+      maxJobBullets: 2,
+      maxJobBulletsWhenTwoJobs: 3,
+      maxExperienceBullets: 5,
+      maxProjectBullets: 2,
+      maxProjectBulletsTotal: 5
+    },
+    preferredFocusAreas: ["software-development", "api-integration", "data-databases", "testing-validation", "deployment-change"]
+  },
+  "qa-automation-engineer": {
+    label: "QA / Test Automation Engineer",
+    familyId: "quality-engineering",
+    modifierIds: ["test-automation"],
+    aliases: ["QA Automation Engineer", "Automation QA Engineer", "Test Automation Engineer", "Software Development Engineer in Test"],
+    headline: "QA / TEST AUTOMATION ENGINEER | PYTHON | PLAYWRIGHT | APIs",
+    summary: "Quality engineering candidate combining automated browser, API, backend, and validation work across independent React/TypeScript and Python/FastAPI projects with professional deployment validation, incident troubleshooting, and PowerShell-based endpoint verification.",
+    layout: { maxProjectBullets: 2, maxProjectBulletsTotal: 5, maxSkillsTotal: 28 },
+    preferredFocusAreas: ["testing-validation", "software-development", "api-integration", "deployment-change"]
+  },
+  "it-support-specialist": {
+    label: "IT / Endpoint Support Specialist",
+    familyId: "endpoint-support",
+    modifierIds: ["endpoint-support"],
+    aliases: ["IT Support Specialist", "Desktop Support Technician", "Deskside Support Technician", "Service Desk Analyst", "Help Desk Technician"],
+    headline: "IT / ENDPOINT SUPPORT SPECIALIST | WINDOWS & macOS | SERVICENOW",
+    summary: "Enterprise endpoint-support professional with hands-on Windows, macOS, SCCM/MECM, JAMF, Active Directory, ServiceNow, Splunk, BitLocker, VPN/MFA, device-lifecycle, hardware, and PowerShell validation experience."
+  },
+  "user-access-management-analyst": {
+    familyId: "security-identity",
+    modifierIds: ["identity-access-management"],
+    headline: "IAM / ACCESS MANAGEMENT ANALYST | ACTIVE DIRECTORY | LDAP | CYBERARK",
+    summary: "Identity and access candidate with verified enterprise experience supporting Active Directory, WebLogic LDAP authentication, service accounts, CyberArk-managed credentials, MFA, onboarding/offboarding, approved access changes, and operational validation."
+  },
+  "applied-ai-engineer": {
+    label: "Applied AI / Automation & Integration Engineer",
+    familyId: "applied-ai-automation",
+    modifierIds: ["applied-ai", "integration"],
+    aliases: ["Applied AI Engineer", "AI/ML Engineer", "AI Application Developer", "AI Automation Engineer"],
+    headline: "APPLIED AI / AUTOMATION & INTEGRATION ENGINEER | PYTHON | FASTAPI",
+    summary: "Applied AI engineer building Python/FastAPI applications with pretrained-model inference, semantic retrieval, classical ML classification, structured data workflows, and human-review validation, backed by professional experience validating AI-assisted retail output.",
+    layout: { maxProjectBullets: 2, maxProjectBulletsTotal: 5, maxSkillsTotal: 30 }
+  },
+  "ai-infrastructure-model-operations": {
+    familyId: "ai-infrastructure",
+    modifierIds: ["model-operations"],
+    headline: "AI INFRASTRUCTURE / MODEL OPERATIONS | LINUX | DOCKER | PYTHON",
+    summary: "AI infrastructure candidate focused on local model workflows, model metadata, qualitative hardware-fit analysis, reproducible Linux environments, containerization, validation tooling, and pretrained-model application support without overstating production Kubernetes or model-training ownership.",
+    layout: { maxProjectBullets: 2, maxProjectBulletsTotal: 5, maxSkillsTotal: 30 }
+  },
+  "media-systems-technician": {
+    label: "Media Systems / Digital Media Technology",
+    familyId: "media-systems",
+    modifierIds: ["media", "transcode"],
+    aliases: ["Media Systems Technician", "Digital Media Technician", "Encoding / Transcode Technician", "Post-Production Technician", "Media DevOps Engineer"],
+    headline: "MEDIA SYSTEMS / DIGITAL MEDIA TECHNOLOGY | FFMPEG | TRANSCODING",
+    summary: "Digital-media technology professional with professional encoding/transcoding, localization, media QC, AviSynth/Bash/FFmpeg workflow experience and independent React/TypeScript, FastAPI, FFmpeg, and MediaInfo media-application development."
+  },
+  "electromechanical-equipment-repair-technician": {
+    label: "Technical / Electronics / Field Systems",
+    familyId: "technical-field",
+    modifierIds: ["hardware-repair"],
+    aliases: ["Electromechanical / Equipment Repair Technician", "Electronics Repair Technician", "Hardware Repair Technician", "Field Systems Technician"],
+    headline: "TECHNICAL / ELECTRONICS / FIELD SYSTEMS | DIAGNOSTICS | REPAIR",
+    summary: "Technical systems specialist with hands-on electronics and electromechanical diagnostics, soldering, firmware, calibration, audio equipment, Raspberry Pi/Ubuntu field systems, camera/sensor hardware, and structured troubleshooting experience."
+  }
+};
+
+const durableSelectionOverrides = {
+  "linux-middleware-administrator": {
+    certificationIds: [
+      "2023-08-11_2029-08-11_comptia_cysa-plus-ce",
+      "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation"
+    ]
+  },
+  "qa-automation-engineer": {
+    projectIds: [
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-07-xx_xxxx-xx-xx_metadata-editor",
+      "2026-05-01_2026-06-01_signalstack"
+    ]
+  },
+  "it-support-specialist": {
+    jobIds: [
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician",
+      "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician",
+      "2021-04-19_2022-07-13_paul-morte-technical-services_warehouse-technician"
+    ],
+    projectIds: ["2026-06-xx_xxxx-xx-xx_offline-dev-lab"],
+    certificationIds: [
+      "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation",
+      "2022-01-09_xxxx-xx-xx_comptia_project-plus"
+    ]
+  },
+  "media-systems-technician": {
+    jobIds: [
+      "2017-03-15_2018-11-09_post-haste-digital_encode-transcode-specialist",
+      "2012-02-01_2014-04-14_roundabout-entertainment_encoding-operator"
+    ],
+    projectIds: [
+      "2026-07-xx_xxxx-xx-xx_metadata-editor",
+      "2026-07-xx_xxxx-xx-xx_react-audio-player"
+    ],
+    certificationIds: []
+  },
+  "electromechanical-equipment-repair-technician": {
+    jobIds: [
+      "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician",
+      "2021-04-19_2022-07-13_paul-morte-technical-services_warehouse-technician",
+      "2020-08-13_2021-04-14_mels-sewing-and-fabric-center_sewing-machine-technician"
+    ],
+    projectIds: ["2026-06-xx_xxxx-xx-xx_offline-dev-lab"],
+    certificationIds: []
+  }
+};
+
+const durableRoleIdSet = new Set(durableRoleIds);
+const roleDefinitionsByStableId = Object.fromEntries(roleDefinitions.map((role) => [role.id, role]));
+
+Object.entries(durableRoleOverrides).forEach(([roleId, override]) => {
+  const role = roleDefinitionsByStableId[roleId];
+  if (!role) {
+    throw new Error(`Durable role override references unknown role: ${roleId}`);
+  }
+
+  const mergedAliases = [...new Set([...(role.aliases || []), ...(override.aliases || [])])];
+  Object.assign(role, override, { aliases: mergedAliases });
+  delete role.preferredBulletIdsByItem;
+});
+
+roleDefinitions.forEach((role) => {
+  const baseRoleId = historicalRoleBaseMappings[role.id];
+  role.catalogStatus = durableRoleIdSet.has(role.id) ? "durable" : "historical-preset";
+  role.isPrimary = durableRoleIdSet.has(role.id);
+
+  if (role.catalogStatus === "durable") {
+    role.certificationMinDaysRemaining ??= 60;
+    delete role.preferredBulletIdsByItem;
+    delete role.categoryOrder;
+    delete role.skillGroupLimits;
+
+    if (![
+      "full-stack-software-engineer",
+      "qa-automation-engineer",
+      "applied-ai-engineer",
+      "ai-infrastructure-model-operations"
+    ].includes(role.id)) {
+      delete role.layout;
+    }
+
+    if (durableSelectionOverrides[role.id]) {
+      role.selections = {
+        ...role.selections,
+        ...durableSelectionOverrides[role.id]
+      };
+    }
+    return;
+  }
+
+  if (baseRoleId) {
+    role.baseRoleId = baseRoleId;
+    role.familyId = roleDefinitionsByStableId[baseRoleId]?.familyId || role.familyId;
+  }
+});
+
 const legacyRoleMappings = {
-  "Application Security Analyst": "systems-administrator",
-  "Change Coordinator": "technical-developer-support-engineer",
-  "Cybersecurity Analyst": "systems-administrator",
+  "Application Security Analyst": "cybersecurity-security-quality-engineer",
+  "Change Coordinator": "application-production-support-engineer",
+  "Cybersecurity Analyst": "cybersecurity-security-quality-engineer",
   "Deskside Support Technician": "it-support-specialist",
   "Desktop Support Technician": "it-support-specialist",
   "Electronics / Repair Technician": "electromechanical-equipment-repair-technician",
   "Electronics Repair Technician": "electromechanical-equipment-repair-technician",
   "Hardware Repair Technician": "electromechanical-equipment-repair-technician",
-  "IT Project Coordinator": "technical-developer-support-engineer",
+  "IT Project Coordinator": "application-production-support-engineer",
   "IT Support Specialist": "it-support-specialist",
-  "Help Desk Technician": "it-support-technician",
-  "Incident Response Analyst": "systems-administrator",
+  "Help Desk Technician": "it-support-specialist",
+  "Incident Response Analyst": "cybersecurity-security-quality-engineer",
   "Media Systems / Encoding Engineer": "media-systems-technician",
-  "Penetration Tester": "systems-administrator",
-  "Project Coordinator": "technical-developer-support-engineer",
-  "SOC Analyst": "systems-administrator",
-  "Security Analyst": "systems-administrator",
-  "Security Consultant": "systems-administrator",
-  "Security Engineer": "systems-administrator",
-  "Security Operations Analyst": "systems-administrator",
+  "Penetration Tester": "cybersecurity-security-quality-engineer",
+  "Project Coordinator": "application-production-support-engineer",
+  "SOC Analyst": "cybersecurity-security-quality-engineer",
+  "Security Analyst": "cybersecurity-security-quality-engineer",
+  "Security Consultant": "cybersecurity-security-quality-engineer",
+  "Security Engineer": "cybersecurity-security-quality-engineer",
+  "Security Operations Analyst": "cybersecurity-security-quality-engineer",
   "Service Desk Analyst": "it-support-specialist",
-  "Team Lead": "technical-developer-support-engineer",
-  "Technical Project Coordinator": "technical-developer-support-engineer",
+  "Team Lead": "application-production-support-engineer",
+  "Technical Project Coordinator": "application-production-support-engineer",
   "Technical Support Specialist": "it-support-specialist",
-  "Threat Intelligence Analyst": "systems-administrator",
-  "Vulnerability Analyst": "systems-administrator"
+  "Threat Intelligence Analyst": "cybersecurity-security-quality-engineer",
+  "Vulnerability Analyst": "cybersecurity-security-quality-engineer"
 };
 
-const targetRoles = roleDefinitions.map((role) => role.id);
+const targetRoles = [...durableRoleIds];
 const roleDefinitionsById = Object.fromEntries(roleDefinitions.map((role) => [role.id, role]));
 const roleDefaultSelections = Object.fromEntries(
   roleDefinitions.map((role) => [role.id, role.selections])
@@ -2810,20 +3141,31 @@ function getRoleDefinition(roleIdOrAlias) {
   }
 
   const migratedRoleId = legacyRoleMappings[roleIdOrAlias];
-  return roleDefinitionsById[migratedRoleId] || roleDefinitions[0];
+  if (migratedRoleId && roleDefinitionsById[migratedRoleId]) {
+    return roleDefinitionsById[migratedRoleId];
+  }
+
+  throw new Error(`Unknown target role: ${roleIdOrAlias}`);
+}
+
+function getRoleBaseDefinition(roleIdOrAlias) {
+  const role = getRoleDefinition(roleIdOrAlias);
+  return role.baseRoleId ? getRoleDefinition(role.baseRoleId) : role;
 }
 
 function getRoleMatchLabels(roleIdOrAlias) {
   const role = getRoleDefinition(roleIdOrAlias);
+  const baseRole = role.baseRoleId ? getRoleDefinition(role.baseRoleId) : null;
   const migratedAliases = Object.entries(legacyRoleMappings)
-    .filter(([, roleId]) => roleId === role.id)
+    .filter(([, roleId]) => roleId === role.id || roleId === baseRole?.id)
     .map(([alias]) => alias);
 
-  return [
+  return [...new Set([
     role.id,
     role.label,
     ...role.aliases,
     ...(role.relevanceAliases || []),
+    ...(baseRole ? [baseRole.id, baseRole.label, ...baseRole.aliases] : []),
     ...migratedAliases
-  ];
+  ])];
 }

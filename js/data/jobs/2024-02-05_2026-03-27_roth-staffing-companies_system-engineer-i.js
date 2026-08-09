@@ -872,7 +872,7 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
     },
     {
       id: "roth-system-engineer-i-004",
-      text: "Supported migration and modernization work from Oracle WebLogic-hosted applications to Linux-based Apache Tomcat and AWS-compatible middleware stacks.",
+      text: "Supported application-platform compatibility work during an enterprise AWS migration by validating supported JDK, Tomcat/TomEE, and Java middleware versions for application teams.",
       printText: "Supported WebLogic-to-Tomcat modernization and AWS-compatible middleware stack planning.",
       includeByDefault: true,
       strength: "primary",

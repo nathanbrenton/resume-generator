@@ -132,7 +132,7 @@ const project202607xxCenturySolar = {
     },
     {
       id: "century-solar-ust-infrastructure-001",
-      text: "Developed and tested a private, containerized FastAPI/React/PostgreSQL platform with automated pytest, Vitest, and Playwright coverage for operational workflows.",
+      text: "Built duplicate-safe operational workflows, access controls, audit-oriented records, synthetic test data, and browser-validation scenarios across the private FastAPI/React/PostgreSQL application.",
       printText: "Developed and tested a private containerized FastAPI/React/PostgreSQL platform with automated backend, frontend, and browser coverage.",
       includeByDefault: true,
       strength: "supporting",
@@ -148,7 +148,7 @@ const project202607xxCenturySolar = {
     },
     {
       id: "century-solar-full-stack-001",
-      text: "Developed a containerized React/TypeScript, FastAPI, and PostgreSQL portfolio platform with complex operational workflows and automated pytest, Vitest, and Playwright coverage.",
+      text: "Developed a private, containerized React/TypeScript, FastAPI, and PostgreSQL business-operations platform with complex customer, order, equipment, service, fulfillment, and returns workflows plus automated pytest, Vitest, and Playwright coverage.",
       printText: "Developed a React/TypeScript, FastAPI, and PostgreSQL portfolio platform with complex workflows and automated test coverage.",
       includeByDefault: true,
       strength: "primary",
@@ -198,7 +198,7 @@ const project202607xxCenturySolar = {
     },
     {
       id: "century-solar-001",
-      text: "Built FastAPI and React application workflows for customer accounts, inventory, fulfillment, registered equipment, service requests, and operational administration.",
+      text: "Implemented customer, order, inventory, registered-equipment, warranty, service, fulfillment, returns, and operational-exception workflows in a private active-development portfolio application.",
       printText: "Built FastAPI/React workflows for accounts, inventory, fulfillment, equipment, and service operations.",
       includeByDefault: true,
       strength: "primary",

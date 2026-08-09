@@ -40,6 +40,15 @@ const eduWguMsSoftwareEngineering = {
     "Technical Lead"
   ],
 
+  resumeSkillTags: [
+    { category: "Software Engineering", name: "software engineering" },
+    { category: "Software Engineering", name: "software architecture" },
+    { category: "Testing & Quality", name: "software quality assurance" },
+    { category: "Programming & Scripting", name: "Python" },
+    { category: "AI Applications", name: "AI engineering" },
+    { category: "AI Applications", name: "machine learning" },
+    { category: "Human Review & Validation", name: "human-centered AI" }
+  ],
   skillTags: [
     { category: "Software Engineering", name: "software engineering" },
     { category: "Software Engineering", name: "software development lifecycle" },

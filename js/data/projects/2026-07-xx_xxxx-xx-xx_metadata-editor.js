@@ -235,7 +235,7 @@ const project202607xxMetadataEditor = {
     },
     {
       id: "metadata-editor-full-stack-001",
-      text: "Developed a React/TypeScript metadata application with inheritance, overrides, validation, ingest inspection, staged release workflows, and a FastAPI service layer.",
+      text: "Developed a React/TypeScript and FastAPI media workflow application with release/track metadata inheritance, overrides, validation, guided editing, and staged ingest-to-library workflows.",
       printText: "Developed a React/TypeScript metadata application with release/track inheritance, overrides, validation, ingest inspection, staged workflows, and a FastAPI service layer.",
       includeByDefault: true,
       strength: "primary",
@@ -259,7 +259,7 @@ const project202607xxMetadataEditor = {
     },
     {
       id: "metadata-editor-media-devops-001",
-      text: "Built a React/FastAPI media workflow application integrating FFmpeg and MediaInfo for ingest inspection, metadata management, staged release builds, and playback-derivative generation.",
+      text: "Integrated FFmpeg and MediaInfo into ingest inspection, technical-metadata validation, audio preview/derivative workflows, filesystem operations, staged release builds, and library/publishing preparation.",
       printText: "Built a React/FastAPI media workflow application using FFmpeg and MediaInfo for ingest, metadata, staged builds, and playback derivatives.",
       includeByDefault: true,
       strength: "primary",
@@ -280,7 +280,7 @@ const project202607xxMetadataEditor = {
     },
     {
       id: "metadata-editor-001",
-      text: "Developed release- and track-level metadata workflows with inheritance, overrides, validation, and staged build planning.",
+      text: "Added automated validation and regression coverage around release/track metadata, inheritance, ordering, artwork, ingest/staging behavior, filesystem guards, and publishing-oriented workflow changes.",
       printText: "Developed release- and track-level metadata workflows with inheritance, validation, and staged build planning.",
       includeByDefault: true,
       strength: "primary",

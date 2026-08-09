@@ -58,6 +58,11 @@ for file in "$EDUCATION_DIR"/*.js; do
     failed=1
   fi
 
+  if ! grep -q '^[[:space:]]*resumeSkillTags:[[:space:]]*\[' "$file"; then
+    echo "ERROR: $filename is missing curated resumeSkillTags" >&2
+    failed=1
+  fi
+
 done
 
 if [[ "$failed" -ne 0 ]]; then

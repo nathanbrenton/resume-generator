@@ -40,6 +40,15 @@ const eduWguBsCybersecurityInformationAssurance = {
     "IT Support Specialist"
   ],
 
+  resumeSkillTags: [
+    { category: "Security & Compliance", name: "cybersecurity fundamentals" },
+    { category: "Security & Compliance", name: "risk management" },
+    { category: "Security & Compliance", name: "incident response" },
+    { category: "Security & Compliance", name: "vulnerability management" },
+    { category: "Networking & Security", name: "networking fundamentals" },
+    { category: "Databases & Data", name: "SQL" },
+    { category: "Programming & Scripting", name: "scripting fundamentals" }
+  ],
   skillTags: [
     { category: "Security", name: "cybersecurity fundamentals" },
     { category: "Security", name: "information assurance" },

@@ -118,7 +118,7 @@ const project202607xxResumeGenerator = {
     },
     {
       id: "resume-generator-001",
-      text: "Built a configurable JavaScript application that composes role-specific resumes from structured job, project, education, certification, and skill data.",
+      text: "Built a configurable JavaScript resume application that composes structured career data through durable role families, weighted modifiers, evidence-aware bullet scoring, validation, printable layouts, and role-scoped customization.",
       printText: "Built a JavaScript application that composes role-specific resumes from structured career data and print-ready layouts.",
       includeByDefault: true,
       strength: "primary",

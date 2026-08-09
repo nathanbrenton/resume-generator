@@ -3,6 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
+const fixtures = require("./role-regression-fixtures.js");
 
 const repoRoot = path.resolve(__dirname, "..");
 const indexHtml = fs.readFileSync(path.join(repoRoot, "index.html"), "utf8");
@@ -14,7 +15,11 @@ function assert(condition, message) {
 }
 
 function normalize(value) {
-  return String(value || "").trim().toLowerCase().replace(/\s+/g, " ");
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/[–—]/g, "-")
+    .replace(/\s+/g, " ");
 }
 
 function loadResumeData() {
@@ -22,7 +27,8 @@ function loadResumeData() {
     .map((match) => match[1])
     .filter((relativePath) => {
       return !relativePath.endsWith("render-resume.js") &&
-        !relativePath.endsWith("app.js");
+        !relativePath.endsWith("app.js") &&
+        !relativePath.endsWith("customization.js");
     });
 
   const source = scriptPaths
@@ -36,12 +42,18 @@ function loadResumeData() {
     roleModifierSkillWeights,
     buildResume,
     getRoleDefinition,
+    getRoleBaseDefinition,
     getRoleMatchLabels,
     bulletFocusAreas,
     getBulletFocusAreas
   };`, context);
 
   return context.__roleTest;
+}
+
+function collectAllBullets(careerData) {
+  return [...careerData.jobs, ...careerData.projects]
+    .flatMap((item) => (item.bullets || []).map((bullet) => ({ item, bullet })));
 }
 
 function collectRoleReferences(careerData) {
@@ -69,48 +81,53 @@ function collectRoleReferences(careerData) {
   return references;
 }
 
-function validateWeights(weightMap, validIds, label) {
-  Object.entries(weightMap).forEach(([id, skills]) => {
-    assert(validIds.has(id), `${label} references unknown id: ${id}`);
-    assert(Array.isArray(skills) && skills.length > 0, `${label}.${id} must contain skills`);
-
-    skills.forEach((skill, index) => {
-      assert(typeof skill.category === "string" && skill.category.trim(),
-        `${label}.${id}[${index}] is missing category`);
-      assert(typeof skill.name === "string" && skill.name.trim(),
-        `${label}.${id}[${index}] is missing name`);
-      assert(Number.isFinite(skill.weight) && skill.weight > 0 && skill.weight <= 20,
-        `${label}.${id}[${index}] has malformed weight: ${skill.weight}`);
-    });
-  });
-}
-
-function main() {
-  const {
-    careerData,
-    roleFamilySkillWeights,
-    roleModifierSkillWeights,
-    buildResume,
-    getRoleMatchLabels,
-    bulletFocusAreas,
-    getBulletFocusAreas
-  } = loadResumeData();
-
-  const primaryRoles = careerData.roleDefinitions.filter((role) => role.isPrimary !== false);
-  const specializedRoles = careerData.roleDefinitions.filter((role) => role.isPrimary === false);
-
-  assert(primaryRoles.length === 12,
-    `Expected 12 primary roles, found ${primaryRoles.length}`);
-  assert(careerData.targetRoles.length === careerData.roleDefinitions.length,
-    "targetRoles and roleDefinitions lengths differ");
-
-  const ids = careerData.roleDefinitions.map((role) => role.id);
-  const labels = careerData.roleDefinitions.map((role) => role.label);
-  assert(new Set(ids).size === ids.length, "Duplicate role IDs were found");
-  assert(new Set(labels).size === labels.length, "Duplicate role labels were found");
-
+function validateRoleArchitecture(data) {
+  const { careerData, roleFamilySkillWeights, roleModifierSkillWeights, getRoleDefinition, getRoleBaseDefinition } = data;
+  const durableRoles = careerData.roleDefinitions.filter((role) => role.catalogStatus === "durable");
+  const historicalPresets = careerData.roleDefinitions.filter((role) => role.catalogStatus === "historical-preset");
   const familyIds = new Set(Object.keys(careerData.roleFamilies));
   const modifierIds = new Set(Object.keys(careerData.roleModifiers));
+  const durableIds = new Set(careerData.targetRoles);
+
+  assert(careerData.targetRoles.length === 12,
+    `Expected 12 durable dropdown roles, found ${careerData.targetRoles.length}`);
+  assert(durableRoles.length === 12,
+    `Expected 12 durable role definitions, found ${durableRoles.length}`);
+  assert(historicalPresets.length === 28,
+    `Expected 28 hidden historical presets, found ${historicalPresets.length}`);
+  assert(careerData.roleDefinitions.length === 40,
+    `Expected 40 total preserved role definitions, found ${careerData.roleDefinitions.length}`);
+  assert(Object.keys(careerData.roleFamilies).length === 11,
+    `Expected 11 durable role families, found ${Object.keys(careerData.roleFamilies).length}`);
+  assert(careerData.targetRoles[0] === "full-stack-software-engineer",
+    "Full-Stack Software Engineer must remain the canonical first/default role");
+  assert(new Set(careerData.targetRoles).size === careerData.targetRoles.length,
+    "Durable role IDs contain duplicates");
+
+  careerData.targetRoles.forEach((roleId) => {
+    const role = getRoleDefinition(roleId);
+    assert(role.catalogStatus === "durable", `${roleId} is not marked durable`);
+    assert(role.isPrimary === true, `${roleId} should be primary/visible`);
+    assert(familyIds.has(role.familyId), `${roleId} references unknown family ${role.familyId}`);
+    (role.modifierIds || []).forEach((modifierId) => {
+      assert(modifierIds.has(modifierId), `${roleId} references unknown modifier ${modifierId}`);
+    });
+  });
+
+  historicalPresets.forEach((role) => {
+    assert(role.isPrimary === false, `${role.id} historical preset should be hidden`);
+    assert(role.baseRoleId, `${role.id} is missing baseRoleId`);
+    assert(durableIds.has(role.baseRoleId), `${role.id} baseRoleId is not durable: ${role.baseRoleId}`);
+    assert(getRoleBaseDefinition(role.id).id === role.baseRoleId,
+      `${role.id} does not resolve to base role ${role.baseRoleId}`);
+  });
+
+  Object.entries(careerData.legacyRoleMappings).forEach(([alias, roleId]) => {
+    assert(durableIds.has(roleId), `Legacy alias ${alias} maps to non-durable role ${roleId}`);
+    assert(getRoleDefinition(alias).id === roleId || getRoleBaseDefinition(alias).id === roleId,
+      `Legacy alias ${alias} does not resolve to ${roleId}`);
+  });
+
   const selectionCollections = {
     jobIds: new Set(careerData.jobs.map((item) => item.id)),
     projectIds: new Set(careerData.projects.map((item) => item.id)),
@@ -118,1296 +135,226 @@ function main() {
     certificationIds: new Set(careerData.certifications.map((item) => item.id))
   };
 
-  const ownedAliases = new Map();
-  const validFocusAreas = new Set(Object.keys(bulletFocusAreas));
-
-  Object.entries(careerData.roleFamilies).forEach(([familyId, family]) => {
-    [
-      ["defaultMaxJobBullets", family.defaultMaxJobBullets, 1, 6],
-      ["defaultMaxJobBulletsWhenTwoJobs", family.defaultMaxJobBulletsWhenTwoJobs, 1, 6],
-      ["defaultMaxExperienceBullets", family.defaultMaxExperienceBullets, 2, 20],
-      ["defaultMinSupplementalBulletScore", family.defaultMinSupplementalBulletScore, 0, 500]
-    ].forEach(([field, value, minimum, maximum]) => {
-      assert(Number.isInteger(value) && value >= minimum && value <= maximum,
-        `${familyId}.${field} has malformed value: ${value}`);
-    });
-    assert(family.defaultMaxJobBulletsWhenTwoJobs >= family.defaultMaxJobBullets,
-      `${familyId}.defaultMaxJobBulletsWhenTwoJobs must not be lower than defaultMaxJobBullets`);
-  });
-
   careerData.roleDefinitions.forEach((role) => {
-    assert(/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(role.id), `Malformed role ID: ${role.id}`);
-    assert(familyIds.has(role.familyId), `${role.id} references unknown family: ${role.familyId}`);
-    assert(typeof role.headline === "string" && role.headline.trim(), `${role.id} is missing a headline`);
-    assert(typeof role.summary === "string" && role.summary.trim(), `${role.id} is missing a summary`);
-    assert(Array.isArray(role.aliases), `${role.id} aliases must be an array`);
-    assert(Array.isArray(role.modifierIds), `${role.id} modifierIds must be an array`);
-    assert(role.isPrimary === undefined || typeof role.isPrimary === "boolean",
-      `${role.id}.isPrimary must be a boolean when provided`);
-    assert(role.categoryOrder === undefined ||
-      (Array.isArray(role.categoryOrder) && role.categoryOrder.length > 0),
-    `${role.id}.categoryOrder must be a non-empty array when provided`);
-
-    if (role.categoryOrder) {
-      assert(new Set(role.categoryOrder).size === role.categoryOrder.length,
-        `${role.id}.categoryOrder contains duplicates`);
-      role.categoryOrder.forEach((category, index) => {
-        assert(typeof category === "string" && category.trim(),
-          `${role.id}.categoryOrder[${index}] must be a non-empty string`);
-      });
-    }
-
-    assert(role.skillGroupLimits === undefined ||
-      (typeof role.skillGroupLimits === "object" && !Array.isArray(role.skillGroupLimits)),
-    `${role.id}.skillGroupLimits must be an object when provided`);
-
-    Object.entries(role.skillGroupLimits || {}).forEach(([category, limit]) => {
-      assert(typeof category === "string" && category.trim(),
-        `${role.id}.skillGroupLimits contains an empty category`);
-      assert(Number.isInteger(limit) && limit > 0 && limit <= 10,
-        `${role.id}.skillGroupLimits.${category} has malformed limit: ${limit}`);
+    assert(role.selections && typeof role.selections === "object", `${role.id} is missing selections`);
+    Object.entries(selectionCollections).forEach(([key, ids]) => {
+      const selectedIds = role.selections[key];
+      assert(Array.isArray(selectedIds), `${role.id}.selections.${key} must be an array`);
+      assert(new Set(selectedIds).size === selectedIds.length,
+        `${role.id}.selections.${key} contains duplicates`);
+      selectedIds.forEach((id) => assert(ids.has(id), `${role.id}.selections.${key} references unknown ${id}`));
     });
-
-    assert(role.layout === undefined ||
-      (typeof role.layout === "object" && !Array.isArray(role.layout)),
-    `${role.id}.layout must be an object when provided`);
-
-    [
-      ["maxJobBullets", 1, 6],
-      ["maxJobBulletsWhenTwoJobs", 1, 6],
-      ["maxExperienceBullets", 2, 20],
-      ["minSupplementalBulletScore", 0, 500]
-    ].forEach(([field, minimum, maximum]) => {
-      const value = role.layout?.[field];
-      assert(value === undefined ||
-        (Number.isInteger(value) && value >= minimum && value <= maximum),
-      `${role.id}.layout.${field} has malformed value: ${value}`);
-    });
-
-    if (role.layout?.maxJobBulletsWhenTwoJobs !== undefined) {
-      const baseline = role.layout.maxJobBullets ??
-        careerData.roleFamilies[role.familyId].defaultMaxJobBullets;
-      assert(role.layout.maxJobBulletsWhenTwoJobs >= baseline,
-        `${role.id}.layout.maxJobBulletsWhenTwoJobs must not be lower than its base limit`);
-    }
-
-    assert(role.preferredFocusAreas === undefined || Array.isArray(role.preferredFocusAreas),
-      `${role.id}.preferredFocusAreas must be an array when provided`);
-    assert(new Set(role.preferredFocusAreas || []).size === (role.preferredFocusAreas || []).length,
-      `${role.id}.preferredFocusAreas contains duplicates`);
-    (role.preferredFocusAreas || []).forEach((focusArea) => {
-      assert(validFocusAreas.has(focusArea),
-        `${role.id}.preferredFocusAreas references unknown focus area: ${focusArea}`);
-    });
-
-    const selectableItems = new Map([
-      ...careerData.jobs,
-      ...careerData.projects
-    ].map((item) => [item.id, item]));
-
-    Object.entries(role.preferredBulletIdsByItem || {}).forEach(([itemId, preferredBulletIds]) => {
-      const item = selectableItems.get(itemId);
-      assert(item, `${role.id}.preferredBulletIdsByItem references missing item: ${itemId}`);
-      assert(Array.isArray(preferredBulletIds) && preferredBulletIds.length > 0,
-        `${role.id}.preferredBulletIdsByItem.${itemId} must be a non-empty array`);
-      assert(new Set(preferredBulletIds).size === preferredBulletIds.length,
-        `${role.id}.preferredBulletIdsByItem.${itemId} contains duplicates`);
-
-      const validBulletIds = new Set((item.bullets || []).map((bullet) => bullet.id));
-      preferredBulletIds.forEach((bulletId) => {
-        assert(validBulletIds.has(bulletId),
-          `${role.id}.preferredBulletIdsByItem.${itemId} references missing bullet: ${bulletId}`);
-      });
-    });
-
-    role.modifierIds.forEach((modifierId) => {
-      assert(modifierIds.has(modifierId), `${role.id} references unknown modifier: ${modifierId}`);
-    });
-
-    [role.label, ...role.aliases].forEach((alias) => {
-      const normalizedAlias = normalize(alias);
-      const existingOwner = ownedAliases.get(normalizedAlias);
-      assert(!existingOwner || existingOwner === role.id,
-        `Role alias "${alias}" is assigned to both ${existingOwner} and ${role.id}`);
-      ownedAliases.set(normalizedAlias, role.id);
-    });
-
-    const selections = careerData.roleDefaultSelections[role.id];
-    assert(selections, `${role.id} is missing default selections`);
-
-    Object.entries(selectionCollections).forEach(([selectionKey, validIds]) => {
-      assert(Array.isArray(selections[selectionKey]),
-        `${role.id}.${selectionKey} must be an explicit array`);
-      assert(new Set(selections[selectionKey]).size === selections[selectionKey].length,
-        `${role.id}.${selectionKey} contains duplicates`);
-
-      selections[selectionKey].forEach((selectedId) => {
-        assert(validIds.has(selectedId), `${role.id}.${selectionKey} references missing ID: ${selectedId}`);
-      });
-    });
-
-    assert(Array.isArray(careerData.roleSkillPriorities[role.id]) &&
-      careerData.roleSkillPriorities[role.id].length > 0,
-    `${role.id} is missing generated skill priorities`);
   });
 
-  validateWeights(roleFamilySkillWeights, familyIds, "roleFamilySkillWeights");
-  validateWeights(roleModifierSkillWeights, modifierIds, "roleModifierSkillWeights");
+  Object.entries(roleFamilySkillWeights).forEach(([familyId, skills]) => {
+    assert(familyIds.has(familyId), `Family weights reference unknown family ${familyId}`);
+    assert(skills.length <= 18, `${familyId} family weights are too large (${skills.length})`);
+    skills.forEach((skill) => {
+      assert(skill.weight > 0 && skill.weight <= 10,
+        `${familyId}.${skill.name} family weight exceeds normalized range: ${skill.weight}`);
+    });
+  });
 
-  const knownRoleReferences = new Set([
-    ...careerData.roleDefinitions.flatMap((role) => getRoleMatchLabels(role.id)),
-    ...Object.keys(careerData.legacyRoleMappings)
-  ]);
+  Object.entries(roleModifierSkillWeights).forEach(([modifierId, skills]) => {
+    assert(modifierIds.has(modifierId), `Modifier weights reference unknown modifier ${modifierId}`);
+    assert(skills.length <= 6,
+      `${modifierId} modifier has ${skills.length} skills; modifiers must remain lightweight`);
+    skills.forEach((skill) => {
+      assert(skill.weight > 0 && skill.weight <= 4,
+        `${modifierId}.${skill.name} modifier weight exceeds normalized range: ${skill.weight}`);
+    });
+  });
+
+  let unknownRoleThrew = false;
+  try {
+    getRoleDefinition("definitely-not-a-real-role");
+  } catch (error) {
+    unknownRoleThrew = /Unknown target role/.test(error.message);
+  }
+  assert(unknownRoleThrew, "Unknown role IDs must fail instead of silently selecting the first role");
+}
+
+function validateBulletCatalog(data) {
+  const { careerData, getRoleDefinition, getBulletFocusAreas } = data;
+  const bulletEntries = collectAllBullets(careerData);
+  const canonical = bulletEntries.filter(({ bullet }) => bullet.catalogStatus === "canonical");
+  const historical = bulletEntries.filter(({ bullet }) => bullet.catalogStatus === "historical-targeted");
+
+  assert(bulletEntries.length === 270, `Expected 270 preserved bullet records, found ${bulletEntries.length}`);
+  assert(canonical.length === 111, `Expected 111 canonical bullets, found ${canonical.length}`);
+  assert(historical.length === 159, `Expected 159 historical targeting bullets, found ${historical.length}`);
+
+  const canonicalText = new Map();
+  canonical.forEach(({ item, bullet }) => {
+    assert(bullet.id && bullet.text, `${item.id} contains malformed canonical bullet`);
+    const textKey = normalize(bullet.printText || bullet.text);
+    const existing = canonicalText.get(textKey);
+    assert(!existing,
+      `Canonical duplicate bullet text: ${existing || ""} and ${item.id}.${bullet.id}`);
+    canonicalText.set(textKey, `${item.id}.${bullet.id}`);
+  });
 
   collectRoleReferences(careerData).forEach(({ role, source }) => {
-    assert(knownRoleReferences.has(role), `${source} references unknown role: ${role}`);
+    try {
+      getRoleDefinition(role);
+    } catch (error) {
+      throw new Error(`${source} references unknown role ${role}`);
+    }
   });
 
-  const bulletIds = [];
-  const duplicateText = new Map();
+  ["email", "daily", "maintained", "mainboards"].forEach((text) => {
+    assert(!getBulletFocusAreas({ text, skillTags: [] }).includes("ai-ml"),
+      `Short AI focus matching produced a false positive for: ${text}`);
+  });
+  assert(getBulletFocusAreas({ text: "AI output validation", skillTags: [] }).includes("ai-ml"),
+    "AI token matching should still identify explicit AI evidence");
 
-  [...careerData.jobs, ...careerData.projects].forEach((item) => {
-    (item.bullets || []).forEach((bullet) => {
-      bulletIds.push(bullet.id);
-      const textKey = normalize(bullet.printText || bullet.text);
-      const sources = duplicateText.get(textKey) || [];
-      sources.push(`${item.id}.${bullet.id}`);
-      duplicateText.set(textKey, sources);
+  const roth = careerData.jobs.find((item) => item.id ===
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i");
+  const rothText = (roth.bullets || []).map((bullet) => bullet.text).join(" ");
+  const rothSkills = (roth.bullets || []).flatMap((bullet) => bullet.skillTags || []);
+  assert(!/\bpython\b/i.test(rothText), "Roth professional bullets must not claim Python experience");
+  assert(!rothSkills.some((skill) => /\bpython\b/i.test(skill.name)),
+    "Roth professional skill tags must not claim Python experience");
 
-      assert(bullet.focusAreas === undefined || Array.isArray(bullet.focusAreas),
-        `${item.id}.${bullet.id}.focusAreas must be an array when provided`);
-      assert(new Set(bullet.focusAreas || []).size === (bullet.focusAreas || []).length,
-        `${item.id}.${bullet.id}.focusAreas contains duplicates`);
-      (bullet.focusAreas || []).forEach((focusArea) => {
-        assert(validFocusAreas.has(focusArea),
-          `${item.id}.${bullet.id}.focusAreas references unknown focus area: ${focusArea}`);
-      });
-
-      assert(bullet.targetRoleFamilies === undefined || Array.isArray(bullet.targetRoleFamilies),
-        `${item.id}.${bullet.id}.targetRoleFamilies must be an array when provided`);
-      assert(new Set(bullet.targetRoleFamilies || []).size ===
-        (bullet.targetRoleFamilies || []).length,
-      `${item.id}.${bullet.id}.targetRoleFamilies contains duplicates`);
-      (bullet.targetRoleFamilies || []).forEach((familyId) => {
-        assert(familyIds.has(familyId),
-          `${item.id}.${bullet.id}.targetRoleFamilies references unknown family: ${familyId}`);
-      });
-
-      assert(getBulletFocusAreas(bullet).length > 0,
-        `${item.id}.${bullet.id} must resolve to at least one focus area`);
-    });
+  careerData.jobs.forEach((job) => {
+    const text = (job.bullets || []).map((bullet) => bullet.text).join(" ");
+    const skillText = (job.bullets || []).flatMap((bullet) => bullet.skillTags || [])
+      .map((skill) => skill.name).join(" ");
+    assert(!/\bdocker\b|containeri[sz]/i.test(`${text} ${skillText}`),
+      `${job.id} must not attribute Docker/containerization to professional experience`);
   });
 
-  assert(new Set(bulletIds).size === bulletIds.length, "Duplicate bullet IDs were found");
+  const rothAws = roth.bullets.find((bullet) => bullet.id === "roth-system-engineer-i-004");
+  assert(/during an enterprise AWS migration/i.test(rothAws.text) && /validating supported JDK/i.test(rothAws.text),
+    "Roth AWS-adjacent bullet must remain scoped to middleware compatibility support");
+  assert(!/owned|architected|provisioned AWS|terraform|cdk/i.test(rothAws.text),
+    "Roth AWS-adjacent bullet overstates infrastructure ownership");
 
-  const fixedDate = new Date(2026, 6, 24, 12, 0, 0);
+  const allClaimText = bulletEntries.map(({ bullet }) => bullet.text).join("\n");
+  const prohibitedClaims = [
+    /professional Go development/i,
+    /\bC#\b/i,
+    /VB\.NET/i,
+    /production Kubernetes/i,
+    /Terraform ownership/i,
+    /AWS CDK/i,
+    /Selenium/i,
+    /BrowserStack/i,
+    /Cypress/i,
+    /\bJest\b/i,
+    /fine[- ]tun(?:e|ing)/i,
+    /\bCUDA\b/i,
+    /\bOpenCV\b/i,
+    /\bSnowflake\b/i,
+    /\bDatabricks\b/i,
+    /\bGraphQL\b/i,
+    /embedded systems development/i
+  ];
+  prohibitedClaims.forEach((pattern) => {
+    assert(!pattern.test(allClaimText), `Unsupported claim pattern found in bullet catalog: ${pattern}`);
+  });
 
-  careerData.roleDefinitions.forEach((role) => {
-    const selections = careerData.roleDefaultSelections[role.id];
-    const resume = buildResume({
-      targetRole: role.id,
-      selectedJobIds: selections.jobIds,
-      selectedProjectIds: selections.projectIds,
-      selectedEducationIds: selections.educationIds,
-      selectedCertificationIds: selections.certificationIds,
-      currentDate: fixedDate
-    });
+  const century = careerData.projects.find((item) => item.id === "2026-07-xx_xxxx-xx-xx_century-solar");
+  const centuryCanonicalText = (century.bullets || [])
+    .filter((bullet) => bullet.catalogStatus === "canonical")
+    .map((bullet) => bullet.text).join(" ");
+  assert(/private/i.test(centuryCanonicalText), "Century Solar canonical bullets must retain private-project framing");
+  assert(!/deployed commercial production|production SaaS customers/i.test(centuryCanonicalText),
+    "Century Solar canonical bullets must not imply deployed commercial production use");
 
-    assert(resume.targetRole === role.id, `${role.id} generated the wrong target role`);
-    assert(resume.targetRoleLabel === role.label, `${role.id} generated the wrong label`);
+  const huggingFace = careerData.projects.find((item) => item.id ===
+    "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos");
+  assert((huggingFace.bullets || []).filter((bullet) => bullet.catalogStatus === "canonical")
+    .every((bullet) => !/fine[- ]tun/i.test(bullet.text)),
+  "Hugging Face canonical bullets must not imply fine-tuning");
+}
 
+function validateGeneratedResumes(data) {
+  const { careerData, buildResume } = data;
+  const validationDate = new Date(2026, 7, 8, 12, 0, 0);
+
+  fixtures.forEach((fixture) => {
+    const role = careerData.roleDefinitions.find((candidate) => candidate.id === fixture.id);
+    const family = careerData.roleFamilies[role.familyId];
+    const layout = role.layout || {};
+    const resume = buildResume({ targetRole: fixture.id, currentDate: validationDate });
     const visibleSkills = resume.skills.flatMap((group) => group.skills);
-    const normalizedSkills = visibleSkills.map(normalize);
-    assert(new Set(normalizedSkills).size === normalizedSkills.length,
-      `${role.id} generated duplicate visible skills`);
-    assert(normalizedSkills.filter((skill) => skill === "python").length === 1,
-      `${role.id} must display Python exactly once`);
-    assert(normalizedSkills.filter((skill) => skill === "docker").length === 1,
-      `${role.id} must display Docker exactly once`);
+    const visibleSkillCount = visibleSkills.length;
+    const experienceBulletCount = resume.jobs.reduce((total, job) => total + job.selectedBullets.length, 0);
+    const projectBulletCount = resume.projects.reduce((total, project) => total + project.selectedBullets.length, 0);
+    const maxExperienceBullets = layout.maxExperienceBullets ?? family.defaultMaxExperienceBullets;
+    const maxProjectBulletsTotal = layout.maxProjectBulletsTotal ?? family.defaultMaxProjectBulletsTotal;
+    const maxSkillsTotal = layout.maxSkillsTotal ?? family.defaultMaxSkillsTotal;
 
-    resume.jobs.forEach((job) => {
-      assert(job.selectedBullets.length >= Math.min(2, job.bullets.length),
-        `${role.id} generated too few bullets for ${job.id}`);
+    assert(resume.roleFamily === fixture.expectedFamily,
+      `${fixture.id} generated family ${resume.roleFamily}; expected ${fixture.expectedFamily}`);
+    assert(experienceBulletCount >= fixture.minExperienceBullets,
+      `${fixture.id} generated too little professional evidence (${experienceBulletCount})`);
+    assert(projectBulletCount >= fixture.minProjectBullets,
+      `${fixture.id} generated too little project evidence (${projectBulletCount})`);
+    assert(experienceBulletCount <= maxExperienceBullets,
+      `${fixture.id} exceeded experience bullet budget (${experienceBulletCount}/${maxExperienceBullets})`);
+    assert(projectBulletCount <= maxProjectBulletsTotal,
+      `${fixture.id} exceeded project bullet budget (${projectBulletCount}/${maxProjectBulletsTotal})`);
+    assert(visibleSkillCount <= maxSkillsTotal,
+      `${fixture.id} exceeded visible skill budget (${visibleSkillCount}/${maxSkillsTotal})`);
+    assert(resume.jobs.every((job) => job.selectedBullets.length > 0),
+      `${fixture.id} rendered an empty professional entry`);
+    assert(resume.projects.every((project) => project.selectedBullets.length > 0),
+      `${fixture.id} rendered an empty project entry`);
+
+    fixture.requiredSkills.forEach((skill) => {
+      assert(visibleSkills.includes(skill), `${fixture.id} is missing expected skill: ${skill}`);
+    });
+    (fixture.requiredJobIds || []).forEach((id) => {
+      assert(resume.jobs.some((job) => job.id === id), `${fixture.id} is missing expected job ${id}`);
+    });
+    (fixture.requiredProjectIds || []).forEach((id) => {
+      assert(resume.projects.some((project) => project.id === id), `${fixture.id} is missing expected project ${id}`);
     });
 
-    resume.certifications.forEach((certification) => {
-      assert(certification.certificationStatus !== "expired",
-        `${role.id} selected expired certification ${certification.id} by default`);
+    const pythonLocations = resume.skills.filter((group) => group.skills.includes("Python"));
+    const dockerLocations = resume.skills.filter((group) => group.skills.includes("Docker"));
+    assert(pythonLocations.length === 1, `${fixture.id} must display Python exactly once`);
+    assert(dockerLocations.length === 1, `${fixture.id} must display Docker exactly once`);
+    assert(pythonLocations[0].category === "Programming & Scripting",
+      `${fixture.id} placed Python in ${pythonLocations[0].category}`);
+    assert(dockerLocations[0].category === "DevOps & Tooling",
+      `${fixture.id} placed Docker in ${dockerLocations[0].category}`);
+
+    [...resume.jobs, ...resume.projects].forEach((item) => {
+      item.selectedBullets.forEach((bullet) => {
+        assert(bullet.catalogStatus === "canonical",
+          `${fixture.id} selected historical bullet ${bullet.id}`);
+      });
     });
+
+    assert(resume.certifications.every((certification) => certification.certificationStatus !== "expired"),
+      `${fixture.id} default-selected an expired certification`);
+    assert(!resume.certifications.some((certification) => certification.id ===
+      "2023-08-28_2026-08-28_comptia_pentest-plus-ce"),
+    `${fixture.id} default-selected PenTest+ inside the evergreen 60-day horizon`);
   });
 
-  const twoJobRoleId = "technology-engineer-software-qa-cybersecurity";
-  const twoJobSelections = careerData.roleDefaultSelections[twoJobRoleId];
-  const twoJobResume = buildResume({
-    targetRole: twoJobRoleId,
-    selectedJobIds: twoJobSelections.jobIds,
-    selectedProjectIds: twoJobSelections.projectIds,
-    selectedEducationIds: twoJobSelections.educationIds,
-    selectedCertificationIds: twoJobSelections.certificationIds,
-    currentDate: fixedDate
-  });
+  const fullStack = buildResume({ targetRole: "full-stack-software-engineer", currentDate: validationDate });
+  assert(fullStack.headline === "FULL-STACK SOFTWARE ENGINEER | PYTHON, REACT & TYPESCRIPT | LINUX",
+    "Canonical Full-Stack headline changed unexpectedly");
+}
 
-  assert(twoJobResume.jobs.length === 2,
-    `${twoJobRoleId} must remain a two-job dynamic-bullet test fixture`);
-  twoJobResume.jobs.forEach((job) => {
-    assert(job.selectedBullets.length === 3,
-      `${twoJobRoleId} must select three bullets for ${job.id}`);
-    assert(new Set(job.selectedBullets.map((bullet) => normalize(bullet.printText || bullet.text))).size ===
-      job.selectedBullets.length,
-    `${twoJobRoleId}.${job.id} generated duplicate bullet text`);
-    assert(new Set(job.selectedBullets.flatMap((bullet) => getBulletFocusAreas(bullet))).size >= 3,
-      `${twoJobRoleId}.${job.id} must cover at least three focus areas`);
-  });
-  assert(twoJobResume.jobs.reduce((count, job) => count + job.selectedBullets.length, 0) === 6,
-    `${twoJobRoleId} must respect the six-bullet experience budget`);
+function main() {
+  const data = loadResumeData();
 
-  const helpDeskRoleId = "it-support-technician";
-  const helpDeskSelections = careerData.roleDefaultSelections[helpDeskRoleId];
-  const helpDeskResume = buildResume({
-    targetRole: helpDeskRoleId,
-    selectedJobIds: helpDeskSelections.jobIds,
-    selectedProjectIds: helpDeskSelections.projectIds,
-    selectedEducationIds: helpDeskSelections.educationIds,
-    selectedCertificationIds: helpDeskSelections.certificationIds,
-    currentDate: fixedDate
-  });
-  const helpDeskSkillNames = helpDeskResume.skills
-    .flatMap((group) => group.skills)
-    .map(normalize);
-  const helpDeskJobIds = helpDeskResume.jobs.map((job) => job.id);
-  const helpDeskRandstad = helpDeskResume.jobs.find((job) => {
-    return job.id === "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician";
-  });
-  const helpDeskPaulMorte = helpDeskResume.jobs.find((job) => {
-    return job.id === "2021-04-19_2022-07-13_paul-morte-technical-services_warehouse-technician";
-  });
-
-  assert(helpDeskJobIds.join("|") === [
-    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
-    "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician",
-    "2021-04-19_2022-07-13_paul-morte-technical-services_warehouse-technician"
-  ].join("|"), `${helpDeskRoleId} generated unexpected work-history selections`);
-  const helpDeskRoth = helpDeskResume.jobs.find((job) => {
-    return job.id === "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i";
-  });
-
-  [helpDeskRoth, helpDeskRandstad, helpDeskPaulMorte].forEach((job) => {
-    assert(job?.selectedBullets.length === 4,
-      `${helpDeskRoleId} must select four bullets for ${job?.id || "each work-history entry"}`);
-  });
-  assert(helpDeskRandstad?.selectedBullets.some((bullet) => {
-    return bullet.id === "randstad-jr-deskside-technician-it-support-technician-001";
-  }), `${helpDeskRoleId} must select the onboarding/offboarding bullet`);
-  assert(helpDeskRandstad?.selectedBullets.some((bullet) => {
-    return bullet.id === "randstad-jr-deskside-technician-005";
-  }), `${helpDeskRoleId} must select front-facing user-support evidence`);
-  assert(helpDeskPaulMorte?.selectedBullets.some((bullet) => {
-    return bullet.id === "paul-morte-warehouse-technician-002";
-  }), `${helpDeskRoleId} must select verified shipment-workflow evidence`);
-  assert(helpDeskPaulMorte?.selectedBullets.some((bullet) => {
-    return bullet.id === "paul-morte-warehouse-technician-004";
-  }), `${helpDeskRoleId} must select shipment-coordination evidence`);
-  [
-    "macos",
-    "windows",
-    "device provisioning",
-    "onboarding",
-    "shipping coordination",
-    "active directory",
-    "sccm/mecm",
-    "jamf"
-  ].forEach((skill) => {
-    assert(helpDeskSkillNames.includes(skill), `${helpDeskRoleId} must display ${skill}`);
-  });
-  assert(helpDeskResume.skills.some((group) => group.category === "Identity & Access"),
-    `${helpDeskRoleId} must display the Identity & Access skill group`);
-  ["chromeos", "fedex", "zendesk", "asset panda", "jumpcloud", "google workspace"].forEach((skill) => {
-    assert(!helpDeskSkillNames.includes(skill), `${helpDeskRoleId} must not claim unsupported skill ${skill}`);
-  });
-  assert(helpDeskResume.projects.length === 0,
-    `${helpDeskRoleId} should not select unrelated projects by default`);
-
-  const legalSupportRoleId = "it-support-specialist-legal-services";
-  const legalSupportSelections = careerData.roleDefaultSelections[legalSupportRoleId];
-  const legalSupportResume = buildResume({
-    targetRole: legalSupportRoleId,
-    selectedJobIds: legalSupportSelections.jobIds,
-    selectedProjectIds: legalSupportSelections.projectIds,
-    selectedEducationIds: legalSupportSelections.educationIds,
-    selectedCertificationIds: legalSupportSelections.certificationIds,
-    currentDate: fixedDate
-  });
-  const legalSupportSkillNames = legalSupportResume.skills
-    .flatMap((group) => group.skills)
-    .map(normalize);
-  const legalSupportRoth = legalSupportResume.jobs.find((job) => {
-    return job.id === "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i";
-  });
-  const legalSupportRandstad = legalSupportResume.jobs.find((job) => {
-    return job.id === "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician";
-  });
-  const legalSupportAwm = legalSupportResume.jobs.find((job) => {
-    return job.id === "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician";
-  });
-
-  assert(legalSupportResume.jobs.map((job) => job.id).join("|") === [
-    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
-    "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician",
-    "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician"
-  ].join("|"), `${legalSupportRoleId} generated unexpected work-history selections`);
-  [legalSupportRoth, legalSupportRandstad, legalSupportAwm].forEach((job) => {
-    assert(job?.selectedBullets.length === 3,
-      `${legalSupportRoleId} must select three bullets for ${job?.id || "each work-history entry"}`);
-  });
-  assert(legalSupportRoth?.selectedBullets.some((bullet) => {
-    return bullet.id === "roth-system-engineer-i-blizzard-reliability-004";
-  }), `${legalSupportRoleId} must select patching and disaster-recovery evidence`);
-  assert(legalSupportRandstad?.selectedBullets.some((bullet) => {
-    return bullet.id === "randstad-jr-deskside-technician-010";
-  }), `${legalSupportRoleId} must select printer and peripheral support evidence`);
-  assert(legalSupportRandstad?.selectedBullets.some((bullet) => {
-    return bullet.id === "randstad-jr-deskside-technician-007";
-  }), `${legalSupportRoleId} must select laptop upgrade and repair evidence`);
-  assert(legalSupportAwm?.selectedBullets.some((bullet) => {
-    return bullet.id === "adroit-smartshelf-jr-it-support-005";
-  }), `${legalSupportRoleId} must select network-aware hardware troubleshooting evidence`);
-  [
-    "windows",
-    "microsoft office 365",
-    "active directory",
-    "sccm/mecm",
-    "printer and peripheral support",
-    "hardware troubleshooting",
-    "software troubleshooting",
-    "patching",
-    "disaster recovery exercises",
-    "servicenow",
-    "customer service",
-    "technical documentation",
-    "python",
-    "docker"
-  ].forEach((skill) => {
-    assert(legalSupportSkillNames.includes(skill), `${legalSupportRoleId} must display ${skill}`);
-  });
-  assert(legalSupportResume.skills.map((group) => group.category).join("|") === [
-    "Endpoint & Hardware Support",
-    "Windows & Microsoft Office",
-    "Systems, Identity & Networking",
-    "Maintenance, Updates & Recovery",
-    "Support Operations",
-    "Documentation & Customer Service",
-    "Programming & Scripting",
-    "DevOps & Tooling"
-  ].join("|"), `${legalSupportRoleId} generated an unexpected skill-category order`);
-  [
-    "laserjet certification",
-    "antivirus administration",
-    "backup monitoring",
-    "windows server administration"
-  ].forEach((skill) => {
-    assert(!legalSupportSkillNames.includes(skill),
-      `${legalSupportRoleId} must not claim unsupported skill ${skill}`);
-  });
-  assert(legalSupportResume.projects.length === 0,
-    `${legalSupportRoleId} should not select unrelated projects by default`);
-  assert(legalSupportResume.certifications.map((entry) => entry.id).join("|") === [
-    "2023-08-11_2029-08-11_comptia_cysa-plus-ce",
-    "2022-01-09_xxxx-xx-xx_comptia_project-plus"
-  ].join("|"), `${legalSupportRoleId} generated unexpected certification selections`);
-
-  const fullStackRoleId = "full-stack-software-engineer";
-  const fullStackSelections = careerData.roleDefaultSelections[fullStackRoleId];
-  const fullStackResume = buildResume({
-    targetRole: fullStackRoleId,
-    selectedJobIds: fullStackSelections.jobIds,
-    selectedProjectIds: fullStackSelections.projectIds,
-    selectedEducationIds: fullStackSelections.educationIds,
-    selectedCertificationIds: fullStackSelections.certificationIds,
-    currentDate: fixedDate
-  });
-  const fullStackSkillNames = fullStackResume.skills
-    .flatMap((group) => group.skills)
-    .map(normalize);
-  const fullStackRoth = fullStackResume.jobs.find((job) => {
-    return job.id === "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i";
-  });
-  const fullStackRandstad = fullStackResume.jobs.find((job) => {
-    return job.id === "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician";
-  });
-  const fullStackCenturySolar = fullStackResume.projects.find((project) => {
-    return project.id === "2026-07-xx_xxxx-xx-xx_century-solar";
-  });
-  const fullStackMetadataEditor = fullStackResume.projects.find((project) => {
-    return project.id === "2026-07-xx_xxxx-xx-xx_metadata-editor";
-  });
-  const fullStackSignalStack = fullStackResume.projects.find((project) => {
-    return project.id === "2026-05-01_2026-06-01_signalstack";
-  });
-  const rothSource = careerData.jobs.find((job) => {
-    return job.id === "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i";
-  });
-
-  assert(fullStackResume.headline ===
-    "Full-Stack Software Engineer | Python, React & TypeScript | Linux",
-    `${fullStackRoleId} generated an unexpected headline`);
-  assert(fullStackResume.jobs.map((job) => job.id).join("|") === [
-    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
-    "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
-  ].join("|"), `${fullStackRoleId} generated unexpected work-history selections`);
-  assert(fullStackRoth?.selectedBullets.map((bullet) => bullet.id).join("|") === [
-    "roth-system-engineer-i-full-stack-001",
-    "roth-system-engineer-i-010",
-    "roth-system-engineer-i-012"
-  ].join("|"), `${fullStackRoleId} must select deployment/automation/reliability Roth evidence`);
-  assert(fullStackRandstad?.selectedBullets.map((bullet) => bullet.id).join("|") === [
-    "randstad-jr-deskside-technician-006",
-    "randstad-jr-deskside-technician-full-stack-001"
-  ].join("|"), `${fullStackRoleId} must select PowerShell and enterprise-support Randstad evidence`);
-  assert(fullStackResume.projects.map((project) => project.id).join("|") === [
-    "2026-07-xx_xxxx-xx-xx_century-solar",
-    "2026-07-xx_xxxx-xx-xx_metadata-editor",
-    "2026-05-01_2026-06-01_signalstack"
-  ].join("|"), `${fullStackRoleId} generated unexpected project selections`);
-  assert(fullStackCenturySolar?.selectedBullets.map((bullet) => bullet.id).join("|") === [
-    "century-solar-full-stack-001",
-    "century-solar-001"
-  ].join("|"), `${fullStackRoleId} must select Century Solar stack and workflow evidence`);
-  assert(fullStackCenturySolar?.selectedBullets[0]?.printText.includes("portfolio platform"),
-    `${fullStackRoleId} must keep Century Solar explicitly portfolio/non-production`);
-  assert(fullStackMetadataEditor?.selectedBullets.map((bullet) => bullet.id).join("|") === [
-    "metadata-editor-full-stack-001",
-    "metadata-editor-trl11-video-systems-001"
-  ].join("|"), `${fullStackRoleId} must select Metadata Editor application and media-processing evidence`);
-  assert(fullStackSignalStack?.selectedBullets.map((bullet) => bullet.id).join("|") === [
-    "signalstack-full-stack-001",
-    "signalstack-007"
-  ].join("|"), `${fullStackRoleId} must select SignalStack platform and API evidence`);
-  ["python", "docker", "react", "typescript", "fastapi", "postgresql", "playwright"].forEach((skill) => {
-    assert(fullStackSkillNames.includes(skill),
-      `${fullStackRoleId} must display ${skill}`);
-  });
-  assert(!fullStackRoth?.selectedBullets.some((bullet) => normalize(bullet.printText).includes("python")),
-    `${fullStackRoleId} must not attribute Python to Roth professional experience`);
-  assert(!rothSource?.skillTags.some((skill) => normalize(skill.name) === "python"),
-    "Roth professional skill tags must not claim unverified Python experience");
-  assert(!rothSource?.bullets.some((bullet) => {
-    return normalize(bullet.text).includes("python") ||
-      normalize(bullet.printText).includes("python") ||
-      (bullet.skillTags || []).some((skill) => normalize(skill.name) === "python");
-  }), "Roth professional bullets must not claim unverified Python experience");
-  assert(fullStackResume.certifications.map((entry) => entry.id).join("|") === [
-    "2023-08-11_2029-08-11_comptia_cysa-plus-ce",
-    "2022-01-09_xxxx-xx-xx_comptia_project-plus"
-  ].join("|"), `${fullStackRoleId} generated unexpected certification selections`);
-
-  const aiQualityRoleId = "ai-quality-engineer-i";
-  const aiQualitySelections = careerData.roleDefaultSelections[aiQualityRoleId];
-  const aiQualityResume = buildResume({
-    targetRole: aiQualityRoleId,
-    selectedJobIds: aiQualitySelections.jobIds,
-    selectedProjectIds: aiQualitySelections.projectIds,
-    selectedEducationIds: aiQualitySelections.educationIds,
-    selectedCertificationIds: aiQualitySelections.certificationIds,
-    currentDate: fixedDate
-  });
-  const aiQualitySkillNames = aiQualityResume.skills
-    .flatMap((group) => group.skills)
-    .map(normalize);
-  const aiQualityRoth = aiQualityResume.jobs.find((job) => {
-    return job.id === "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i";
-  });
-  const aiQualityAwm = aiQualityResume.jobs.find((job) => {
-    return job.id === "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician";
-  });
-  const aiQualityHuggingFace = aiQualityResume.projects.find((project) => {
-    return project.id === "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos";
-  });
-  const aiQualitySignalStack = aiQualityResume.projects.find((project) => {
-    return project.id === "2026-05-01_2026-06-01_signalstack";
-  });
-  const aiQualityMetadataEditor = aiQualityResume.projects.find((project) => {
-    return project.id === "2026-07-xx_xxxx-xx-xx_metadata-editor";
-  });
-
-  assert(aiQualityResume.jobs.map((job) => job.id).join("|") === [
-    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
-    "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician"
-  ].join("|"), `${aiQualityRoleId} generated unexpected work-history selections`);
-  assert(aiQualityResume.projects.map((project) => project.id).join("|") === [
-    "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos",
-    "2026-05-01_2026-06-01_signalstack",
-    "2026-07-xx_xxxx-xx-xx_metadata-editor"
-  ].join("|"), `${aiQualityRoleId} generated unexpected project selections`);
-  [aiQualityRoth, aiQualityAwm].forEach((job) => {
-    assert(job?.selectedBullets.length === 3,
-      `${aiQualityRoleId} must select three diverse bullets when two jobs are selected for ${job?.id || "each work-history entry"}`);
-  });
-  [aiQualityHuggingFace, aiQualitySignalStack, aiQualityMetadataEditor].forEach((project) => {
-    assert(project?.selectedBullets.length === 2,
-      `${aiQualityRoleId} must select two bullets for ${project?.id || "each project"}`);
-  });
-  assert(aiQualityAwm?.selectedBullets.some((bullet) => {
-    return bullet.id === "adroit-smartshelf-jr-it-support-ai-financial-operations-001";
-  }), `${aiQualityRoleId} must select AI-output validation evidence`);
-  assert(aiQualityAwm?.selectedBullets.some((bullet) => {
-    return bullet.id === "adroit-smartshelf-jr-it-support-ai-financial-operations-002";
-  }), `${aiQualityRoleId} must select AI-quality workflow evidence`);
-  assert(aiQualityHuggingFace?.selectedBullets.some((bullet) => {
-    return bullet.id === "hugging-face-tutorial-demos-ai-financial-operations-001";
-  }), `${aiQualityRoleId} must select tested pretrained-model integration evidence`);
-  assert(aiQualitySignalStack?.selectedBullets.some((bullet) => {
-    return bullet.id === "signalstack-006";
-  }), `${aiQualityRoleId} must select training-label and prediction separation evidence`);
-  assert(aiQualityMetadataEditor?.selectedBullets.some((bullet) => {
-    return bullet.id === "metadata-editor-nakedmd-ai-application-001";
-  }), `${aiQualityRoleId} must select validation and staged-review evidence`);
-  [
-    "hugging face transformers",
-    "pretrained model inference",
-    "human-in-the-loop validation",
-    "ai-output validation",
-    "model output validation",
-    "discrepancy investigation",
-    "data validation",
-    "workflow automation",
-    "pytest",
-    "fastapi",
-    "python",
-    "docker",
-    "technical documentation"
-  ].forEach((skill) => {
-    assert(aiQualitySkillNames.includes(skill), `${aiQualityRoleId} must display ${skill}`);
-  });
-  assert(aiQualityResume.skills.map((group) => group.category).join("|") === [
-    "AI Quality & Process Assurance",
-    "Human Review & Validation",
-    "Automation & Data Analysis",
-    "Testing & Quality",
-    "Programming & Scripting",
-    "Backend & APIs",
-    "Databases & Data",
-    "Documentation & Collaboration",
-    "DevOps & Tooling"
-  ].join("|"), `${aiQualityRoleId} generated an unexpected skill-category order`);
-  [
-    "pytorch",
-    "tensorflow",
-    "quality management system",
-    "regulatory compliance",
-    "audit ownership",
-    "model fine-tuning"
-  ].forEach((skill) => {
-    assert(!aiQualitySkillNames.includes(skill),
-      `${aiQualityRoleId} must not claim unsupported skill ${skill}`);
-  });
-  assert(aiQualityResume.certifications.map((entry) => entry.id).join("|") === [
-    "2023-08-11_2029-08-11_comptia_cysa-plus-ce",
-    "2022-01-09_xxxx-xx-xx_comptia_project-plus"
-  ].join("|"), `${aiQualityRoleId} generated unexpected certification selections`);
-
-  const associateProgrammerRoleId = "associate-programmer-internal-operations";
-  const associateProgrammerSelections = careerData.roleDefaultSelections[associateProgrammerRoleId];
-  const associateProgrammerResume = buildResume({
-    targetRole: associateProgrammerRoleId,
-    selectedJobIds: associateProgrammerSelections.jobIds,
-    selectedProjectIds: associateProgrammerSelections.projectIds,
-    selectedEducationIds: associateProgrammerSelections.educationIds,
-    selectedCertificationIds: associateProgrammerSelections.certificationIds,
-    currentDate: fixedDate
-  });
-  const associateProgrammerSkillNames = associateProgrammerResume.skills
-    .flatMap((group) => group.skills)
-    .map(normalize);
-  const associateProgrammerRoth = associateProgrammerResume.jobs.find((job) => {
-    return job.id === "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i";
-  });
-  const associateProgrammerCenturySolar = associateProgrammerResume.projects.find((project) => {
-    return project.id === "2026-07-xx_xxxx-xx-xx_century-solar";
-  });
-  const associateProgrammerMetadataEditor = associateProgrammerResume.projects.find((project) => {
-    return project.id === "2026-07-xx_xxxx-xx-xx_metadata-editor";
-  });
-  const associateProgrammerSignalStack = associateProgrammerResume.projects.find((project) => {
-    return project.id === "2026-05-01_2026-06-01_signalstack";
-  });
-
-  assert(associateProgrammerResume.jobs.map((job) => job.id).join("|") === [
-    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
-  ].join("|"), `${associateProgrammerRoleId} generated unexpected work-history selections`);
-  assert(associateProgrammerResume.projects.map((project) => project.id).join("|") === [
-    "2026-07-xx_xxxx-xx-xx_century-solar",
-    "2026-07-xx_xxxx-xx-xx_metadata-editor",
-    "2026-05-01_2026-06-01_signalstack"
-  ].join("|"), `${associateProgrammerRoleId} generated unexpected project selections`);
-  assert(associateProgrammerRoth?.selectedBullets.length === 2,
-    `${associateProgrammerRoleId} must select two enterprise-systems bullets`);
-  [associateProgrammerCenturySolar, associateProgrammerMetadataEditor, associateProgrammerSignalStack]
-    .forEach((project) => {
-      assert(project?.selectedBullets.length === 2,
-        `${associateProgrammerRoleId} must select two bullets for ${project?.id || "each project"}`);
-    });
-  assert(associateProgrammerCenturySolar?.selectedBullets.some((bullet) => {
-    return bullet.id === "century-solar-ai-business-automation-001";
-  }), `${associateProgrammerRoleId} must select internal business-workflow evidence`);
-  assert(associateProgrammerCenturySolar?.selectedBullets.some((bullet) => {
-    return bullet.id === "century-solar-nakedmd-ai-application-001";
-  }), `${associateProgrammerRoleId} must select access-control and automated-test evidence`);
-  assert(associateProgrammerMetadataEditor?.selectedBullets.some((bullet) => {
-    return bullet.id === "metadata-editor-full-stack-001";
-  }), `${associateProgrammerRoleId} must select React/TypeScript and FastAPI workflow evidence`);
-  assert(associateProgrammerSignalStack?.selectedBullets.some((bullet) => {
-    return bullet.id === "signalstack-007";
-  }), `${associateProgrammerRoleId} must select REST endpoint evidence`);
-  [
-    "internal tools",
-    "workflow application development",
-    "business process analysis",
-    "react",
-    "typescript",
-    "javascript",
-    "python",
-    "fastapi",
-    "rest apis",
-    "postgresql",
-    "relational data modeling",
-    "access controls",
-    "automated testing",
-    "playwright",
-    "pytest",
-    "vitest",
-    "docker"
-  ].forEach((skill) => {
-    assert(associateProgrammerSkillNames.includes(skill),
-      `${associateProgrammerRoleId} must display ${skill}`);
-  });
-  assert(associateProgrammerResume.skills.map((group) => group.category).join("|") === [
-    "Internal Operations & Workflow Systems",
-    "Frontend Development",
-    "Backend & APIs",
-    "Databases & Data",
-    "Security & Access Controls",
-    "Testing & Quality",
-    "Programming & Scripting",
-    "Documentation & Collaboration",
-    "DevOps & Tooling"
-  ].join("|"), `${associateProgrammerRoleId} generated an unexpected skill-category order`);
-  ["node.js", "express", "microsoft sql server", "sql server", "pouchdb", "construction", "erp", "payroll"]
-    .forEach((skill) => {
-      assert(!associateProgrammerSkillNames.includes(skill),
-        `${associateProgrammerRoleId} must not claim unsupported skill ${skill}`);
-    });
-  assert(associateProgrammerResume.certifications.length === 0,
-    `${associateProgrammerRoleId} should not select unrelated certifications by default`);
-
-  const healthcareSoftwareRoleId = "software-engineer-healthcare-operations";
-  const healthcareSoftwareSelections = careerData.roleDefaultSelections[healthcareSoftwareRoleId];
-  const healthcareSoftwareResume = buildResume({
-    targetRole: healthcareSoftwareRoleId,
-    selectedJobIds: healthcareSoftwareSelections.jobIds,
-    selectedProjectIds: healthcareSoftwareSelections.projectIds,
-    selectedEducationIds: healthcareSoftwareSelections.educationIds,
-    selectedCertificationIds: healthcareSoftwareSelections.certificationIds,
-    currentDate: fixedDate
-  });
-  const healthcareSoftwareSkillNames = healthcareSoftwareResume.skills
-    .flatMap((group) => group.skills)
-    .map(normalize);
-  const healthcareSoftwareRoth = healthcareSoftwareResume.jobs.find((job) => {
-    return job.id === "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i";
-  });
-  const healthcareSoftwareCenturySolar = healthcareSoftwareResume.projects.find((project) => {
-    return project.id === "2026-07-xx_xxxx-xx-xx_century-solar";
-  });
-  const healthcareSoftwareSignalStack = healthcareSoftwareResume.projects.find((project) => {
-    return project.id === "2026-05-01_2026-06-01_signalstack";
-  });
-  const healthcareSoftwareResumeGenerator = healthcareSoftwareResume.projects.find((project) => {
-    return project.id === "2026-07-xx_xxxx-xx-xx_resume-generator";
-  });
-
-  assert(healthcareSoftwareResume.jobs.map((job) => job.id).join("|") === [
-    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
-  ].join("|"), `${healthcareSoftwareRoleId} generated unexpected work-history selections`);
-  assert(healthcareSoftwareResume.projects.map((project) => project.id).join("|") === [
-    "2026-07-xx_xxxx-xx-xx_century-solar",
-    "2026-05-01_2026-06-01_signalstack",
-    "2026-07-xx_xxxx-xx-xx_resume-generator"
-  ].join("|"), `${healthcareSoftwareRoleId} generated unexpected project selections`);
-  assert(healthcareSoftwareRoth?.selectedBullets.length === 2,
-    `${healthcareSoftwareRoleId} must select two enterprise-systems bullets`);
-  [
-    healthcareSoftwareCenturySolar,
-    healthcareSoftwareSignalStack,
-    healthcareSoftwareResumeGenerator
-  ].forEach((project) => {
-    assert(project?.selectedBullets.length === 2,
-      `${healthcareSoftwareRoleId} must select two bullets for ${project?.id || "each project"}`);
-  });
-  assert(healthcareSoftwareRoth?.selectedBullets.some((bullet) => {
-    return bullet.id === "roth-system-engineer-i-full-stack-001";
-  }), `${healthcareSoftwareRoleId} must select deployment collaboration evidence`);
-  assert(healthcareSoftwareRoth?.selectedBullets.some((bullet) => {
-    return bullet.id === "roth-system-engineer-i-008";
-  }), `${healthcareSoftwareRoleId} must select technical documentation evidence`);
-  assert(healthcareSoftwareCenturySolar?.selectedBullets.some((bullet) => {
-    return bullet.id === "century-solar-ai-business-automation-001";
-  }), `${healthcareSoftwareRoleId} must select internal workflow application evidence`);
-  assert(healthcareSoftwareCenturySolar?.selectedBullets.some((bullet) => {
-    return bullet.id === "century-solar-nakedmd-ai-application-001";
-  }), `${healthcareSoftwareRoleId} must select privacy, access, audit, and testing evidence`);
-  assert(healthcareSoftwareSignalStack?.selectedBullets.some((bullet) => {
-    return bullet.id === "signalstack-sre-001";
-  }), `${healthcareSoftwareRoleId} must select ingestion and normalization evidence`);
-  assert(healthcareSoftwareSignalStack?.selectedBullets.some((bullet) => {
-    return bullet.id === "signalstack-002";
-  }), `${healthcareSoftwareRoleId} must select data-quality pipeline evidence`);
-  assert(healthcareSoftwareResumeGenerator?.selectedBullets.some((bullet) => {
-    return bullet.id === "resume-generator-ai-first-001";
-  }), `${healthcareSoftwareRoleId} must select AI-assisted development evidence`);
-  [
-    "python",
-    "typescript",
-    "react",
-    "fastapi",
-    "rest apis",
-    "postgresql",
-    "sql",
-    "ingestion pipelines",
-    "data validation",
-    "automated testing",
-    "pytest",
-    "access controls",
-    "privacy controls",
-    "ai-assisted development",
-    "technical documentation",
-    "docker",
-    "git"
-  ].forEach((skill) => {
-    assert(healthcareSoftwareSkillNames.includes(skill),
-      `${healthcareSoftwareRoleId} must display ${skill}`);
-  });
-  assert(healthcareSoftwareResume.skills.map((group) => group.category).join("|") === [
-    "Operational Workflow Software",
-    "Data Pipelines & SQL",
-    "Full-Stack Development",
-    "Testing & Quality",
-    "Security, Privacy & Access",
-    "AI-Assisted Development",
-    "Documentation & Collaboration",
-    "Programming & Scripting",
-    "DevOps & Tooling"
-  ].join("|"), `${healthcareSoftwareRoleId} generated an unexpected skill-category order`);
-  [
-    "healthcare",
-    "medicare advantage",
-    "hipaa",
-    "sql server",
-    "stored procedures",
-    "power bi",
-    "ssrs",
-    "jira",
-    "azure",
-    "aws"
-  ].forEach((skill) => {
-    assert(!healthcareSoftwareSkillNames.includes(skill),
-      `${healthcareSoftwareRoleId} must not claim unsupported skill ${skill}`);
-  });
-  assert(healthcareSoftwareResume.certifications.map((entry) => entry.id).join("|") === [
-    "2023-08-11_2029-08-11_comptia_cysa-plus-ce"
-  ].join("|"), `${healthcareSoftwareRoleId} generated unexpected certification selections`);
-
-  const digitalBankingRoleId = "web-developer-i-digital-banking";
-  const digitalBankingSelections = careerData.roleDefaultSelections[digitalBankingRoleId];
-  const digitalBankingResume = buildResume({
-    targetRole: digitalBankingRoleId,
-    selectedJobIds: digitalBankingSelections.jobIds,
-    selectedProjectIds: digitalBankingSelections.projectIds,
-    selectedEducationIds: digitalBankingSelections.educationIds,
-    selectedCertificationIds: digitalBankingSelections.certificationIds,
-    currentDate: fixedDate
-  });
-  const digitalBankingSkillNames = digitalBankingResume.skills
-    .flatMap((group) => group.skills)
-    .map(normalize);
-  const digitalBankingRoth = digitalBankingResume.jobs.find((job) => {
-    return job.id === "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i";
-  });
-  const digitalBankingRandstad = digitalBankingResume.jobs.find((job) => {
-    return job.id === "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician";
-  });
-  const digitalBankingMetadataEditor = digitalBankingResume.projects.find((project) => {
-    return project.id === "2026-07-xx_xxxx-xx-xx_metadata-editor";
-  });
-  const digitalBankingSignalStack = digitalBankingResume.projects.find((project) => {
-    return project.id === "2026-05-01_2026-06-01_signalstack";
-  });
-  const digitalBankingResumeGenerator = digitalBankingResume.projects.find((project) => {
-    return project.id === "2026-07-xx_xxxx-xx-xx_resume-generator";
-  });
-
-  assert(digitalBankingResume.jobs.map((job) => job.id).join("|") === [
-    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
-    "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
-  ].join("|"), `${digitalBankingRoleId} generated unexpected work-history selections`);
-  assert(digitalBankingResume.projects.map((project) => project.id).join("|") === [
-    "2026-07-xx_xxxx-xx-xx_metadata-editor",
-    "2026-05-01_2026-06-01_signalstack",
-    "2026-07-xx_xxxx-xx-xx_resume-generator"
-  ].join("|"), `${digitalBankingRoleId} generated unexpected project selections`);
-  [digitalBankingRoth, digitalBankingRandstad].forEach((job) => {
-    assert(job?.selectedBullets.length === 3,
-      `${digitalBankingRoleId} must select three diverse bullets when two jobs are selected for ${job?.id || "each work-history entry"}`);
-  });
-  [digitalBankingMetadataEditor, digitalBankingSignalStack, digitalBankingResumeGenerator]
-    .forEach((project) => {
-      assert(project?.selectedBullets.length === 1,
-        `${digitalBankingRoleId} must select one bullet for ${project?.id || "each project"}`);
-    });
-  assert(digitalBankingRoth?.selectedBullets.some((bullet) => {
-    return bullet.id === "roth-system-engineer-i-ai-business-automation-002";
-  }), `${digitalBankingRoleId} must select staged deployment and change-validation evidence`);
-  assert(digitalBankingRoth?.selectedBullets.some((bullet) => {
-    return bullet.id === "roth-system-engineer-i-nakedmd-ai-application-001";
-  }), `${digitalBankingRoleId} must select secure application and remediation evidence`);
-  assert(digitalBankingRandstad?.selectedBullets.some((bullet) => {
-    return bullet.id === "randstad-jr-deskside-technician-application-support-001";
-  }), `${digitalBankingRoleId} must select help-desk and application-support evidence`);
-  assert(digitalBankingRandstad?.selectedBullets.some((bullet) => {
-    return bullet.id === "randstad-jr-deskside-technician-application-support-003";
-  }), `${digitalBankingRoleId} must select PowerShell validation evidence`);
-  assert(digitalBankingMetadataEditor?.selectedBullets.some((bullet) => {
-    return bullet.id === "metadata-editor-aveva-tech-support-001";
-  }), `${digitalBankingRoleId} must select tested React/TypeScript workflow evidence`);
-  assert(digitalBankingSignalStack?.selectedBullets.some((bullet) => {
-    return bullet.id === "signalstack-api-support-001";
-  }), `${digitalBankingRoleId} must select REST/JSON and SQL-backed integration evidence`);
-  assert(digitalBankingResumeGenerator?.selectedBullets.some((bullet) => {
-    return bullet.id === "resume-generator-ai-first-001";
-  }), `${digitalBankingRoleId} must select AI-assisted web-development evidence`);
-  [
-    "react",
-    "typescript",
-    "javascript",
-    "html",
-    "css",
-    "rest apis",
-    "fastapi",
-    "json",
-    "postgresql",
-    "sql",
-    "ai-assisted development",
-    "automated testing",
-    "regression testing",
-    "deployment validation",
-    "access controls",
-    "vulnerability remediation",
-    "production support",
-    "root-cause analysis",
-    "help desk support",
-    "technical documentation",
-    "python",
-    "docker",
-    "git"
-  ].forEach((skill) => {
-    assert(digitalBankingSkillNames.includes(skill),
-      `${digitalBankingRoleId} must display ${skill}`);
-  });
-  assert(digitalBankingResume.skills.map((group) => group.category).join("|") === [
-    "Web Application Development",
-    "APIs & Integrations",
-    "SQL & Data",
-    "AI-Assisted Development",
-    "Testing & SDLC",
-    "Security & Change Controls",
-    "Production Support & Documentation",
-    "Programming & Scripting",
-    "DevOps & Tooling"
-  ].join("|"), `${digitalBankingRoleId} generated an unexpected skill-category order`);
-  [
-    ".net",
-    "sql server",
-    "sql server reporting services",
-    "ssrs",
-    "sso",
-    "financial services development",
-    "credit union development",
-    "ofac",
-    "bsa"
-  ].forEach((skill) => {
-    assert(!digitalBankingSkillNames.includes(skill),
-      `${digitalBankingRoleId} must not claim unsupported skill ${skill}`);
-  });
-  assert(digitalBankingResume.certifications.map((entry) => entry.id).join("|") === [
-    "2023-08-11_2029-08-11_comptia_cysa-plus-ce"
-  ].join("|"), `${digitalBankingRoleId} generated unexpected certification selections`);
-
-  const forwardDeployedRoleId = "forward-deployed-software-engineer-intern";
-  const forwardDeployedSelections = careerData.roleDefaultSelections[forwardDeployedRoleId];
-  const forwardDeployedResume = buildResume({
-    targetRole: forwardDeployedRoleId,
-    selectedJobIds: forwardDeployedSelections.jobIds,
-    selectedProjectIds: forwardDeployedSelections.projectIds,
-    selectedEducationIds: forwardDeployedSelections.educationIds,
-    selectedCertificationIds: forwardDeployedSelections.certificationIds,
-    currentDate: fixedDate
-  });
-  const forwardDeployedSkillNames = forwardDeployedResume.skills
-    .flatMap((group) => group.skills)
-    .map(normalize);
-  const forwardDeployedRoth = forwardDeployedResume.jobs.find((job) => {
-    return job.id === "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i";
-  });
-  const forwardDeployedCenturySolar = forwardDeployedResume.projects.find((project) => {
-    return project.id === "2026-07-xx_xxxx-xx-xx_century-solar";
-  });
-  const forwardDeployedMetadataEditor = forwardDeployedResume.projects.find((project) => {
-    return project.id === "2026-07-xx_xxxx-xx-xx_metadata-editor";
-  });
-  const forwardDeployedSignalStack = forwardDeployedResume.projects.find((project) => {
-    return project.id === "2026-05-01_2026-06-01_signalstack";
-  });
-  const forwardDeployedResumeGenerator = forwardDeployedResume.projects.find((project) => {
-    return project.id === "2026-07-xx_xxxx-xx-xx_resume-generator";
-  });
-
-  assert(forwardDeployedResume.jobs.map((job) => job.id).join("|") === [
-    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
-  ].join("|"), `${forwardDeployedRoleId} generated unexpected work-history selections`);
-  assert(forwardDeployedResume.projects.map((project) => project.id).join("|") === [
-    "2026-07-xx_xxxx-xx-xx_century-solar",
-    "2026-07-xx_xxxx-xx-xx_metadata-editor",
-    "2026-05-01_2026-06-01_signalstack",
-    "2026-07-xx_xxxx-xx-xx_resume-generator"
-  ].join("|"), `${forwardDeployedRoleId} generated unexpected project selections`);
-  assert(forwardDeployedRoth?.selectedBullets.length === 2,
-    `${forwardDeployedRoleId} must select two enterprise application-support bullets`);
-  [
-    forwardDeployedCenturySolar,
-    forwardDeployedMetadataEditor,
-    forwardDeployedSignalStack,
-    forwardDeployedResumeGenerator
-  ].forEach((project) => {
-    assert(project?.selectedBullets.length === 1,
-      `${forwardDeployedRoleId} must select one bullet for ${project?.id || "each project"}`);
-  });
-  assert(forwardDeployedRoth?.selectedBullets.some((bullet) => {
-    return bullet.id === "roth-system-engineer-i-full-stack-001";
-  }), `${forwardDeployedRoleId} must select engineering and operations collaboration evidence`);
-  assert(forwardDeployedRoth?.selectedBullets.some((bullet) => {
-    return bullet.id === "roth-system-engineer-i-ai-business-automation-003";
-  }), `${forwardDeployedRoleId} must select cross-team troubleshooting and documentation evidence`);
-  assert(forwardDeployedCenturySolar?.selectedBullets.some((bullet) => {
-    return bullet.id === "century-solar-ai-business-automation-001";
-  }), `${forwardDeployedRoleId} must select business workflow application evidence`);
-  assert(forwardDeployedMetadataEditor?.selectedBullets.some((bullet) => {
-    return bullet.id === "metadata-editor-ai-first-001";
-  }), `${forwardDeployedRoleId} must select AI-assisted iterative workflow evidence`);
-  assert(forwardDeployedSignalStack?.selectedBullets.some((bullet) => {
-    return bullet.id === "signalstack-full-stack-001";
-  }), `${forwardDeployedRoleId} must select containerized data-platform evidence`);
-  assert(forwardDeployedResumeGenerator?.selectedBullets.some((bullet) => {
-    return bullet.id === "resume-generator-ai-first-001";
-  }), `${forwardDeployedRoleId} must select rapid AI-assisted application development evidence`);
-  [
-    "internal tools",
-    "requirements discovery",
-    "stakeholder collaboration",
-    "business process analysis",
-    "requirements translation",
-    "rapid prototyping",
-    "python",
-    "typescript",
-    "javascript",
-    "react",
-    "fastapi",
-    "rest apis",
-    "postgresql",
-    "sql",
-    "ai-assisted development",
-    "automated testing",
-    "pytest",
-    "playwright",
-    "production support",
-    "root-cause analysis",
-    "cross-functional collaboration",
-    "technical documentation",
-    "docker",
-    "git"
-  ].forEach((skill) => {
-    assert(forwardDeployedSkillNames.includes(skill),
-      `${forwardDeployedRoleId} must display ${skill}`);
-  });
-  assert(forwardDeployedResume.skills.map((group) => group.category).join("|") === [
-    "Forward Deployed Engineering",
-    "Programming & Scripting",
-    "Full-Stack Development",
-    "Data & Storage Systems",
-    "AI-Assisted Development",
-    "Testing & Delivery",
-    "Production Support & Reliability",
-    "Documentation & Collaboration",
-    "DevOps & Tooling"
-  ].join("|"), `${forwardDeployedRoleId} generated an unexpected skill-category order`);
-  [
-    "java",
-    "c++",
-    "aws",
-    "azure",
-    "gcp",
-    "kubernetes",
-    "cloud infrastructure",
-    "claude code",
-    "real estate development"
-  ].forEach((skill) => {
-    assert(!forwardDeployedSkillNames.includes(skill),
-      `${forwardDeployedRoleId} must not claim unsupported skill ${skill}`);
-  });
-  assert(forwardDeployedResume.certifications.length === 0,
-    `${forwardDeployedRoleId} should not select unrelated certifications by default`);
-
-  const salesQaRoleId = "sales-engineer-software-qa-engineer";
-  const salesQaSelections = careerData.roleDefaultSelections[salesQaRoleId];
-  const salesQaResume = buildResume({
-    targetRole: salesQaRoleId,
-    selectedJobIds: salesQaSelections.jobIds,
-    selectedProjectIds: salesQaSelections.projectIds,
-    selectedEducationIds: salesQaSelections.educationIds,
-    selectedCertificationIds: salesQaSelections.certificationIds,
-    currentDate: fixedDate
-  });
-  const salesQaSkillNames = salesQaResume.skills
-    .flatMap((group) => group.skills)
-    .map(normalize);
-  const salesQaRoth = salesQaResume.jobs.find((job) => {
-    return job.id === "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i";
-  });
-  const salesQaRandstad = salesQaResume.jobs.find((job) => {
-    return job.id === "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician";
-  });
-  const salesQaAwm = salesQaResume.jobs.find((job) => {
-    return job.id === "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician";
-  });
-  const salesQaSignalStack = salesQaResume.projects.find((project) => {
-    return project.id === "2026-05-01_2026-06-01_signalstack";
-  });
-  const salesQaMetadataEditor = salesQaResume.projects.find((project) => {
-    return project.id === "2026-07-xx_xxxx-xx-xx_metadata-editor";
-  });
-
-  assert(salesQaResume.jobs.map((job) => job.id).join("|") === [
-    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
-    "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician",
-    "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician"
-  ].join("|"), `${salesQaRoleId} generated unexpected work-history selections`);
-  assert(salesQaResume.projects.map((project) => project.id).join("|") === [
-    "2026-05-01_2026-06-01_signalstack",
-    "2026-07-xx_xxxx-xx-xx_metadata-editor"
-  ].join("|"), `${salesQaRoleId} generated unexpected project selections`);
-  [salesQaRoth, salesQaRandstad, salesQaAwm].forEach((job) => {
-    assert(job?.selectedBullets.length === 2,
-      `${salesQaRoleId} must select two bullets for ${job?.id || "each work-history entry"}`);
-  });
-  [salesQaSignalStack, salesQaMetadataEditor].forEach((project) => {
-    assert(project?.selectedBullets.length === 1,
-      `${salesQaRoleId} must select one bullet for ${project?.id || "each project"}`);
-  });
-  assert(salesQaRoth?.selectedBullets.some((bullet) => {
-    return bullet.id === "roth-system-engineer-i-aveva-tech-support-002";
-  }), `${salesQaRoleId} must select root-cause and log-analysis evidence`);
-  assert(salesQaRandstad?.selectedBullets.some((bullet) => {
-    return bullet.id === "randstad-jr-deskside-technician-application-support-003";
-  }), `${salesQaRoleId} must select PowerShell validation evidence`);
-  assert(salesQaRandstad?.selectedBullets.some((bullet) => {
-    return bullet.id === "randstad-jr-deskside-technician-005";
-  }), `${salesQaRoleId} must select customer-facing support evidence`);
-  assert(salesQaAwm?.selectedBullets.some((bullet) => {
-    return bullet.id === "adroit-smartshelf-jr-it-support-ai-financial-operations-001";
-  }), `${salesQaRoleId} must select data-quality validation evidence`);
-  assert(salesQaSignalStack?.selectedBullets.some((bullet) => {
-    return bullet.id === "signalstack-api-support-001";
-  }), `${salesQaRoleId} must select REST/JSON and data-quality project evidence`);
-  assert(salesQaMetadataEditor?.selectedBullets.some((bullet) => {
-    return bullet.id === "metadata-editor-application-support-001";
-  }), `${salesQaRoleId} must select tested workflow and issue-handling evidence`);
-  [
-    "python",
-    "pytest",
-    "automated testing",
-    "smoke testing",
-    "regression testing",
-    "root-cause analysis",
-    "data validation",
-    "customer technical support",
-    "powershell",
-    "bash",
-    "rest apis",
-    "sql",
-    "docker",
-    "git",
-    "technical documentation"
-  ].forEach((skill) => {
-    assert(salesQaSkillNames.includes(skill), `${salesQaRoleId} must display ${skill}`);
-  });
-  assert(salesQaResume.skills.map((group) => group.category).join("|") === [
-    "Software QA & Test Automation",
-    "Technical Support & Diagnostics",
-    "Data Quality & Analysis",
-    "Customer & Sales Engineering",
-    "Programming & Scripting",
-    "APIs & Databases",
-    "DevOps & Tooling",
-    "Documentation & Collaboration"
-  ].join("|"), `${salesQaRoleId} generated an unexpected skill-category order`);
-  [
-    "grafana",
-    "tableau",
-    "power bi",
-    "jira",
-    "confluence",
-    "kubernetes",
-    "pre-sales presentations"
-  ].forEach((skill) => {
-    assert(!salesQaSkillNames.includes(skill),
-      `${salesQaRoleId} must not claim unsupported skill ${skill}`);
-  });
-  assert(salesQaResume.certifications.map((entry) => entry.id).join("|") === [
-    "2023-08-11_2029-08-11_comptia_cysa-plus-ce",
-    "2022-01-09_xxxx-xx-xx_comptia_project-plus"
-  ].join("|"), `${salesQaRoleId} generated unexpected certification selections`);
-
-  const productOperationsRoleId = "product-operations-specialist-uas-systems";
-  const productOperationsSelections = careerData.roleDefaultSelections[productOperationsRoleId];
-  const productOperationsResume = buildResume({
-    targetRole: productOperationsRoleId,
-    selectedJobIds: productOperationsSelections.jobIds,
-    selectedProjectIds: productOperationsSelections.projectIds,
-    selectedEducationIds: productOperationsSelections.educationIds,
-    selectedCertificationIds: productOperationsSelections.certificationIds,
-    currentDate: fixedDate
-  });
-  const productOperationsSkillNames = productOperationsResume.skills
-    .flatMap((group) => group.skills)
-    .map(normalize);
-  const productOperationsJobIds = productOperationsResume.jobs.map((job) => job.id);
-  const productOperationsRoth = productOperationsResume.jobs.find((job) => {
-    return job.id === "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i";
-  });
-  const productOperationsAwm = productOperationsResume.jobs.find((job) => {
-    return job.id === "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician";
-  });
-  const productOperationsMels = productOperationsResume.jobs.find((job) => {
-    return job.id === "2020-08-13_2021-04-14_mels-sewing-and-fabric-center_sewing-machine-technician";
-  });
-
-  assert(productOperationsJobIds.join("|") === [
-    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
-    "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician",
-    "2020-08-13_2021-04-14_mels-sewing-and-fabric-center_sewing-machine-technician"
-  ].join("|"), `${productOperationsRoleId} generated unexpected work-history selections`);
-  [productOperationsRoth, productOperationsAwm, productOperationsMels].forEach((job) => {
-    assert(job?.selectedBullets.length === 3,
-      `${productOperationsRoleId} must select three bullets for ${job?.id || "each work-history entry"}`);
-  });
-  assert(productOperationsRoth?.selectedBullets.some((bullet) => {
-    return bullet.id === "roth-system-engineer-i-aveva-tech-support-002";
-  }), `${productOperationsRoleId} must select Linux incident and log-analysis evidence`);
-  assert(productOperationsRoth?.selectedBullets.some((bullet) => {
-    return bullet.id === "roth-system-engineer-i-003";
-  }), `${productOperationsRoleId} must select Bash recovery and validation evidence`);
-  assert(productOperationsAwm?.selectedBullets.some((bullet) => {
-    return bullet.id === "adroit-smartshelf-jr-it-support-004";
-  }), `${productOperationsRoleId} must select deployed-system escalation evidence`);
-  assert(productOperationsAwm?.selectedBullets.some((bullet) => {
-    return bullet.id === "adroit-smartshelf-jr-it-support-005";
-  }), `${productOperationsRoleId} must select Linux-connected sensor and camera evidence`);
-  assert(productOperationsMels?.selectedBullets.some((bullet) => {
-    return bullet.id === "mels-embroidery-calibration-firmware-002";
-  }), `${productOperationsRoleId} must select calibration and firmware evidence`);
-  assert(productOperationsMels?.selectedBullets.some((bullet) => {
-    return bullet.id === "mels-calibration-soldering-tools-006";
-  }), `${productOperationsRoleId} must select soldering and repair-tool evidence`);
-  [
-    "rhel 9",
-    "bash",
-    "log analysis",
-    "root-cause analysis",
-    "raspberry pi",
-    "electromechanical troubleshooting",
-    "soldering",
-    "firmware installation",
-    "customer technical support",
-    "functional validation",
-    "python",
-    "docker"
-  ].forEach((skill) => {
-    assert(productOperationsSkillNames.includes(skill),
-      `${productOperationsRoleId} must display ${skill}`);
-  });
-  assert(productOperationsResume.skills.map((group) => group.category).join("|") === [
-    "Product Operations & Sustainment",
-    "Linux & Command Line",
-    "Incident & Observability",
-    "Hardware & Repair",
-    "Equipment Support",
-    "Testing & Quality",
-    "Documentation & Collaboration",
-    "Programming & Scripting",
-    "DevOps & Tooling"
-  ].join("|"), `${productOperationsRoleId} generated an unexpected skill-category order`);
-  ["grafana", "pagerduty", "pager duty", "jira", "palantir foundry"].forEach((skill) => {
-    assert(!productOperationsSkillNames.includes(skill),
-      `${productOperationsRoleId} must not claim unsupported skill ${skill}`);
-  });
-  assert(productOperationsResume.projects.length === 0,
-    `${productOperationsRoleId} should not select unrelated projects by default`);
-  assert(productOperationsResume.certifications.map((entry) => entry.id).join("|") === [
-    "2023-08-11_2029-08-11_comptia_cysa-plus-ce",
-    "2022-01-09_xxxx-xx-xx_comptia_project-plus"
-  ].join("|"), `${productOperationsRoleId} generated unexpected certification selections`);
-
-  const repairRoleId = "electromechanical-equipment-repair-technician";
-  const repairSelections = careerData.roleDefaultSelections[repairRoleId];
-  const repairResume = buildResume({
-    targetRole: repairRoleId,
-    selectedJobIds: repairSelections.jobIds,
-    selectedProjectIds: repairSelections.projectIds,
-    selectedEducationIds: repairSelections.educationIds,
-    selectedCertificationIds: repairSelections.certificationIds,
-    currentDate: fixedDate
-  });
-  const repairSkillNames = repairResume.skills.flatMap((group) => group.skills).map(normalize);
-  const melsResumeJob = repairResume.jobs.find((job) => {
-    return job.id === "2020-08-13_2021-04-14_mels-sewing-and-fabric-center_sewing-machine-technician";
-  });
-
-  assert(melsResumeJob, `${repairRoleId} must select the Mel's work-history entry`);
-  assert(melsResumeJob.selectedBullets.length === 3,
-    `${repairRoleId} must select three Mel's bullets`);
-  assert(repairSkillNames.includes("soldering"),
-    `${repairRoleId} must display soldering`);
-  assert(!repairSkillNames.includes("rhel 9") && !repairSkillNames.includes("production support"),
-    `${repairRoleId} must not surface unrelated inherited family skills`);
-  assert(repairResume.skills.map((group) => group.category).join("|") === [
-    "Hardware & Repair",
-    "Equipment Support",
-    "Testing & Quality",
-    "Documentation & Collaboration",
-    "Programming & Scripting",
-    "DevOps & Tooling"
-  ].join("|"), `${repairRoleId} generated an unexpected skill-category order`);
-  assert(repairResume.projects.length === 0,
-    `${repairRoleId} should not select unrelated projects by default`);
-  assert(repairResume.certifications.length === 0,
-    `${repairRoleId} should not select unrelated certifications by default`);
-
-  const duplicateTextGroups = [...duplicateText.values()].filter((sources) => sources.length > 1);
+  validateRoleArchitecture(data);
+  validateBulletCatalog(data);
+  validateGeneratedResumes(data);
 
   console.log("Role data checks passed.");
-  console.log(`Primary roles: ${primaryRoles.length}`);
-  console.log(`Specialized roles: ${specializedRoles.length}`);
-  console.log(`Role families: ${familyIds.size}`);
-  console.log(`Legacy role mappings: ${Object.keys(careerData.legacyRoleMappings).length}`);
-  console.log(`Exact duplicate bullet-text groups retained in source: ${duplicateTextGroups.length}`);
+  console.log(`Durable dropdown roles: ${data.careerData.targetRoles.length}`);
+  console.log(`Historical role presets retained: ${data.careerData.roleDefinitions.length - data.careerData.targetRoles.length}`);
+  console.log(`Role families: ${Object.keys(data.careerData.roleFamilies).length}`);
+  console.log(`Canonical bullets: ${collectAllBullets(data.careerData).filter(({ bullet }) => bullet.catalogStatus === "canonical").length}`);
+  console.log(`Historical targeting bullets retained: ${collectAllBullets(data.careerData).filter(({ bullet }) => bullet.catalogStatus === "historical-targeted").length}`);
 }
 
 try {
