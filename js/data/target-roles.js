@@ -76,6 +76,7 @@ const roleFamilies = {
     categoryOrder: [
       "Programming & Scripting", "Frontend Development", "Backend & APIs",
       "Databases & Data", "Testing & Quality", "DevOps & Tooling",
+      "Systems & Infrastructure", "Middleware & Applications", "Automation & Scripting",
       "AI Applications", "Documentation & Collaboration", "Other"
     ]
   },
@@ -447,7 +448,7 @@ const roleDefinitions = [
       ],
       "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": [
         "randstad-jr-deskside-technician-006",
-        "randstad-jr-deskside-technician-full-stack-001"
+        "randstad-jr-deskside-technician-001"
       ],
       "2026-07-xx_xxxx-xx-xx_century-solar": [
         "century-solar-full-stack-001",
@@ -2926,14 +2927,14 @@ const durableRoleOverrides = {
     headline: "FULL-STACK SOFTWARE ENGINEER | PYTHON, REACT & TYPESCRIPT | LINUX",
     certificationMinDaysRemaining: 60,
     layout: {
-      maxSkillGroups: 6,
+      maxSkillGroups: 7,
       maxSkillsPerGroup: 6,
-      maxSkillsTotal: 30,
+      maxSkillsTotal: 32,
       maxJobBullets: 2,
       maxJobBulletsWhenTwoJobs: 3,
       maxExperienceBullets: 5,
       maxProjectBullets: 2,
-      maxProjectBulletsTotal: 5
+      maxProjectBulletsTotal: 6
     },
     preferredFocusAreas: ["software-development", "api-integration", "data-databases", "testing-validation", "deployment-change"]
   },

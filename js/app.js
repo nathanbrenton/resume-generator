@@ -30,6 +30,79 @@ function getDefaultSelectionIds(items) {
     .map((item) => item.id);
 }
 
+let contactDisplayPreferences = resumeContactDisplay.loadPreferences(window.localStorage);
+
+function displayContactValue(value) {
+  return String(value || "")
+    .replace(/^https?:\/\//, "")
+    .replace(/^www\./, "")
+    .replace(/\/$/, "");
+}
+
+function createContactRadioMarkup(value, checked, label) {
+  return `
+    <label class="contact-radio-option">
+      <input type="radio" name="contactLocationMode" value="${value}" ${checked ? "checked" : ""}>
+      <span>${label}</span>
+    </label>
+  `;
+}
+
+function populateContactControls() {
+  const contact = careerData.contactInfo;
+  const locationOptions = [
+    {
+      value: resumeContactDisplay.LOCATION_MODES.GENERAL,
+      label: `General — ${contact.generalLocation || contact.city || "Not configured"}`
+    },
+    {
+      value: resumeContactDisplay.LOCATION_MODES.SPECIFIC,
+      label: `Specific — ${contact.specificLocation || contact.city || "Not configured"}`
+    },
+    { value: resumeContactDisplay.LOCATION_MODES.HIDDEN, label: "Hidden" }
+  ];
+
+  document.getElementById("contactLocationControls").innerHTML = locationOptions
+    .map((option) => createContactRadioMarkup(
+      option.value,
+      contactDisplayPreferences.locationMode === option.value,
+      option.label
+    ))
+    .join("");
+
+  const detailOptions = [
+    { id: "email", label: `Email — ${contact.email}` },
+    { id: "phone", label: `Phone — ${contact.phone}` },
+    { id: "website", label: `Personal site — ${displayContactValue(contact.website)}` },
+    { id: "linkedin", label: `LinkedIn — ${displayContactValue(contact.linkedin)}` },
+    { id: "github", label: `GitHub — ${displayContactValue(contact.github)}` }
+  ];
+
+  document.getElementById("contactDetailControls").innerHTML = detailOptions
+    .map((option) => createCheckboxMarkup(
+      option,
+      contactDisplayPreferences[option.id],
+      option.label
+    ))
+    .join("");
+}
+
+function getContactDisplayPreferencesFromControls() {
+  const selectedLocation = document.querySelector(
+    '#contactLocationControls input[name="contactLocationMode"]:checked'
+  );
+  const details = new Set(getCheckedValues("contactDetailControls"));
+
+  return resumeContactDisplay.normalizePreferences({
+    locationMode: selectedLocation?.value,
+    email: details.has("email"),
+    phone: details.has("phone"),
+    website: details.has("website"),
+    linkedin: details.has("linkedin"),
+    github: details.has("github")
+  });
+}
+
 function getRoleSelectionIds(targetRole, selectionKey, items) {
   const role = getRoleDefinition(targetRole);
   const roleSelections = careerData.roleDefaultSelections?.[role.id];
@@ -132,6 +205,7 @@ function populateControls() {
   targetRoleSelect.innerHTML =
     `<optgroup label="Resume Starting Points">${createRoleOptions(durableRoles)}</optgroup>`;
 
+  populateContactControls();
   populateSelectionControls(targetRoleSelect.value);
 }
 
@@ -405,6 +479,11 @@ function renderCurrentResume() {
     maxSkillsPerGroup: role.layout?.maxSkillsPerGroup ?? 6
   });
 
+  resume.contact = resumeContactDisplay.applyPreferences(
+    resume.contact,
+    contactDisplayPreferences
+  );
+
   renderResume(resume, document.getElementById("resumePreview"));
   renderedRoleId = role.id;
   updateDebug(resume);
@@ -424,6 +503,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     captureManualEdits();
+
+    if (event.target.closest("#contactInfoControls")) {
+      contactDisplayPreferences = getContactDisplayPreferencesFromControls();
+      resumeContactDisplay.savePreferences(window.localStorage, contactDisplayPreferences);
+    }
 
     if (event.target.id === "targetRole") {
       populateSelectionControls(event.target.value);

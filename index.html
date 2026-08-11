@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Resume Generator</title>
-  <link rel="stylesheet" href="./css/styles.css?v=20260726-customization-storage">
+  <link rel="stylesheet" href="./css/styles.css?v=20260811-contact-controls">
 </head>
 <body>
   <main class="app-shell">
@@ -13,6 +13,19 @@
       <div class="control-group">
         <h2>Target Role</h2>
         <select id="targetRole"></select>
+      </div>
+
+      <div id="contactInfoControls" class="control-group">
+        <h2>Contact Info</h2>
+        <div class="contact-control-subgroup">
+          <p class="control-label">Location</p>
+          <div id="contactLocationControls"></div>
+        </div>
+        <div class="contact-control-subgroup">
+          <p class="control-label">Details</p>
+          <div id="contactDetailControls"></div>
+        </div>
+        <p class="contact-control-help">These display choices are shared across roles and saved in this browser.</p>
       </div>
 
       <div class="control-group">
@@ -114,6 +127,7 @@
   <script src="./js/resume-builder.js"></script>
   <script src="./js/render-resume.js"></script>
   <script src="./js/customization.js"></script>
+  <script src="./js/contact-display.js"></script>
   <script src="./js/app.js"></script>
 </body>
 </html>

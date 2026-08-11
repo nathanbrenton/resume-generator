@@ -543,15 +543,16 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
     },
     {
       id: "randstad-jr-deskside-technician-001",
-      text: "Triaged internal end-user incidents and service requests to resolve hardware, operating system, VPN, MFA, software, and enterprise application issues across laptops, mobile devices, and desktop workstations.",
-      printText: "Resolved endpoint, VPN, MFA, software, imaging, and hardware issues across enterprise-managed devices.",
+      text: "Troubleshot application, access, device, network, VPN, and MFA incidents using ServiceNow, Splunk, SCCM/MECM, and Active Directory across enterprise-managed endpoints.",
+      printText: "Troubleshot application, access, device, and network incidents using ServiceNow, Splunk, SCCM/MECM, and Active Directory.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
         "Support Engineer",
         "IT Support Specialist",
         "Desktop Support Technician",
-        "Deskside Support Technician"
+        "Deskside Support Technician",
+        "Software Engineer — Full Stack"
       ],
       focusAreas: [
         "customer-user-support",
@@ -559,14 +560,14 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
         "hardware-repair"
       ],
       skillTags: [
-        { category: "Ticketing & Collaboration", name: "ServiceNow" },
-        { category: "Operating Systems", name: "Windows" },
-        { category: "Operating Systems", name: "macOS" },
-        { category: "Operating Systems", name: "iOS" },
-        { category: "Security", name: "VPN" },
-        { category: "Security", name: "MFA" },
-        { category: "Hardware / Repair", name: "laptop support" },
-        { category: "Hardware / Repair", name: "mobile device support" }
+        { category: "Enterprise Support", name: "ServiceNow" },
+        { category: "Monitoring & Support", name: "Splunk" },
+        { category: "Endpoint & IT Support", name: "SCCM/MECM" },
+        { category: "Identity & Access", name: "Active Directory" },
+        { category: "Networking & Security", name: "VPN" },
+        { category: "Identity & Access", name: "MFA" },
+        { category: "Endpoint & IT Support", name: "Windows" },
+        { category: "Endpoint & IT Support", name: "macOS" }
       ]
     },
     {

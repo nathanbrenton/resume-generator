@@ -340,7 +340,40 @@ function validateGeneratedResumes(data) {
   const fullStack = buildResume({ targetRole: "full-stack-software-engineer", currentDate: validationDate });
   assert(fullStack.headline === "FULL-STACK SOFTWARE ENGINEER | PYTHON, REACT & TYPESCRIPT | LINUX",
     "Canonical Full-Stack headline changed unexpectedly");
+
+  const roth = fullStack.jobs.find((job) =>
+    job.id === "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+  );
+  const randstad = fullStack.jobs.find((job) =>
+    job.id === "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+  );
+
+  assert(roth?.selectedBullets.length === 3,
+    `Canonical Full-Stack resume should render 3 Roth bullets, found ${roth?.selectedBullets.length || 0}`);
+  assert(randstad?.selectedBullets.length === 2,
+    `Canonical Full-Stack resume should render 2 Randstad bullets, found ${randstad?.selectedBullets.length || 0}`);
+  assert(randstad.selectedBullets.some((bullet) => bullet.id === "randstad-jr-deskside-technician-006"),
+    "Canonical Full-Stack resume is missing the Randstad PowerShell validation bullet");
+  assert(randstad.selectedBullets.some((bullet) => bullet.id === "randstad-jr-deskside-technician-001"),
+    "Canonical Full-Stack resume is missing the Randstad troubleshooting/tooling bullet");
+
+  const expectedProjectIds = [
+    "2026-07-xx_xxxx-xx-xx_century-solar",
+    "2026-07-xx_xxxx-xx-xx_metadata-editor",
+    "2026-05-01_2026-06-01_signalstack"
+  ];
+  expectedProjectIds.forEach((projectId) => {
+    const project = fullStack.projects.find((entry) => entry.id === projectId);
+    assert(project?.selectedBullets.length === 2,
+      `Canonical Full-Stack resume should render 2 bullets for ${projectId}, found ${project?.selectedBullets.length || 0}`);
+  });
+
+  const systemsGroup = fullStack.skills.find((group) => group.category === "Systems & Infrastructure");
+  assert(systemsGroup, "Canonical Full-Stack resume is missing Systems & Infrastructure skills");
+  assert(systemsGroup.skills.includes("Linux"), "Canonical Full-Stack systems skills are missing Linux");
+  assert(systemsGroup.skills.includes("RHEL 9"), "Canonical Full-Stack systems skills are missing RHEL 9");
 }
+
 
 function main() {
   const data = loadResumeData();

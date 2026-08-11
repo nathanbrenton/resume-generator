@@ -43,9 +43,9 @@ function renderContact(contact) {
     contact.city,
     contact.email ? contactLink(contact.email, contact.email, "mailto:") : "",
     contact.phone,
+    contact.website ? contactLink(displayUrl(contact.website), contact.website) : "",
     contact.linkedin ? contactLink(displayUrl(contact.linkedin), contact.linkedin) : "",
-    contact.github ? contactLink(displayUrl(contact.github), contact.github) : "",
-    contact.website ? contactLink(displayUrl(contact.website), contact.website) : ""
+    contact.github ? contactLink(displayUrl(contact.github), contact.github) : ""
   ].filter(Boolean);
 
   return `

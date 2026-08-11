@@ -2,11 +2,15 @@ module.exports = [
   {
     id: "full-stack-software-engineer",
     expectedFamily: "Software Engineering",
-    requiredSkills: ["Python", "Docker", "React", "FastAPI", "PostgreSQL", "Playwright"],
+    requiredSkills: ["Python", "Docker", "React", "FastAPI", "PostgreSQL", "Playwright", "Linux", "RHEL 9"],
     requiredJobIds: ["2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"],
-    requiredProjectIds: ["2026-07-xx_xxxx-xx-xx_century-solar", "2026-07-xx_xxxx-xx-xx_metadata-editor"],
-    minExperienceBullets: 4,
-    minProjectBullets: 4
+    requiredProjectIds: [
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-07-xx_xxxx-xx-xx_metadata-editor",
+      "2026-05-01_2026-06-01_signalstack"
+    ],
+    minExperienceBullets: 5,
+    minProjectBullets: 6
   },
   {
     id: "qa-automation-engineer",

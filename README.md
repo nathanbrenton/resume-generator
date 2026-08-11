@@ -16,6 +16,25 @@ Validate certification data with:
 ```
 
 
+### Contact display preferences
+
+The side navigation has a role-independent **Contact Info** section for choosing which public/contact fields appear in the generated resume. These choices persist in browser `localStorage` and apply across every target role.
+
+Location is mutually exclusive:
+
+- `General` — Orange County, CA
+- `Specific` — Costa Mesa, CA
+- `Hidden`
+
+Contact-detail checkboxes independently control email, phone, personal site, LinkedIn, and GitHub. The default public profile shows general location, email, `nathanbrenton.com`, LinkedIn, and GitHub while leaving phone unchecked. The underlying phone number remains available for employer-facing resumes when explicitly enabled.
+
+Validate the contact-display helpers and defaults with:
+
+```bash
+./scripts/check-contact-display.sh
+```
+
+
 ### Manual customization modes
 
 The resume preview supports three role-scoped display modes:
@@ -51,7 +70,7 @@ Durable starting points:
 - Media Systems / Digital Media Technology
 - Technical / Electronics / Field Systems
 
-`full-stack-software-engineer` remains the canonical general-purpose software resume. Historical software targets such as healthcare, banking, mission-operations, and forward-deployed roles resolve through preserved presets instead of creating additional generic software dropdown entries.
+`full-stack-software-engineer` remains the canonical general-purpose software resume. Historical software targets such as healthcare, banking, mission-operations, and forward-deployed roles resolve through preserved presets instead of creating additional generic software dropdown entries. Its one-page baseline intentionally preserves five professional bullets (3 Roth + 2 Randstad), two bullets for each of Century Solar, Metadata Editor, and SignalStack, and a compact seventh skills group for verified Linux/RHEL systems depth.
 
 `historicalRoleBaseMappings` records the durable base for each hidden preset. `legacyRoleMappings` keeps older labels/IDs resolvable, and `getRoleDefinition()` now rejects unknown roles rather than silently falling back to the first resume.
 
@@ -116,6 +135,7 @@ Run the full local data checks with:
 
 ```bash
 ./scripts/check-certification-data.sh
+./scripts/check-contact-display.sh
 ./scripts/check-customization-data.sh
 ./scripts/check-education-data.sh
 ./scripts/check-role-data.sh

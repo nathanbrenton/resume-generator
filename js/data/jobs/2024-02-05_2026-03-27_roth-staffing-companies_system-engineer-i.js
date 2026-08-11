@@ -863,6 +863,8 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
         "performance-reliability"
       ],
       skillTags: [
+        { category: "Systems & Infrastructure", name: "RHEL 9" },
+        { category: "Systems & Infrastructure", name: "Linux" },
         { category: "Linux & Systems Administration", name: "systemd" },
         { category: "Linux & Systems Administration", name: "cron" },
         { category: "Linux & Systems Administration", name: "service management" },
