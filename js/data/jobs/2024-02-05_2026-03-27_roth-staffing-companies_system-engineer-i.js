@@ -837,6 +837,8 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
       skillTags: [
         { category: "IT Service Management", name: "change management" },
         { category: "IT Service Management", name: "post-change validation" },
+        { category: "DevOps & Tooling", name: "application deployment" },
+        { category: "Platform & Reliability", name: "release support" },
         { category: "Project Management", name: "technical coordination" },
         { category: "Project Management", name: "disaster recovery exercises" },
         { category: "Ticketing & Collaboration", name: "ServiceNow" },
@@ -868,14 +870,13 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
         { category: "Linux & Systems Administration", name: "systemd" },
         { category: "Linux & Systems Administration", name: "cron" },
         { category: "Linux & Systems Administration", name: "service management" },
-        { category: "Linux & Systems Administration", name: "shell scripting" },
-        { category: "Programming & Scripting", name: "Bash" }
+            { category: "Programming & Scripting", name: "Bash" }
       ]
     },
     {
       id: "roth-system-engineer-i-004",
       text: "Supported application-platform compatibility work during an enterprise AWS migration by validating supported JDK, Tomcat/TomEE, and Java middleware versions for application teams.",
-      printText: "Supported WebLogic-to-Tomcat modernization and AWS-compatible middleware stack planning.",
+      printText: "Validated supported JDK, Tomcat/TomEE, and Java middleware versions for application teams during an enterprise AWS migration.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -890,9 +891,10 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
       ],
       skillTags: [
         { category: "Middleware & Web Platforms", name: "Oracle WebLogic" },
-        { category: "Middleware & Web Platforms", name: "Apache Tomcat" },
+        { category: "Middleware & Web Platforms", name: "Tomcat/TomEE" },
         { category: "Middleware & Web Platforms", name: "Apache HTTP Server" },
         { category: "Middleware & Web Platforms", name: "JDK" },
+        { category: "Middleware & Web Platforms", name: "Java middleware" },
         { category: "Cloud & Infrastructure", name: "AWS" },
         { category: "Cloud & Infrastructure", name: "application modernization" }
       ]
@@ -1079,8 +1081,7 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
         "stakeholder-support"
       ],
       skillTags: [
-        { category: "Middleware & Web Platforms", name: "Apache Tomcat" },
-        { category: "Middleware & Web Platforms", name: "TomEE" },
+        { category: "Middleware & Web Platforms", name: "Tomcat/TomEE" },
         { category: "DevOps & Tooling", name: "remote application deployment" },
         { category: "DevOps & Tooling", name: "deployment automation" },
         { category: "Testing & Delivery", name: "post-change validation" },

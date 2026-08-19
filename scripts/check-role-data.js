@@ -7,6 +7,7 @@ const fixtures = require("./role-regression-fixtures.js");
 
 const repoRoot = path.resolve(__dirname, "..");
 const indexHtml = fs.readFileSync(path.join(repoRoot, "index.html"), "utf8");
+const appSource = fs.readFileSync(path.join(repoRoot, "js/app.js"), "utf8");
 
 function assert(condition, message) {
   if (!condition) {
@@ -85,6 +86,7 @@ function validateRoleArchitecture(data) {
   const { careerData, roleFamilySkillWeights, roleModifierSkillWeights, getRoleDefinition, getRoleBaseDefinition } = data;
   const durableRoles = careerData.roleDefinitions.filter((role) => role.catalogStatus === "durable");
   const historicalPresets = careerData.roleDefinitions.filter((role) => role.catalogStatus === "historical-preset");
+  const targetedPresets = careerData.roleDefinitions.filter((role) => role.catalogStatus === "targeted-preset");
   const familyIds = new Set(Object.keys(careerData.roleFamilies));
   const modifierIds = new Set(Object.keys(careerData.roleModifiers));
   const durableIds = new Set(careerData.targetRoles);
@@ -95,14 +97,22 @@ function validateRoleArchitecture(data) {
     `Expected 12 durable role definitions, found ${durableRoles.length}`);
   assert(historicalPresets.length === 28,
     `Expected 28 hidden historical presets, found ${historicalPresets.length}`);
-  assert(careerData.roleDefinitions.length === 40,
-    `Expected 40 total preserved role definitions, found ${careerData.roleDefinitions.length}`);
+  assert(targetedPresets.length === 1,
+    `Expected 1 active targeted application preset, found ${targetedPresets.length}`);
+  assert(careerData.targetedRoleIds.length === 1,
+    `Expected 1 targeted application dropdown role, found ${careerData.targetedRoleIds.length}`);
+  assert(careerData.roleDefinitions.length === 41,
+    `Expected 41 total preserved role definitions, found ${careerData.roleDefinitions.length}`);
   assert(Object.keys(careerData.roleFamilies).length === 11,
     `Expected 11 durable role families, found ${Object.keys(careerData.roleFamilies).length}`);
   assert(careerData.targetRoles[0] === "full-stack-software-engineer",
     "Full-Stack Software Engineer must remain the canonical first/default role");
   assert(new Set(careerData.targetRoles).size === careerData.targetRoles.length,
     "Durable role IDs contain duplicates");
+  assert(appSource.includes('optgroup label="Targeted Applications"'),
+    "UI is missing the Targeted Applications dropdown group");
+  assert(appSource.includes("careerData.targetedRoleIds"),
+    "UI does not populate targeted application presets from career data");
 
   careerData.targetRoles.forEach((roleId) => {
     const role = getRoleDefinition(roleId);
@@ -116,6 +126,16 @@ function validateRoleArchitecture(data) {
 
   historicalPresets.forEach((role) => {
     assert(role.isPrimary === false, `${role.id} historical preset should be hidden`);
+    assert(role.baseRoleId, `${role.id} is missing baseRoleId`);
+    assert(durableIds.has(role.baseRoleId), `${role.id} baseRoleId is not durable: ${role.baseRoleId}`);
+    assert(getRoleBaseDefinition(role.id).id === role.baseRoleId,
+      `${role.id} does not resolve to base role ${role.baseRoleId}`);
+  });
+
+  targetedPresets.forEach((role) => {
+    assert(role.isPrimary === false, `${role.id} targeted preset should not be a durable starting point`);
+    assert(role.isTargetedPreset === true, `${role.id} is missing targeted-preset marker`);
+    assert(careerData.targetedRoleIds.includes(role.id), `${role.id} is not exposed in Targeted Applications`);
     assert(role.baseRoleId, `${role.id} is missing baseRoleId`);
     assert(durableIds.has(role.baseRoleId), `${role.id} baseRoleId is not durable: ${role.baseRoleId}`);
     assert(getRoleBaseDefinition(role.id).id === role.baseRoleId,
@@ -180,8 +200,8 @@ function validateBulletCatalog(data) {
   const canonical = bulletEntries.filter(({ bullet }) => bullet.catalogStatus === "canonical");
   const historical = bulletEntries.filter(({ bullet }) => bullet.catalogStatus === "historical-targeted");
 
-  assert(bulletEntries.length === 270, `Expected 270 preserved bullet records, found ${bulletEntries.length}`);
-  assert(canonical.length === 111, `Expected 111 canonical bullets, found ${canonical.length}`);
+  assert(bulletEntries.length === 283, `Expected 283 preserved bullet records, found ${bulletEntries.length}`);
+  assert(canonical.length === 124, `Expected 124 canonical bullets, found ${canonical.length}`);
   assert(historical.length === 159, `Expected 159 historical targeting bullets, found ${historical.length}`);
 
   const canonicalText = new Map();
@@ -268,6 +288,25 @@ function validateBulletCatalog(data) {
   assert((huggingFace.bullets || []).filter((bullet) => bullet.catalogStatus === "canonical")
     .every((bullet) => !/fine[- ]tun/i.test(bullet.text)),
   "Hugging Face canonical bullets must not imply fine-tuning");
+
+
+  const hiplingo = careerData.projects.find((item) =>
+    item.id === "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform");
+  const hiplingoCanonical = (hiplingo.bullets || [])
+    .filter((bullet) => bullet.catalogStatus === "canonical");
+  assert(hiplingoCanonical.length === 13,
+    `Hiplingo should expose 13 canonical role-family bullets, found ${hiplingoCanonical.length}`);
+  const hiplingoText = hiplingoCanonical.map((bullet) => bullet.text).join(" ");
+  assert(!/\bfastapi\b/i.test(hiplingoText),
+    "Current Hiplingo/Metadata Editor bullets must not describe Metadata Editor as FastAPI");
+  [
+    "Web Audio API", "Canvas 2D API", "FFmpeg", "MediaInfo", "SSH", "rsync",
+    "DaVinci Resolve", "Fusion"
+  ].forEach((skill) => {
+    assert(hiplingoCanonical.some((bullet) =>
+      (bullet.skillTags || []).some((entry) => entry.name === skill)
+    ), `Hiplingo canonical evidence is missing expected reusable skill tag: ${skill}`);
+  });
 }
 
 function validateGeneratedResumes(data) {
@@ -359,7 +398,7 @@ function validateGeneratedResumes(data) {
 
   const expectedProjectIds = [
     "2026-07-xx_xxxx-xx-xx_century-solar",
-    "2026-07-xx_xxxx-xx-xx_metadata-editor",
+    "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform",
     "2026-05-01_2026-06-01_signalstack"
   ];
   expectedProjectIds.forEach((projectId) => {
@@ -368,10 +407,98 @@ function validateGeneratedResumes(data) {
       `Canonical Full-Stack resume should render 2 bullets for ${projectId}, found ${project?.selectedBullets.length || 0}`);
   });
 
+  const fullStackHiplingo = fullStack.projects.find((entry) =>
+    entry.id === "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform"
+  );
+  ["hiplingo-media-platform-001", "hiplingo-media-platform-002"].forEach((bulletId) => {
+    assert(fullStackHiplingo?.selectedBullets.some((bullet) => bullet.id === bulletId),
+      `Canonical Full-Stack resume is missing Hiplingo software evidence ${bulletId}`);
+  });
+
   const systemsGroup = fullStack.skills.find((group) => group.category === "Systems & Infrastructure");
   assert(systemsGroup, "Canonical Full-Stack resume is missing Systems & Infrastructure skills");
   assert(systemsGroup.skills.includes("Linux"), "Canonical Full-Stack systems skills are missing Linux");
   assert(systemsGroup.skills.includes("RHEL 9"), "Canonical Full-Stack systems skills are missing RHEL 9");
+
+  const esri = buildResume({
+    targetRole: "esri-arcgis-enterprise-build-release-engineer",
+    currentDate: new Date(2026, 7, 19, 12, 0, 0)
+  });
+  assert(esri.roleFamily === "Platform / Reliability / Automation",
+    `Esri targeted preset generated unexpected family: ${esri.roleFamily}`);
+  assert(esri.headline === "BUILD & RELEASE ENGINEER | LINUX | DEPLOYMENT AUTOMATION | DOCKER",
+    "Esri targeted headline changed unexpectedly");
+  assert(esri.summary.startsWith("Build/release-focused systems and software engineer"),
+    "Esri targeted summary should lead with build/release positioning");
+
+  const esriRoth = esri.jobs.find((job) => job.id ===
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i");
+  const esriRandstad = esri.jobs.find((job) => job.id ===
+    "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician");
+  assert(esriRoth?.selectedBullets.length === 4,
+    `Esri targeted preset should render 4 Roth bullets, found ${esriRoth?.selectedBullets.length || 0}`);
+  assert(esriRandstad?.selectedBullets.length === 1,
+    `Esri targeted preset should render 1 Randstad bullet, found ${esriRandstad?.selectedBullets.length || 0}`);
+
+  const expectedEsriRothBullets = [
+    "roth-system-engineer-i-010",
+    "roth-system-engineer-i-002",
+    "roth-system-engineer-i-004",
+    "roth-system-engineer-i-012"
+  ];
+  assert(esriRoth.selectedBullets.map((bullet) => bullet.id).join("|") === expectedEsriRothBullets.join("|"),
+    `Esri targeted Roth evidence order changed: ${esriRoth.selectedBullets.map((bullet) => bullet.id).join(", ")}`);
+  assert(esriRandstad.selectedBullets.some((bullet) =>
+    bullet.id === "randstad-jr-deskside-technician-006"
+  ), "Esri targeted preset is missing Randstad PowerShell validation evidence");
+
+  const esriHiplingo = esri.projects.find((project) =>
+    project.id === "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform"
+  );
+  const esriOffline = esri.projects.find((project) =>
+    project.id === "2026-06-xx_xxxx-xx-xx_offline-dev-lab"
+  );
+  ["hiplingo-media-platform-005", "hiplingo-media-platform-013"].forEach((bulletId) => {
+    assert(esriHiplingo?.selectedBullets.some((bullet) => bullet.id === bulletId),
+      `Esri targeted preset is missing Hiplingo deployment evidence ${bulletId}`);
+  });
+  ["offline-dev-lab-003", "offline-dev-lab-004"].forEach((bulletId) => {
+    assert(esriOffline?.selectedBullets.some((bullet) => bullet.id === bulletId),
+      `Esri targeted preset is missing Offline Dev Lab evidence ${bulletId}`);
+  });
+  assert(!esri.projects.some((project) =>
+    project.id === "2026-05-01_2026-06-01_signalstack"
+  ), "Esri targeted preset should prioritize Hiplingo deployment evidence over SignalStack");
+
+  const esriSkills = esri.skills.flatMap((group) => group.skills);
+  [
+    "Linux", "RHEL 9", "Debian 13", "Bash", "Docker", "Git",
+    "JDK", "Tomcat/TomEE", "Java middleware", "dependency management", "deployment automation",
+    "release packaging", "SSH", "deployment manifests", "SHA-256 integrity validation",
+    "vulnerability remediation"
+  ].forEach((skill) => {
+    assert(esriSkills.includes(skill), `Esri targeted preset is missing expected skill: ${skill}`);
+  });
+  ["Jenkins", "Maven", "Ant", "Groovy", "Kubernetes"].forEach((unsupportedSkill) => {
+    assert(!esriSkills.includes(unsupportedSkill),
+      `Esri targeted preset must not claim unsupported skill: ${unsupportedSkill}`);
+  });
+  ["Linux server administration", "Apache Tomcat", "shell scripting", "cybersecurity fundamentals"].forEach((redundantSkill) => {
+    assert(!esriSkills.includes(redundantSkill),
+      `Esri targeted preset should suppress redundant/weak skill: ${redundantSkill}`);
+  });
+  assert(esri.certifications.some((certification) =>
+    certification.id === "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation"
+  ), "Esri targeted preset should include ITIL 4 Foundation");
+  assert(!esri.certifications.some((certification) =>
+    certification.id === "2022-01-09_xxxx-xx-xx_comptia_project-plus"
+  ), "Esri targeted preset should prefer ITIL 4 Foundation over Project+");
+  [...esri.jobs, ...esri.projects].forEach((item) => {
+    item.selectedBullets.forEach((bullet) => {
+      assert(bullet.catalogStatus === "canonical",
+        `Esri targeted preset selected historical targeting bullet ${bullet.id}`);
+    });
+  });
 }
 
 
@@ -384,7 +511,8 @@ function main() {
 
   console.log("Role data checks passed.");
   console.log(`Durable dropdown roles: ${data.careerData.targetRoles.length}`);
-  console.log(`Historical role presets retained: ${data.careerData.roleDefinitions.length - data.careerData.targetRoles.length}`);
+  console.log(`Historical role presets retained: ${data.careerData.roleDefinitions.filter((role) => role.catalogStatus === "historical-preset").length}`);
+  console.log(`Targeted application presets: ${data.careerData.targetedRoleIds.length}`);
   console.log(`Role families: ${Object.keys(data.careerData.roleFamilies).length}`);
   console.log(`Canonical bullets: ${collectAllBullets(data.careerData).filter(({ bullet }) => bullet.catalogStatus === "canonical").length}`);
   console.log(`Historical targeting bullets retained: ${collectAllBullets(data.careerData).filter(({ bullet }) => bullet.catalogStatus === "historical-targeted").length}`);

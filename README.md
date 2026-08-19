@@ -34,6 +34,16 @@ Validate the contact-display helpers and defaults with:
 ./scripts/check-contact-display.sh
 ```
 
+### Print / PDF metadata
+
+Resume Generator derives print metadata from the currently generated resume. The role headline supplies the document title/subject, the contact record supplies the author, and the visible ranked skill groups supply a bounded keyword list. HTML `author`, `subject`, `description`, and `keywords` metadata stay synchronized with the selected resume. Immediately before printing, the app temporarily changes `document.title` to a resume-specific value such as `Nathan D. Brenton - Build & Release Engineer`, then restores the normal `Resume Generator` application title after printing.
+
+Browser/native PDF workflows are free to ignore HTML metadata other than the title, so this improves the source document and print-dialog title without claiming guaranteed control over macOS PDF Author/Subject/Keywords fields. Validate the metadata derivation and DOM helper with:
+
+```bash
+./scripts/check-print-metadata.sh
+```
+
 
 ### Manual customization modes
 
@@ -53,7 +63,7 @@ Validate the customization-state helpers with:
 
 ### Target-role architecture
 
-The dropdown exposes **12 durable resume starting points**. Every visible role has a stable machine-readable ID, inherits from one of 11 evidence families, and layers only small reusable capability/domain modifiers over its family weights. Historical job-target roles remain in `roleDefinitions` as hidden `historical-preset` records so older role IDs, aliases, saved customizations, and targeting history continue to resolve without permanently expanding the dropdown.
+The dropdown exposes **12 durable resume starting points** plus a separate **Targeted Applications** optgroup for active job-specific presets. Durable roles have stable machine-readable IDs, inherit from one of 11 evidence families, and layer only small reusable capability/domain modifiers over family weights. Historical job-target roles remain in `roleDefinitions` as hidden `historical-preset` records so older role IDs, aliases, saved customizations, and targeting history continue to resolve without permanently expanding the starting-point catalog.
 
 Durable starting points:
 
@@ -73,6 +83,8 @@ Durable starting points:
 `full-stack-software-engineer` remains the canonical general-purpose software resume. Historical software targets such as healthcare, banking, mission-operations, and forward-deployed roles resolve through preserved presets instead of creating additional generic software dropdown entries. Its one-page baseline intentionally preserves five professional bullets (3 Roth + 2 Randstad), two bullets for each of Century Solar, Metadata Editor, and SignalStack, and a compact seventh skills group for verified Linux/RHEL systems depth.
 
 `historicalRoleBaseMappings` records the durable base for each hidden preset. `legacyRoleMappings` keeps older labels/IDs resolvable, and `getRoleDefinition()` now rejects unknown roles rather than silently falling back to the first resume.
+
+Active job-specific presets use `catalogStatus: "targeted-preset"` and are listed through `targetedRoleIds`. They inherit a durable base but remain outside the 12 starting points. Targeted presets use canonical bullets only; they may apply stronger preferred-bullet ranking to lock a reviewed one-page application against a specific posting without reintroducing duplicate posting-specific bullet records.
 
 All role selections explicitly define jobs, projects, education, and certifications. An empty array means “select none.” Jobs and projects are deliberately chosen by the role/preset; bullet scoring ranks evidence **inside** those selected records.
 
@@ -99,7 +111,7 @@ Professional truthfulness boundaries remain explicit: Python is not attributed t
 
 ### Relevance- and diversity-aware bullet selection
 
-Bullet ranking combines family relevance, bounded exact-role relevance, normalized skill overlap, preferred focus areas, default/general usefulness, and claim strength. Exact posting matches are no longer dominant enough to overpower stronger canonical evidence. Preferred bullet IDs act as a modest scoring nudge rather than bypassing ranking and redundancy controls.
+Bullet ranking combines family relevance, bounded exact-role relevance, normalized skill overlap, preferred focus areas, default/general usefulness, and claim strength. Exact posting matches are no longer dominant enough to overpower stronger canonical evidence. Preferred bullet IDs act as a modest scoring nudge for durable and historical roles rather than bypassing ranking and redundancy controls. Reviewed active targeted presets may use a larger role-scoped preferred-bullet boost to lock a specific one-page evidence mix while still selecting only canonical bullets.
 
 Selected bullets receive diversity penalties for repeated focus areas, skill sets, and substantially similar wording. Primary as well as supplemental bullets must clear minimum relevance thresholds. Short focus terms such as `AI`, `API`, and `ML` use token-aware matching so unrelated words such as `email`, `daily`, or `maintained` do not create false focus matches. Explicit `focusAreas` still take precedence over inference.
 
@@ -120,7 +132,7 @@ Projects/jobs with no qualifying selected bullets are not rendered merely to fil
 
 `scripts/role-regression-fixtures.js` defines expected evidence for every durable starting point. The role checker validates architecture as well as generated output, including:
 
-- exactly 12 visible durable roles and valid historical base mappings
+- exactly 12 durable starting points, active targeted-preset mappings, and valid historical base mappings
 - bounded family/modifier weights
 - canonical/historical bullet separation and duplicate protection
 - truthfulness guards for professional technology claims
@@ -136,6 +148,7 @@ Run the full local data checks with:
 ```bash
 ./scripts/check-certification-data.sh
 ./scripts/check-contact-display.sh
+./scripts/check-print-metadata.sh
 ./scripts/check-customization-data.sh
 ./scripts/check-education-data.sh
 ./scripts/check-role-data.sh

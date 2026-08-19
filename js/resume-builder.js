@@ -335,7 +335,7 @@ function selectBullets(
         adjustedScore:
           entry.baseScore -
           calculateRedundancyPenalty(entry, selectedEntries) +
-          (preferredIdSet.has(entry.bullet.id) ? 8 : 0)
+          (preferredIdSet.has(entry.bullet.id) ? (roleContext.role.preferredBulletBoost ?? 8) : 0)
       }))
       .sort((left, right) => {
         return right.adjustedScore - left.adjustedScore ||
@@ -361,7 +361,28 @@ function selectBullets(
     seenText.add(textKey);
   }
 
-  return selectedEntries.slice(0, maxBullets).map(({ bullet }) => bullet);
+  const selectedBullets = selectedEntries.slice(0, maxBullets).map(({ bullet }) => bullet);
+
+  if (!roleContext.role.preservePreferredBulletOrder || preferredBulletIds.length === 0) {
+    return selectedBullets;
+  }
+
+  const preferredOrder = new Map(
+    preferredBulletIds.map((bulletId, index) => [bulletId, index])
+  );
+
+  return selectedBullets
+    .map((bullet, index) => ({
+      bullet,
+      index,
+      preferredIndex: preferredOrder.has(bullet.id)
+        ? preferredOrder.get(bullet.id)
+        : Number.POSITIVE_INFINITY
+    }))
+    .sort((left, right) => {
+      return left.preferredIndex - right.preferredIndex || left.index - right.index;
+    })
+    .map(({ bullet }) => bullet);
 }
 
 function selectedByIds(items, selectedIds) {

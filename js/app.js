@@ -198,12 +198,17 @@ function populateControls() {
   const targetRoleSelect = document.getElementById("targetRole");
 
   const durableRoles = careerData.targetRoles.map((roleId) => getRoleDefinition(roleId));
+  const targetedRoles = (careerData.targetedRoleIds || []).map((roleId) => getRoleDefinition(roleId));
   const createRoleOptions = (roles) => roles
     .map((role) => `<option value="${role.id}">${role.label}</option>`)
     .join("");
 
+  const targetedGroup = targetedRoles.length
+    ? `<optgroup label="Targeted Applications">${createRoleOptions(targetedRoles)}</optgroup>`
+    : "";
+
   targetRoleSelect.innerHTML =
-    `<optgroup label="Resume Starting Points">${createRoleOptions(durableRoles)}</optgroup>`;
+    `<optgroup label="Resume Starting Points">${createRoleOptions(durableRoles)}</optgroup>${targetedGroup}`;
 
   populateContactControls();
   populateSelectionControls(targetRoleSelect.value);
@@ -211,6 +216,7 @@ function populateControls() {
 
 function updateDebug(resume) {
   const debug = document.getElementById("debugOutput");
+  const printMetadata = resumePrintMetadata.buildMetadata(resume);
 
   debug.textContent = [
     `Target role: ${resume.targetRoleLabel}`,
@@ -220,7 +226,12 @@ function updateDebug(resume) {
     `Education: ${resume.education.length}`,
     `Certifications: ${resume.certifications.length}`,
     `Skill groups: ${resume.skills.length}`,
-    `Skill count: ${resume.skills.reduce((total, group) => total + group.skills.length, 0)}`
+    `Skill count: ${resume.skills.reduce((total, group) => total + group.skills.length, 0)}`,
+    "",
+    `PDF title: ${printMetadata.title}`,
+    `PDF author: ${printMetadata.author}`,
+    `PDF subject: ${printMetadata.subject}`,
+    `PDF keywords: ${printMetadata.keywords}`
   ].join("\n");
 }
 
@@ -255,6 +266,8 @@ function saveCustomizeModePreference(mode) {
 let activeCustomizeMode = getInitialCustomizeMode();
 let customizationBaseline = new Map();
 let renderedRoleId = null;
+let renderedResume = null;
+let prePrintDocumentTitle = null;
 
 function getCustomizationState(mode) {
   if (mode === resumeCustomization.MODES.SESSION) {
@@ -485,11 +498,42 @@ function renderCurrentResume() {
   );
 
   renderResume(resume, document.getElementById("resumePreview"));
+  renderedResume = resume;
   renderedRoleId = role.id;
+  resumePrintMetadata.applyToDocument(
+    document,
+    resumePrintMetadata.buildMetadata(resume),
+    { includeTitle: false }
+  );
   updateDebug(resume);
   captureCustomizationBaseline();
   applyManualEdits();
   updateCustomizeUi();
+}
+
+
+function preparePrintMetadata() {
+  if (!renderedResume) {
+    return;
+  }
+
+  if (prePrintDocumentTitle === null) {
+    prePrintDocumentTitle = document.title || resumePrintMetadata.APP_TITLE;
+  }
+
+  resumePrintMetadata.applyToDocument(
+    document,
+    resumePrintMetadata.buildMetadata(renderedResume)
+  );
+}
+
+function restoreApplicationTitle() {
+  if (prePrintDocumentTitle === null) {
+    return;
+  }
+
+  document.title = prePrintDocumentTitle || resumePrintMetadata.APP_TITLE;
+  prePrintDocumentTitle = null;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -549,5 +593,12 @@ document.addEventListener("DOMContentLoaded", () => {
     captureManualEdits();
   });
 
-  document.getElementById("printButton").addEventListener("click", () => window.print());
+  window.addEventListener("beforeprint", preparePrintMetadata);
+  window.addEventListener("afterprint", restoreApplicationTitle);
+
+  document.getElementById("printButton").addEventListener("click", () => {
+    preparePrintMetadata();
+    window.print();
+    restoreApplicationTitle();
+  });
 });

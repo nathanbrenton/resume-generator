@@ -40,6 +40,8 @@ const canonicalBulletIdsByItem = {
     "metadata-editor-media-devops-001",
     "metadata-editor-001"
   ],
+  "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform":
+    numberedBulletIds("hiplingo-media-platform", 13),
   "2026-07-xx_xxxx-xx-xx_resume-generator": [
     "resume-generator-001",
     "resume-generator-ai-first-001"

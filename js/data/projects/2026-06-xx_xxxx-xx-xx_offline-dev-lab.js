@@ -481,6 +481,7 @@ const project202606xxOfflineDevLab = {
       ],
       skillTags: [
         { category: "Linux & Systems Administration", name: "package management" },
+        { category: "DevOps & Tooling", name: "dependency management" },
         { category: "DevOps & Tooling", name: "Python wheelhouse" },
         { category: "Cloud & Infrastructure", name: "air-gapped dependency planning" },
         { category: "Other", name: "offline development" }

@@ -8,6 +8,7 @@ const careerData = {
   legacyRoleMappings,
   historicalRoleBaseMappings,
   durableRoleIds,
+  targetedRoleIds,
   roleDefaultSelections,
   roleSkillPriorities,
   canonicalSkillCategories,

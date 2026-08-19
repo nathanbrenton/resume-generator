@@ -128,7 +128,7 @@ function renderExperience(resume) {
 function renderProjects(resume) {
   const body = resume.projects.map((project) => {
     const projectUrl = project.repositoryUrl
-      ? project.repositoryUrl.replace("https://github.com/", "github.com/")
+      ? project.repositoryUrl.replace(/^https?:\/\/(?:www\.)?/, "")
       : "";
 
     return `

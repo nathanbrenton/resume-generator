@@ -6,7 +6,7 @@ module.exports = [
     requiredJobIds: ["2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"],
     requiredProjectIds: [
       "2026-07-xx_xxxx-xx-xx_century-solar",
-      "2026-07-xx_xxxx-xx-xx_metadata-editor",
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform",
       "2026-05-01_2026-06-01_signalstack"
     ],
     minExperienceBullets: 5,

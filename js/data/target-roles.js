@@ -220,7 +220,10 @@ const roleModifiers = {
   "hardware-repair": { label: "Hardware / Electromechanical Repair" },
   "music-technology-support": { label: "Music Technology" },
   "music-content-protection": { label: "Music Content Protection" },
-  "recorded-music-release-planning": { label: "Recorded Music Release Planning" }
+  "recorded-music-release-planning": { label: "Recorded Music Release Planning" },
+  "build-release-engineering": { label: "Build / Release Engineering" },
+  "build-release-platform": { label: "Build / Release Platform" },
+  "linux-web-hosting": { label: "Linux Web Hosting" }
 };
 
 const sharedEducationIds = [
@@ -454,9 +457,9 @@ const roleDefinitions = [
         "century-solar-full-stack-001",
         "century-solar-001"
       ],
-      "2026-07-xx_xxxx-xx-xx_metadata-editor": [
-        "metadata-editor-full-stack-001",
-        "metadata-editor-trl11-video-systems-001"
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": [
+        "hiplingo-media-platform-001",
+        "hiplingo-media-platform-002"
       ],
       "2026-05-01_2026-06-01_signalstack": [
         "signalstack-full-stack-001",
@@ -470,7 +473,7 @@ const roleDefinitions = [
       ],
       projectIds: [
         "2026-07-xx_xxxx-xx-xx_century-solar",
-        "2026-07-xx_xxxx-xx-xx_metadata-editor",
+        "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform",
         "2026-05-01_2026-06-01_signalstack"
       ],
       educationIds: [
@@ -2850,6 +2853,93 @@ roleDefinitions.push({
   }
 });
 
+roleDefinitions.push({
+  id: "esri-arcgis-enterprise-build-release-engineer",
+  label: "Esri — Build / Release Engineer (ArcGIS Enterprise)",
+  familyId: "platform-reliability",
+  modifierIds: ["reliability", "automation", "build-release-engineering", "build-release-platform", "linux-web-hosting"],
+  aliases: [
+    "Build and Release Engineer",
+    "Build / Release Engineer",
+    "Software Build Engineer",
+    "Release Engineer"
+  ],
+  headline: "BUILD & RELEASE ENGINEER | LINUX | DEPLOYMENT AUTOMATION | DOCKER",
+  summary: "Build/release-focused systems and software engineer with professional RHEL middleware experience supporting Java application platforms, deployment automation, patching, monitoring, and multi-environment release validation. Independent projects add Linux/Docker build environments, dependency management, integrity-verified packaging, SSH/rsync deployment, rollback, and automated validation.",
+  preferredFocusAreas: [
+    "deployment-change",
+    "automation",
+    "testing-validation",
+    "infrastructure-operations",
+    "monitoring-observability",
+    "security-compliance"
+  ],
+  preferredBulletBoost: 50,
+  preservePreferredBulletOrder: true,
+  categoryOrder: [
+    "Systems & Infrastructure",
+    "Middleware & Applications",
+    "Automation & Scripting",
+    "DevOps & Tooling",
+    "Platform & Reliability",
+    "Security & Compliance",
+    "Testing & Quality",
+    "Programming & Scripting",
+    "Networking & Security",
+    "Documentation & Collaboration",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "DevOps & Tooling": 8,
+    "Platform & Reliability": 5,
+    "Security & Compliance": 2,
+    "Programming & Scripting": 1
+  },
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-010",
+      "roth-system-engineer-i-002",
+      "roth-system-engineer-i-004",
+      "roth-system-engineer-i-012"
+    ],
+    "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": [
+      "randstad-jr-deskside-technician-006"
+    ],
+    "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": [
+      "hiplingo-media-platform-005",
+      "hiplingo-media-platform-013"
+    ],
+    "2026-06-xx_xxxx-xx-xx_offline-dev-lab": [
+      "offline-dev-lab-004",
+      "offline-dev-lab-003"
+    ]
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+    ],
+    projectIds: [
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform",
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab"
+    ],
+    educationIds: sharedEducationIds,
+    certificationIds: [
+      "2023-08-11_2029-08-11_comptia_cysa-plus-ce",
+      "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation"
+    ]
+  },
+  layout: {
+    maxSkillGroups: 7,
+    maxSkillsTotal: 32,
+    maxJobBullets: 4,
+    maxJobBulletsWhenTwoJobs: 4,
+    maxExperienceBullets: 5,
+    maxProjectBullets: 2,
+    maxProjectBulletsTotal: 4
+  }
+});
+
 const durableRoleIds = [
   "full-stack-software-engineer",
   "qa-automation-engineer",
@@ -2865,7 +2955,12 @@ const durableRoleIds = [
   "electromechanical-equipment-repair-technician"
 ];
 
+const targetedRoleIds = [
+  "esri-arcgis-enterprise-build-release-engineer"
+];
+
 const historicalRoleBaseMappings = {
+  "esri-arcgis-enterprise-build-release-engineer": "platform-reliability-engineer",
   "systems-administrator": "linux-middleware-administrator",
   "systems-automation-engineer": "platform-reliability-engineer",
   "technical-developer-support-engineer": "application-production-support-engineer",
@@ -3045,6 +3140,7 @@ const durableSelectionOverrides = {
 };
 
 const durableRoleIdSet = new Set(durableRoleIds);
+const targetedRoleIdSet = new Set(targetedRoleIds);
 const roleDefinitionsByStableId = Object.fromEntries(roleDefinitions.map((role) => [role.id, role]));
 
 Object.entries(durableRoleOverrides).forEach(([roleId, override]) => {
@@ -3060,8 +3156,13 @@ Object.entries(durableRoleOverrides).forEach(([roleId, override]) => {
 
 roleDefinitions.forEach((role) => {
   const baseRoleId = historicalRoleBaseMappings[role.id];
-  role.catalogStatus = durableRoleIdSet.has(role.id) ? "durable" : "historical-preset";
+  role.catalogStatus = durableRoleIdSet.has(role.id)
+    ? "durable"
+    : targetedRoleIdSet.has(role.id)
+      ? "targeted-preset"
+      : "historical-preset";
   role.isPrimary = durableRoleIdSet.has(role.id);
+  role.isTargetedPreset = targetedRoleIdSet.has(role.id);
 
   if (role.catalogStatus === "durable") {
     role.certificationMinDaysRemaining ??= 60;
