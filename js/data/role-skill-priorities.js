@@ -43,6 +43,7 @@ const canonicalSkillCategories = {
   "release packaging": "DevOps & Tooling",
   "ssh": "DevOps & Tooling",
   "deployment manifests": "Platform & Reliability",
+  "release artifact validation": "Platform & Reliability",
   "rollback": "Platform & Reliability",
   "release support": "Platform & Reliability",
   "build validation": "Testing & Quality",
@@ -106,16 +107,22 @@ const canonicalSkillCategories = {
   "audit workflows": "Testing & Quality",
   "linux server administration": "Systems & Infrastructure",
   "web server configuration": "Systems & Infrastructure",
+  "apache http server": "Middleware & Applications",
   "dns": "Networking & Security",
   "domain management": "Networking & Security",
   "firewall configuration": "Networking & Security",
   "mail forwarding": "Networking & Security",
   "workflow troubleshooting": "Application Support",
   "performance optimization": "Performance & Validation",
-  "davinci resolve": "Media Processing",
-  "fusion": "Media Processing",
-  "compositing": "Media Processing",
-  "art direction": "Media Processing",
+  "davinci resolve": "Creative Media",
+  "fusion": "Creative Media",
+  "compositing": "Creative Media",
+  "art direction": "Creative Media",
+  "bandit": "Security Tooling",
+  "pip-audit": "Security Tooling",
+  "dependency vulnerability scanning": "Security Tooling",
+  "ruff": "Testing & Quality",
+  "synthetic transactions": "Testing & Quality",
   "soldering": "Hardware & Field Systems",
   "firmware": "Hardware & Field Systems",
   "raspberry pi": "Hardware & Field Systems",
@@ -128,8 +135,19 @@ const canonicalSkillCategories = {
   "device provisioning": "Endpoint & IT Support"
 };
 
+const canonicalSkillNames = {
+  "apache tomcat": "Tomcat/TomEE",
+  "bandit": "Bandit",
+  "tomcat/tomee": "Tomcat/TomEE"
+};
+
+function getCanonicalSkillName(name) {
+  const normalizedName = String(name || "").trim();
+  return canonicalSkillNames[normalizedName.toLowerCase()] || normalizedName;
+}
+
 function getCanonicalSkillCategory(name, fallbackCategory) {
-  const key = String(name || "").trim().toLowerCase();
+  const key = getCanonicalSkillName(name).toLowerCase();
   return canonicalSkillCategories[key] || fallbackCategory;
 }
 
@@ -148,17 +166,20 @@ const roleFamilySkillWeights = {
     weightedSkill("Monitoring & Support", "log analysis", 8),
     weightedSkill("Platform & Reliability", "deployment validation", 8),
     weightedSkill("Platform & Reliability", "disaster recovery", 7),
-    weightedSkill("Enterprise Support", "ServiceNow", 6),
-    weightedSkill("Identity & Access", "Active Directory", 6)
+    weightedSkill("Middleware & Applications", "Apache HTTP Server", 6),
+    weightedSkill("DevOps & Tooling", "rsync", 6),
+    weightedSkill("Systems & Infrastructure", "Debian 13", 6),
+    weightedSkill("DevOps & Tooling", "SSH", 6),
+    weightedSkill("Systems & Infrastructure", "web server configuration", 5)
   ],
   "platform-reliability": [
     weightedSkill("Platform & Reliability", "production support", 10),
     weightedSkill("Platform & Reliability", "deployment validation", 10),
     weightedSkill("Platform & Reliability", "service recovery", 9),
-    weightedSkill("Platform & Reliability", "incident response", 8),
+    weightedSkill("Platform & Reliability", "rollback", 8),
     weightedSkill("Systems & Infrastructure", "Linux", 9),
     weightedSkill("Automation & Scripting", "Bash", 9),
-    weightedSkill("Monitoring & Support", "Splunk", 8),
+    weightedSkill("DevOps & Tooling", "dependency management", 7),
     weightedSkill("Monitoring & Support", "health checks", 8),
     weightedSkill("Monitoring & Support", "availability monitoring", 8),
     weightedSkill("DevOps & Tooling", "Docker", 8),
@@ -166,8 +187,10 @@ const roleFamilySkillWeights = {
     weightedSkill("DevOps & Tooling", "containerized services", 8),
     weightedSkill("DevOps & Tooling", "Git", 7),
     weightedSkill("Testing & Quality", "pytest", 6),
-    weightedSkill("Backend & APIs", "FastAPI", 6),
-    weightedSkill("Databases & Data", "PostgreSQL", 6)
+    weightedSkill("Platform & Reliability", "release artifact validation", 7),
+    weightedSkill("DevOps & Tooling", "rsync", 7),
+    weightedSkill("Platform & Reliability", "deployment manifests", 7),
+    weightedSkill("DevOps & Tooling", "SSH", 7)
   ],
   "application-support": [
     weightedSkill("Application Support", "production support", 10),
@@ -185,7 +208,9 @@ const roleFamilySkillWeights = {
     weightedSkill("Automation & Scripting", "PowerShell", 6),
     weightedSkill("Backend & APIs", "REST APIs", 6),
     weightedSkill("Testing & Quality", "validation", 7),
-    weightedSkill("Documentation & Collaboration", "developer support", 8)
+    weightedSkill("Documentation & Collaboration", "developer support", 8),
+    weightedSkill("Application Support", "workflow troubleshooting", 7),
+    weightedSkill("Platform & Reliability", "release readiness", 6)
   ],
   "endpoint-support": [
     weightedSkill("Endpoint & IT Support", "Windows", 10),
@@ -219,7 +244,9 @@ const roleFamilySkillWeights = {
     weightedSkill("Testing & Quality", "Playwright", 8),
     weightedSkill("DevOps & Tooling", "Docker", 9),
     weightedSkill("DevOps & Tooling", "containerized services", 8),
-    weightedSkill("DevOps & Tooling", "Git", 7)
+    weightedSkill("DevOps & Tooling", "Git", 7),
+    weightedSkill("Frontend Development", "HTML", 5),
+    weightedSkill("Frontend Development", "CSS", 5)
   ],
   "quality-engineering": [
     weightedSkill("Testing & Quality", "test automation", 10),
@@ -234,7 +261,10 @@ const roleFamilySkillWeights = {
     weightedSkill("Programming & Scripting", "TypeScript", 7),
     weightedSkill("Backend & APIs", "FastAPI", 6),
     weightedSkill("Databases & Data", "PostgreSQL", 6),
-    weightedSkill("DevOps & Tooling", "Docker", 8)
+    weightedSkill("DevOps & Tooling", "Docker", 8),
+    weightedSkill("Testing & Quality", "integration testing", 7),
+    weightedSkill("Testing & Quality", "smoke testing", 6),
+    weightedSkill("Testing & Quality", "media validation", 6)
   ],
   "security-identity": [
     weightedSkill("Security & Compliance", "security validation", 10),
@@ -248,7 +278,11 @@ const roleFamilySkillWeights = {
     weightedSkill("Monitoring & Support", "Splunk", 8),
     weightedSkill("Enterprise Support", "ServiceNow", 7),
     weightedSkill("Systems & Infrastructure", "RHEL 9", 7),
-    weightedSkill("Testing & Quality", "validation", 7)
+    weightedSkill("Testing & Quality", "validation", 7),
+    weightedSkill("Security Tooling", "bandit", 8),
+    weightedSkill("Security Tooling", "pip-audit", 8),
+    weightedSkill("Networking & Security", "firewall configuration", 6),
+    weightedSkill("Systems & Infrastructure", "Debian 13", 5)
   ],
   "applied-ai-automation": [
     weightedSkill("Programming & Scripting", "Python", 10),
@@ -293,7 +327,12 @@ const roleFamilySkillWeights = {
     weightedSkill("Automation & Scripting", "Bash", 7),
     weightedSkill("Systems & Infrastructure", "Linux", 6),
     weightedSkill("Testing & Quality", "validation", 7),
-    weightedSkill("DevOps & Tooling", "Docker", 6)
+    weightedSkill("DevOps & Tooling", "Docker", 6),
+    weightedSkill("Media Processing", "HLS", 9),
+    weightedSkill("Signal Processing", "Web Audio API", 8),
+    weightedSkill("Signal Processing", "waveform visualization", 8),
+    weightedSkill("Backend & APIs", "Node.js", 6),
+    weightedSkill("Media Processing", "ffprobe", 10)
   ],
   "technical-field": [
     weightedSkill("Hardware & Field Systems", "hardware troubleshooting", 10),
@@ -317,19 +356,25 @@ const roleModifierSkillWeights = {
     weightedSkill("Middleware & Applications", "Oracle WebLogic", 4),
     weightedSkill("Middleware & Applications", "Apache Tomcat", 4),
     weightedSkill("Middleware & Applications", "Tomcat/TomEE", 4),
-    weightedSkill("Middleware & Applications", "IBM MQ", 4)
+    weightedSkill("Middleware & Applications", "IBM MQ", 4),
+    weightedSkill("Monitoring & Support", "availability monitoring", 3),
+    weightedSkill("Monitoring & Support", "capacity monitoring", 3)
   ],
   automation: [
     weightedSkill("Automation & Scripting", "Bash", 4),
     weightedSkill("Automation & Scripting", "PowerShell", 3),
-    weightedSkill("Automation & Integration", "workflow automation", 4),
-    weightedSkill("Testing & Quality", "automated validation", 3)
+    weightedSkill("DevOps & Tooling", "release packaging", 4),
+    weightedSkill("Testing & Quality", "automated validation", 3),
+    weightedSkill("DevOps & Tooling", "deployment automation", 4),
+    weightedSkill("Testing & Quality", "smoke testing", 3)
   ],
   reliability: [
     weightedSkill("Platform & Reliability", "disaster recovery", 4),
     weightedSkill("Platform & Reliability", "service recovery", 4),
+    weightedSkill("Platform & Reliability", "rollback", 4),
     weightedSkill("Monitoring & Support", "availability monitoring", 4),
-    weightedSkill("Monitoring & Support", "capacity monitoring", 3)
+    weightedSkill("Monitoring & Support", "capacity monitoring", 3),
+    weightedSkill("Platform & Reliability", "deployment manifests", 3)
   ],
   "production-support": [
     weightedSkill("Application Support", "production support", 4),
@@ -360,13 +405,17 @@ const roleModifierSkillWeights = {
     weightedSkill("Testing & Quality", "test automation", 4),
     weightedSkill("Testing & Quality", "Playwright", 4),
     weightedSkill("Testing & Quality", "pytest", 4),
-    weightedSkill("Testing & Quality", "regression testing", 3)
+    weightedSkill("Testing & Quality", "regression testing", 3),
+    weightedSkill("Testing & Quality", "health checks", 3),
+    weightedSkill("Testing & Quality", "build validation", 3)
   ],
   "security-quality": [
     weightedSkill("Security & Compliance", "security validation", 4),
     weightedSkill("Security & Compliance", "vulnerability remediation", 4),
-    weightedSkill("Testing & Quality", "validation", 3),
-    weightedSkill("Documentation & Collaboration", "technical documentation", 2)
+    weightedSkill("Security & Compliance", "SHA-256 integrity validation", 3),
+    weightedSkill("Security & Compliance", "public/private data separation", 3),
+    weightedSkill("Endpoint & IT Support", "BitLocker", 3),
+    weightedSkill("Security & Compliance", "change management", 3)
   ],
   "mission-operations-full-stack": [
     weightedSkill("Application Support", "operational workflows", 3),
@@ -475,9 +524,18 @@ const roleModifierSkillWeights = {
     weightedSkill("DevOps & Tooling", "reproducible environments", 3)
   ],
   media: [
-    weightedSkill("Media Processing", "media ingest", 4),
-    weightedSkill("Media Processing", "metadata validation", 4),
-    weightedSkill("Media Systems Support", "workflow troubleshooting", 3)
+    weightedSkill("Media Processing", "hls.js", 3),
+    weightedSkill("Media Processing", "HLS", 4),
+    weightedSkill("Signal Processing", "Web Audio API", 4),
+    weightedSkill("Media Processing", "publishing workflows", 3),
+    weightedSkill("Media Processing", "media metadata", 3),
+    weightedSkill("Media Processing", "metadata inheritance", 3)
+  ],
+  "creative-media": [
+    weightedSkill("Creative Media", "DaVinci Resolve", 4),
+    weightedSkill("Creative Media", "Fusion", 4),
+    weightedSkill("Creative Media", "compositing", 3),
+    weightedSkill("Creative Media", "art direction", 2)
   ],
   transcode: [
     weightedSkill("Media Processing", "encoding", 4),
@@ -554,7 +612,8 @@ const roleModifierSkillWeights = {
     weightedSkill("Middleware & Applications", "Tomcat/TomEE", 4),
     weightedSkill("Middleware & Applications", "Java middleware", 3),
     weightedSkill("Middleware & Applications", "Oracle WebLogic", 3),
-    weightedSkill("Systems & Infrastructure", "RHEL 9", 4)
+    weightedSkill("Systems & Infrastructure", "RHEL 9", 4),
+    weightedSkill("Platform & Reliability", "release artifact validation", 4)
   ],
   "linux-web-hosting": [
     weightedSkill("Systems & Infrastructure", "Debian 13", 3),
@@ -568,12 +627,13 @@ function mergeWeightedSkills(skillGroups) {
   const merged = new Map();
 
   skillGroups.flat().forEach((skill) => {
-    const key = String(skill.name).trim().toLowerCase();
-    const canonicalCategory = getCanonicalSkillCategory(skill.name, skill.category);
+    const canonicalName = getCanonicalSkillName(skill.name);
+    const key = canonicalName.toLowerCase();
+    const canonicalCategory = getCanonicalSkillCategory(canonicalName, skill.category);
     const existing = merged.get(key);
 
     if (!existing) {
-      merged.set(key, { ...skill, category: canonicalCategory });
+      merged.set(key, { ...skill, name: canonicalName, category: canonicalCategory });
       return;
     }
 

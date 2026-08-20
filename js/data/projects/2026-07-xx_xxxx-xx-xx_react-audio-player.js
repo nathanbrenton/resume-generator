@@ -1,6 +1,8 @@
 const project202607xxReactAudioPlayer = {
   id: "2026-07-xx_xxxx-xx-xx_react-audio-player",
   type: "project",
+  catalogStatus: "historical-component",
+  supersededByProjectId: "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform",
   includeByDefault: false,
 
   name: "React Audio Player",

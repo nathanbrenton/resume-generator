@@ -133,10 +133,12 @@ const project202607xxCenturySolar = {
     {
       id: "century-solar-ust-infrastructure-001",
       text: "Built duplicate-safe operational workflows, access controls, audit-oriented records, synthetic test data, and browser-validation scenarios across the private FastAPI/React/PostgreSQL application.",
-      printText: "Developed and tested a private containerized FastAPI/React/PostgreSQL platform with automated backend, frontend, and browser coverage.",
+      printText: "Validated duplicate-safe workflows, access controls, synthetic test data, and browser scenarios across a containerized FastAPI/React/PostgreSQL platform.",
       includeByDefault: true,
       strength: "supporting",
       targetRoles: ["Infrastructure Analyst — Deployment & Operations"],
+      targetRoleFamilies: ["quality-engineering"],
+      focusAreas: ["testing-validation", "security-compliance", "data-databases"],
       skillTags: [
         { category: "Programming & Automation", name: "Python" },
         { category: "Databases & Applications", name: "FastAPI" },
@@ -194,6 +196,41 @@ const project202607xxCenturySolar = {
         { category: "DevOps & Tooling", name: "Docker" },
         { category: "DevOps & Tooling", name: "pytest" },
         { category: "Operations & Troubleshooting", name: "process improvement" }
+      ]
+    },
+    {
+      id: "century-solar-qa-001",
+      text: "Built automated quality coverage across the private Century Solar portfolio platform using pytest, Vitest, and Playwright for backend, frontend, integration, browser, and workflow validation.",
+      printText: "Built pytest, Vitest, and Playwright coverage for backend, frontend, integration, browser, and workflow validation.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoleFamilies: ["quality-engineering", "software-engineering"],
+      focusAreas: ["testing-validation", "software-development", "api-integration"],
+      skillTags: [
+        { category: "Testing & Quality", name: "pytest" },
+        { category: "Testing & Quality", name: "Vitest" },
+        { category: "Testing & Quality", name: "Playwright" },
+        { category: "Testing & Quality", name: "integration testing" },
+        { category: "Testing & Quality", name: "browser testing" },
+        { category: "Testing & Quality", name: "test automation" }
+      ]
+    },
+    {
+      id: "century-solar-security-001",
+      text: "Implemented and validated application access controls, privacy workflows, audit-oriented records, duplicate-safe operations, and synthetic test scenarios across the private FastAPI/React/PostgreSQL portfolio platform.",
+      printText: "Implemented access controls, privacy/audit workflows, duplicate-safe operations, and validation scenarios in a private application platform.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoleFamilies: ["security-identity"],
+      focusAreas: ["security-compliance", "identity-access", "testing-validation", "data-databases"],
+      skillTags: [
+        { category: "Security & Compliance", name: "access controls" },
+        { category: "Security & Compliance", name: "privacy controls" },
+        { category: "Databases & Data", name: "audit records" },
+        { category: "Testing & Quality", name: "security validation" },
+        { category: "Testing & Quality", name: "data validation" },
+        { category: "Backend & APIs", name: "FastAPI" },
+        { category: "Databases & Data", name: "PostgreSQL" }
       ]
     },
     {

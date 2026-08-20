@@ -1,6 +1,7 @@
 const project202607xxHiplingoMediaPlatform = {
   id: "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform",
   type: "project",
+  catalogStatus: "canonical",
   includeByDefault: false,
 
   name: "Hiplingo Media Platform",
@@ -150,7 +151,7 @@ const project202607xxHiplingoMediaPlatform = {
       printText: "Built Hiplingo, a React/TypeScript/Vite music app with persistent HLS playback, responsive artist/release browsing, and shared media-player components.",
       includeByDefault: true,
       strength: "primary",
-      targetRoles: ["Software Engineer", "Software Engineer — Full Stack"],
+      targetRoles: ["Software Engineer", "Software Engineer — Full Stack", "Media Systems Technician"],
       targetRoleFamilies: ["software-engineering", "media-systems"],
       focusAreas: ["software-development", "media-processing"],
       skillTags: [
@@ -244,6 +245,7 @@ const project202607xxHiplingoMediaPlatform = {
       printText: "Provisioned and hardened Hiplingo's public Linux host with DNS, web-server/firewall configuration, SSH deployment access, and private/public separation.",
       includeByDefault: false,
       strength: "primary",
+      targetRoles: ["Platform Engineer", "Linux Administrator", "Cybersecurity Analyst"],
       targetRoleFamilies: ["platform-reliability", "systems-middleware", "security-identity"],
       focusAreas: ["infrastructure-operations", "security-compliance", "deployment-change"],
       evidenceBasis: "User-verified infrastructure work; application source/docs independently confirm the Debian target, public/private boundary, and SSH production deployment model.",
@@ -296,7 +298,7 @@ const project202607xxHiplingoMediaPlatform = {
       text: "Modeled artist, release, track, artwork, credits, and public-inclusion metadata with inheritance/overrides, selective per-track publication, and sanitized public catalog generation.",
       printText: "Modeled artist/release/track metadata with inheritance, overrides, selective per-track publication, artwork, credits, and sanitized public catalogs.",
       includeByDefault: false,
-      strength: "supporting",
+      strength: "primary",
       targetRoleFamilies: ["software-engineering", "media-systems"],
       focusAreas: ["media-processing", "data-databases", "software-development"],
       skillTags: [
@@ -329,7 +331,8 @@ const project202607xxHiplingoMediaPlatform = {
       text: "Directed and prepared visual assets for Hiplingo using DaVinci Resolve and Fusion compositing, integrating parallax and audio-reactive motion backgrounds into responsive web presentation.",
       printText: "Created Hiplingo visual assets with DaVinci Resolve/Fusion compositing, art direction, parallax, and audio-reactive responsive backgrounds.",
       includeByDefault: false,
-      strength: "supporting",
+      strength: "primary",
+      targetRoles: ["Media Systems Technician"],
       targetRoleFamilies: ["media-systems"],
       focusAreas: ["media-processing", "software-development"],
       evidenceBasis: "User-verified creative-production work; application source independently confirms parallax and audio-reactive presentation.",
@@ -369,6 +372,7 @@ const project202607xxHiplingoMediaPlatform = {
         { category: "DevOps & Tooling", name: "release packaging" },
         { category: "Platform & Reliability", name: "deployment manifests" },
         { category: "Platform & Reliability", name: "deployment validation" },
+        { category: "Platform & Reliability", name: "release artifact validation" },
         { category: "Media Processing", name: "publishing workflows" },
         { category: "Media Processing", name: "FFmpeg" },
         { category: "Media Processing", name: "HLS" },

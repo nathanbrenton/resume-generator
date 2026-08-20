@@ -122,9 +122,11 @@ const job20210419PaulMorteTechnicalServicesWarehouseTechnician = {
         "Electronics / Repair Technician",
         "Hardware Repair Technician"
       ],
+      focusAreas: ["hardware-repair", "testing-validation"],
       skillTags: [
-        { category: "Hardware / Repair", name: "hardware diagnostics" },
-        { category: "Hardware / Repair", name: "Yamaha audio equipment" },
+        { category: "Hardware & Field Systems", name: "electronics diagnostics" },
+        { category: "Hardware & Field Systems", name: "hardware troubleshooting" },
+        { category: "Hardware & Field Systems", name: "audio equipment" },
         { category: "Media & Encoding", name: "live sound equipment" },
         { category: "Media & Encoding", name: "recording equipment" }
       ]
@@ -162,11 +164,12 @@ const job20210419PaulMorteTechnicalServicesWarehouseTechnician = {
         "Electronics / Repair Technician",
         "Hardware Repair Technician"
       ],
+      focusAreas: ["hardware-repair", "testing-validation"],
       skillTags: [
         { category: "Media & Encoding", name: "firmware file management" },
         { category: "Media & Encoding", name: "Yamaha THR Editor" },
         { category: "Networking", name: "Bluetooth validation" },
-        { category: "Hardware / Repair", name: "firmware updates" }
+        { category: "Hardware & Field Systems", name: "firmware" }
       ]
     },
     {
@@ -216,10 +219,12 @@ const job20210419PaulMorteTechnicalServicesWarehouseTechnician = {
         "Electronics / Repair Technician",
         "Hardware Repair Technician"
       ],
+      focusAreas: ["hardware-repair", "testing-validation"],
       skillTags: [
         { category: "Hardware / Repair", name: "disassembly" },
         { category: "Hardware / Repair", name: "reassembly" },
-        { category: "Hardware / Repair", name: "calibration" },
+        { category: "Hardware & Field Systems", name: "calibration" },
+        { category: "Hardware & Field Systems", name: "audio equipment" },
         { category: "Hardware / Repair", name: "component swapping" },
         { category: "Media & Encoding", name: "audio equipment testing" }
       ]
@@ -238,11 +243,15 @@ const job20210419PaulMorteTechnicalServicesWarehouseTechnician = {
         "Electronics / Repair Technician",
         "Hardware Repair Technician"
       ],
+      focusAreas: ["hardware-repair", "testing-validation"],
       skillTags: [
         { category: "Media & Encoding", name: "audio input/output testing" },
         { category: "Media & Encoding", name: "sine sweep testing" },
         { category: "Media & Encoding", name: "signal testing" },
-        { category: "Productivity", name: "service manuals" }
+        { category: "Productivity", name: "service manuals" },
+        { category: "Hardware & Field Systems", name: "electronics diagnostics" },
+        { category: "Hardware & Field Systems", name: "hardware troubleshooting" },
+        { category: "Hardware & Field Systems", name: "audio equipment" }
       ]
     },
     {
@@ -256,6 +265,7 @@ const job20210419PaulMorteTechnicalServicesWarehouseTechnician = {
         "Hardware Repair Technician",
         "Media Systems Technician"
       ],
+      focusAreas: ["hardware-repair", "testing-validation"],
       skillTags: [
         { category: "Hardware / Repair", name: "component swapping" },
         { category: "Hardware / Repair", name: "parts ordering" },

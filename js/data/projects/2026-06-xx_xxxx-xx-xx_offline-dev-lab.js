@@ -421,10 +421,9 @@ const project202606xxOfflineDevLab = {
       strength: "primary",
       targetRoles: [
         "Software Engineer",
-        "Platform Engineer",
-        "Systems Administrator",
         "MLOps / AI Infrastructure"
       ],
+      targetRoleFamilies: ["quality-engineering"],
       focusAreas: [
         "software-development",
         "data-databases",
@@ -435,6 +434,7 @@ const project202606xxOfflineDevLab = {
         { category: "Web & API Development", name: "FastAPI" },
         { category: "Databases", name: "PostgreSQL" },
         { category: "Cloud & Infrastructure", name: "Docker Compose" },
+        { category: "Testing & Quality", name: "health checks" },
         { category: "Web & API Development", name: "health-check endpoint" }
       ]
     },
@@ -445,11 +445,10 @@ const project202606xxOfflineDevLab = {
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
-        "Linux Administrator",
-        "Systems Administrator",
         "Platform Engineer",
         "Support Engineer"
       ],
+      targetRoleFamilies: ["quality-engineering", "platform-reliability"],
       focusAreas: [
         "automation",
         "testing-validation",
@@ -466,7 +465,7 @@ const project202606xxOfflineDevLab = {
     {
       id: "offline-dev-lab-004",
       text: "Implemented local dependency workflows using an offline APT repository, Python wheelhouse, and saved Docker image archives to support air-gapped rebuild scenarios.",
-      printText: "Implemented offline dependency workflows with local APT repos, Python wheelhouse installs, and Docker image archives.",
+      printText: "Built reproducible dependency and build workflows with local APT repos, Python wheelhouse installs, and Docker image archives.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
@@ -499,6 +498,7 @@ const project202606xxOfflineDevLab = {
         "Software Engineer",
         "Linux Administrator"
       ],
+      targetRoleFamilies: ["quality-engineering", "security-identity"],
       focusAreas: [
         "testing-validation",
         "security-compliance",
@@ -607,7 +607,24 @@ const project202606xxOfflineDevLab = {
         { category: "Cloud & Infrastructure", name: "Docker" },
         { category: "Documentation", name: "validation output" }
       ]
-    }
+    },
+    {
+      id: "offline-dev-lab-009",
+      text: "Built a reproducible Debian 13 technical lab using Python, Bash, Docker, health checks, and diagnostics to validate local application and system behavior.",
+      printText: "Built a Debian 13 technical lab using Python, Bash, Docker, health checks, and diagnostics for repeatable system validation.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoleFamilies: ["technical-field", "endpoint-support", "systems-middleware"],
+      focusAreas: ["infrastructure-operations", "automation", "testing-validation", "incident-analysis"],
+      skillTags: [
+        { category: "Programming & Scripting", name: "Python" },
+        { category: "Automation & Scripting", name: "Bash" },
+        { category: "DevOps & Tooling", name: "Docker" },
+        { category: "Systems & Infrastructure", name: "Debian 13" },
+        { category: "Monitoring & Support", name: "health checks" },
+        { category: "Monitoring & Support", name: "diagnostics" }
+      ]
+    },
   ],
 
   skillTags: [

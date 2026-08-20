@@ -43,7 +43,7 @@ const skillGroupLimitsByRole = Object.fromEntries(
     const categoryOrder = role.categoryOrder || roleFamilies[role.familyId]?.categoryOrder || [];
 
     categoryOrder.forEach((category) => {
-      limits[category] = role.skillGroupLimits?.[category] ?? 6;
+      limits[category] = role.skillGroupLimits?.[category] ?? role.layout?.maxSkillsPerGroup ?? 6;
     });
 
     return [role.id, limits];

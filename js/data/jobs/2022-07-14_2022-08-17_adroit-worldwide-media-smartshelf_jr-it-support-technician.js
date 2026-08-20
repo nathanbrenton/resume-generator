@@ -435,6 +435,7 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
         "Linux Administrator",
         "Systems Administrator",
         "Support Engineer",
+        "IT Support Specialist",
         "Electronics Repair Technician"
       ],
       skillTags: [

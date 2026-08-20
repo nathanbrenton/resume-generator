@@ -552,7 +552,8 @@ const job20220818RandstadTechnologiesJrDesksideTechnician = {
         "IT Support Specialist",
         "Desktop Support Technician",
         "Deskside Support Technician",
-        "Software Engineer — Full Stack"
+        "Software Engineer — Full Stack",
+        "QA Automation Engineer"
       ],
       focusAreas: [
         "customer-user-support",

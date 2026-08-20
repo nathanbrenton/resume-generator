@@ -34,25 +34,20 @@ const canonicalBulletIdsByItem = {
   "2026-05-01_2026-06-01_signalstack":
     numberedBulletIds("signalstack", 10),
   "2026-06-xx_xxxx-xx-xx_offline-dev-lab":
-    numberedBulletIds("offline-dev-lab", 8),
-  "2026-07-xx_xxxx-xx-xx_metadata-editor": [
-    "metadata-editor-full-stack-001",
-    "metadata-editor-media-devops-001",
-    "metadata-editor-001"
-  ],
+    numberedBulletIds("offline-dev-lab", 9),
+  "2026-07-xx_xxxx-xx-xx_metadata-editor": [],
   "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform":
     numberedBulletIds("hiplingo-media-platform", 13),
   "2026-07-xx_xxxx-xx-xx_resume-generator": [
     "resume-generator-001",
     "resume-generator-ai-first-001"
   ],
-  "2026-07-xx_xxxx-xx-xx_react-audio-player": [
-    "react-audio-player-full-stack-001",
-    "react-audio-player-001"
-  ],
+  "2026-07-xx_xxxx-xx-xx_react-audio-player": [],
   "2026-07-xx_xxxx-xx-xx_century-solar": [
     "century-solar-full-stack-001",
     "century-solar-ust-infrastructure-001",
+    "century-solar-qa-001",
+    "century-solar-security-001",
     "century-solar-001"
   ],
   "2026-06-xx_xxxx-xx-xx_english-ipa-translator":

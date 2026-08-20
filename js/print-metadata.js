@@ -1,5 +1,5 @@
 const resumePrintMetadata = (() => {
-  const APP_TITLE = "Resume Generator";
+  const APP_TITLE = "Resume_Generator";
   const MAX_KEYWORDS = 16;
   const ACRONYMS = new Map([
     ["ai", "AI"],
@@ -50,6 +50,20 @@ const resumePrintMetadata = (() => {
     return humanizeHeadlinePart(headlineRole || resume?.targetRoleLabel || "Resume");
   }
 
+  function sanitizeFilenamePart(value) {
+    return normalizeText(value)
+      .replace(/&/g, " and ")
+      .replace(/[^A-Za-z0-9]+/g, "-")
+      .replace(/-+/g, "-")
+      .replace(/^-|-$/g, "") || "Resume";
+  }
+
+  function buildDocumentTitle(resume) {
+    const author = normalizeText(resume?.contact?.name) || "Nathan D. Brenton";
+    const selectedRole = normalizeText(resume?.targetRoleLabel) || getRoleTitle(resume);
+    return `${sanitizeFilenamePart(author)}_${sanitizeFilenamePart(selectedRole)}_Resume`;
+  }
+
   function buildKeywordList(resume, maxKeywords = MAX_KEYWORDS) {
     const groups = Array.isArray(resume?.skills) ? resume.skills : [];
     const candidates = [getRoleTitle(resume)];
@@ -83,7 +97,7 @@ const resumePrintMetadata = (() => {
     const subject = `${roleTitle} Resume`;
 
     return {
-      title: `${author} - ${roleTitle}`,
+      title: buildDocumentTitle(resume),
       author,
       subject,
       description: subject,
@@ -137,6 +151,8 @@ const resumePrintMetadata = (() => {
     MAX_KEYWORDS,
     humanizeHeadlinePart,
     getRoleTitle,
+    sanitizeFilenamePart,
+    buildDocumentTitle,
     buildKeywordList,
     buildMetadata,
     applyToDocument

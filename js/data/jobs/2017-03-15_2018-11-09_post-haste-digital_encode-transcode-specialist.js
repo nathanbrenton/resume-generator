@@ -326,12 +326,15 @@ const job20170315PostHasteDigitalEncodeTranscodeSpecialist = {
       text: "Transcoded 30+ episodic assets per day and converted features/episodics into 22+ language versions.",
       printText: "Transcoded 30+ episodic assets daily and supported 22+ language-version workflows.",
       includeByDefault: true,
+      strength: "primary",
       targetRoles: [
         "Digital Media Technician",
         "Media Systems Technician",
         "Encoding / Transcode Technician",
         "Post-Production Technician"
       ],
+      targetRoleFamilies: ["media-systems"],
+      focusAreas: ["media-processing", "stakeholder-support"],
       skillTags: [
         { category: "Media & Encoding", name: "high-volume transcoding" },
         { category: "Media & Encoding", name: "episodic workflows" },

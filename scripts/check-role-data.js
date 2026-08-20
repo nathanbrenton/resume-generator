@@ -97,12 +97,12 @@ function validateRoleArchitecture(data) {
     `Expected 12 durable role definitions, found ${durableRoles.length}`);
   assert(historicalPresets.length === 28,
     `Expected 28 hidden historical presets, found ${historicalPresets.length}`);
-  assert(targetedPresets.length === 1,
-    `Expected 1 active targeted application preset, found ${targetedPresets.length}`);
-  assert(careerData.targetedRoleIds.length === 1,
-    `Expected 1 targeted application dropdown role, found ${careerData.targetedRoleIds.length}`);
-  assert(careerData.roleDefinitions.length === 41,
-    `Expected 41 total preserved role definitions, found ${careerData.roleDefinitions.length}`);
+  assert(targetedPresets.length === 2,
+    `Expected 2 active targeted application presets, found ${targetedPresets.length}`);
+  assert(careerData.targetedRoleIds.length === 2,
+    `Expected 2 targeted application dropdown roles, found ${careerData.targetedRoleIds.length}`);
+  assert(careerData.roleDefinitions.length === 42,
+    `Expected 42 total preserved role definitions, found ${careerData.roleDefinitions.length}`);
   assert(Object.keys(careerData.roleFamilies).length === 11,
     `Expected 11 durable role families, found ${Object.keys(careerData.roleFamilies).length}`);
   assert(careerData.targetRoles[0] === "full-stack-software-engineer",
@@ -164,7 +164,51 @@ function validateRoleArchitecture(data) {
         `${role.id}.selections.${key} contains duplicates`);
       selectedIds.forEach((id) => assert(ids.has(id), `${role.id}.selections.${key} references unknown ${id}`));
     });
+
+    if (role.excludedSkillNames !== undefined) {
+      assert(Array.isArray(role.excludedSkillNames), `${role.id}.excludedSkillNames must be an array`);
+      assert(new Set(role.excludedSkillNames.map(normalize)).size === role.excludedSkillNames.length,
+        `${role.id}.excludedSkillNames contains duplicates`);
+    }
+
+    if (role.projectBulletLimitsByItem !== undefined) {
+      Object.entries(role.projectBulletLimitsByItem).forEach(([projectId, limit]) => {
+        assert(selectionCollections.projectIds.has(projectId),
+          `${role.id}.projectBulletLimitsByItem references unknown project ${projectId}`);
+        assert(role.selections.projectIds.includes(projectId),
+          `${role.id}.projectBulletLimitsByItem references unselected project ${projectId}`);
+        assert(Number.isInteger(limit) && limit > 0,
+          `${role.id}.projectBulletLimitsByItem.${projectId} must be a positive integer`);
+        if (Number.isInteger(role.layout?.maxProjectBullets)) {
+          assert(limit <= role.layout.maxProjectBullets,
+            `${role.id}.projectBulletLimitsByItem.${projectId} exceeds maxProjectBullets`);
+        }
+      });
+    }
   });
+
+  const hiplingoProjectId = "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform";
+  const historicalComponentIds = new Set([
+    "2026-07-xx_xxxx-xx-xx_metadata-editor",
+    "2026-07-xx_xxxx-xx-xx_react-audio-player"
+  ]);
+  historicalComponentIds.forEach((projectId) => {
+    const project = careerData.projects.find((entry) => entry.id === projectId);
+    assert(project?.catalogStatus === "historical-component",
+      `${projectId} must be marked as a historical component project`);
+    assert(project?.supersededByProjectId === hiplingoProjectId,
+      `${projectId} must point to Hiplingo as its successor project`);
+  });
+  assert(careerData.projects.find((entry) => entry.id === hiplingoProjectId)?.catalogStatus === "canonical",
+    "Hiplingo must remain the canonical current media-platform project");
+  careerData.roleDefinitions
+    .filter((role) => ["durable", "targeted-preset"].includes(role.catalogStatus))
+    .forEach((role) => {
+      (role.selections.projectIds || []).forEach((projectId) => {
+        assert(!historicalComponentIds.has(projectId),
+          `${role.id} must not select superseded component project ${projectId}`);
+      });
+    });
 
   Object.entries(roleFamilySkillWeights).forEach(([familyId, skills]) => {
     assert(familyIds.has(familyId), `Family weights reference unknown family ${familyId}`);
@@ -200,9 +244,9 @@ function validateBulletCatalog(data) {
   const canonical = bulletEntries.filter(({ bullet }) => bullet.catalogStatus === "canonical");
   const historical = bulletEntries.filter(({ bullet }) => bullet.catalogStatus === "historical-targeted");
 
-  assert(bulletEntries.length === 283, `Expected 283 preserved bullet records, found ${bulletEntries.length}`);
-  assert(canonical.length === 124, `Expected 124 canonical bullets, found ${canonical.length}`);
-  assert(historical.length === 159, `Expected 159 historical targeting bullets, found ${historical.length}`);
+  assert(bulletEntries.length === 286, `Expected 286 preserved bullet records, found ${bulletEntries.length}`);
+  assert(canonical.length === 122, `Expected 122 canonical bullets, found ${canonical.length}`);
+  assert(historical.length === 164, `Expected 164 historical targeting bullets, found ${historical.length}`);
 
   const canonicalText = new Map();
   canonical.forEach(({ item, bullet }) => {
@@ -332,6 +376,14 @@ function validateGeneratedResumes(data) {
       `${fixture.id} generated too little professional evidence (${experienceBulletCount})`);
     assert(projectBulletCount >= fixture.minProjectBullets,
       `${fixture.id} generated too little project evidence (${projectBulletCount})`);
+    if (Number.isInteger(fixture.exactExperienceBullets)) {
+      assert(experienceBulletCount === fixture.exactExperienceBullets,
+        `${fixture.id} should render exactly ${fixture.exactExperienceBullets} professional bullets, found ${experienceBulletCount}`);
+    }
+    if (Number.isInteger(fixture.exactProjectBullets)) {
+      assert(projectBulletCount === fixture.exactProjectBullets,
+        `${fixture.id} should render exactly ${fixture.exactProjectBullets} project bullets, found ${projectBulletCount}`);
+    }
     assert(experienceBulletCount <= maxExperienceBullets,
       `${fixture.id} exceeded experience bullet budget (${experienceBulletCount}/${maxExperienceBullets})`);
     assert(projectBulletCount <= maxProjectBulletsTotal,
@@ -346,11 +398,33 @@ function validateGeneratedResumes(data) {
     fixture.requiredSkills.forEach((skill) => {
       assert(visibleSkills.includes(skill), `${fixture.id} is missing expected skill: ${skill}`);
     });
+    (fixture.forbiddenSkills || []).forEach((skill) => {
+      assert(!visibleSkills.includes(skill), `${fixture.id} should suppress low-value skill: ${skill}`);
+    });
+    [
+      "shell scripting",
+      "scripting fundamentals",
+      "software quality assurance",
+      "cybersecurity fundamentals",
+      "DevSecOps and security testing concepts",
+      "job scheduling and automation",
+      "secure deployment and automation concepts"
+    ].forEach((noiseSkill) => {
+      assert(!visibleSkills.includes(noiseSkill),
+        `${fixture.id} exposed low-value certification/academic skill noise: ${noiseSkill}`);
+    });
+
     (fixture.requiredJobIds || []).forEach((id) => {
       assert(resume.jobs.some((job) => job.id === id), `${fixture.id} is missing expected job ${id}`);
     });
     (fixture.requiredProjectIds || []).forEach((id) => {
       assert(resume.projects.some((project) => project.id === id), `${fixture.id} is missing expected project ${id}`);
+    });
+    const selectedBulletIds = new Set(
+      [...resume.jobs, ...resume.projects].flatMap((item) => item.selectedBullets.map((bullet) => bullet.id))
+    );
+    (fixture.requiredBulletIds || []).forEach((id) => {
+      assert(selectedBulletIds.has(id), `${fixture.id} is missing expected evidence bullet ${id}`);
     });
 
     const pythonLocations = resume.skills.filter((group) => group.skills.includes("Python"));
@@ -466,6 +540,10 @@ function validateGeneratedResumes(data) {
     assert(esriOffline?.selectedBullets.some((bullet) => bullet.id === bulletId),
       `Esri targeted preset is missing Offline Dev Lab evidence ${bulletId}`);
   });
+  assert(esriOffline?.selectedBullets.some((bullet) =>
+    bullet.id === "offline-dev-lab-004" &&
+    bullet.printText.startsWith("Built reproducible dependency and build workflows")
+  ), "Esri targeted preset should describe Offline Dev Lab as reproducible build/dependency evidence");
   assert(!esri.projects.some((project) =>
     project.id === "2026-05-01_2026-06-01_signalstack"
   ), "Esri targeted preset should prioritize Hiplingo deployment evidence over SignalStack");
@@ -474,8 +552,8 @@ function validateGeneratedResumes(data) {
   [
     "Linux", "RHEL 9", "Debian 13", "Bash", "Docker", "Git",
     "JDK", "Tomcat/TomEE", "Java middleware", "dependency management", "deployment automation",
-    "release packaging", "SSH", "deployment manifests", "SHA-256 integrity validation",
-    "vulnerability remediation"
+    "release packaging", "SSH", "deployment manifests", "release artifact validation",
+    "rollback", "SHA-256 integrity validation", "vulnerability remediation"
   ].forEach((skill) => {
     assert(esriSkills.includes(skill), `Esri targeted preset is missing expected skill: ${skill}`);
   });
@@ -483,7 +561,7 @@ function validateGeneratedResumes(data) {
     assert(!esriSkills.includes(unsupportedSkill),
       `Esri targeted preset must not claim unsupported skill: ${unsupportedSkill}`);
   });
-  ["Linux server administration", "Apache Tomcat", "shell scripting", "cybersecurity fundamentals"].forEach((redundantSkill) => {
+  ["Linux server administration", "Apache Tomcat", "shell scripting", "cybersecurity fundamentals", "incident response"].forEach((redundantSkill) => {
     assert(!esriSkills.includes(redundantSkill),
       `Esri targeted preset should suppress redundant/weak skill: ${redundantSkill}`);
   });

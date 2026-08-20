@@ -210,6 +210,7 @@ const roleModifiers = {
   integration: { label: "Integration" },
   "model-operations": { label: "Model Operations" },
   media: { label: "Media" },
+  "creative-media": { label: "Creative Media" },
   transcode: { label: "Transcode" },
   "network-administration": { label: "Network Administration" },
   "endpoint-support": { label: "Endpoint Support" },
@@ -2836,6 +2837,14 @@ roleDefinitions.push({
     "incident-analysis",
     "infrastructure-operations"
   ],
+  layout: {
+    maxJobBullets: 2,
+    maxJobBulletsWhenTwoJobs: 2,
+    maxExperienceBullets: 4,
+    maxProjectBullets: 1,
+    maxProjectBulletsTotal: 3,
+    maxSkillsTotal: 28
+  },
   selections: {
     jobIds: [
       "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
@@ -2890,8 +2899,8 @@ roleDefinitions.push({
     "Other"
   ],
   skillGroupLimits: {
-    "DevOps & Tooling": 8,
-    "Platform & Reliability": 5,
+    "DevOps & Tooling": 9,
+    "Platform & Reliability": 7,
     "Security & Compliance": 2,
     "Programming & Scripting": 1
   },
@@ -2931,12 +2940,124 @@ roleDefinitions.push({
   },
   layout: {
     maxSkillGroups: 7,
-    maxSkillsTotal: 32,
+    maxSkillsTotal: 34,
     maxJobBullets: 4,
     maxJobBulletsWhenTwoJobs: 4,
     maxExperienceBullets: 5,
     maxProjectBullets: 2,
     maxProjectBulletsTotal: 4
+  }
+});
+
+roleDefinitions.push({
+  id: "esri-arcgis-pro-generative-ai-product-engineer",
+  label: "Esri — Product Engineer II (Generative AI & Assistants, ArcGIS Pro)",
+  familyId: "applied-ai-automation",
+  modifierIds: ["applied-ai", "ai-quality-assurance", "test-automation", "integration", "full-stack"],
+  aliases: [
+    "Product Engineer II - Generative AI & Assistants, ArcGIS Pro",
+    "Product Engineer II — Generative AI & Assistants, ArcGIS Pro",
+    "ArcGIS Pro AI Copilot Product Engineer",
+    "Generative AI Product Engineer"
+  ],
+  headline: "PRODUCT ENGINEER II | GENERATIVE AI & ASSISTANTS | PYTHON",
+  summary: "Applied AI/software engineer with an M.S. in Software Engineering — AI Engineering and hands-on Python/FastAPI application development, classical ML model training, sentence-transformer NLP retrieval, pretrained transformer integration, automated testing, and professional human-in-the-loop computer-vision validation. Enterprise systems experience adds production troubleshooting, multi-environment validation, and cross-team release support.",
+  preferredFocusAreas: [
+    "software-development",
+    "testing-validation",
+    "api-integration",
+    "incident-analysis",
+    "stakeholder-support",
+    "documentation"
+  ],
+  preferredBulletBoost: 50,
+  preservePreferredBulletOrder: true,
+  categoryOrder: [
+    "AI & Automation",
+    "Testing & Quality",
+    "Programming & Scripting",
+    "Backend & APIs",
+    "Frontend Development",
+    "Databases & Data",
+    "DevOps & Tooling",
+    "Documentation & Collaboration",
+    "Cloud & Infrastructure",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "AI & Automation": 8,
+    "Testing & Quality": 7,
+    "Programming & Scripting": 4,
+    "Backend & APIs": 5,
+    "Frontend Development": 4,
+    "Databases & Data": 4,
+    "DevOps & Tooling": 5,
+    "Documentation & Collaboration": 4
+  },
+  excludedSkillNames: [
+    "ArcGIS",
+    "Semantic Kernel",
+    "LangChain",
+    "C#",
+    "Kubernetes",
+    "PyTorch",
+    "TensorFlow",
+    "model fine-tuning",
+    "LLM fine-tuning"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-003",
+      "roth-system-engineer-i-010"
+    ],
+    "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": [
+      "randstad-jr-deskside-technician-006"
+    ],
+    "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician": [
+      "adroit-smartshelf-jr-it-support-001",
+      "adroit-smartshelf-jr-it-support-002"
+    ],
+    "2026-05-01_2026-06-01_signalstack": [
+      "signalstack-005",
+      "signalstack-006",
+      "signalstack-004"
+    ],
+    "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos": [
+      "hugging-face-tutorial-demos-001",
+      "hugging-face-tutorial-demos-002"
+    ],
+    "2026-07-xx_xxxx-xx-xx_century-solar": [
+      "century-solar-qa-001",
+      "century-solar-full-stack-001"
+    ]
+  },
+  projectBulletLimitsByItem: {
+    "2026-05-01_2026-06-01_signalstack": 3,
+    "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos": 2,
+    "2026-07-xx_xxxx-xx-xx_century-solar": 2
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician",
+      "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician"
+    ],
+    projectIds: [
+      "2026-05-01_2026-06-01_signalstack",
+      "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos",
+      "2026-07-xx_xxxx-xx-xx_century-solar"
+    ],
+    educationIds: sharedEducationIds,
+    certificationIds: []
+  },
+  layout: {
+    maxSkillGroups: 8,
+    maxSkillsTotal: 36,
+    maxJobBullets: 2,
+    maxJobBulletsWhenTwoJobs: 2,
+    maxExperienceBullets: 5,
+    maxProjectBullets: 3,
+    maxProjectBulletsTotal: 7
   }
 });
 
@@ -2956,11 +3077,13 @@ const durableRoleIds = [
 ];
 
 const targetedRoleIds = [
-  "esri-arcgis-enterprise-build-release-engineer"
+  "esri-arcgis-enterprise-build-release-engineer",
+  "esri-arcgis-pro-generative-ai-product-engineer"
 ];
 
 const historicalRoleBaseMappings = {
   "esri-arcgis-enterprise-build-release-engineer": "platform-reliability-engineer",
+  "esri-arcgis-pro-generative-ai-product-engineer": "applied-ai-engineer",
   "systems-administrator": "linux-middleware-administrator",
   "systems-automation-engineer": "platform-reliability-engineer",
   "technical-developer-support-engineer": "application-production-support-engineer",
@@ -2995,10 +3118,12 @@ const durableRoleOverrides = {
   "linux-middleware-administrator": {
     label: "Linux / Systems / Middleware Administrator",
     familyId: "systems-middleware",
-    modifierIds: ["middleware"],
+    modifierIds: ["middleware", "linux-web-hosting"],
     aliases: ["Linux Administrator", "Middleware Engineer", "Systems Administrator", "IT Operations Specialist"],
     headline: "LINUX / SYSTEMS / MIDDLEWARE ADMINISTRATOR | RHEL | AUTOMATION",
-    summary: "Linux and middleware support professional with hands-on experience supporting RHEL application environments, Oracle WebLogic, Apache Tomcat/TomEE, IBM MQ, deployments, upgrades, patching, recovery automation, log analysis, and repeatable operational validation."
+    summary: "Linux and middleware support professional with hands-on experience supporting RHEL application environments, Oracle WebLogic, Apache Tomcat/TomEE, IBM MQ, deployments, upgrades, patching, recovery automation, log analysis, plus independent Debian hosting and SSH-based deployment workflows.",
+    preferredFocusAreas: ["infrastructure-operations", "automation", "deployment-change", "testing-validation"],
+    layout: { maxSkillGroups: 8, maxJobBullets: 7, maxExperienceBullets: 7, maxProjectBullets: 2, maxProjectBulletsTotal: 4, maxSkillsTotal: 40 }
   },
   "platform-reliability-engineer": {
     label: "Platform / Reliability / Automation Engineer",
@@ -3006,7 +3131,15 @@ const durableRoleOverrides = {
     modifierIds: ["reliability", "automation"],
     aliases: ["Platform Engineer", "Site Reliability Engineer", "DevOps Engineer", "Systems Automation Engineer"],
     headline: "PLATFORM / RELIABILITY / AUTOMATION ENGINEER | LINUX | PYTHON & BASH",
-    summary: "Platform and reliability engineer combining enterprise RHEL application operations with independent containerized Python services, reproducible environments, monitoring, deployment validation, recovery automation, and test-driven operational tooling."
+    summary: "Platform and reliability engineer combining enterprise RHEL operations with reproducible Linux/Docker environments, monitoring, deployment validation, release manifests, SSH/rsync delivery, rollback, recovery automation, and test-driven operational tooling.",
+    preferredFocusAreas: ["deployment-change", "automation", "performance-reliability", "testing-validation", "infrastructure-operations"],
+    skillGroupLimits: { "Platform & Reliability": 7, "DevOps & Tooling": 9 },
+    excludedSkillNames: ["media validation"],
+    projectBulletLimitsByItem: {
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab": 2,
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": 3
+    },
+    layout: { maxSkillsPerGroup: 7, maxJobBullets: 2, maxJobBulletsWhenTwoJobs: 5, maxExperienceBullets: 6, maxProjectBullets: 3, maxProjectBulletsTotal: 5, maxSkillsTotal: 38 }
   },
   "application-production-support-engineer": {
     label: "Application / Production / Developer Support Engineer",
@@ -3014,7 +3147,8 @@ const durableRoleOverrides = {
     modifierIds: ["production-support", "developer-support"],
     aliases: ["Application Support Analyst", "Production Support Engineer", "Developer Support Engineer", "Technical Support Engineer", "API Support Engineer"],
     headline: "APPLICATION / PRODUCTION / DEVELOPER SUPPORT ENGINEER | LINUX | APIs",
-    summary: "Application support engineer with enterprise RHEL middleware, deployment, incident-analysis, developer-support, log-analysis, ServiceNow, Splunk, Bash, and validation experience, reinforced by independent Python/FastAPI application projects."
+    summary: "Application support engineer with enterprise RHEL middleware, deployment, incident analysis, developer support, log analysis, ServiceNow, Splunk, Bash, and validation experience, reinforced by independent application readiness, audit, diagnostics, and recovery workflows.",
+    preferredFocusAreas: ["incident-analysis", "stakeholder-support", "deployment-change", "testing-validation", "monitoring-observability"]
   },
   "full-stack-software-engineer": {
     familyId: "software-engineering",
@@ -3039,8 +3173,25 @@ const durableRoleOverrides = {
     modifierIds: ["test-automation"],
     aliases: ["QA Automation Engineer", "Automation QA Engineer", "Test Automation Engineer", "Software Development Engineer in Test"],
     headline: "QA / TEST AUTOMATION ENGINEER | PYTHON | PLAYWRIGHT | APIs",
-    summary: "Quality engineering candidate combining automated browser, API, backend, and validation work across independent React/TypeScript and Python/FastAPI projects with professional deployment validation, incident troubleshooting, and PowerShell-based endpoint verification.",
-    layout: { maxProjectBullets: 2, maxProjectBulletsTotal: 5, maxSkillsTotal: 28 },
+    summary: "Software engineer focused on quality and test automation, combining automated browser, API, backend, integration, and workflow validation across independent React/TypeScript and Python/FastAPI projects with professional deployment validation, incident troubleshooting, and PowerShell-based endpoint verification.",
+    categoryOrder: [
+      "Testing & Quality",
+      "Programming & Scripting",
+      "Frontend Development",
+      "Backend & APIs",
+      "Databases & Data",
+      "DevOps & Tooling",
+      "Automation & Scripting",
+      "Other"
+    ],
+    skillGroupLimits: { "Testing & Quality": 11 },
+    excludedSkillNames: ["endpoint management", "developer support", "support procedures", "Windows", "macOS", "SCCM/MECM", "ServiceNow", "validation"],
+    projectBulletLimitsByItem: {
+      "2026-07-xx_xxxx-xx-xx_century-solar": 2,
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": 2,
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab": 3
+    },
+    layout: { maxSkillGroups: 6, maxJobBullets: 2, maxJobBulletsWhenTwoJobs: 2, maxExperienceBullets: 4, maxProjectBullets: 3, maxProjectBulletsTotal: 7, maxSkillsTotal: 38 },
     preferredFocusAreas: ["testing-validation", "software-development", "api-integration", "deployment-change"]
   },
   "it-support-specialist": {
@@ -3055,7 +3206,37 @@ const durableRoleOverrides = {
     familyId: "security-identity",
     modifierIds: ["identity-access-management"],
     headline: "IAM / ACCESS MANAGEMENT ANALYST | ACTIVE DIRECTORY | LDAP | CYBERARK",
-    summary: "Identity and access candidate with verified enterprise experience supporting Active Directory, WebLogic LDAP authentication, service accounts, CyberArk-managed credentials, MFA, onboarding/offboarding, approved access changes, and operational validation."
+    summary: "Identity and access candidate with verified enterprise experience supporting Active Directory, WebLogic LDAP authentication, service accounts, CyberArk-managed credentials, MFA, onboarding/offboarding, approved access changes, and operational validation.",
+    preferredFocusAreas: ["identity-access", "stakeholder-support", "deployment-change", "documentation"],
+    layout: { maxJobBullets: 2, maxJobBulletsWhenTwoJobs: 2, maxExperienceBullets: 4, maxProjectBullets: 1, maxProjectBulletsTotal: 1, maxSkillsTotal: 28 }
+  },
+  "cybersecurity-security-quality-engineer": {
+    familyId: "security-identity",
+    modifierIds: ["security-quality"],
+    categoryOrder: [
+      "Security & Compliance",
+      "Security Tooling",
+      "Identity & Access",
+      "Systems & Infrastructure",
+      "Networking & Security",
+      "Monitoring & Support",
+      "Testing & Quality",
+      "DevOps & Tooling",
+      "Programming & Scripting",
+      "Documentation & Collaboration",
+      "Other"
+    ],
+    excludedSkillNames: ["mail forwarding", "domain management"],
+    layout: {
+      maxSkillGroups: 8,
+      maxSkillsPerGroup: 7,
+      maxSkillsTotal: 34,
+      maxJobBullets: 2,
+      maxJobBulletsWhenTwoJobs: 2,
+      maxExperienceBullets: 4,
+      maxProjectBullets: 2,
+      maxProjectBulletsTotal: 6
+    }
   },
   "applied-ai-engineer": {
     label: "Applied AI / Automation & Integration Engineer",
@@ -3076,10 +3257,28 @@ const durableRoleOverrides = {
   "media-systems-technician": {
     label: "Media Systems / Digital Media Technology",
     familyId: "media-systems",
-    modifierIds: ["media", "transcode"],
+    modifierIds: ["media", "transcode", "creative-media"],
     aliases: ["Media Systems Technician", "Digital Media Technician", "Encoding / Transcode Technician", "Post-Production Technician", "Media DevOps Engineer"],
-    headline: "MEDIA SYSTEMS / DIGITAL MEDIA TECHNOLOGY | FFMPEG | TRANSCODING",
-    summary: "Digital-media technology professional with professional encoding/transcoding, localization, media QC, AviSynth/Bash/FFmpeg workflow experience and independent React/TypeScript, FastAPI, FFmpeg, and MediaInfo media-application development."
+    headline: "MEDIA SYSTEMS ENGINEER | FFMPEG | HLS | WEB AUDIO",
+    summary: "Digital-media technology professional combining professional encoding/transcoding, localization, media QC, AviSynth/Bash/FFmpeg workflows with independent React/TypeScript media engineering using FFmpeg/ffprobe, MediaInfo, HLS, Web Audio API, Canvas 2D, waveform tooling, Node.js, guarded publishing workflows, and DaVinci Resolve/Fusion visual production.",
+    preferredFocusAreas: ["media-processing", "software-development", "testing-validation", "deployment-change"],
+    categoryOrder: [
+      "Media Processing",
+      "Signal Processing",
+      "Creative Media",
+      "Frontend Development",
+      "Backend & APIs",
+      "Programming & Scripting",
+      "Automation & Scripting",
+      "Systems & Infrastructure",
+      "DevOps & Tooling",
+      "Testing & Quality",
+      "Media Systems Support",
+      "Documentation & Collaboration",
+      "Other"
+    ],
+    skillGroupLimits: { "Media Processing": 15 },
+    layout: { maxSkillGroups: 9, maxSkillsPerGroup: 12, maxSkillsTotal: 47, maxJobBullets: 4, maxJobBulletsWhenTwoJobs: 4, maxExperienceBullets: 7, maxProjectBullets: 6, maxProjectBulletsTotal: 6 }
   },
   "electromechanical-equipment-repair-technician": {
     label: "Technical / Electronics / Field Systems",
@@ -3093,6 +3292,10 @@ const durableRoleOverrides = {
 
 const durableSelectionOverrides = {
   "linux-middleware-administrator": {
+    projectIds: [
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab",
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform"
+    ],
     certificationIds: [
       "2023-08-11_2029-08-11_comptia_cysa-plus-ce",
       "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation"
@@ -3101,20 +3304,44 @@ const durableSelectionOverrides = {
   "qa-automation-engineer": {
     projectIds: [
       "2026-07-xx_xxxx-xx-xx_century-solar",
-      "2026-07-xx_xxxx-xx-xx_metadata-editor",
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform",
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab"
+    ]
+  },
+  "application-production-support-engineer": {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+    ],
+    projectIds: [
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform",
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab",
       "2026-05-01_2026-06-01_signalstack"
+    ]
+  },
+  "platform-reliability-engineer": {
+    projectIds: [
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab",
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform"
     ]
   },
   "it-support-specialist": {
     jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
       "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician",
-      "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician",
-      "2021-04-19_2022-07-13_paul-morte-technical-services_warehouse-technician"
+      "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician"
     ],
     projectIds: ["2026-06-xx_xxxx-xx-xx_offline-dev-lab"],
     certificationIds: [
       "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation",
       "2022-01-09_xxxx-xx-xx_comptia_project-plus"
+    ]
+  },
+  "cybersecurity-security-quality-engineer": {
+    projectIds: [
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform",
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab"
     ]
   },
   "media-systems-technician": {
@@ -3123,8 +3350,7 @@ const durableSelectionOverrides = {
       "2012-02-01_2014-04-14_roundabout-entertainment_encoding-operator"
     ],
     projectIds: [
-      "2026-07-xx_xxxx-xx-xx_metadata-editor",
-      "2026-07-xx_xxxx-xx-xx_react-audio-player"
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform"
     ],
     certificationIds: []
   },
@@ -3167,15 +3393,14 @@ roleDefinitions.forEach((role) => {
   if (role.catalogStatus === "durable") {
     role.certificationMinDaysRemaining ??= 60;
     delete role.preferredBulletIdsByItem;
-    delete role.categoryOrder;
-    delete role.skillGroupLimits;
-
-    if (![
-      "full-stack-software-engineer",
-      "qa-automation-engineer",
-      "applied-ai-engineer",
-      "ai-infrastructure-model-operations"
-    ].includes(role.id)) {
+    const durableOverride = durableRoleOverrides[role.id] || {};
+    if (!Object.prototype.hasOwnProperty.call(durableOverride, "categoryOrder")) {
+      delete role.categoryOrder;
+    }
+    if (!Object.prototype.hasOwnProperty.call(durableOverride, "skillGroupLimits")) {
+      delete role.skillGroupLimits;
+    }
+    if (!Object.prototype.hasOwnProperty.call(durableOverride, "layout")) {
       delete role.layout;
     }
 

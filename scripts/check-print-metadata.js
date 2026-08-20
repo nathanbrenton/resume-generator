@@ -1,7 +1,22 @@
 #!/usr/bin/env node
 
 const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
 const printMetadata = require("../js/print-metadata.js");
+
+
+const repoRoot = path.resolve(__dirname, "..");
+const indexHtml = fs.readFileSync(path.join(repoRoot, "index.html"), "utf8");
+const appSource = fs.readFileSync(path.join(repoRoot, "js/app.js"), "utf8");
+assert(indexHtml.includes("<title>Resume_Generator</title>"),
+  "Static fallback <title> must be filename-safe");
+assert(appSource.includes("resumePrintMetadata.applyToDocument(\n    document,\n    resumePrintMetadata.buildMetadata(resume)\n  );"),
+  "Selected resume render must synchronize document.title immediately");
+assert(!appSource.includes("afterprint"),
+  "Document title should remain role-specific after printing");
+assert(!appSource.includes("includeTitle: false"),
+  "Selected resume render must not suppress document.title updates");
 
 function createFakeDocument() {
   const metas = new Map();
@@ -53,7 +68,12 @@ const resume = {
 assert.equal(printMetadata.getRoleTitle(resume), "Build & Release Engineer");
 
 const metadata = printMetadata.buildMetadata(resume);
-assert.equal(metadata.title, "Nathan D. Brenton - Build & Release Engineer");
+assert.equal(
+  metadata.title,
+  "Nathan-D-Brenton_Esri-Build-Release-Engineer-ArcGIS-Enterprise_Resume"
+);
+assert(/^[A-Za-z0-9_-]+$/.test(metadata.title),
+  `Document title must be filename-safe: ${metadata.title}`);
 assert.equal(metadata.author, "Nathan D. Brenton");
 assert.equal(metadata.subject, "Build & Release Engineer Resume");
 assert(metadata.keywords.includes("Linux"));
@@ -71,8 +91,17 @@ assert.equal(fakeDocument.getMeta("subject"), metadata.subject);
 assert.equal(fakeDocument.getMeta("description"), metadata.description);
 assert.equal(fakeDocument.getMeta("keywords"), metadata.keywords);
 
-fakeDocument.title = printMetadata.APP_TITLE;
-printMetadata.applyToDocument(fakeDocument, metadata, { includeTitle: false });
-assert.equal(fakeDocument.title, printMetadata.APP_TITLE);
+const fullStackResume = {
+  ...resume,
+  headline: "FULL-STACK SOFTWARE ENGINEER | PYTHON, REACT & TYPESCRIPT | LINUX",
+  targetRoleLabel: "Full-Stack Software Engineer"
+};
+const fullStackMetadata = printMetadata.buildMetadata(fullStackResume);
+assert.equal(fullStackMetadata.title,
+  "Nathan-D-Brenton_Full-Stack-Software-Engineer_Resume");
+printMetadata.applyToDocument(fakeDocument, fullStackMetadata);
+assert.equal(fakeDocument.title, fullStackMetadata.title);
+assert.notEqual(fakeDocument.title, metadata.title,
+  "Document title should update when a different resume is selected");
 
 console.log("Print metadata checks passed.");

@@ -128,8 +128,8 @@ function main() {
 
   const noCertSkills = noCertResume.skills.flatMap((group) => group.skills);
   assert(
-    noCertSkills.includes("systemd service management"),
-    "Linux+ knowledge should remain available when the certification is unchecked"
+    !noCertSkills.includes("systemd service management"),
+    "Certification exam-domain knowledge must not appear as hands-on resume skill evidence"
   );
 
   careerData.targetRoles.forEach((targetRole) => {

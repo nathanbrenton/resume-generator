@@ -12,7 +12,7 @@ function normalizeComparableText(value) {
 }
 
 function toSkillKey(skill) {
-  return normalizeComparableText(skill.name);
+  return normalizeComparableText(getCanonicalSkillName(skill.name));
 }
 
 function addSkill(skillMap, skill, weight = 1) {
@@ -20,17 +20,20 @@ function addSkill(skillMap, skill, weight = 1) {
     return;
   }
 
-  const key = toSkillKey(skill);
+  const canonicalName = typeof getCanonicalSkillName === "function"
+    ? getCanonicalSkillName(skill.name)
+    : normalizeText(skill.name);
+  const key = toSkillKey({ ...skill, name: canonicalName });
   const configuredWeight = Number.isFinite(skill.weight) ? skill.weight : 1;
   const contribution = configuredWeight * weight;
   const category = typeof getCanonicalSkillCategory === "function"
-    ? getCanonicalSkillCategory(skill.name, normalizeText(skill.category))
+    ? getCanonicalSkillCategory(canonicalName, normalizeText(skill.category))
     : normalizeText(skill.category);
 
   if (!skillMap.has(key)) {
     skillMap.set(key, {
       category,
-      name: normalizeText(skill.name),
+      name: canonicalName,
       weight: 0
     });
   }
@@ -397,6 +400,33 @@ function selectedByIds(items, selectedIds) {
     .filter(Boolean);
 }
 
+function suppressRedundantSkills(skills, excludedSkillNames = []) {
+  const excludedNames = new Set((excludedSkillNames || []).map(normalizeComparableText));
+  const names = new Set(skills.map((skill) => normalizeComparableText(skill.name)));
+  const hasAny = (...candidates) => candidates.some((name) => names.has(normalizeComparableText(name)));
+
+  const suppressions = new Map([
+    ["shell scripting", () => hasAny("Bash")],
+    ["scripting fundamentals", () => hasAny("Python", "Bash", "PowerShell")],
+    ["responsive web design", () => hasAny("responsive UI")],
+    ["responsive interfaces", () => hasAny("responsive UI")],
+    ["software quality assurance", () => hasAny("test automation", "Playwright", "pytest", "Vitest", "regression testing", "automated regression testing", "automated validation", "media validation")],
+    ["automated regression testing", () => hasAny("regression testing")],
+    ["cybersecurity fundamentals", () => hasAny("security validation", "vulnerability remediation", "SHA-256 integrity validation", "file permission validation", "public/private data separation")],
+    ["networking fundamentals", () => hasAny("network troubleshooting", "DNS", "firewall configuration")],
+    ["linux server administration", () => hasAny("Linux")]
+  ]);
+
+  return skills.filter((skill) => {
+    const normalizedName = normalizeComparableText(skill.name);
+    if (excludedNames.has(normalizedName)) {
+      return false;
+    }
+    const shouldSuppress = suppressions.get(normalizedName);
+    return !shouldSuppress || !shouldSuppress();
+  });
+}
+
 function groupSkills(skills, targetRole) {
   const grouped = {};
   const roleId = getRoleDefinition(targetRole).id;
@@ -536,10 +566,13 @@ function buildResume(options = {}) {
     careerData.jobs,
     options.selectedJobIds ?? defaultSelections.jobIds
   );
-  const selectedProjects = selectedByIds(
+  const requestedProjects = selectedByIds(
     careerData.projects,
     options.selectedProjectIds ?? defaultSelections.projectIds
   );
+  const selectedProjects = roleContext.role.catalogStatus === "historical-preset"
+    ? requestedProjects
+    : requestedProjects.filter((project) => project.catalogStatus !== "historical-component");
   const selectedEducation = selectedByIds(
     careerData.education,
     options.selectedEducationIds ?? defaultSelections.educationIds
@@ -605,11 +638,9 @@ function buildResume(options = {}) {
   addSkills(skillMap, careerData.roleSkillPriorities[roleContext.roleId], 1);
   addSkills(skillMap, careerData.pinnedResumeSkills || pinnedResumeSkills, 1);
 
-  (careerData.certificationKnowledge || [])
-    .filter((entry) => {
-      return !entry.targetRoles.length || matchesRoleLabels(entry.targetRoles, roleContext);
-    })
-    .forEach((entry) => addSkills(skillMap, entry.skillTags, 0.5));
+  // Certifications are displayed as credentials, not treated as hands-on skill
+  // evidence. This prevents exam-domain vocabulary from crowding out skills
+  // backed by professional or independent-project work.
 
   let remainingExperienceBulletBudget = maxExperienceBullets;
   const jobsForResume = selectedJobs.map((job, jobIndex) => {
@@ -654,9 +685,14 @@ function buildResume(options = {}) {
     const configuredLimit = roleContext.role.catalogStatus === "historical-preset"
       ? getConfiguredRoleValue(project.maxBulletsByTargetRole, roleContext)
       : undefined;
+    const roleProjectLimit = roleContext.role.projectBulletLimitsByItem?.[project.id];
     const bulletLimit = Math.max(
       0,
-      Math.min(configuredLimit ?? maxProjectBullets, maxProjectBullets, remainingProjectBulletBudget)
+      Math.min(
+        configuredLimit ?? roleProjectLimit ?? maxProjectBullets,
+        maxProjectBullets,
+        remainingProjectBulletBudget
+      )
     );
     const preferredBulletIds = roleContext.role.preferredBulletIdsByItem?.[project.id] || [];
     const bullets = bulletLimit > 0
@@ -679,8 +715,13 @@ function buildResume(options = {}) {
 
   // Education is valid evidence, but it should not outrank professional or
   // independent-project evidence in the generated skill section.
+  const roleWeightedSkillKeys = new Set(
+    (careerData.roleSkillPriorities[roleContext.roleId] || []).map((skill) => toSkillKey(skill))
+  );
   selectedEducation.forEach((entry) => {
-    addSkills(skillMap, entry.resumeSkillTags || entry.skillTags, 0.35);
+    const roleRelevantEducationSkills = (entry.resumeSkillTags || [])
+      .filter((skill) => roleWeightedSkillKeys.has(toSkillKey(skill)));
+    addSkills(skillMap, roleRelevantEducationSkills, 0.2);
   });
 
   const certificationsForResume = selectedCertifications.map((certification) => ({
@@ -700,7 +741,7 @@ function buildResume(options = {}) {
     headline: roleContext.role.headline || careerData.profile.headline,
     summary: roleContext.role.summary || careerData.profile.summary,
     skills: buildVisibleSkillGroups(
-      [...skillMap.values()],
+      suppressRedundantSkills([...skillMap.values()], roleContext.role.excludedSkillNames),
       roleContext.roleId,
       maxSkillGroups,
       maxSkillsPerGroup,

@@ -829,6 +829,7 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
         "Technical Coordinator",
         "IT Operations Specialist"
       ],
+      targetRoleFamilies: ["quality-engineering", "systems-middleware", "platform-reliability"],
       focusAreas: [
         "deployment-change",
         "testing-validation",
@@ -838,7 +839,9 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
         { category: "IT Service Management", name: "change management" },
         { category: "IT Service Management", name: "post-change validation" },
         { category: "DevOps & Tooling", name: "application deployment" },
+        { category: "Platform & Reliability", name: "deployment validation" },
         { category: "Platform & Reliability", name: "release support" },
+        { category: "Platform & Reliability", name: "disaster recovery" },
         { category: "Project Management", name: "technical coordination" },
         { category: "Project Management", name: "disaster recovery exercises" },
         { category: "Ticketing & Collaboration", name: "ServiceNow" },
@@ -859,6 +862,7 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
         "Software Engineer — Full Stack",
         "AI-First Software Engineer"
       ],
+      targetRoleFamilies: ["applied-ai-automation"],
       focusAreas: [
         "automation",
         "testing-validation",
@@ -989,11 +993,12 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
       includeByDefault: true,
       strength: "primary",
       targetRoles: [
-        "Middleware Engineer",
         "Support Engineer",
         "Platform Engineer",
-        "Software Engineer"
+        "Software Engineer",
+        "Linux Administrator"
       ],
+      targetRoleFamilies: ["systems-middleware"],
       focusAreas: [
         "stakeholder-support",
         "deployment-change",
@@ -1099,8 +1104,6 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
       targetRoles: [
         "Systems Administrator",
         "Linux Administrator",
-        "Platform Engineer",
-        "Site Reliability Engineer",
         "Application Support Analyst",
         "QA Automation Engineer"
       ],
@@ -1134,6 +1137,7 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
         "Application Support Analyst",
         "QA Automation Engineer"
       ],
+      targetRoleFamilies: ["systems-middleware", "platform-reliability"],
       focusAreas: [
         "automation",
         "monitoring-observability",

@@ -18,7 +18,7 @@ Validate certification data with:
 
 ### Contact display preferences
 
-The side navigation has a role-independent **Contact Info** section for choosing which public/contact fields appear in the generated resume. These choices persist in browser `localStorage` and apply across every target role.
+The side navigation has a role-independent **Contact Info** section for choosing which public/contact fields appear in the generated resume. These choices persist in browser `localStorage` and apply across every target role. The canonical resume contact email is `nathan@nathanbrenton.com`.
 
 Location is mutually exclusive:
 
@@ -36,9 +36,9 @@ Validate the contact-display helpers and defaults with:
 
 ### Print / PDF metadata
 
-Resume Generator derives print metadata from the currently generated resume. The role headline supplies the document title/subject, the contact record supplies the author, and the visible ranked skill groups supply a bounded keyword list. HTML `author`, `subject`, `description`, and `keywords` metadata stay synchronized with the selected resume. Immediately before printing, the app temporarily changes `document.title` to a resume-specific value such as `Nathan D. Brenton - Build & Release Engineer`, then restores the normal `Resume Generator` application title after printing.
+Resume Generator derives print metadata from the currently generated resume. The selected role permanently updates the page `<title>`/`document.title` while that resume is active, the contact record supplies the author, and the visible ranked skill groups supply a bounded keyword list. The title is filename-safe and uses only letters, numbers, dashes, and underscores, for example `Nathan-D-Brenton_Esri-Build-Release-Engineer-ArcGIS-Enterprise_Resume`. HTML `author`, `subject`, `description`, and `keywords` metadata stay synchronized with the selected resume.
 
-Browser/native PDF workflows are free to ignore HTML metadata other than the title, so this improves the source document and print-dialog title without claiming guaranteed control over macOS PDF Author/Subject/Keywords fields. Validate the metadata derivation and DOM helper with:
+Browser/native PDF workflows are free to ignore HTML metadata other than the title, so this improves the source document, print-dialog title, and browser-derived PDF filename without claiming guaranteed control over macOS PDF Author/Subject/Keywords fields. Validate the metadata derivation and DOM helper with:
 
 ```bash
 ./scripts/check-print-metadata.sh

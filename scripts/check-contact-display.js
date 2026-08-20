@@ -45,7 +45,7 @@ assert.deepEqual(defaults, {
 
 const publicContact = contactDisplay.applyPreferences(contactInfo, defaults);
 assert.equal(publicContact.city, "Orange County, CA");
-assert.equal(publicContact.email, "nbrenton@gmail.com");
+assert.equal(publicContact.email, "nathan@nathanbrenton.com");
 assert.equal(publicContact.phone, "");
 assert.equal(publicContact.website, "https://nathanbrenton.com");
 assert.equal(publicContact.linkedin, "https://www.linkedin.com/in/nathanbrenton");

@@ -267,7 +267,6 @@ let activeCustomizeMode = getInitialCustomizeMode();
 let customizationBaseline = new Map();
 let renderedRoleId = null;
 let renderedResume = null;
-let prePrintDocumentTitle = null;
 
 function getCustomizationState(mode) {
   if (mode === resumeCustomization.MODES.SESSION) {
@@ -502,8 +501,7 @@ function renderCurrentResume() {
   renderedRoleId = role.id;
   resumePrintMetadata.applyToDocument(
     document,
-    resumePrintMetadata.buildMetadata(resume),
-    { includeTitle: false }
+    resumePrintMetadata.buildMetadata(resume)
   );
   updateDebug(resume);
   captureCustomizationBaseline();
@@ -512,28 +510,15 @@ function renderCurrentResume() {
 }
 
 
-function preparePrintMetadata() {
+function syncPrintMetadata() {
   if (!renderedResume) {
     return;
-  }
-
-  if (prePrintDocumentTitle === null) {
-    prePrintDocumentTitle = document.title || resumePrintMetadata.APP_TITLE;
   }
 
   resumePrintMetadata.applyToDocument(
     document,
     resumePrintMetadata.buildMetadata(renderedResume)
   );
-}
-
-function restoreApplicationTitle() {
-  if (prePrintDocumentTitle === null) {
-    return;
-  }
-
-  document.title = prePrintDocumentTitle || resumePrintMetadata.APP_TITLE;
-  prePrintDocumentTitle = null;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -593,12 +578,10 @@ document.addEventListener("DOMContentLoaded", () => {
     captureManualEdits();
   });
 
-  window.addEventListener("beforeprint", preparePrintMetadata);
-  window.addEventListener("afterprint", restoreApplicationTitle);
+  window.addEventListener("beforeprint", syncPrintMetadata);
 
   document.getElementById("printButton").addEventListener("click", () => {
-    preparePrintMetadata();
+    syncPrintMetadata();
     window.print();
-    restoreApplicationTitle();
   });
 });
