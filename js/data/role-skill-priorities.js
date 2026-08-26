@@ -394,6 +394,14 @@ const roleModifierSkillWeights = {
     weightedSkill("Testing & Quality", "Playwright", 3),
     weightedSkill("DevOps & Tooling", "Docker", 3)
   ],
+  "general-software-portfolio": [
+    weightedSkill("Cloud & Infrastructure", "AWS", 4),
+    weightedSkill("Automation & Scripting", "Bash", 4),
+    weightedSkill("Systems & Infrastructure", "Linux", 4),
+    weightedSkill("Systems & Infrastructure", "RHEL 9", 4),
+    weightedSkill("AI Applications", "scikit-learn", 4),
+    weightedSkill("AI Applications", "TF-IDF", 3)
+  ],
   "backend-application": [
     weightedSkill("Programming & Scripting", "Python", 4),
     weightedSkill("Backend & APIs", "FastAPI", 4),

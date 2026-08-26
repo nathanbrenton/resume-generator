@@ -92,4 +92,30 @@ assert.equal(malformed.locationMode, "general");
 assert.equal(malformed.phone, false);
 assert.equal(malformed.website, false);
 
+const renderSource = fs.readFileSync(
+  path.join(repoRoot, "js/render-resume.js"),
+  "utf8"
+);
+
+assert.match(
+  renderSource,
+  /contact\.linkedin \? contactLink\("LinkedIn", contact\.linkedin\) : ""/,
+  "LinkedIn should render with a short visible label while preserving the profile URL"
+);
+assert.match(
+  renderSource,
+  /contact\.github \? contactLink\("GitHub", contact\.github\) : ""/,
+  "GitHub should render with a short visible label while preserving the profile URL"
+);
+assert.doesNotMatch(
+  renderSource,
+  /contactLink\(displayUrl\(contact\.linkedin\), contact\.linkedin\)/,
+  "LinkedIn should not render its full URL as visible contact text"
+);
+assert.doesNotMatch(
+  renderSource,
+  /contactLink\(displayUrl\(contact\.github\), contact\.github\)/,
+  "GitHub should not render its full URL as visible contact text"
+);
+
 console.log("Contact display checks passed.");

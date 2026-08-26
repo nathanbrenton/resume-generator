@@ -151,7 +151,7 @@ const project202607xxCenturySolar = {
     {
       id: "century-solar-full-stack-001",
       text: "Developed a private, containerized React/TypeScript, FastAPI, and PostgreSQL business-operations platform with complex customer, order, equipment, service, fulfillment, and returns workflows plus automated pytest, Vitest, and Playwright coverage.",
-      printText: "Developed a React/TypeScript, FastAPI, and PostgreSQL portfolio platform with complex workflows and automated test coverage.",
+      printText: "Developed a React/TypeScript, FastAPI, and PostgreSQL business operations platform with complex workflows and automated test coverage.",
       includeByDefault: true,
       strength: "primary",
       targetRoles: [

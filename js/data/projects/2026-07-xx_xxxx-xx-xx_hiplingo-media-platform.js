@@ -5,7 +5,7 @@ const project202607xxHiplingoMediaPlatform = {
   includeByDefault: false,
 
   name: "Hiplingo Media Platform",
-  resumeName: "Hiplingo / Metadata Editor Media Platform",
+  resumeName: "Hiplingo Media Platform / Metadata Editor",
   repositoryUrl: "https://hiplingo.com",
   status: "Active development; public site deployed",
 

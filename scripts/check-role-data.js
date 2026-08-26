@@ -97,12 +97,12 @@ function validateRoleArchitecture(data) {
     `Expected 12 durable role definitions, found ${durableRoles.length}`);
   assert(historicalPresets.length === 28,
     `Expected 28 hidden historical presets, found ${historicalPresets.length}`);
-  assert(targetedPresets.length === 2,
-    `Expected 2 active targeted application presets, found ${targetedPresets.length}`);
-  assert(careerData.targetedRoleIds.length === 2,
-    `Expected 2 targeted application dropdown roles, found ${careerData.targetedRoleIds.length}`);
-  assert(careerData.roleDefinitions.length === 42,
-    `Expected 42 total preserved role definitions, found ${careerData.roleDefinitions.length}`);
+  assert(targetedPresets.length === 17,
+    `Expected 17 active targeted application presets, found ${targetedPresets.length}`);
+  assert(careerData.targetedRoleIds.length === 17,
+    `Expected 17 targeted application dropdown roles, found ${careerData.targetedRoleIds.length}`);
+  assert(careerData.roleDefinitions.length === 57,
+    `Expected 57 total preserved role definitions, found ${careerData.roleDefinitions.length}`);
   assert(Object.keys(careerData.roleFamilies).length === 11,
     `Expected 11 durable role families, found ${Object.keys(careerData.roleFamilies).length}`);
   assert(careerData.targetRoles[0] === "full-stack-software-engineer",

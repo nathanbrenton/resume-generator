@@ -858,9 +858,7 @@ const job20240205RothStaffingCompaniesSystemEngineerI = {
         "Linux Administrator",
         "Systems Administrator",
         "Middleware Engineer",
-        "Platform Engineer",
-        "Software Engineer — Full Stack",
-        "AI-First Software Engineer"
+        "Platform Engineer"
       ],
       targetRoleFamilies: ["applied-ai-automation"],
       focusAreas: [

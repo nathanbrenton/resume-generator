@@ -308,6 +308,7 @@ function selectBullets(
   const roleContext = getRoleContext(targetRole);
   const roleSkillProfile = getRoleSkillProfile(roleContext);
   const preferredIdSet = new Set(preferredBulletIds);
+  const excludedIdSet = new Set(selectionOptions.excludedBulletIds || []);
   const minPrimaryScore = selectionOptions.minPrimaryScore ?? 18;
   const primaryBulletLimit = selectionOptions.primaryBulletLimit ?? Math.min(2, maxBullets);
   const minSupplementalScore = selectionOptions.minSupplementalScore ?? 30;
@@ -324,6 +325,7 @@ function selectBullets(
       const catalogEligible = !historicalBullet || (historicalPreset && entry.roleMatch);
 
       return catalogEligible &&
+        !excludedIdSet.has(bullet.id) &&
         (entry.roleMatch || entry.familyMatch || bullet.includeByDefault);
     });
 
@@ -429,14 +431,17 @@ function suppressRedundantSkills(skills, excludedSkillNames = []) {
 
 function groupSkills(skills, targetRole) {
   const grouped = {};
-  const roleId = getRoleDefinition(targetRole).id;
+  const role = getRoleDefinition(targetRole);
+  const roleId = role.id;
+  const displayCategoryOverrides = role.skillDisplayCategoryOverrides || {};
 
   skills.forEach((skill) => {
-    if (!grouped[skill.category]) {
-      grouped[skill.category] = [];
+    const displayCategory = displayCategoryOverrides[skill.name] || skill.category;
+    if (!grouped[displayCategory]) {
+      grouped[displayCategory] = [];
     }
 
-    grouped[skill.category].push(skill);
+    grouped[displayCategory].push(skill);
   });
 
   Object.keys(grouped).forEach((category) => {
@@ -570,9 +575,18 @@ function buildResume(options = {}) {
     careerData.projects,
     options.selectedProjectIds ?? defaultSelections.projectIds
   );
-  const selectedProjects = roleContext.role.catalogStatus === "historical-preset"
+  const eligibleProjects = roleContext.role.catalogStatus === "historical-preset"
     ? requestedProjects
     : requestedProjects.filter((project) => project.catalogStatus !== "historical-component");
+  const preferredProjectOrder = roleContext.role.preserveDefaultProjectOrder
+    ? new Map((defaultSelections.projectIds || []).map((id, index) => [id, index]))
+    : null;
+  const selectedProjects = preferredProjectOrder
+    ? [...eligibleProjects].sort((left, right) => {
+        return (preferredProjectOrder.get(left.id) ?? Number.POSITIVE_INFINITY) -
+          (preferredProjectOrder.get(right.id) ?? Number.POSITIVE_INFINITY);
+      })
+    : eligibleProjects;
   const selectedEducation = selectedByIds(
     careerData.education,
     options.selectedEducationIds ?? defaultSelections.educationIds
@@ -664,7 +678,9 @@ function buildResume(options = {}) {
     const configuredItemLimit = configuredLimit === undefined ? maxJobBullets : configuredLimit;
     const bulletLimit = Math.min(configuredItemLimit, maxJobBullets, availableForThisJob);
     const preferredBulletIds = roleContext.role.preferredBulletIdsByItem?.[job.id] || [];
+    const excludedBulletIds = roleContext.role.excludedBulletIdsByItem?.[job.id] || [];
     const bullets = selectBullets(job, roleContext.roleId, bulletLimit, preferredBulletIds, {
+      excludedBulletIds,
       primaryBulletLimit: Math.min(baseMaxJobBullets, bulletLimit),
       minPrimaryScore: minPrimaryBulletScore,
       minSupplementalScore: minSupplementalBulletScore
@@ -695,8 +711,10 @@ function buildResume(options = {}) {
       )
     );
     const preferredBulletIds = roleContext.role.preferredBulletIdsByItem?.[project.id] || [];
+    const excludedBulletIds = roleContext.role.excludedBulletIdsByItem?.[project.id] || [];
     const bullets = bulletLimit > 0
       ? selectBullets(project, roleContext.roleId, bulletLimit, preferredBulletIds, {
+          excludedBulletIds,
           primaryBulletLimit: Math.min(1, bulletLimit),
           minPrimaryScore: minPrimaryBulletScore,
           minSupplementalScore: minSupplementalBulletScore

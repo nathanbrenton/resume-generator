@@ -556,8 +556,9 @@ const project20260501SignalStack = {
     {
       id: "signalstack-005",
       text: "Built an applied ML classification workflow using weak-supervision training labels, TF-IDF vectorization, Naive Bayes classification, confidence scoring, and persisted model artifacts.",
-      printText: "Trained scikit-learn classifiers with TF-IDF, Naive Bayes, weak labels, and persisted artifacts.",
+      printText: "Built weak-label training data and trained scikit-learn Naive Bayes classifiers using TF-IDF features, persisting model artifacts.",
       includeByDefault: true,
+      strength: "primary",
       targetRoles: [
         "AI/ML Engineer",
         "MLOps / AI Infrastructure",
@@ -568,6 +569,7 @@ const project20260501SignalStack = {
         "testing-validation"
       ],
       skillTags: [
+        { category: "Programming & Scripting", name: "Python" },
         { category: "AI/ML", name: "scikit-learn" },
         { category: "AI/ML", name: "TF-IDF" },
         { category: "AI/ML", name: "Naive Bayes" },
