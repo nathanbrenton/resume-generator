@@ -646,3 +646,66 @@ a {
     background: #fff;
   }
 }
+
+/* Cover-letter document mode. */
+.document-type-help {
+  color: #555;
+  font-size: 0.82rem;
+  margin-top: 6px;
+}
+
+.cover-letter-mode .resume-only-control {
+  display: none;
+}
+
+.cover-letter-page-wrap,
+.cover-letter-page {
+  width: 8.5in;
+}
+
+.cover-letter-page {
+  min-height: 11in;
+  padding: 0.5in;
+}
+
+.cover-letter-header .cover-letter-role {
+  font-weight: 400;
+}
+
+.cover-letter-body {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin-top: 26px;
+}
+
+.cover-letter-date {
+  margin-bottom: 14px;
+}
+
+.cover-letter-recipient {
+  margin-bottom: 16px;
+}
+
+.cover-letter-salutation {
+  margin-bottom: 12px;
+}
+
+.cover-letter-paragraphs p {
+  margin-bottom: 12px;
+}
+
+.cover-letter-closing {
+  margin-top: 18px;
+}
+
+.cover-letter-signature {
+  font-weight: 700;
+  margin-top: 18px;
+}
+
+@media screen {
+  .cover-letter-page {
+    max-height: 11in;
+    overflow: hidden;
+  }
+}

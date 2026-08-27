@@ -97,12 +97,12 @@ function validateRoleArchitecture(data) {
     `Expected 12 durable role definitions, found ${durableRoles.length}`);
   assert(historicalPresets.length === 28,
     `Expected 28 hidden historical presets, found ${historicalPresets.length}`);
-  assert(targetedPresets.length === 17,
-    `Expected 17 active targeted application presets, found ${targetedPresets.length}`);
-  assert(careerData.targetedRoleIds.length === 17,
-    `Expected 17 targeted application dropdown roles, found ${careerData.targetedRoleIds.length}`);
-  assert(careerData.roleDefinitions.length === 57,
-    `Expected 57 total preserved role definitions, found ${careerData.roleDefinitions.length}`);
+  assert(targetedPresets.length === 31,
+    `Expected 31 active targeted application presets, found ${targetedPresets.length}`);
+  assert(careerData.targetedRoleIds.length === 31,
+    `Expected 31 targeted application dropdown roles, found ${careerData.targetedRoleIds.length}`);
+  assert(careerData.roleDefinitions.length === 71,
+    `Expected 71 total preserved role definitions, found ${careerData.roleDefinitions.length}`);
   assert(Object.keys(careerData.roleFamilies).length === 11,
     `Expected 11 durable role families, found ${Object.keys(careerData.roleFamilies).length}`);
   assert(careerData.targetRoles[0] === "full-stack-software-engineer",
@@ -577,6 +577,60 @@ function validateGeneratedResumes(data) {
         `Esri targeted preset selected historical targeting bullet ${bullet.id}`);
     });
   });
+  const zymo = buildResume({
+    targetRole: "zymo-research-junior-full-stack-web-developer",
+    currentDate: validationDate
+  });
+  assert(zymo.roleFamily === "Software Engineering",
+    `Zymo targeted preset generated unexpected family: ${zymo.roleFamily}`);
+  assert(zymo.headline === "FULL-STACK WEB DEVELOPER | REACT, PYTHON & REST APIs | DOCKER",
+    "Zymo targeted headline changed unexpectedly");
+  assert(zymo.summary.includes("database-backed internal operational workflows"),
+    "Zymo targeted summary should emphasize database-backed internal operational workflows");
+
+  const zymoRoth = zymo.jobs.find((job) => job.id ===
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i");
+  assert(zymoRoth?.selectedBullets.map((bullet) => bullet.id).join("|") === [
+    "roth-system-engineer-i-010",
+    "roth-system-engineer-i-007",
+    "roth-system-engineer-i-004"
+  ].join("|"), `Zymo Roth evidence order changed: ${zymoRoth?.selectedBullets.map((bullet) => bullet.id).join(", ")}`);
+
+  const zymoCentury = zymo.projects.find((project) => project.id ===
+    "2026-07-xx_xxxx-xx-xx_century-solar");
+  const zymoSignalStack = zymo.projects.find((project) => project.id ===
+    "2026-05-01_2026-06-01_signalstack");
+  const zymoHiplingo = zymo.projects.find((project) => project.id ===
+    "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform");
+  ["century-solar-full-stack-001", "century-solar-001"].forEach((bulletId) => {
+    assert(zymoCentury?.selectedBullets.some((bullet) => bullet.id === bulletId),
+      `Zymo targeted preset is missing Century Solar evidence ${bulletId}`);
+  });
+  ["signalstack-007", "signalstack-002"].forEach((bulletId) => {
+    assert(zymoSignalStack?.selectedBullets.some((bullet) => bullet.id === bulletId),
+      `Zymo targeted preset is missing SignalStack API/integration evidence ${bulletId}`);
+  });
+  assert(zymoHiplingo?.selectedBullets.some((bullet) => bullet.id === "hiplingo-media-platform-001"),
+    "Zymo targeted preset is missing Hiplingo customer-facing React evidence");
+
+  const zymoSkills = zymo.skills.flatMap((group) => group.skills);
+  [
+    "Python", "TypeScript", "JavaScript", "React", "HTML", "CSS", "FastAPI", "REST APIs",
+    "PostgreSQL", "SQLAlchemy", "Alembic", "Docker", "Git", "pytest", "Vitest", "Playwright", "AWS"
+  ].forEach((skill) => {
+    assert(zymoSkills.includes(skill), `Zymo targeted preset is missing expected skill: ${skill}`);
+  });
+  ["Next.js", "Django", "Flask", "Shopify", "WordPress", "Sanity", "Kubernetes"].forEach((unsupportedSkill) => {
+    assert(!zymoSkills.includes(unsupportedSkill),
+      `Zymo targeted preset must not claim unsupported skill: ${unsupportedSkill}`);
+  });
+  [...zymo.jobs, ...zymo.projects].forEach((item) => {
+    item.selectedBullets.forEach((bullet) => {
+      assert(bullet.catalogStatus === "canonical",
+        `Zymo targeted preset selected historical targeting bullet ${bullet.id}`);
+    });
+  });
+
 }
 
 

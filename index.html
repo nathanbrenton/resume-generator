@@ -28,6 +28,15 @@
         <select id="targetRole"></select>
       </div>
 
+      <div class="control-group">
+        <h2>Document</h2>
+        <select id="documentType">
+          <option value="resume">Resume</option>
+          <option value="cover-letter">Cover Letter</option>
+        </select>
+        <p id="documentTypeHelp" class="document-type-help">Resume preview and print output.</p>
+      </div>
+
       <div id="contactInfoControls" class="control-group">
         <h2>Contact Info</h2>
         <div class="contact-control-subgroup">
@@ -61,22 +70,22 @@
         <p id="customizeHelp" class="customize-help">Choose a manual-editing mode to edit text and lists directly in the preview.</p>
       </div>
 
-      <div class="control-group">
+      <div class="control-group resume-only-control">
         <h2>Experience</h2>
         <div id="jobControls"></div>
       </div>
 
-      <div class="control-group">
+      <div class="control-group resume-only-control">
         <h2>Projects</h2>
         <div id="projectControls"></div>
       </div>
 
-      <div class="control-group">
+      <div class="control-group resume-only-control">
         <h2>Education</h2>
         <div id="educationControls"></div>
       </div>
 
-      <div class="control-group">
+      <div class="control-group resume-only-control">
         <h2>Certifications</h2>
         <div id="certificationControls"></div>
       </div>
@@ -124,6 +133,8 @@
   <script src="./js/data/education/2019-01-29_2019-05-12_udacity_front-end-web-developer-nanodegree.js"></script>
   <script src="./js/data/education/index.js"></script>
 
+  <script src="./js/data/cover-letters.js"></script>
+
   <script src="./js/certification-utils.js"></script>
   <script src="./js/data/certifications/2023-08-28_2026-08-28_comptia_pentest-plus-ce.js"></script>
   <script src="./js/data/certifications/2023-08-11_2029-08-11_comptia_cysa-plus-ce.js"></script>
@@ -140,6 +151,7 @@
   <script src="./js/data/index.js"></script>
   <script src="./js/resume-builder.js"></script>
   <script src="./js/render-resume.js"></script>
+  <script src="./js/render-cover-letter.js"></script>
   <script src="./js/customization.js"></script>
   <script src="./js/contact-display.js"></script>
   <script src="./js/print-metadata.js"></script>

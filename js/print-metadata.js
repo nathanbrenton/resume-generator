@@ -58,10 +58,10 @@ const resumePrintMetadata = (() => {
       .replace(/^-|-$/g, "") || "Resume";
   }
 
-  function buildDocumentTitle(resume) {
+  function buildDocumentTitle(resume, documentKind = "Resume") {
     const author = normalizeText(resume?.contact?.name) || "Nathan D. Brenton";
     const selectedRole = normalizeText(resume?.targetRoleLabel) || getRoleTitle(resume);
-    return `${sanitizeFilenamePart(author)}_${sanitizeFilenamePart(selectedRole)}_Resume`;
+    return `${sanitizeFilenamePart(author)}_${sanitizeFilenamePart(selectedRole)}_${sanitizeFilenamePart(documentKind)}`;
   }
 
   function buildKeywordList(resume, maxKeywords = MAX_KEYWORDS) {
@@ -91,13 +91,14 @@ const resumePrintMetadata = (() => {
     }).slice(0, maxKeywords);
   }
 
-  function buildMetadata(resume) {
+  function buildMetadata(resume, options = {}) {
     const author = normalizeText(resume?.contact?.name) || "Nathan D. Brenton";
     const roleTitle = getRoleTitle(resume);
-    const subject = `${roleTitle} Resume`;
+    const documentKind = options.documentKind === "Cover Letter" ? "Cover Letter" : "Resume";
+    const subject = `${roleTitle} ${documentKind}`;
 
     return {
-      title: buildDocumentTitle(resume),
+      title: buildDocumentTitle(resume, documentKind),
       author,
       subject,
       description: subject,

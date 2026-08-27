@@ -185,9 +185,13 @@ const roleModifiers = {
   reliability: { label: "Reliability" },
   "production-support": { label: "Production Support" },
   "developer-support": { label: "Developer Support" },
+  "developer-infrastructure": { label: "Developer Infrastructure" },
+  "ai-assisted-product-development": { label: "AI-Assisted Product Development" },
   "full-stack": { label: "Full-Stack" },
   "general-software-portfolio": { label: "General Software Portfolio" },
   "backend-application": { label: "Backend / Application" },
+  "web-application-delivery": { label: "Web Application Delivery" },
+  "software-delivery-lifecycle": { label: "Software Delivery Lifecycle" },
   "test-automation": { label: "Test Automation" },
   "security-quality": { label: "Security Quality" },
   "mission-operations-full-stack": { label: "Mission Operations" },
@@ -4130,6 +4134,104 @@ roleDefinitions.push({
 });
 
 roleDefinitions.push({
+  id: "fieldai-software-engineer-developer-infrastructure",
+  label: "FieldAI — Software Engineer, Developer Infrastructure",
+  familyId: "platform-reliability",
+  modifierIds: ["developer-infrastructure", "automation", "developer-support"],
+  aliases: [
+    "Software Engineer, Developer Infrastructure",
+    "Developer Infrastructure Engineer",
+    "Developer Productivity Engineer"
+  ],
+  headline: "SOFTWARE ENGINEER | DEVELOPER INFRASTRUCTURE | PYTHON, DOCKER & LINUX",
+  summary: "Software engineering master’s graduate and former enterprise systems engineer focused on developer infrastructure, reproducible environments, automation, and reliable engineering workflows. Built a Debian development lab that preserves Python dependencies and Docker images, automates environment setup, validation, smoke tests, security and code-quality checks, and documents rebuild and runtime flows; professional experience adds Linux/RHEL operations, Bash automation, deployment tooling, developer support, and cross-team troubleshooting.",
+  preferredFocusAreas: [
+    "infrastructure-operations",
+    "automation",
+    "testing-validation",
+    "deployment-change",
+    "documentation",
+    "stakeholder-support",
+    "software-development"
+  ],
+  preferredBulletBoost: 100,
+  preservePreferredBulletOrder: true,
+  preserveDefaultProjectOrder: true,
+  categoryOrder: [
+    "Programming & Scripting",
+    "Systems & Infrastructure",
+    "DevOps & Tooling",
+    "Automation & Scripting",
+    "Testing & Quality",
+    "Platform & Reliability",
+    "Documentation & Collaboration",
+    "Backend & APIs",
+    "Databases & Data",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "Programming & Scripting": 4,
+    "Systems & Infrastructure": 5,
+    "DevOps & Tooling": 6,
+    "Automation & Scripting": 4,
+    "Testing & Quality": 6,
+    "Platform & Reliability": 4,
+    "Documentation & Collaboration": 4,
+    "Backend & APIs": 2,
+    "Databases & Data": 2
+  },
+  excludedSkillNames: [
+    "Bazel", "Nx", "ROS", "Kubernetes", "Terraform", "Helm", "ArgoCD",
+    "GitHub Actions", "Go", "C++", "real-time systems", "sensor integration",
+    "MLOps", "GPU workloads", "Azure", "GCP", "PowerShell",
+    "Oracle WebLogic", "Oracle Service Bus", "Apache HTTP Server", "Tomcat/TomEE",
+    "JDK", "Java middleware", "HLS", "FFmpeg", "transcoding", "media validation",
+    "domain management", "mail forwarding", "application modernization"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-010",
+      "roth-system-engineer-i-003",
+      "roth-system-engineer-i-002"
+    ],
+    "2026-06-xx_xxxx-xx-xx_offline-dev-lab": [
+      "offline-dev-lab-001",
+      "offline-dev-lab-003",
+      "offline-dev-lab-005",
+      "offline-dev-lab-006"
+    ],
+    "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": [
+      "hiplingo-media-platform-010",
+      "hiplingo-media-platform-005"
+    ]
+  },
+  projectBulletLimitsByItem: {
+    "2026-06-xx_xxxx-xx-xx_offline-dev-lab": 4,
+    "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": 2
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    projectIds: [
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab",
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform"
+    ],
+    educationIds: sharedEducationIds,
+    certificationIds: []
+  },
+  layout: {
+    maxSkillGroups: 8,
+    maxSkillsPerGroup: 6,
+    maxSkillsTotal: 30,
+    maxJobBullets: 3,
+    maxExperienceBullets: 3,
+    maxProjectBullets: 4,
+    maxProjectBulletsTotal: 6
+  }
+});
+
+roleDefinitions.push({
   id: "tri-pointe-homes-web-mobile-app-developer",
   label: "Tri Pointe Homes — Web & Mobile App Developer",
   familyId: "software-engineering",
@@ -4915,6 +5017,1507 @@ roleDefinitions.push({
   }
 });
 
+roleDefinitions.push({
+  id: "handshake-associate-software-engineer-operator-experience",
+  label: "Handshake — Associate Software Engineer, Operator Experience",
+  familyId: "software-engineering",
+  modifierIds: ["internal-operations-software", "automation", "full-stack"],
+  aliases: [
+    "Associate Software Engineer — Handshake",
+    "Operator Experience Software Engineer",
+    "Internal Tools Software Engineer",
+    "Operations Tooling Engineer"
+  ],
+  headline: "ASSOCIATE SOFTWARE ENGINEER | INTERNAL TOOLS, AUTOMATION & WORKFLOWS",
+  summary: "Software engineering master’s graduate and former enterprise systems engineer building tested internal tools, workflow applications, automation, APIs, and operational dashboards with Python, FastAPI, React, TypeScript, PostgreSQL, and Docker. Combines hands-on software development with production support, user-facing troubleshooting, documentation, and iterative improvement of business-critical technical workflows.",
+  preferredFocusAreas: [
+    "software-development",
+    "automation",
+    "api-integration",
+    "testing-validation",
+    "stakeholder-support",
+    "documentation",
+    "incident-analysis"
+  ],
+  preferredBulletBoost: 100,
+  preservePreferredBulletOrder: true,
+  preserveDefaultProjectOrder: true,
+  categoryOrder: [
+    "Programming & Scripting",
+    "Backend & APIs",
+    "Frontend Development",
+    "Databases & Data",
+    "Automation & Integration",
+    "Testing & Quality",
+    "Documentation & Collaboration",
+    "Enterprise Support",
+    "DevOps & Tooling",
+    "Systems & Infrastructure",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "Programming & Scripting": 4,
+    "Backend & APIs": 5,
+    "Frontend Development": 3,
+    "Databases & Data": 4,
+    "Automation & Integration": 4,
+    "Testing & Quality": 4,
+    "Documentation & Collaboration": 4,
+    "Enterprise Support": 3,
+    "DevOps & Tooling": 4
+  },
+  excludedSkillNames: [
+    "Ruby", "Ruby on Rails", "Go", "Kubernetes", "Terraform", "GraphQL",
+    "Next.js", "Java", "Spring Boot", "C#", ".NET"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-010",
+      "roth-system-engineer-i-012",
+      "roth-system-engineer-i-008"
+    ],
+    "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": [
+      "randstad-jr-deskside-technician-006",
+      "randstad-jr-deskside-technician-005"
+    ],
+    "2026-07-xx_xxxx-xx-xx_century-solar": [
+      "century-solar-001",
+      "century-solar-qa-001"
+    ],
+    "2026-07-xx_xxxx-xx-xx_resume-generator": [
+      "resume-generator-001"
+    ],
+    "2026-05-01_2026-06-01_signalstack": [
+      "signalstack-002"
+    ]
+  },
+  projectBulletLimitsByItem: {
+    "2026-07-xx_xxxx-xx-xx_century-solar": 2,
+    "2026-07-xx_xxxx-xx-xx_resume-generator": 1,
+    "2026-05-01_2026-06-01_signalstack": 1
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+    ],
+    projectIds: [
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-07-xx_xxxx-xx-xx_resume-generator",
+      "2026-05-01_2026-06-01_signalstack"
+    ],
+    educationIds: sharedEducationIds,
+    certificationIds: []
+  },
+  layout: {
+    maxSkillGroups: 9,
+    maxSkillsPerGroup: 5,
+    maxSkillsTotal: 30,
+    maxJobBullets: 3,
+    maxJobBulletsWhenTwoJobs: 3,
+    maxExperienceBullets: 5,
+    maxProjectBullets: 2,
+    maxProjectBulletsTotal: 4
+  }
+});
+
+roleDefinitions.push({
+  id: "reacher-software-engineer-full-stack",
+  label: "Reacher — Software Engineer (Full Stack)",
+  familyId: "software-engineering",
+  modifierIds: ["full-stack", "backend-application", "automation", "applied-ai"],
+  aliases: [
+    "Software Engineer (Full Stack) — Reacher",
+    "Full-Stack Engineer — Reacher",
+    "Product Software Engineer",
+    "Full-Stack Product Engineer"
+  ],
+  headline: "FULL-STACK SOFTWARE ENGINEER | PYTHON, FASTAPI, REACT & POSTGRESQL",
+  summary: "Software engineering master’s graduate and former enterprise systems engineer building end-to-end, containerized applications with Python, FastAPI, React, TypeScript, PostgreSQL, REST APIs, Docker, and automated testing. Owns portfolio features across data models, backend services, user interfaces, validation, deployment workflows, diagnostics, and iterative product improvements, with additional experience supporting production Linux applications.",
+  preferredFocusAreas: [
+    "software-development",
+    "api-integration",
+    "data-databases",
+    "testing-validation",
+    "automation",
+    "ai-ml",
+    "deployment-change"
+  ],
+  preferredBulletBoost: 100,
+  preservePreferredBulletOrder: true,
+  preserveDefaultProjectOrder: true,
+  categoryOrder: [
+    "Programming & Scripting",
+    "Backend & APIs",
+    "Frontend Development",
+    "Databases & Data",
+    "Testing & Quality",
+    "AI Applications",
+    "Automation & Integration",
+    "DevOps & Tooling",
+    "Systems & Infrastructure",
+    "Documentation & Collaboration",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "Programming & Scripting": 4,
+    "Backend & APIs": 5,
+    "Frontend Development": 4,
+    "Databases & Data": 4,
+    "Testing & Quality": 4,
+    "AI Applications": 3,
+    "Automation & Integration": 3,
+    "DevOps & Tooling": 4,
+    "Systems & Infrastructure": 3
+  },
+  excludedSkillNames: [
+    "GCP", "Google Cloud Platform", "Tailwind CSS", "shadcn/ui", "Kubernetes",
+    "Terraform", "GraphQL", "Next.js", "Go", "Ruby", "Ruby on Rails"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-012",
+      "roth-system-engineer-i-010",
+      "roth-system-engineer-i-007"
+    ],
+    "2026-07-xx_xxxx-xx-xx_century-solar": [
+      "century-solar-full-stack-001",
+      "century-solar-001"
+    ],
+    "2026-05-01_2026-06-01_signalstack": [
+      "signalstack-001",
+      "signalstack-007"
+    ],
+    "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": [
+      "hiplingo-media-platform-001"
+    ]
+  },
+  projectBulletLimitsByItem: {
+    "2026-07-xx_xxxx-xx-xx_century-solar": 2,
+    "2026-05-01_2026-06-01_signalstack": 2,
+    "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": 1
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    projectIds: [
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-05-01_2026-06-01_signalstack",
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform"
+    ],
+    educationIds: [
+      ...sharedEducationIds,
+      "2019-01-29_2019-05-12_udacity_front-end-web-developer-nanodegree"
+    ],
+    certificationIds: []
+  },
+  layout: {
+    maxSkillGroups: 9,
+    maxSkillsPerGroup: 5,
+    maxSkillsTotal: 30,
+    maxJobBullets: 3,
+    maxExperienceBullets: 3,
+    maxProjectBullets: 2,
+    maxProjectBulletsTotal: 5
+  }
+});
+
+roleDefinitions.push({
+  id: "tp-link-2026-early-career-qa-engineer",
+  label: "TP-Link — 2026 Early Career QA Engineer",
+  familyId: "quality-engineering",
+  modifierIds: ["qa-automation-engineering", "test-automation", "network-administration"],
+  aliases: [
+    "2026 Early Career QA Engineer — TP-Link",
+    "QA Engineer — Networking",
+    "Network Product QA Engineer",
+    "Software Test Engineer — Networking"
+  ],
+  headline: "QA ENGINEER | PYTHON TEST AUTOMATION | NETWORKING & SYSTEM VALIDATION",
+  summary: "Software engineering master’s graduate with enterprise systems, networking, field-device, and software quality experience. Builds Python-based and browser/API test automation, troubleshoots networked applications and Linux devices, validates releases and system behavior, documents defects and procedures, and has hands-on experience supporting camera, sensor, Raspberry Pi, endpoint, and enterprise network environments.",
+  preferredFocusAreas: [
+    "testing-validation",
+    "networking",
+    "incident-analysis",
+    "automation",
+    "documentation",
+    "hardware-field",
+    "software-development"
+  ],
+  preferredBulletBoost: 100,
+  preservePreferredBulletOrder: true,
+  preserveDefaultProjectOrder: true,
+  categoryOrder: [
+    "Testing & Quality",
+    "Networking & Security",
+    "Programming & Scripting",
+    "Hardware & Field Systems",
+    "Systems & Infrastructure",
+    "Monitoring & Support",
+    "DevOps & Tooling",
+    "Documentation & Collaboration",
+    "Backend & APIs",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "Testing & Quality": 6,
+    "Networking & Security": 6,
+    "Programming & Scripting": 4,
+    "Hardware & Field Systems": 5,
+    "Systems & Infrastructure": 4,
+    "Monitoring & Support": 4,
+    "DevOps & Tooling": 4,
+    "Documentation & Collaboration": 4,
+    "Backend & APIs": 3
+  },
+  excludedSkillNames: [
+    "BGP", "OSPF", "IS-IS", "RADIUS", "802.1X", "SNMP", "SDN",
+    "NVR", "Ruby", "Java", "Kubernetes", "Terraform"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-012",
+      "roth-system-engineer-i-008"
+    ],
+    "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": [
+      "randstad-jr-deskside-technician-006",
+      "randstad-jr-deskside-technician-001"
+    ],
+    "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician": [
+      "adroit-smartshelf-jr-it-support-005",
+      "adroit-smartshelf-jr-it-support-003"
+    ],
+    "2026-07-xx_xxxx-xx-xx_century-solar": [
+      "century-solar-qa-001"
+    ],
+    "2026-06-xx_xxxx-xx-xx_offline-dev-lab": [
+      "offline-dev-lab-003",
+      "offline-dev-lab-008"
+    ]
+  },
+  projectBulletLimitsByItem: {
+    "2026-07-xx_xxxx-xx-xx_century-solar": 1,
+    "2026-06-xx_xxxx-xx-xx_offline-dev-lab": 2
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician",
+      "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician"
+    ],
+    projectIds: [
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab"
+    ],
+    educationIds: sharedEducationIds,
+    certificationIds: [
+      "2021-07-11_2024-10-09_comptia_network-plus-ce"
+    ]
+  },
+  layout: {
+    maxSkillGroups: 9,
+    maxSkillsPerGroup: 6,
+    maxSkillsTotal: 30,
+    maxJobBullets: 2,
+    maxJobBulletsWhenTwoJobs: 2,
+    maxExperienceBullets: 6,
+    maxProjectBullets: 2,
+    maxProjectBulletsTotal: 3
+  }
+});
+
+roleDefinitions.push({
+  id: "tax-relief-advocates-junior-machine-learning-engineer",
+  label: "Tax Relief Advocates — Junior Machine Learning Engineer",
+  familyId: "applied-ai-automation",
+  modifierIds: ["applied-ai", "backend-application", "automation", "reliability"],
+  aliases: [
+    "Junior Machine Learning Engineer — Tax Relief Advocates",
+    "Junior ML Engineer",
+    "Machine Learning Engineer — Applied AI",
+    "Applied Machine Learning Engineer"
+  ],
+  headline: "JUNIOR MACHINE LEARNING ENGINEER | PYTHON, SCIKIT-LEARN & FASTAPI",
+  summary: "Software engineering master’s graduate with applied machine-learning portfolio work spanning scikit-learn classification, pretrained Hugging Face inference, FastAPI model endpoints, semantic retrieval, model-lifecycle validation, Dockerized services, automated testing, and human-in-the-loop AI output review. Enterprise systems experience adds production monitoring, automation, troubleshooting, and disciplined operational documentation.",
+  preferredFocusAreas: [
+    "ai-ml",
+    "testing-validation",
+    "software-development",
+    "api-integration",
+    "data-databases",
+    "monitoring-observability",
+    "automation",
+    "security-compliance",
+    "documentation"
+  ],
+  preferredBulletBoost: 100,
+  preservePreferredBulletOrder: true,
+  preserveDefaultProjectOrder: true,
+  categoryOrder: [
+    "AI Applications",
+    "Programming & Scripting",
+    "Web & API Development",
+    "Backend & APIs",
+    "Testing & QA",
+    "Testing & Quality",
+    "DevOps & Tooling",
+    "Security",
+    "Security & Compliance",
+    "Operating Systems",
+    "Monitoring & Support",
+    "Databases & Data",
+    "Documentation",
+    "Documentation & Collaboration",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "AI Applications": 10,
+    "Programming & Scripting": 4,
+    "Web & API Development": 4,
+    "Backend & APIs": 4,
+    "Testing & QA": 4,
+    "Testing & Quality": 4,
+    "DevOps & Tooling": 4,
+    "Security": 3,
+    "Security & Compliance": 3,
+    "Operating Systems": 3,
+    "Monitoring & Support": 3,
+    "Databases & Data": 3
+  },
+  skillDisplayCategoryOverrides: {
+    "ML lifecycle design": "AI Applications",
+    "model evaluation": "AI Applications",
+    "Naive Bayes": "AI Applications",
+    "TF-IDF": "AI Applications",
+    "training/inference separation": "AI Applications",
+    "transformer pipelines": "AI Applications",
+    "weak-supervision labels": "AI Applications"
+  },
+  excludedSkillNames: [
+    "AI output verification", "computer vision output validation", "computer vision QA",
+    "human-in-the-loop validation", "model output correction",
+    "hybrid retrieval", "local model caching", "persisted model artifacts",
+    "semantic embeddings", "sentence-transformers",
+    "PyTorch", "TensorFlow", "MLflow", "Streamlit", "pandas",
+    "OpenAI API", "LLM APIs", "Azure AI", "Azure AI Foundry",
+    "Azure Document Intelligence", "Google Document AI", "OCR",
+    "Power BI", "Snowflake", "Azure Synapse", "AWS Lambda", "Azure Functions",
+    "JWT", "JWT-based authentication", "Kubernetes", "Terraform",
+    "model fine-tuning", "LLM fine-tuning"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-012",
+      "roth-system-engineer-i-003"
+    ],
+    "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician": [
+      "adroit-smartshelf-jr-it-support-001"
+    ],
+    "2026-05-01_2026-06-01_signalstack": [
+      "signalstack-001",
+      "signalstack-005",
+      "signalstack-006"
+    ],
+    "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos": [
+      "hugging-face-tutorial-demos-001",
+      "hugging-face-tutorial-demos-002"
+    ],
+    "2026-07-xx_xxxx-xx-xx_century-solar": [
+      "century-solar-security-001"
+    ]
+  },
+  projectBulletLimitsByItem: {
+    "2026-05-01_2026-06-01_signalstack": 3,
+    "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos": 2,
+    "2026-07-xx_xxxx-xx-xx_century-solar": 1
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician"
+    ],
+    projectIds: [
+      "2026-05-01_2026-06-01_signalstack",
+      "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos",
+      "2026-07-xx_xxxx-xx-xx_century-solar"
+    ],
+    educationIds: sharedEducationIds,
+    certificationIds: []
+  },
+  layout: {
+    maxSkillGroups: 9,
+    maxSkillsPerGroup: 6,
+    maxSkillsTotal: 30,
+    maxJobBullets: 2,
+    maxJobBulletsWhenTwoJobs: 2,
+    maxExperienceBullets: 3,
+    maxProjectBullets: 3,
+    maxProjectBulletsTotal: 6
+  }
+});
+
+roleDefinitions.push({
+  id: "tax-relief-advocates-junior-ai-data-engineer-marketing",
+  label: "Tax Relief Advocates — Junior AI Data Engineer (Marketing)",
+  familyId: "platform-reliability",
+  modifierIds: ["backend-application", "automation", "reliability", "applied-ai"],
+  aliases: [
+    "Junior AI Data Engineer (Marketing) — Tax Relief Advocates",
+    "Junior AI Data Engineer",
+    "Junior Data Engineer",
+    "Data Engineer — Automation & APIs"
+  ],
+  headline: "JUNIOR AI DATA ENGINEER | PYTHON, SQL & FASTAPI | DATA AUTOMATION",
+  summary: "Software engineering master’s graduate and former enterprise systems engineer building Python/FastAPI/PostgreSQL data workflows with ingestion, normalization, duplicate detection, REST APIs, validation, monitoring, Dockerized services, and automated testing. Professional experience adds AWS migration support, Linux automation, service monitoring, troubleshooting, and production documentation.",
+  preferredFocusAreas: [
+    "data-databases",
+    "api-integration",
+    "automation",
+    "testing-validation",
+    "monitoring-observability",
+    "software-development",
+    "infrastructure-operations",
+    "performance-reliability",
+    "documentation"
+  ],
+  preferredBulletBoost: 100,
+  preservePreferredBulletOrder: true,
+  preserveDefaultProjectOrder: true,
+  categoryOrder: [
+    "Programming & Scripting",
+    "Backend & APIs",
+    "Databases & Data",
+    "Programming & APIs",
+    "Data & AI",
+    "Testing & Quality",
+    "Testing & QA",
+    "DevOps & Tooling",
+    "Cloud & Infrastructure",
+    "Monitoring & Support",
+    "Automation & Scripting",
+    "Operating Systems",
+    "Documentation & Collaboration",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "Programming & Scripting": 4,
+    "Backend & APIs": 5,
+    "Databases & Data": 6,
+    "Programming & APIs": 5,
+    "Data & AI": 6,
+    "Testing & Quality": 5,
+    "Testing & QA": 4,
+    "DevOps & Tooling": 5,
+    "Cloud & Infrastructure": 3,
+    "Monitoring & Support": 4,
+    "Automation & Scripting": 3,
+    "Operating Systems": 3,
+    "Documentation & Collaboration": 3
+  },
+  skillDisplayCategoryOverrides: {
+    "RSS ingestion": "Databases & Data",
+    "article normalization": "Databases & Data",
+    "ingestion pipelines": "Databases & Data",
+    "normalization": "Databases & Data",
+    "duplicate detection": "Databases & Data",
+    "SQL": "Programming & Scripting",
+    "search APIs": "Backend & APIs",
+    "API design": "Backend & APIs",
+    "feed health visibility": "Monitoring & Support",
+    "ML health endpoint": "Monitoring & Support",
+    "containerized services": "DevOps & Tooling",
+    "deployment validation": "DevOps & Tooling"
+  },
+  excludedSkillNames: [
+    "Supabase", "Power BI", "dbt", "Airflow", "Azure", "Microsoft Azure",
+    "LLM APIs", "OpenAI API", "HubSpot", "Salesforce", "Cake", "Zapier",
+    "Google Ads", "Meta Ads", "marketing automation", "campaign operations",
+    "Kubernetes", "Terraform", "Snowflake", "BigQuery", "Databricks",
+    "Redshift", "Glue", "Athena"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-004",
+      "roth-system-engineer-i-003",
+      "roth-system-engineer-i-012"
+    ],
+    "2026-05-01_2026-06-01_signalstack": [
+      "signalstack-002",
+      "signalstack-007",
+      "signalstack-010"
+    ],
+    "2026-07-xx_xxxx-xx-xx_century-solar": [
+      "century-solar-full-stack-001",
+      "century-solar-ust-infrastructure-001"
+    ]
+  },
+  projectBulletLimitsByItem: {
+    "2026-05-01_2026-06-01_signalstack": 3,
+    "2026-07-xx_xxxx-xx-xx_century-solar": 2
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    projectIds: [
+      "2026-05-01_2026-06-01_signalstack",
+      "2026-07-xx_xxxx-xx-xx_century-solar"
+    ],
+    educationIds: sharedEducationIds,
+    certificationIds: []
+  },
+  layout: {
+    maxSkillGroups: 9,
+    maxSkillsPerGroup: 6,
+    maxSkillsTotal: 30,
+    maxJobBullets: 3,
+    maxExperienceBullets: 3,
+    maxProjectBullets: 3,
+    maxProjectBulletsTotal: 5
+  }
+});
+
+roleDefinitions.push({
+  id: "briggs-electric-data-engineer",
+  label: "Briggs Electric — Data Engineer",
+  familyId: "platform-reliability",
+  modifierIds: ["backend-application", "automation", "reliability"],
+  aliases: [
+    "Data Engineer — Briggs Electric",
+    "Data Engineer",
+    "Business Systems Data Engineer",
+    "Data Integration Engineer"
+  ],
+  headline: "DATA ENGINEER | PYTHON, SQL & POSTGRESQL | DATA INTEGRATION",
+  summary: "Software engineering master’s graduate and former enterprise systems engineer building Python/FastAPI/PostgreSQL data workflows for ingestion, normalization, duplicate detection, SQL-backed retrieval, REST APIs, validation, and automated testing. Professional experience adds AWS migration support, database connection troubleshooting, Linux automation, change-controlled operations, and technical documentation for business-critical application environments.",
+  preferredFocusAreas: [
+    "data-databases",
+    "api-integration",
+    "automation",
+    "testing-validation",
+    "software-development",
+    "infrastructure-operations",
+    "performance-reliability",
+    "documentation",
+    "security"
+  ],
+  preferredBulletBoost: 100,
+  preservePreferredBulletOrder: true,
+  preserveDefaultProjectOrder: true,
+  categoryOrder: [
+    "Programming & Scripting",
+    "Backend & APIs",
+    "Databases & Data",
+    "Programming & APIs",
+    "Testing & Quality",
+    "Testing & QA",
+    "DevOps & Tooling",
+    "Cloud & Infrastructure",
+    "Monitoring & Support",
+    "Automation & Scripting",
+    "Security & Access",
+    "Documentation & Collaboration",
+    "Operating Systems",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "Programming & Scripting": 4,
+    "Backend & APIs": 5,
+    "Databases & Data": 7,
+    "Programming & APIs": 5,
+    "Testing & Quality": 5,
+    "Testing & QA": 4,
+    "DevOps & Tooling": 4,
+    "Cloud & Infrastructure": 3,
+    "Monitoring & Support": 3,
+    "Automation & Scripting": 3,
+    "Security & Access": 3,
+    "Documentation & Collaboration": 3,
+    "Operating Systems": 2
+  },
+  skillDisplayCategoryOverrides: {
+    "RSS ingestion": "Databases & Data",
+    "article normalization": "Databases & Data",
+    "ingestion pipelines": "Databases & Data",
+    "normalization": "Databases & Data",
+    "duplicate detection": "Databases & Data",
+    "full-text search": "Databases & Data",
+    "TSVECTOR": "Databases & Data",
+    "SQL": "Programming & Scripting",
+    "search APIs": "Backend & APIs",
+    "API design": "Backend & APIs",
+    "data integrity": "Databases & Data",
+    "access controls": "Security & Access",
+    "technical documentation": "Documentation & Collaboration"
+  },
+  excludedSkillNames: [
+    "Power BI", "Tableau", "Microsoft Fabric", "Azure Data Factory",
+    "SSIS", "SSRS", "Snowflake", "BigQuery", "Databricks", "Redshift",
+    "dbt", "Airflow", "Apache Spark", "Kafka", "Fivetran",
+    "Spectrum", "Procore", "enterprise data warehouse", "data warehouse",
+    "dimensional modeling", "star schema", "Kubernetes", "Terraform"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-004",
+      "roth-system-engineer-i-007",
+      "roth-system-engineer-i-012"
+    ],
+    "2026-05-01_2026-06-01_signalstack": [
+      "signalstack-002",
+      "signalstack-003",
+      "signalstack-007"
+    ],
+    "2026-07-xx_xxxx-xx-xx_century-solar": [
+      "century-solar-security-001",
+      "century-solar-001"
+    ]
+  },
+  projectBulletLimitsByItem: {
+    "2026-05-01_2026-06-01_signalstack": 3,
+    "2026-07-xx_xxxx-xx-xx_century-solar": 2
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    projectIds: [
+      "2026-05-01_2026-06-01_signalstack",
+      "2026-07-xx_xxxx-xx-xx_century-solar"
+    ],
+    educationIds: sharedEducationIds,
+    certificationIds: []
+  },
+  layout: {
+    maxSkillGroups: 9,
+    maxSkillsPerGroup: 6,
+    maxSkillsTotal: 30,
+    maxJobBullets: 3,
+    maxExperienceBullets: 3,
+    maxProjectBullets: 3,
+    maxProjectBulletsTotal: 5
+  }
+});
+
+roleDefinitions.push({
+  id: "smartsheet-software-engineer-i-remote-eligible",
+  label: "Smartsheet — Software Engineer I (Remote Eligible)",
+  familyId: "software-engineering",
+  modifierIds: ["full-stack", "backend-application", "automation", "applied-ai", "cloud-platform"],
+  aliases: [
+    "Software Engineer I — Smartsheet",
+    "Software Engineer I (Remote Eligible) — Smartsheet",
+    "Full-Stack Software Engineer — Smartsheet",
+    "Cloud Software Engineer"
+  ],
+  headline: "SOFTWARE ENGINEER | PYTHON, TYPESCRIPT & REACT | AWS & REST APIs",
+  summary: "Software engineering master’s graduate and former enterprise systems engineer building containerized full-stack applications with Python, TypeScript, React, FastAPI, PostgreSQL, REST APIs, Docker, AWS exposure, and automated testing. Brings production Linux operations, deployment automation, troubleshooting, documentation, and AI-assisted development experience to software engineering work across backend services, user interfaces, data workflows, and reliability-focused tooling.",
+  preferredFocusAreas: [
+    "software-development",
+    "api-integration",
+    "deployment-change",
+    "automation",
+    "testing-validation",
+    "ai-ml",
+    "performance-reliability"
+  ],
+  preferredBulletBoost: 100,
+  preservePreferredBulletOrder: true,
+  preserveDefaultProjectOrder: true,
+  categoryOrder: [
+    "Programming & Scripting",
+    "Backend & APIs",
+    "Frontend Development",
+    "Cloud & Infrastructure",
+    "Testing & Quality",
+    "AI Applications",
+    "Automation & Integration",
+    "DevOps & Tooling",
+    "Databases & Data",
+    "Systems & Infrastructure",
+    "Documentation & Collaboration",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "Programming & Scripting": 4,
+    "Backend & APIs": 5,
+    "Frontend Development": 4,
+    "Cloud & Infrastructure": 4,
+    "Testing & Quality": 4,
+    "AI Applications": 3,
+    "Automation & Integration": 3,
+    "DevOps & Tooling": 4,
+    "Databases & Data": 4,
+    "Systems & Infrastructure": 3
+  },
+  excludedSkillNames: [
+    "Kotlin", "Java", "Kubernetes", "Azure", "C#", "Go", "Ruby", "Ruby on Rails",
+    "Terraform", "Helm", "ArgoCD", "Databricks", "GraphQL", "Next.js"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-003",
+      "roth-system-engineer-i-004",
+      "roth-system-engineer-i-010"
+    ],
+    "2026-07-xx_xxxx-xx-xx_century-solar": [
+      "century-solar-full-stack-001",
+      "century-solar-qa-001"
+    ],
+    "2026-05-01_2026-06-01_signalstack": [
+      "signalstack-001"
+    ],
+    "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": [
+      "hiplingo-media-platform-001"
+    ],
+    "2026-07-xx_xxxx-xx-xx_resume-generator": [
+      "resume-generator-ai-first-001"
+    ]
+  },
+  projectBulletLimitsByItem: {
+    "2026-07-xx_xxxx-xx-xx_century-solar": 2,
+    "2026-05-01_2026-06-01_signalstack": 1,
+    "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": 1,
+    "2026-07-xx_xxxx-xx-xx_resume-generator": 1
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    projectIds: [
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-05-01_2026-06-01_signalstack",
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform",
+      "2026-07-xx_xxxx-xx-xx_resume-generator"
+    ],
+    educationIds: [
+      ...sharedEducationIds,
+      "2019-01-29_2019-05-12_udacity_front-end-web-developer-nanodegree"
+    ],
+    certificationIds: []
+  },
+  layout: {
+    maxSkillGroups: 10,
+    maxSkillsPerGroup: 5,
+    maxSkillsTotal: 30,
+    maxJobBullets: 3,
+    maxExperienceBullets: 3,
+    maxProjectBullets: 2,
+    maxProjectBulletsTotal: 5
+  }
+});
+
+roleDefinitions.push({
+  id: "zymo-research-junior-full-stack-web-developer",
+  label: "Zymo Research — Junior Full Stack Web Developer (Contract)",
+  familyId: "software-engineering",
+  modifierIds: ["full-stack", "backend-application", "web-application-delivery", "internal-operations-software", "integration"],
+  aliases: [
+    "Junior Full Stack Web Developer — Zymo Research",
+    "Junior Full Stack Web Developer (contract) — Zymo Research",
+    "Junior Full Stack Developer — Zymo Research"
+  ],
+  headline: "FULL-STACK WEB DEVELOPER | REACT, PYTHON & REST APIs | DOCKER",
+  summary: "Software engineering master’s graduate and former enterprise systems engineer building full-stack web applications with React, TypeScript, Python/FastAPI, PostgreSQL, REST APIs, Docker, Git, and automated testing. Portfolio work includes customer-facing interfaces, database-backed internal operational workflows, API ingestion and integration, and responsive UI development; professional experience adds AWS migration support, deployment automation, application troubleshooting, and cross-team developer support.",
+  preferredFocusAreas: [
+    "software-development",
+    "api-integration",
+    "data-databases",
+    "testing-validation",
+    "automation",
+    "deployment-change",
+    "stakeholder-support"
+  ],
+  preferredBulletBoost: 100,
+  preservePreferredBulletOrder: true,
+  preserveDefaultProjectOrder: true,
+  categoryOrder: [
+    "Programming & Scripting",
+    "Frontend Development",
+    "Backend & APIs",
+    "Databases & Data",
+    "DevOps & Tooling",
+    "Testing & Quality",
+    "Cloud & Infrastructure",
+    "Automation & Integration",
+    "Systems & Infrastructure",
+    "Documentation & Collaboration",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "Programming & Scripting": 4,
+    "Frontend Development": 5,
+    "Backend & APIs": 5,
+    "Databases & Data": 5,
+    "DevOps & Tooling": 5,
+    "Testing & Quality": 4,
+    "Cloud & Infrastructure": 2,
+    "Automation & Integration": 3,
+    "Systems & Infrastructure": 2,
+    "Documentation & Collaboration": 3
+  },
+  excludedSkillNames: [
+    "Next.js", "Django", "Flask", "Shopify", "WordPress", "Sanity",
+    "Kubernetes", "Terraform", "C#", "Go", "Ruby", "Ruby on Rails", "application modernization"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-010",
+      "roth-system-engineer-i-007",
+      "roth-system-engineer-i-004"
+    ],
+    "2026-07-xx_xxxx-xx-xx_century-solar": [
+      "century-solar-full-stack-001",
+      "century-solar-001"
+    ],
+    "2026-05-01_2026-06-01_signalstack": [
+      "signalstack-007",
+      "signalstack-002"
+    ],
+    "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": [
+      "hiplingo-media-platform-001"
+    ]
+  },
+  projectBulletLimitsByItem: {
+    "2026-07-xx_xxxx-xx-xx_century-solar": 2,
+    "2026-05-01_2026-06-01_signalstack": 2,
+    "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": 1
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    projectIds: [
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-05-01_2026-06-01_signalstack",
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform"
+    ],
+    educationIds: [
+      ...sharedEducationIds,
+      "2019-01-29_2019-05-12_udacity_front-end-web-developer-nanodegree"
+    ],
+    certificationIds: []
+  },
+  layout: {
+    maxSkillGroups: 9,
+    maxSkillsPerGroup: 5,
+    maxSkillsTotal: 30,
+    maxJobBullets: 3,
+    maxExperienceBullets: 3,
+    maxProjectBullets: 2,
+    maxProjectBulletsTotal: 5
+  }
+});
+
+roleDefinitions.push({
+  id: "crowe-machine-learning-software-engineer-1-r71006",
+  label: "Crowe — Machine Learning Software Engineer 1 (R-71006)",
+  familyId: "applied-ai-automation",
+  modifierIds: ["applied-ai", "backend-application", "developer-infrastructure", "test-automation", "general-software-portfolio"],
+  aliases: [
+    "Machine Learning Software Engineer 1 — Crowe",
+    "Machine Learning Software Engineer 1",
+    "Machine Learning Software Engineer",
+    "ML Software Engineer"
+  ],
+  headline: "MACHINE LEARNING SOFTWARE ENGINEER | PYTHON, FASTAPI & DOCKER | LINUX",
+  summary: "Software engineering master’s graduate and former enterprise systems engineer building Python machine-learning services and data workflows with FastAPI, scikit-learn, Hugging Face, PostgreSQL, REST APIs, Docker, Linux, and automated testing. Portfolio work spans data ingestion and preprocessing, ML classification, model-backed API endpoints, repeatable development environments, code-quality gates, and technical documentation; professional experience adds AWS migration support, Linux automation, deployment tooling, and cross-team troubleshooting.",
+  preferredFocusAreas: [
+    "software-development",
+    "ai-ml",
+    "api-integration",
+    "testing-validation",
+    "data-databases",
+    "automation",
+    "documentation",
+    "infrastructure-operations",
+    "deployment-change"
+  ],
+  preferredBulletBoost: 100,
+  preservePreferredBulletOrder: true,
+  preserveDefaultProjectOrder: true,
+  categoryOrder: [
+    "Programming & Scripting",
+    "AI Applications",
+    "Backend & APIs",
+    "DevOps & Tooling",
+    "Systems & Infrastructure",
+    "Testing & Quality",
+    "Databases & Data",
+    "Cloud & Infrastructure",
+    "Documentation & Collaboration",
+    "Automation & Scripting",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "Programming & Scripting": 4,
+    "AI Applications": 8,
+    "Backend & APIs": 4,
+    "DevOps & Tooling": 5,
+    "Systems & Infrastructure": 4,
+    "Testing & Quality": 5,
+    "Databases & Data": 4,
+    "Cloud & Infrastructure": 2,
+    "Documentation & Collaboration": 3,
+    "Automation & Scripting": 3
+  },
+  skillDisplayCategoryOverrides: {
+    "Naive Bayes": "AI Applications",
+    "TF-IDF": "AI Applications",
+    "weak-supervision labels": "AI Applications",
+    "pretrained model inference": "AI Applications",
+    "model evaluation": "AI Applications"
+  },
+  excludedSkillNames: [
+    "C++", "Go", "Kubernetes", "Terraform", "Azure", "GCP",
+    "PyTorch", "TensorFlow", "MLflow", "Databricks", "Apache Spark",
+    "Airflow", "Kafka", "Snowflake", "LangChain", "Semantic Kernel",
+    "Playwright", "hybrid retrieval", "persisted model artifacts",
+    "semantic embeddings", "transformer pipelines",
+    "JSON", "cron", "systemd", "health checks", "remote application deployment",
+    "regression testing",
+    "model fine-tuning", "LLM fine-tuning", "application modernization"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-010",
+      "roth-system-engineer-i-003",
+      "roth-system-engineer-i-004"
+    ],
+    "2026-05-01_2026-06-01_signalstack": [
+      "signalstack-001",
+      "signalstack-002",
+      "signalstack-005",
+      "signalstack-007"
+    ],
+    "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos": [
+      "hugging-face-tutorial-demos-001"
+    ],
+    "2026-06-xx_xxxx-xx-xx_offline-dev-lab": [
+      "offline-dev-lab-005"
+    ]
+  },
+  projectBulletLimitsByItem: {
+    "2026-05-01_2026-06-01_signalstack": 4,
+    "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos": 1,
+    "2026-06-xx_xxxx-xx-xx_offline-dev-lab": 1
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    projectIds: [
+      "2026-05-01_2026-06-01_signalstack",
+      "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos",
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab"
+    ],
+    educationIds: sharedEducationIds,
+    certificationIds: []
+  },
+  layout: {
+    maxSkillGroups: 9,
+    maxSkillsPerGroup: 6,
+    maxSkillsTotal: 32,
+    maxJobBullets: 3,
+    maxExperienceBullets: 3,
+    maxProjectBullets: 4,
+    maxProjectBulletsTotal: 6
+  }
+});
+
+
+roleDefinitions.push({
+  id: "black-canyon-consulting-junior-mid-full-stack-software-engineer-7715282003",
+  label: "Black Canyon Consulting — Junior/Mid Full Stack Software Engineer",
+  familyId: "software-engineering",
+  modifierIds: [
+    "full-stack",
+    "backend-application",
+    "web-application-delivery",
+    "test-automation",
+    "developer-infrastructure",
+    "production-support",
+    "security-quality"
+  ],
+  aliases: [
+    "Junior/Mid Full Stack Software Engineer — Black Canyon Consulting",
+    "Junior/Mid Full Stack Software Engineer",
+    "Full Stack Software Engineer — Black Canyon Consulting",
+    "Full Stack Software Engineer"
+  ],
+  headline: "FULL-STACK SOFTWARE ENGINEER | PYTHON, REACT & DOCKER | LINUX",
+  summary: "Software engineering master’s graduate and former enterprise systems engineer building full-stack applications with React, TypeScript, Python/FastAPI, REST APIs, PostgreSQL, Docker, Linux, Git, and automated testing. Portfolio work includes application access controls, containerized services, deployment validation, health checks, diagnostics, and data-backed workflows; professional experience adds AWS migration support, deployment automation, log-based troubleshooting, monitoring, and cross-team production support.",
+  preferredFocusAreas: [
+    "software-development",
+    "api-integration",
+    "testing-validation",
+    "security-compliance",
+    "infrastructure-operations",
+    "monitoring-observability",
+    "deployment-change",
+    "incident-analysis",
+    "automation",
+    "data-databases"
+  ],
+  preferredBulletBoost: 100,
+  preservePreferredBulletOrder: true,
+  preserveDefaultProjectOrder: true,
+  categoryOrder: [
+    "Programming & Scripting",
+    "Frontend Development",
+    "Backend & APIs",
+    "DevOps & Tooling",
+    "Systems & Infrastructure",
+    "Testing & Quality",
+    "Security & Compliance",
+    "Databases & Data",
+    "Cloud & Infrastructure",
+    "Monitoring & Support",
+    "Documentation & Collaboration",
+    "Automation & Scripting",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "Programming & Scripting": 4,
+    "Frontend Development": 5,
+    "Backend & APIs": 5,
+    "DevOps & Tooling": 6,
+    "Systems & Infrastructure": 4,
+    "Testing & Quality": 5,
+    "Security & Compliance": 4,
+    "Databases & Data": 4,
+    "Cloud & Infrastructure": 2,
+    "Monitoring & Support": 4,
+    "Documentation & Collaboration": 3,
+    "Automation & Scripting": 3
+  },
+  skillDisplayCategoryOverrides: {
+    "access controls": "Security & Compliance",
+    "health checks": "Monitoring & Support",
+    "log analysis": "Monitoring & Support"
+  },
+  excludedSkillNames: [
+    "Next.js", "GraphQL", "SQLite", "S3", "S3-compatible storage",
+    "Kubernetes", "Terraform", "Azure", "GCP", "C++", "C#", "Go",
+    "Ruby", "Ruby on Rails", "Java", "Kotlin", "MLflow", "Databricks",
+    "Apache Spark", "Kafka", "Snowflake", "LangChain", "Semantic Kernel",
+    "HLS", "hls.js", "HTML5 Audio", "Web Audio API", "FFmpeg",
+    "media metadata", "metadata inheritance", "publishing workflows",
+    "Vite", "HTML", "CSS", "SQLAlchemy", "Alembic", "audit records",
+    "vulnerability remediation", "change management", "dependency management",
+    "remote application deployment", "privacy controls", "public/private data separation",
+    "capacity monitoring", "application modernization"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-010",
+      "roth-system-engineer-i-012",
+      "roth-system-engineer-i-004"
+    ],
+    "2026-07-xx_xxxx-xx-xx_century-solar": [
+      "century-solar-full-stack-001",
+      "century-solar-security-001",
+      "century-solar-qa-001"
+    ],
+    "2026-06-xx_xxxx-xx-xx_offline-dev-lab": [
+      "offline-dev-lab-002",
+      "offline-dev-lab-008"
+    ],
+    "2026-05-01_2026-06-01_signalstack": [
+      "signalstack-007"
+    ]
+  },
+  projectBulletLimitsByItem: {
+    "2026-07-xx_xxxx-xx-xx_century-solar": 3,
+    "2026-06-xx_xxxx-xx-xx_offline-dev-lab": 2,
+    "2026-05-01_2026-06-01_signalstack": 1
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    projectIds: [
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab",
+      "2026-05-01_2026-06-01_signalstack"
+    ],
+    educationIds: [
+      ...sharedEducationIds,
+      "2019-01-29_2019-05-12_udacity_front-end-web-developer-nanodegree"
+    ],
+    certificationIds: []
+  },
+  layout: {
+    maxSkillGroups: 10,
+    maxSkillsPerGroup: 6,
+    maxSkillsTotal: 32,
+    maxJobBullets: 3,
+    maxExperienceBullets: 3,
+    maxProjectBullets: 3,
+    maxProjectBulletsTotal: 6
+  }
+});
+
+roleDefinitions.push({
+  id: "tevora-associate-developer-i",
+  label: "Tevora — Associate Developer I",
+  familyId: "software-engineering",
+  modifierIds: [
+    "full-stack",
+    "backend-application",
+    "web-application-delivery",
+    "test-automation",
+    "security-quality",
+    "integration",
+    "ai-assisted-product-development"
+  ],
+  aliases: [
+    "Associate Developer I — Tevora",
+    "Associate Developer I",
+    "Associate Software Developer — Tevora",
+    "Junior Software Developer — Tevora"
+  ],
+  headline: "ASSOCIATE SOFTWARE DEVELOPER | TYPESCRIPT, REACT & AI-ASSISTED DEVELOPMENT",
+  summary: "Software engineering master’s graduate and former enterprise systems engineer building React/TypeScript and Python/FastAPI applications with PostgreSQL, REST APIs, Docker, Git, AI-assisted development, workflow automation, and automated testing. Portfolio work includes complex internal workflows, relational data with SQLAlchemy, access controls and audit-oriented records, and pytest/Vitest/Playwright validation; professional experience adds AWS migration support, deployment automation, Linux operations, and cross-team developer support, reinforced by a cybersecurity bachelor’s degree.",
+  preferredFocusAreas: [
+    "software-development",
+    "automation",
+    "ai-ml",
+    "api-integration",
+    "data-databases",
+    "testing-validation",
+    "security-compliance",
+    "deployment-change",
+    "stakeholder-support"
+  ],
+  preferredBulletBoost: 110,
+  preservePreferredBulletOrder: true,
+  preserveDefaultProjectOrder: true,
+  categoryOrder: [
+    "AI-First Development",
+    "Programming & Scripting",
+    "Frontend Development",
+    "Backend & APIs",
+    "Databases & Data",
+    "Testing & Quality",
+    "Automation & Integration",
+    "Security & Compliance",
+    "DevOps & Tooling",
+    "Cloud & Infrastructure",
+    "Systems & Infrastructure",
+    "Documentation & Collaboration",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "AI-First Development": 4,
+    "Programming & Scripting": 4,
+    "Frontend Development": 5,
+    "Backend & APIs": 4,
+    "Databases & Data": 5,
+    "Testing & Quality": 6,
+    "Automation & Integration": 4,
+    "Security & Compliance": 4,
+    "DevOps & Tooling": 4,
+    "Cloud & Infrastructure": 2,
+    "Systems & Infrastructure": 2,
+    "Documentation & Collaboration": 3
+  },
+  skillDisplayCategoryOverrides: {
+    "AI-assisted development": "AI-First Development",
+    "prompt engineering": "AI-First Development",
+    "access controls": "Security & Compliance",
+    "audit records": "Security & Compliance"
+  },
+  excludedSkillNames: [
+    "Next.js", "Prisma", "Tailwind CSS", "shadcn/ui", "Radix",
+    "TanStack Query", "Zod", "Claude Code", "Cursor", "Claude",
+    "Claude Opus", "Claude Sonnet", "Anthropic API", "Anthropic SDK",
+    "Fable", "SAML", "Okta", "JWT", "SSO", "AI agents",
+    "agentic workflows", "multi-agent orchestration", "tool calling",
+    "Kubernetes", "Terraform", "Azure", "GCP", "C++", "C#", "Go",
+    "Ruby", "Ruby on Rails", "HLS", "hls.js", "Web Audio API",
+    "FFmpeg", "media metadata", "metadata inheritance", "publishing workflows",
+    "Vite", "HTML", "CSS", "JSON", "Alembic", "change management", "browser testing",
+    "vulnerability remediation", "public/private data separation",
+    "application modernization", "cron", "systemd", "capacity monitoring"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-010",
+      "roth-system-engineer-i-004",
+      "roth-system-engineer-i-003"
+    ],
+    "2026-07-xx_xxxx-xx-xx_resume-generator": [
+      "resume-generator-ai-first-001"
+    ],
+    "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": [
+      "hiplingo-media-platform-002",
+      "hiplingo-media-platform-010"
+    ],
+    "2026-07-xx_xxxx-xx-xx_century-solar": [
+      "century-solar-full-stack-001",
+      "century-solar-security-001",
+      "century-solar-qa-001"
+    ]
+  },
+  projectBulletLimitsByItem: {
+    "2026-07-xx_xxxx-xx-xx_resume-generator": 1,
+    "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": 2,
+    "2026-07-xx_xxxx-xx-xx_century-solar": 3
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    projectIds: [
+      "2026-07-xx_xxxx-xx-xx_resume-generator",
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform",
+      "2026-07-xx_xxxx-xx-xx_century-solar"
+    ],
+    educationIds: sharedEducationIds,
+    certificationIds: []
+  },
+  layout: {
+    maxSkillGroups: 10,
+    maxSkillsPerGroup: 6,
+    maxSkillsTotal: 32,
+    maxJobBullets: 3,
+    maxExperienceBullets: 3,
+    maxProjectBullets: 3,
+    maxProjectBulletsTotal: 6
+  }
+});
+
+roleDefinitions.push({
+  id: "energy-solutions-software-engineer-i-orange-ca",
+  label: "Energy Solutions — Software Engineer I (Orange, CA)",
+  familyId: "software-engineering",
+  modifierIds: [
+    "backend-application",
+    "test-automation",
+    "production-support",
+    "developer-support",
+    "web-application-delivery",
+    "software-delivery-lifecycle"
+  ],
+  aliases: [
+    "Software Engineer I — Energy Solutions",
+    "Software Engineer I (Orange, CA) — Energy Solutions",
+    "Software Engineer I — Orange",
+    "Software Engineer I"
+  ],
+  headline: "SOFTWARE ENGINEER | PYTHON, JAVASCRIPT & SQL | TESTING & DEPLOYMENT",
+  summary: "Software engineering master’s graduate and former enterprise systems engineer with hands-on experience building Python and JavaScript/TypeScript applications, PostgreSQL-backed APIs, automated tests, and containerized development workflows. Portfolio work spans full-stack application development, REST APIs, relational data, automated and integration testing, Git-based change validation, and technical documentation; professional experience adds application deployments, post-change validation, troubleshooting, developer support, and operational documentation across test, staging, and production environments.",
+  preferredFocusAreas: [
+    "software-development",
+    "testing-validation",
+    "deployment-change",
+    "api-integration",
+    "data-databases",
+    "incident-analysis",
+    "stakeholder-support",
+    "documentation",
+    "automation"
+  ],
+  preferredBulletBoost: 110,
+  preservePreferredBulletOrder: true,
+  preserveDefaultProjectOrder: true,
+  categoryOrder: [
+    "Programming & Scripting",
+    "Backend & APIs",
+    "Databases & Data",
+    "Testing & Quality",
+    "DevOps & Tooling",
+    "Application Support",
+    "Frontend Development",
+    "Systems & Infrastructure",
+    "Documentation & Collaboration",
+    "Cloud & Infrastructure",
+    "Automation & Scripting",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "Programming & Scripting": 4,
+    "Backend & APIs": 5,
+    "Databases & Data": 5,
+    "Testing & Quality": 6,
+    "DevOps & Tooling": 5,
+    "Application Support": 4,
+    "Frontend Development": 4,
+    "Systems & Infrastructure": 3,
+    "Documentation & Collaboration": 4,
+    "Cloud & Infrastructure": 2,
+    "Automation & Scripting": 3
+  },
+  skillDisplayCategoryOverrides: {
+    "deployment validation": "Testing & Quality",
+    "application troubleshooting": "Application Support",
+    "developer support": "Documentation & Collaboration"
+  },
+  excludedSkillNames: [
+    "Mendix", "Java", "C#", "C++", "Go", "Ruby", "Ruby on Rails",
+    "Next.js", "GraphQL", "Kubernetes", "Terraform", "Azure", "GCP",
+    "scikit-learn", "sentence-transformers", "semantic embeddings", "TF-IDF",
+    "Naive Bayes", "hybrid retrieval", "ML confidence scoring", "AI-assisted development",
+    "prompt engineering", "OpenAPI", "HTML", "CSS", "Vite", "Alembic",
+    "browser testing", "containerized services", "deployment automation",
+    "CI/CD concepts", "remote application deployment",
+    "complex user workflows", "RHEL 9", "AWS",
+    "HLS", "hls.js", "Web Audio API", "FFmpeg",
+    "media metadata", "metadata inheritance", "publishing workflows",
+    "vulnerability remediation", "public/private data separation", "SAML", "Okta"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-010",
+      "roth-system-engineer-i-002",
+      "roth-system-engineer-i-008"
+    ],
+    "2026-07-xx_xxxx-xx-xx_century-solar": [
+      "century-solar-full-stack-001",
+      "century-solar-qa-001",
+      "century-solar-001"
+    ],
+    "2026-05-01_2026-06-01_signalstack": [
+      "signalstack-007"
+    ],
+    "2026-07-xx_xxxx-xx-xx_resume-generator": [
+      "resume-generator-001"
+    ]
+  },
+  projectBulletLimitsByItem: {
+    "2026-07-xx_xxxx-xx-xx_century-solar": 3,
+    "2026-05-01_2026-06-01_signalstack": 1,
+    "2026-07-xx_xxxx-xx-xx_resume-generator": 1
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    projectIds: [
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-05-01_2026-06-01_signalstack",
+      "2026-07-xx_xxxx-xx-xx_resume-generator"
+    ],
+    educationIds: sharedEducationIds,
+    certificationIds: []
+  },
+  layout: {
+    maxSkillGroups: 10,
+    maxSkillsPerGroup: 6,
+    maxSkillsTotal: 32,
+    maxJobBullets: 3,
+    maxExperienceBullets: 3,
+    maxProjectBullets: 3,
+    maxProjectBulletsTotal: 5
+  }
+});
+
+roleDefinitions.push({
+  id: "panasonic-avionics-software-quality-engineer-i-req154478",
+  label: "Panasonic Avionics — Software Quality Engineer I (REQ-154478)",
+  familyId: "quality-engineering",
+  modifierIds: ["qa-automation-engineering", "software-quality", "applied-ai"],
+  aliases: [
+    "Software Quality Engineer I — Panasonic Avionics",
+    "Software Quality Assurance Engineer I — Panasonic Avionics",
+    "SQA Engineer I — Panasonic Avionics",
+    "Quality Engineer I — Software"
+  ],
+  headline: "SOFTWARE QUALITY ENGINEER | TEST AUTOMATION, VALIDATION & AI-ASSISTED QUALITY",
+  summary: "Software engineering master’s graduate and former enterprise systems engineer with hands-on experience in software validation, release/change quality, automated testing, incident and root-cause documentation, Linux/Bash automation, Python development, and audit-oriented workflows. Builds containerized applications and repeatable quality checks with pytest, Vitest, Playwright, Git, Docker, and AI-assisted development, bringing disciplined production support and cross-functional engineering experience to software quality assurance.",
+  preferredFocusAreas: [
+    "testing-validation",
+    "deployment-change",
+    "documentation",
+    "incident-analysis",
+    "automation",
+    "ai-ml",
+    "software-development",
+    "stakeholder-support"
+  ],
+  preferredBulletBoost: 100,
+  preservePreferredBulletOrder: true,
+  preserveDefaultProjectOrder: true,
+  categoryOrder: [
+    "Testing & Quality",
+    "Quality & Process Assurance",
+    "Automation & Scripting",
+    "AI Applications",
+    "Programming & Scripting",
+    "DevOps & Tooling",
+    "Systems & Infrastructure",
+    "Documentation & Collaboration",
+    "Backend & APIs",
+    "Databases & Data",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "Testing & Quality": 7,
+    "Quality & Process Assurance": 6,
+    "Automation & Scripting": 5,
+    "AI Applications": 4,
+    "Programming & Scripting": 4,
+    "DevOps & Tooling": 5,
+    "Systems & Infrastructure": 4,
+    "Documentation & Collaboration": 5,
+    "Backend & APIs": 3,
+    "Databases & Data": 3
+  },
+  excludedSkillNames: [
+    "AS9100", "DO-178", "DO-178C", "SAFe", "RCCA", "Six Sigma",
+    "Jira", "Power BI", "Tableau", "Kubernetes", "Terraform", "Azure",
+    "C++", "C#", "Go", "Ruby"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-002",
+      "roth-system-engineer-i-008",
+      "roth-system-engineer-i-003"
+    ],
+    "2026-07-xx_xxxx-xx-xx_century-solar": [
+      "century-solar-qa-001",
+      "century-solar-001"
+    ],
+    "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": [
+      "hiplingo-media-platform-008",
+      "hiplingo-media-platform-010"
+    ],
+    "2026-07-xx_xxxx-xx-xx_resume-generator": [
+      "resume-generator-ai-first-001"
+    ]
+  },
+  projectBulletLimitsByItem: {
+    "2026-07-xx_xxxx-xx-xx_century-solar": 2,
+    "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": 2,
+    "2026-07-xx_xxxx-xx-xx_resume-generator": 1
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    projectIds: [
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform",
+      "2026-07-xx_xxxx-xx-xx_resume-generator"
+    ],
+    educationIds: sharedEducationIds,
+    certificationIds: [
+      "2022-01-09_xxxx-xx-xx_comptia_project-plus"
+    ]
+  },
+  layout: {
+    maxSkillGroups: 10,
+    maxSkillsPerGroup: 6,
+    maxSkillsTotal: 30,
+    maxJobBullets: 3,
+    maxExperienceBullets: 3,
+    maxProjectBullets: 2,
+    maxProjectBulletsTotal: 5
+  }
+});
+
 const durableRoleIds = [
   "full-stack-software-engineer",
   "qa-automation-engineer",
@@ -4941,16 +6544,43 @@ const targetedRoleIds = [
   "murray-company-associate-programmer",
   "fieldai-data-engineer",
   "fieldai-devops-platform-engineer",
+  "fieldai-software-engineer-developer-infrastructure",
   "tri-pointe-homes-web-mobile-app-developer",
   "emergence-ai-ai-engineer",
   "twitch-sde-ii-security-platform",
   "remilia-software-engineer",
   "walmart-systems-administrator-software-r2610063",
   "walmart-software-engineer-iii-r2584563",
-  "gravitate-associate-technical-consultant"
+  "gravitate-associate-technical-consultant",
+  "handshake-associate-software-engineer-operator-experience",
+  "reacher-software-engineer-full-stack",
+  "tp-link-2026-early-career-qa-engineer",
+  "tax-relief-advocates-junior-machine-learning-engineer",
+  "tax-relief-advocates-junior-ai-data-engineer-marketing",
+  "briggs-electric-data-engineer",
+  "smartsheet-software-engineer-i-remote-eligible",
+  "zymo-research-junior-full-stack-web-developer",
+  "crowe-machine-learning-software-engineer-1-r71006",
+  "black-canyon-consulting-junior-mid-full-stack-software-engineer-7715282003",
+  "tevora-associate-developer-i",
+  "energy-solutions-software-engineer-i-orange-ca",
+  "panasonic-avionics-software-quality-engineer-i-req154478"
 ];
 
 const historicalRoleBaseMappings = {
+  "energy-solutions-software-engineer-i-orange-ca": "full-stack-software-engineer",
+  "panasonic-avionics-software-quality-engineer-i-req154478": "qa-automation-engineer",
+  "crowe-machine-learning-software-engineer-1-r71006": "applied-ai-engineer",
+  "black-canyon-consulting-junior-mid-full-stack-software-engineer-7715282003": "full-stack-software-engineer",
+  "tevora-associate-developer-i": "full-stack-software-engineer",
+  "zymo-research-junior-full-stack-web-developer": "full-stack-software-engineer",
+  "smartsheet-software-engineer-i-remote-eligible": "full-stack-software-engineer",
+  "briggs-electric-data-engineer": "platform-reliability-engineer",
+  "tax-relief-advocates-junior-ai-data-engineer-marketing": "platform-reliability-engineer",
+  "tax-relief-advocates-junior-machine-learning-engineer": "applied-ai-engineer",
+  "tp-link-2026-early-career-qa-engineer": "qa-automation-engineer",
+  "reacher-software-engineer-full-stack": "full-stack-software-engineer",
+  "handshake-associate-software-engineer-operator-experience": "full-stack-software-engineer",
   "gravitate-associate-technical-consultant": "application-production-support-engineer",
   "walmart-software-engineer-iii-r2584563": "platform-reliability-engineer",
   "walmart-systems-administrator-software-r2610063": "platform-reliability-engineer",
@@ -4959,6 +6589,7 @@ const historicalRoleBaseMappings = {
   "emergence-ai-ai-engineer": "applied-ai-engineer",
   "tri-pointe-homes-web-mobile-app-developer": "full-stack-software-engineer",
   "fieldai-devops-platform-engineer": "platform-reliability-engineer",
+  "fieldai-software-engineer-developer-infrastructure": "platform-reliability-engineer",
   "fieldai-data-engineer": "platform-reliability-engineer",
   "murray-company-associate-programmer": "full-stack-software-engineer",
   "pds-health-engineer-ii-full-stack-innovations": "full-stack-software-engineer",

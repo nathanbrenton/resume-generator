@@ -45,6 +45,20 @@ Browser/native PDF workflows are free to ignore HTML metadata other than the tit
 ```
 
 
+### Cover letters
+
+Resume Generator supports a second printable document mode for cover letters. The **Document** selector switches between the generated resume and a configured cover letter without changing the selected target role. Cover letters reuse the resume's Letter-size page, typography, name header, contact-line styling, print workflow, and role-scoped manual customization system. Resume-only experience/project/education/certification controls are hidden while a cover letter is active.
+
+Cover-letter content lives in `js/data/cover-letters.js`. A short generic fallback is available for every target role, while role-specific letters can override it by target-role ID when company, location, and posting details are known. The generic letter intentionally omits company/location recipient lines, uses `Dear Hiring Manager,`, includes the current local date, and stays to two brief interest/fit paragraphs. Its role heading is derived from the selected resume headline rather than inventing employer details. Cover-letter PDF metadata uses a separate filename suffix such as `Nathan-D-Brenton_Energy-Solutions-Software-Engineer-I-Orange-CA_Cover-Letter`.
+
+Cover letters are always editable as **one-off session drafts**. Their manual overrides are stored only in memory, are kept separate from resume edits for the same target role, survive role/document switches during the current page session, and clear on reload. The persistent browser-storage mode remains available for resumes only.
+
+The initial role-specific letter targets **Energy Solutions — Software Engineer I (Orange, CA)** and is intentionally constrained to one printable Letter page. Validate the feature and role-specific content with:
+
+```bash
+./scripts/check-cover-letter-data.sh
+```
+
 ### Manual customization modes
 
 The resume preview supports three role-scoped display modes:
@@ -149,6 +163,7 @@ Run the full local data checks with:
 ./scripts/check-certification-data.sh
 ./scripts/check-contact-display.sh
 ./scripts/check-print-metadata.sh
+./scripts/check-cover-letter-data.sh
 ./scripts/check-customization-data.sh
 ./scripts/check-education-data.sh
 ./scripts/check-role-data.sh

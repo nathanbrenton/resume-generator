@@ -386,6 +386,22 @@ const roleModifierSkillWeights = {
     weightedSkill("Backend & APIs", "API troubleshooting", 4),
     weightedSkill("Backend & APIs", "OpenAPI", 2)
   ],
+  "developer-infrastructure": [
+    weightedSkill("Programming & Scripting", "Python", 4),
+    weightedSkill("Systems & Infrastructure", "Linux", 4),
+    weightedSkill("DevOps & Tooling", "Docker", 4),
+    weightedSkill("DevOps & Tooling", "Git", 4),
+    weightedSkill("DevOps & Tooling", "dependency management", 4),
+    weightedSkill("Testing & Quality", "automated validation", 4)
+  ],
+  "ai-assisted-product-development": [
+    weightedSkill("AI-First Development", "AI-assisted development", 4),
+    weightedSkill("AI-First Development", "prompt engineering", 4),
+    weightedSkill("Automation & Integration", "workflow automation", 4),
+    weightedSkill("Frontend Development", "React", 4),
+    weightedSkill("Programming & Scripting", "TypeScript", 4),
+    weightedSkill("Databases & Data", "PostgreSQL", 3)
+  ],
   "full-stack": [
     weightedSkill("Frontend Development", "React", 4),
     weightedSkill("Programming & Scripting", "TypeScript", 4),
@@ -408,6 +424,21 @@ const roleModifierSkillWeights = {
     weightedSkill("Backend & APIs", "REST APIs", 4),
     weightedSkill("Databases & Data", "PostgreSQL", 4),
     weightedSkill("Databases & Data", "SQLAlchemy", 3)
+  ],
+  "web-application-delivery": [
+    weightedSkill("DevOps & Tooling", "Git", 4),
+    weightedSkill("DevOps & Tooling", "Docker", 4),
+    weightedSkill("DevOps & Tooling", "CI/CD concepts", 3),
+    weightedSkill("Cloud & Infrastructure", "AWS", 3),
+    weightedSkill("DevOps & Tooling", "deployment automation", 2)
+  ],
+  "software-delivery-lifecycle": [
+    weightedSkill("Databases & Data", "SQL", 4),
+    weightedSkill("Testing & Quality", "deployment validation", 4),
+    weightedSkill("Application Support", "application troubleshooting", 3),
+    weightedSkill("Documentation & Collaboration", "technical documentation", 3),
+    weightedSkill("Documentation & Collaboration", "Agile", 2),
+    weightedSkill("Documentation & Collaboration", "software development lifecycle", 2)
   ],
   "test-automation": [
     weightedSkill("Testing & Quality", "test automation", 4),

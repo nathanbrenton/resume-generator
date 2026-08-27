@@ -19,5 +19,7 @@ const careerData = {
   projects,
   education,
   certifications,
-  certificationKnowledge
+  certificationKnowledge,
+  genericCoverLetter,
+  coverLetters
 };

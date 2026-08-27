@@ -11,8 +11,10 @@ const indexHtml = fs.readFileSync(path.join(repoRoot, "index.html"), "utf8");
 const appSource = fs.readFileSync(path.join(repoRoot, "js/app.js"), "utf8");
 assert(indexHtml.includes("<title>Resume_Generator</title>"),
   "Static fallback <title> must be filename-safe");
-assert(appSource.includes("resumePrintMetadata.applyToDocument(\n    document,\n    resumePrintMetadata.buildMetadata(resume)\n  );"),
-  "Selected resume render must synchronize document.title immediately");
+assert(appSource.includes("resumePrintMetadata.applyToDocument(\n    document,\n    buildCurrentPrintMetadata(resume)\n  );"),
+  "Selected document render must synchronize document.title immediately");
+assert(appSource.includes('documentKind: activeDocumentType === DOCUMENT_TYPES.COVER_LETTER'),
+  "Print metadata must distinguish resume and cover-letter output");
 assert(!appSource.includes("afterprint"),
   "Document title should remain role-specific after printing");
 assert(!appSource.includes("includeTitle: false"),
@@ -96,6 +98,11 @@ const fullStackResume = {
   headline: "FULL-STACK SOFTWARE ENGINEER | PYTHON, REACT & TYPESCRIPT | LINUX",
   targetRoleLabel: "Full-Stack Software Engineer"
 };
+const coverLetterMetadata = printMetadata.buildMetadata(fullStackResume, { documentKind: "Cover Letter" });
+assert.equal(coverLetterMetadata.title,
+  "Nathan-D-Brenton_Full-Stack-Software-Engineer_Cover-Letter");
+assert.equal(coverLetterMetadata.subject, "Full-Stack Software Engineer Cover Letter");
+
 const fullStackMetadata = printMetadata.buildMetadata(fullStackResume);
 assert.equal(fullStackMetadata.title,
   "Nathan-D-Brenton_Full-Stack-Software-Engineer_Resume");

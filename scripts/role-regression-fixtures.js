@@ -490,6 +490,152 @@ module.exports = [
     exactProjectBullets: 4
   },
   {
+    id: "fieldai-software-engineer-developer-infrastructure",
+    expectedFamily: "Platform / Reliability / Automation",
+    requiredSkills: [
+      "Python", "Docker", "Linux", "Debian 13", "Bash", "Git",
+      "dependency management", "pytest", "build validation", "developer support"
+    ],
+    forbiddenSkills: [
+      "Bazel", "Nx", "ROS", "Kubernetes", "Terraform", "GitHub Actions",
+      "Go", "C++", "MLOps", "Azure", "GCP"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    requiredProjectIds: [
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab",
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-010",
+      "roth-system-engineer-i-003",
+      "roth-system-engineer-i-002",
+      "offline-dev-lab-001",
+      "offline-dev-lab-003",
+      "offline-dev-lab-005",
+      "offline-dev-lab-006",
+      "hiplingo-media-platform-010",
+      "hiplingo-media-platform-005"
+    ],
+    minExperienceBullets: 3,
+    minProjectBullets: 6,
+    exactExperienceBullets: 3,
+    exactProjectBullets: 6
+  },
+  {
+    id: "crowe-machine-learning-software-engineer-1-r71006",
+    expectedFamily: "Applied AI / Automation & Integration",
+    requiredSkills: [
+      "Python", "Docker", "Linux", "FastAPI", "REST APIs", "PostgreSQL",
+      "scikit-learn", "Hugging Face Transformers", "pytest", "ruff", "Git", "AWS"
+    ],
+    forbiddenSkills: [
+      "C++", "Go", "Kubernetes", "Terraform", "Azure", "GCP",
+      "PyTorch", "TensorFlow", "MLflow", "Databricks", "Apache Spark",
+      "Airflow", "Kafka", "Snowflake", "LangChain", "Semantic Kernel",
+      "Playwright", "hybrid retrieval", "cron", "systemd"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    requiredProjectIds: [
+      "2026-05-01_2026-06-01_signalstack",
+      "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos",
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-010",
+      "roth-system-engineer-i-003",
+      "roth-system-engineer-i-004",
+      "signalstack-001",
+      "signalstack-002",
+      "signalstack-005",
+      "signalstack-007",
+      "hugging-face-tutorial-demos-001",
+      "offline-dev-lab-005"
+    ],
+    minExperienceBullets: 3,
+    minProjectBullets: 6,
+    exactExperienceBullets: 3,
+    exactProjectBullets: 6
+  },
+  {
+    id: "black-canyon-consulting-junior-mid-full-stack-software-engineer-7715282003",
+    expectedFamily: "Software Engineering",
+    requiredSkills: [
+      "Python", "Docker", "React", "TypeScript", "FastAPI", "REST APIs",
+      "Docker Compose", "Linux", "Git", "pytest", "Vitest", "Playwright",
+      "AWS", "access controls", "health checks"
+    ],
+    forbiddenSkills: [
+      "Next.js", "GraphQL", "SQLite", "S3", "Kubernetes", "Terraform",
+      "Azure", "GCP", "C++", "C#", "Go", "Ruby", "Ruby on Rails",
+      "HLS", "hls.js", "HTML5 Audio", "Web Audio API", "FFmpeg"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    requiredProjectIds: [
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab",
+      "2026-05-01_2026-06-01_signalstack"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-010",
+      "roth-system-engineer-i-012",
+      "roth-system-engineer-i-004",
+      "century-solar-full-stack-001",
+      "century-solar-security-001",
+      "century-solar-qa-001",
+      "offline-dev-lab-002",
+      "offline-dev-lab-008",
+      "signalstack-007"
+    ],
+    minExperienceBullets: 3,
+    minProjectBullets: 6,
+    exactExperienceBullets: 3,
+    exactProjectBullets: 6
+  },
+  {
+    id: "tevora-associate-developer-i",
+    expectedFamily: "Software Engineering",
+    requiredSkills: [
+      "AI-assisted development", "prompt engineering", "TypeScript", "React",
+      "FastAPI", "REST APIs", "PostgreSQL", "SQLAlchemy", "Docker", "Git",
+      "pytest", "Vitest", "Playwright", "AWS", "access controls", "audit records"
+    ],
+    forbiddenSkills: [
+      "Next.js", "Prisma", "Tailwind CSS", "shadcn/ui", "TanStack Query", "Zod",
+      "Claude Code", "Cursor", "Claude", "Anthropic API", "SAML", "Okta", "JWT",
+      "AI agents", "agentic workflows", "Kubernetes", "Terraform", "Azure", "GCP",
+      "C++", "C#", "Go", "Ruby", "Ruby on Rails"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    requiredProjectIds: [
+      "2026-07-xx_xxxx-xx-xx_resume-generator",
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform",
+      "2026-07-xx_xxxx-xx-xx_century-solar"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-010",
+      "roth-system-engineer-i-004",
+      "roth-system-engineer-i-003",
+      "resume-generator-ai-first-001",
+      "hiplingo-media-platform-002",
+      "hiplingo-media-platform-010",
+      "century-solar-full-stack-001",
+      "century-solar-security-001",
+      "century-solar-qa-001"
+    ],
+    minExperienceBullets: 3,
+    minProjectBullets: 6,
+    exactExperienceBullets: 3,
+    exactProjectBullets: 6
+  },
+  {
     id: "tri-pointe-homes-web-mobile-app-developer",
     expectedFamily: "Software Engineering",
     requiredSkills: [
@@ -746,6 +892,331 @@ module.exports = [
     minProjectBullets: 4,
     exactExperienceBullets: 5,
     exactProjectBullets: 4
+  },
+  {
+    id: "handshake-associate-software-engineer-operator-experience",
+    expectedFamily: "Software Engineering",
+    requiredSkills: [
+      "Python", "TypeScript", "React", "FastAPI", "PostgreSQL", "Docker"
+    ],
+    forbiddenSkills: [
+      "Ruby", "Ruby on Rails", "Go", "Kubernetes", "Terraform", "GraphQL",
+      "Next.js", "Java", "Spring Boot", "C#", ".NET"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+    ],
+    requiredProjectIds: [
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-07-xx_xxxx-xx-xx_resume-generator",
+      "2026-05-01_2026-06-01_signalstack"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-010",
+      "roth-system-engineer-i-012",
+      "roth-system-engineer-i-008",
+      "randstad-jr-deskside-technician-006",
+      "randstad-jr-deskside-technician-005",
+      "century-solar-001",
+      "century-solar-qa-001",
+      "resume-generator-001",
+      "signalstack-002"
+    ],
+    minExperienceBullets: 5,
+    minProjectBullets: 4,
+    exactExperienceBullets: 5,
+    exactProjectBullets: 4
+  },
+  {
+    id: "reacher-software-engineer-full-stack",
+    expectedFamily: "Software Engineering",
+    requiredSkills: [
+      "Python", "FastAPI", "PostgreSQL", "React", "TypeScript", "Docker"
+    ],
+    forbiddenSkills: [
+      "GCP", "Google Cloud Platform", "Tailwind CSS", "shadcn/ui", "Kubernetes",
+      "Terraform", "GraphQL", "Next.js", "Go", "Ruby", "Ruby on Rails"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    requiredProjectIds: [
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-05-01_2026-06-01_signalstack",
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-012",
+      "roth-system-engineer-i-010",
+      "roth-system-engineer-i-007",
+      "century-solar-full-stack-001",
+      "century-solar-001",
+      "signalstack-001",
+      "signalstack-007",
+      "hiplingo-media-platform-001"
+    ],
+    minExperienceBullets: 3,
+    minProjectBullets: 5,
+    exactExperienceBullets: 3,
+    exactProjectBullets: 5
+  },
+  {
+    id: "tp-link-2026-early-career-qa-engineer",
+    expectedFamily: "QA / Test Automation",
+    requiredSkills: [
+      "Python", "Docker", "pytest", "Playwright", "TCP/IP", "Raspberry Pi", "Ubuntu"
+    ],
+    forbiddenSkills: [
+      "BGP", "OSPF", "IS-IS", "RADIUS", "802.1X", "SNMP", "SDN",
+      "NVR", "Ruby", "Java", "Kubernetes", "Terraform"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician",
+      "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician"
+    ],
+    requiredProjectIds: [
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-012",
+      "roth-system-engineer-i-008",
+      "randstad-jr-deskside-technician-006",
+      "randstad-jr-deskside-technician-001",
+      "adroit-smartshelf-jr-it-support-005",
+      "adroit-smartshelf-jr-it-support-003",
+      "century-solar-qa-001",
+      "offline-dev-lab-003",
+      "offline-dev-lab-008"
+    ],
+    minExperienceBullets: 6,
+    minProjectBullets: 3,
+    exactExperienceBullets: 6,
+    exactProjectBullets: 3
+  },
+  {
+    id: "tax-relief-advocates-junior-machine-learning-engineer",
+    expectedFamily: "Applied AI / Automation & Integration",
+    requiredSkills: [
+      "Python", "Docker", "FastAPI", "scikit-learn",
+      "Hugging Face Transformers", "pretrained model inference", "pytest",
+      "model evaluation"
+    ],
+    forbiddenSkills: [
+      "AI output verification", "computer vision output validation", "computer vision QA",
+    "human-in-the-loop validation", "model output correction",
+    "hybrid retrieval", "local model caching", "persisted model artifacts",
+    "semantic embeddings", "sentence-transformers",
+    "PyTorch", "TensorFlow", "MLflow", "Streamlit", "pandas",
+      "OpenAI API", "LLM APIs", "Azure AI", "Azure AI Foundry",
+      "Azure Document Intelligence", "Google Document AI", "OCR",
+      "Power BI", "Snowflake", "Azure Synapse", "AWS Lambda", "Azure Functions",
+      "JWT", "JWT-based authentication", "Kubernetes", "Terraform",
+      "model fine-tuning", "LLM fine-tuning"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician"
+    ],
+    requiredProjectIds: [
+      "2026-05-01_2026-06-01_signalstack",
+      "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos",
+      "2026-07-xx_xxxx-xx-xx_century-solar"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-012",
+      "roth-system-engineer-i-003",
+      "adroit-smartshelf-jr-it-support-001",
+      "signalstack-001",
+      "signalstack-005",
+      "signalstack-006",
+      "hugging-face-tutorial-demos-001",
+      "hugging-face-tutorial-demos-002",
+      "century-solar-security-001"
+    ],
+    minExperienceBullets: 3,
+    minProjectBullets: 6,
+    exactExperienceBullets: 3,
+    exactProjectBullets: 6
+  },
+  {
+    id: "tax-relief-advocates-junior-ai-data-engineer-marketing",
+    expectedFamily: "Platform / Reliability / Automation",
+    requiredSkills: [
+      "Python", "Docker", "FastAPI", "PostgreSQL", "REST APIs", "AWS"
+    ],
+    forbiddenSkills: [
+      "Supabase", "Power BI", "dbt", "Airflow", "Azure", "Microsoft Azure",
+      "LLM APIs", "OpenAI API", "HubSpot", "Salesforce", "Cake", "Zapier",
+      "Google Ads", "Meta Ads", "marketing automation", "campaign operations",
+      "Kubernetes", "Terraform", "Snowflake", "BigQuery", "Databricks",
+      "Redshift", "Glue", "Athena"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    requiredProjectIds: [
+      "2026-05-01_2026-06-01_signalstack",
+      "2026-07-xx_xxxx-xx-xx_century-solar"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-004",
+      "roth-system-engineer-i-003",
+      "roth-system-engineer-i-012",
+      "signalstack-002",
+      "signalstack-007",
+      "signalstack-010",
+      "century-solar-full-stack-001",
+      "century-solar-ust-infrastructure-001"
+    ],
+    minExperienceBullets: 3,
+    minProjectBullets: 5,
+    exactExperienceBullets: 3,
+    exactProjectBullets: 5
+  },
+  {
+    id: "briggs-electric-data-engineer",
+    expectedFamily: "Platform / Reliability / Automation",
+    requiredSkills: [
+      "Python", "Docker", "FastAPI", "PostgreSQL", "REST APIs", "AWS"
+    ],
+    forbiddenSkills: [
+      "Power BI", "Tableau", "Microsoft Fabric", "Azure Data Factory",
+      "SSIS", "SSRS", "Snowflake", "BigQuery", "Databricks", "Redshift",
+      "dbt", "Airflow", "Apache Spark", "Kafka", "Fivetran",
+      "Spectrum", "Procore", "enterprise data warehouse", "data warehouse",
+      "dimensional modeling", "star schema", "Kubernetes", "Terraform"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    requiredProjectIds: [
+      "2026-05-01_2026-06-01_signalstack",
+      "2026-07-xx_xxxx-xx-xx_century-solar"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-004",
+      "roth-system-engineer-i-007",
+      "roth-system-engineer-i-012",
+      "signalstack-002",
+      "signalstack-003",
+      "signalstack-007",
+      "century-solar-security-001",
+      "century-solar-001"
+    ],
+    minExperienceBullets: 3,
+    minProjectBullets: 5,
+    exactExperienceBullets: 3,
+    exactProjectBullets: 5
+  },
+  {
+    id: "smartsheet-software-engineer-i-remote-eligible",
+    expectedFamily: "Software Engineering",
+    requiredSkills: [
+      "Python", "TypeScript", "React", "AWS", "REST APIs", "Docker"
+    ],
+    forbiddenSkills: [
+      "Kotlin", "Java", "Kubernetes", "Azure", "C#", "Go", "Ruby", "Ruby on Rails",
+      "Terraform", "Helm", "ArgoCD", "Databricks", "GraphQL", "Next.js"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    requiredProjectIds: [
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-05-01_2026-06-01_signalstack",
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform",
+      "2026-07-xx_xxxx-xx-xx_resume-generator"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-003",
+      "roth-system-engineer-i-004",
+      "roth-system-engineer-i-010",
+      "century-solar-full-stack-001",
+      "century-solar-qa-001",
+      "signalstack-001",
+      "hiplingo-media-platform-001",
+      "resume-generator-ai-first-001"
+    ],
+    minExperienceBullets: 3,
+    minProjectBullets: 5,
+    exactExperienceBullets: 3,
+    exactProjectBullets: 5
+  },
+  {
+    id: "energy-solutions-software-engineer-i-orange-ca",
+    expectedFamily: "Software Engineering",
+    requiredSkills: [
+      "Python", "JavaScript", "Docker", "Git", "FastAPI", "REST APIs",
+      "PostgreSQL", "SQL", "pytest", "Vitest", "Playwright",
+      "deployment validation", "application troubleshooting", "technical documentation",
+      "Agile", "software development lifecycle"
+    ],
+    forbiddenSkills: [
+      "Mendix", "Java", "C#", "C++", "Go", "Ruby", "Ruby on Rails",
+      "Next.js", "GraphQL", "Kubernetes", "Terraform", "Azure", "GCP",
+      "scikit-learn", "sentence-transformers", "semantic embeddings", "TF-IDF",
+      "Naive Bayes", "AI-assisted development", "prompt engineering",
+      "HLS", "hls.js", "Web Audio API", "FFmpeg"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    requiredProjectIds: [
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-05-01_2026-06-01_signalstack",
+      "2026-07-xx_xxxx-xx-xx_resume-generator"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-010",
+      "roth-system-engineer-i-002",
+      "roth-system-engineer-i-008",
+      "century-solar-full-stack-001",
+      "century-solar-qa-001",
+      "century-solar-001",
+      "signalstack-007",
+      "resume-generator-001"
+    ],
+    minExperienceBullets: 3,
+    minProjectBullets: 5,
+    exactExperienceBullets: 3,
+    exactProjectBullets: 5
+  },
+  {
+    id: "panasonic-avionics-software-quality-engineer-i-req154478",
+    expectedFamily: "QA / Test Automation",
+    requiredSkills: [
+      "Python", "Docker", "Bash", "pytest", "Playwright", "Git"
+    ],
+    forbiddenSkills: [
+      "AS9100", "DO-178", "DO-178C", "SAFe", "RCCA", "Six Sigma",
+      "Jira", "Power BI", "Tableau", "Kubernetes", "Terraform", "Azure",
+      "C++", "C#", "Go", "Ruby"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    requiredProjectIds: [
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform",
+      "2026-07-xx_xxxx-xx-xx_resume-generator"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-002",
+      "roth-system-engineer-i-008",
+      "roth-system-engineer-i-003",
+      "century-solar-qa-001",
+      "century-solar-001",
+      "hiplingo-media-platform-008",
+      "hiplingo-media-platform-010",
+      "resume-generator-ai-first-001"
+    ],
+    minExperienceBullets: 3,
+    minProjectBullets: 5,
+    exactExperienceBullets: 3,
+    exactProjectBullets: 5
   },
 
 ];
