@@ -21,7 +21,9 @@ const canonicalBulletIdsByItem = {
     "mels-defective-parts-replacement-005",
     "mels-calibration-soldering-tools-006",
     "mels-multi-brand-equipment-support-007",
-    "mels-cabinet-furniture-installation-008"
+    "mels-cabinet-furniture-installation-008",
+    "mels-disassembly-cleaning-lubrication-reassembly-009",
+    "mels-shop-cleanliness-010"
   ],
   "2017-03-15_2018-11-09_post-haste-digital_encode-transcode-specialist":
     numberedBulletIds("post-haste-digital-encode-transcode-specialist", 10),

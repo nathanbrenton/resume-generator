@@ -153,7 +153,7 @@ const job20210419PaulMorteTechnicalServicesWarehouseTechnician = {
     {
       id: "paul-morte-warehouse-technician-003",
       text: "Downloaded and applied firmware updates for Yamaha electronic equipment and validated device functionality after updates.",
-      printText: "Updated firmware and validated Yamaha THR Bluetooth and editor/software functionality.",
+      printText: "Applied firmware updates to Yamaha electronic equipment and verified functionality after updates.",
       includeByDefault: true,
       targetRoles: [
         "Support Engineer",
@@ -231,8 +231,8 @@ const job20210419PaulMorteTechnicalServicesWarehouseTechnician = {
     },
     {
       id: "paul-morte-warehouse-technician-007",
-      text: "Performed input/output diagnostics for Yamaha recording, live sound, PA, monitor, mixer, and amplifier equipment.",
-      printText: "Performed audio input/output diagnostics using service manuals, cables, and test signals.",
+      text: "Performed electronic and input/output diagnostics for Yamaha recording, live sound, PA, monitor, mixer, and amplifier equipment.",
+      printText: "Performed electronic and audio input/output diagnostics using service manuals, cables, and test signals.",
       includeByDefault: true,
       targetRoles: [
         "Support Engineer",

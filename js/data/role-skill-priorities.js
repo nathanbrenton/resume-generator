@@ -576,11 +576,35 @@ const roleModifierSkillWeights = {
     weightedSkill("Creative Media", "compositing", 3),
     weightedSkill("Creative Media", "art direction", 2)
   ],
+  "color-finishing": [
+    weightedSkill("Creative Media", "DaVinci Resolve", 4),
+    weightedSkill("Color & Signal Monitoring", "vectorscope", 4),
+    weightedSkill("Color & Signal Monitoring", "waveform monitor", 4),
+    weightedSkill("Color & Broadcast Standards", "Rec.709", 4),
+    weightedSkill("Color & Broadcast Standards", "RGB", 4),
+    weightedSkill("Color & Broadcast Standards", "YUV/Y'CbCr", 4)
+  ],
   transcode: [
     weightedSkill("Media Processing", "encoding", 4),
     weightedSkill("Media Processing", "transcoding", 4),
     weightedSkill("Media Processing", "quality control", 3),
     weightedSkill("Media Processing", "AviSynth", 3)
+  ],
+  "data-io": [
+    weightedSkill("Systems & Infrastructure", "Linux", 4),
+    weightedSkill("Operating Systems", "Windows", 3),
+    weightedSkill("Operating Systems", "macOS", 3),
+    weightedSkill("Media Systems Support", "command-line workflows", 4),
+    weightedSkill("Media Systems Support", "storage management", 4),
+    weightedSkill("Testing & Quality", "checksum validation", 4)
+  ],
+  "studio-delivery": [
+    weightedSkill("Media Processing", "Digital Rapids StreamZFE", 4),
+    weightedSkill("Media Processing", "DVS Clipster", 4),
+    weightedSkill("Media & Encoding", "DCP", 4),
+    weightedSkill("Media & Encoding", "IMF", 4),
+    weightedSkill("Media & Encoding", "ProRes HQ", 3),
+    weightedSkill("Media & Encoding", "JPEG 2000", 3)
   ],
   "network-administration": [
     weightedSkill("Networking & Security", "network troubleshooting", 4),
@@ -621,6 +645,13 @@ const roleModifierSkillWeights = {
     weightedSkill("Hardware & Field Systems", "soldering", 4),
     weightedSkill("Hardware & Field Systems", "firmware", 3),
     weightedSkill("Hardware & Field Systems", "calibration", 3)
+  ],
+  "general-it-support": [
+    weightedSkill("Operating Systems", "Windows", 4),
+    weightedSkill("Operating Systems", "macOS", 4),
+    weightedSkill("Operating Systems", "Linux", 4),
+    weightedSkill("Application Support", "web maintenance & updates", 4),
+    weightedSkill("Application Support", "office technology troubleshooting", 4)
   ],
   "music-technology-support": [
     weightedSkill("Hardware & Field Systems", "audio equipment", 4),

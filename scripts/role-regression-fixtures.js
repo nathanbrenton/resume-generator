@@ -1045,7 +1045,8 @@ module.exports = [
     id: "tax-relief-advocates-junior-ai-data-engineer-marketing",
     expectedFamily: "Platform / Reliability / Automation",
     requiredSkills: [
-      "Python", "Docker", "FastAPI", "PostgreSQL", "REST APIs", "AWS"
+      "Python", "Docker", "FastAPI", "PostgreSQL", "SQL", "REST APIs", "Git",
+      "CI/CD concepts", "pytest", "AWS"
     ],
     forbiddenSkills: [
       "Supabase", "Power BI", "dbt", "Airflow", "Azure", "Microsoft Azure",
@@ -1066,8 +1067,8 @@ module.exports = [
       "roth-system-engineer-i-003",
       "roth-system-engineer-i-012",
       "signalstack-002",
+      "signalstack-003",
       "signalstack-007",
-      "signalstack-010",
       "century-solar-full-stack-001",
       "century-solar-ust-infrastructure-001"
     ],
@@ -1217,6 +1218,328 @@ module.exports = [
     minProjectBullets: 5,
     exactExperienceBullets: 3,
     exactProjectBullets: 5
+  },
+
+  {
+    id: "application-developer-consumer-web-startup",
+    expectedFamily: "Software Engineering",
+    requiredSkills: [
+      "Python", "TypeScript", "JavaScript", "React", "FastAPI", "REST APIs",
+      "PostgreSQL", "Git", "Docker", "pytest", "Vitest", "Playwright"
+    ],
+    forbiddenSkills: [
+      "Next.js", "Vue", "Angular", "Ruby", "Ruby on Rails", "GraphQL",
+      "Kubernetes", "Terraform", "C++", "C#", "Go", "Java", "Kotlin",
+      "scikit-learn", "AI-assisted development", "prompt engineering",
+      "HLS", "hls.js", "Web Audio API", "FFmpeg"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    requiredProjectIds: [
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform",
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-07-xx_xxxx-xx-xx_resume-generator"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-010",
+      "roth-system-engineer-i-007",
+      "hiplingo-media-platform-001",
+      "hiplingo-media-platform-002",
+      "hiplingo-media-platform-010",
+      "century-solar-full-stack-001",
+      "century-solar-qa-001",
+      "resume-generator-001"
+    ],
+    minExperienceBullets: 2,
+    minProjectBullets: 6,
+    exactExperienceBullets: 2,
+    exactProjectBullets: 6
+  },
+  {
+    id: "ai-engineer-irvine-accounting-automation",
+    expectedFamily: "Applied AI / Automation & Integration",
+    requiredSkills: [
+      "Python", "FastAPI", "PostgreSQL", "Docker", "pytest",
+      "Hugging Face Transformers", "pretrained model inference",
+      "semantic retrieval", "ML classification", "scikit-learn",
+      "AI-assisted development", "prompt engineering", "workflow automation",
+      "REST APIs", "AWS"
+    ],
+    forbiddenSkills: [
+      "RAG", "LangChain", "LlamaIndex", "OpenAI API", "Anthropic API",
+      "Claude", "Gemini", "AI agents", "agentic workflows", "Kubernetes",
+      "Terraform", "SageMaker", "Bedrock", "PyTorch", "TensorFlow"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician"
+    ],
+    requiredProjectIds: [
+      "2026-05-01_2026-06-01_signalstack",
+      "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos",
+      "2026-07-xx_xxxx-xx-xx_century-solar"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-004",
+      "adroit-smartshelf-jr-it-support-001",
+      "signalstack-001",
+      "signalstack-002",
+      "signalstack-004",
+      "signalstack-007",
+      "hugging-face-tutorial-demos-001",
+      "century-solar-security-001"
+    ],
+    minExperienceBullets: 2,
+    minProjectBullets: 6,
+    exactExperienceBullets: 2,
+    exactProjectBullets: 6
+  },
+  {
+    id: "pwc-genai-python-systems-engineer-experienced-associate-727083wd",
+    expectedFamily: "Applied AI / Automation & Integration",
+    requiredSkills: [
+      "Python", "scikit-learn", "FastAPI", "PostgreSQL", "Docker",
+      "Hugging Face Transformers", "ML classification", "model evaluation",
+      "REST APIs", "AWS"
+    ],
+    forbiddenSkills: [
+      "TensorFlow", "PyTorch", "Databricks", "Snowflake", "Azure", "GCP",
+      "Terraform", "CloudFormation", "Kubernetes", "SageMaker", "Bedrock",
+      "MLflow", "Apache Spark", "Airflow", "Kafka", "LangChain", "LlamaIndex",
+      "OpenAI API", "Anthropic API", "RAG", "AI agents", "agentic workflows"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician"
+    ],
+    requiredProjectIds: [
+      "2026-05-01_2026-06-01_signalstack",
+      "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-004",
+      "adroit-smartshelf-jr-it-support-001",
+      "signalstack-001",
+      "signalstack-002",
+      "signalstack-005",
+      "signalstack-007",
+      "hugging-face-tutorial-demos-001"
+    ],
+    minExperienceBullets: 2,
+    minProjectBullets: 5,
+    exactExperienceBullets: 2,
+    exactProjectBullets: 5
+  },
+  {
+    id: "raytheon-software-engineer-ii-air-c2-battlefield-sensors",
+    expectedFamily: "Software Engineering",
+    requiredSkills: [
+      "Python", "Linux", "RHEL 9", "Bash", "Docker", "Git",
+      "deployment automation", "CI/CD concepts", "pytest", "deployment validation",
+      "integration testing", "FastAPI", "REST APIs", "PostgreSQL", "AWS", "Agile"
+    ],
+    forbiddenSkills: [
+      "Java", "C++", "C#", "Ada", "Swing", "JavaFX", "DOORS",
+      "Bitbucket", "Jenkins", "Artifactory", "Coverity", "Collaborator", "Jira",
+      "Kubernetes", "Terraform", "Azure", "GCP", "React", "TypeScript",
+      "JavaScript", "scikit-learn", "AI-assisted development", "prompt engineering",
+      "Hugging Face Transformers"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    requiredProjectIds: [
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab",
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-05-01_2026-06-01_signalstack"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-001",
+      "roth-system-engineer-i-003",
+      "roth-system-engineer-i-010",
+      "offline-dev-lab-009",
+      "offline-dev-lab-005",
+      "century-solar-full-stack-001",
+      "century-solar-qa-001",
+      "signalstack-007"
+    ],
+    minExperienceBullets: 3,
+    minProjectBullets: 5,
+    exactExperienceBullets: 3,
+    exactProjectBullets: 5
+  },
+  {
+    id: "radiometer-application-support-consultant-brea-ca",
+    expectedFamily: "Application / Production / Developer Support",
+    requiredSkills: [
+      "Python", "Docker", "ServiceNow", "Splunk", "Active Directory",
+      "Windows", "macOS", "production support", "application troubleshooting"
+    ],
+    forbiddenSkills: [
+      "Oracle WebLogic", "IBM MQ", "Tomcat/TomEE", "AWS", "Kubernetes", "Terraform",
+      "React", "TypeScript", "FastAPI", "PostgreSQL", "scikit-learn", "Hugging Face Transformers"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-001",
+      "roth-system-engineer-i-008",
+      "roth-system-engineer-i-011",
+      "randstad-jr-deskside-technician-001",
+      "randstad-jr-deskside-technician-004",
+      "randstad-jr-deskside-technician-005"
+    ],
+    minExperienceBullets: 6,
+    minProjectBullets: 0,
+    exactExperienceBullets: 6,
+    exactProjectBullets: 0
+  },
+  {
+    id: "fieldai-network-solutions-engineer-irvine",
+    expectedFamily: "Platform / Reliability / Automation",
+    requiredSkills: [
+      "Python", "Docker", "Linux", "RHEL 9", "Bash", "network troubleshooting",
+      "TCP/IP", "DNS", "VPN", "firewall configuration", "SSH", "Splunk",
+      "ServiceNow", "runbooks", "hardware troubleshooting"
+    ],
+    forbiddenSkills: [
+      "Wi-Fi", "LTE", "5G", "APN", "SIM provisioning", "VLAN", "NAT", "MAC allowlisting",
+      "routers", "access points", "Kubernetes", "Terraform", "React", "TypeScript", "FastAPI",
+      "PostgreSQL", "scikit-learn", "Hugging Face Transformers", "soldering", "audio equipment"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+    ],
+    requiredProjectIds: [
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-003",
+      "roth-system-engineer-i-012",
+      "roth-system-engineer-i-008",
+      "randstad-jr-deskside-technician-001",
+      "randstad-jr-deskside-technician-004",
+      "randstad-jr-deskside-technician-005",
+      "hiplingo-media-platform-006"
+    ],
+    minExperienceBullets: 6,
+    minProjectBullets: 1,
+    exactExperienceBullets: 6,
+    exactProjectBullets: 1
+  },
+  {
+    id: "general-automotive-automotive-technician-trainee",
+    expectedFamily: "Technical / Electronics / Field Systems",
+    requiredSkills: [
+      "soldering", "calibration", "hardware troubleshooting", "electronics diagnostics",
+      "electromechanical troubleshooting", "precision measurement tools", "air compressor",
+      "oiling / lubrication", "shop cleanliness", "Windows", "macOS", "Linux",
+      "web maintenance & updates", "office technology troubleshooting", "Python", "Docker"
+    ],
+    forbiddenSkills: [
+      "Raspberry Pi", "Ubuntu", "network troubleshooting", "ServiceNow",
+      "SCCM/MECM", "Active Directory", "Splunk", "JAMF", "BitLocker"
+    ],
+    requiredJobIds: [
+      "2020-08-13_2021-04-14_mels-sewing-and-fabric-center_sewing-machine-technician",
+      "2021-04-19_2022-07-13_paul-morte-technical-services_warehouse-technician",
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician",
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    requiredBulletIds: [
+      "mels-sewing-machine-service-throughput-001",
+      "mels-disassembly-cleaning-lubrication-reassembly-009",
+      "mels-calibration-soldering-tools-006",
+      "mels-shop-cleanliness-010",
+      "paul-morte-warehouse-technician-003",
+      "paul-morte-warehouse-technician-007",
+      "randstad-jr-deskside-technician-007",
+      "roth-system-engineer-i-008"
+    ],
+    minExperienceBullets: 8,
+    minProjectBullets: 0,
+    exactExperienceBullets: 8,
+    exactProjectBullets: 0
+  },
+
+  {
+    id: "streamland-media-picture-shop-data-io-operator",
+    expectedFamily: "Media Systems / Digital Media Technology",
+    requiredSkills: [
+      "Python", "Docker", "Linux", "Windows", "macOS", "Bash",
+      "command-line workflows", "storage management", "file movement",
+      "media ingest", "transcoding", "FFmpeg", "tape capture",
+      "Sony HDCAM-SR", "metadata validation", "checksum validation",
+      "DaVinci Resolve", "controlled media handling",
+      "Digital Rapids StreamZFE", "DVS Clipster", "DCP", "IMF", "ProRes HQ", "JPEG 2000"
+    ],
+    forbiddenSkills: [
+      "HLS", "hls.js", "Web Audio API", "React", "TypeScript", "Vite",
+      "Fusion", "deployment automation", "rollback", "LTO", "LTFS", "TAR",
+      "Transkoder", "Avid Media Composer", "Colorfront"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2017-03-15_2018-11-09_post-haste-digital_encode-transcode-specialist",
+      "2012-02-01_2014-04-14_roundabout-entertainment_encoding-operator"
+    ],
+    requiredProjectIds: [
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-012",
+      "post-haste-digital-encode-transcode-specialist-009",
+      "post-haste-digital-encode-transcode-specialist-002",
+      "post-haste-digital-encode-transcode-specialist-008",
+      "post-haste-digital-encode-transcode-specialist-001",
+      "roundabout-entertainment-encoding-operator-001",
+      "roundabout-entertainment-encoding-operator-007",
+      "roundabout-entertainment-encoding-operator-003",
+      "hiplingo-media-platform-013"
+    ],
+    minExperienceBullets: 8,
+    minProjectBullets: 1,
+    exactExperienceBullets: 8,
+    exactProjectBullets: 1
+  },
+
+  {
+    id: "streamland-media-picture-shop-color-assist",
+    expectedFamily: "Media Systems / Digital Media Technology",
+    requiredSkills: [
+      "Python", "Docker", "DaVinci Resolve", "vectorscope", "histogram monitoring",
+      "waveform monitor", "video scopes", "RGB", "YUV/Y'CbCr", "Rec.709",
+      "frame accuracy", "timecode burn-ins", "transcoding", "quality control"
+    ],
+    forbiddenSkills: [
+      "HLS", "hls.js", "Web Audio API", "React", "TypeScript", "Vite", "Fusion",
+      "Avid Media Composer", "Avid", "Autodesk Flame", "Flame", "Baselight",
+      "EDL", "AAF", "Dolby Vision", "DolbyVision", "HDR", "UHD", "4K",
+      "title safe", "color tracing"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2017-03-15_2018-11-09_post-haste-digital_encode-transcode-specialist",
+      "2012-02-01_2014-04-14_roundabout-entertainment_encoding-operator"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-007",
+      "post-haste-digital-encode-transcode-specialist-007",
+      "post-haste-digital-encode-transcode-specialist-003",
+      "post-haste-digital-encode-transcode-specialist-005",
+      "post-haste-digital-encode-transcode-specialist-010",
+      "roundabout-entertainment-encoding-operator-006",
+      "roundabout-entertainment-encoding-operator-007",
+      "roundabout-entertainment-encoding-operator-012"
+    ],
+    minExperienceBullets: 8,
+    minProjectBullets: 0,
+    exactExperienceBullets: 8,
+    exactProjectBullets: 0
   },
 
 ];

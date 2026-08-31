@@ -675,7 +675,10 @@ function buildResume(options = {}) {
       1,
       remainingExperienceBulletBudget - reserveOnePerRemainingJob
     );
-    const configuredItemLimit = configuredLimit === undefined ? maxJobBullets : configuredLimit;
+    const roleJobLimit = roleContext.role.jobBulletLimitsByItem?.[job.id];
+    const configuredItemLimit = configuredLimit === undefined
+      ? (roleJobLimit ?? maxJobBullets)
+      : configuredLimit;
     const bulletLimit = Math.min(configuredItemLimit, maxJobBullets, availableForThisJob);
     const preferredBulletIds = roleContext.role.preferredBulletIdsByItem?.[job.id] || [];
     const excludedBulletIds = roleContext.role.excludedBulletIdsByItem?.[job.id] || [];

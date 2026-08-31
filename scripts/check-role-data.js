@@ -97,12 +97,12 @@ function validateRoleArchitecture(data) {
     `Expected 12 durable role definitions, found ${durableRoles.length}`);
   assert(historicalPresets.length === 28,
     `Expected 28 hidden historical presets, found ${historicalPresets.length}`);
-  assert(targetedPresets.length === 31,
-    `Expected 31 active targeted application presets, found ${targetedPresets.length}`);
-  assert(careerData.targetedRoleIds.length === 31,
-    `Expected 31 targeted application dropdown roles, found ${careerData.targetedRoleIds.length}`);
-  assert(careerData.roleDefinitions.length === 71,
-    `Expected 71 total preserved role definitions, found ${careerData.roleDefinitions.length}`);
+  assert(targetedPresets.length === 40,
+    `Expected 40 active targeted application presets, found ${targetedPresets.length}`);
+  assert(careerData.targetedRoleIds.length === 40,
+    `Expected 40 targeted application dropdown roles, found ${careerData.targetedRoleIds.length}`);
+  assert(careerData.roleDefinitions.length === 80,
+    `Expected 80 total preserved role definitions, found ${careerData.roleDefinitions.length}`);
   assert(Object.keys(careerData.roleFamilies).length === 11,
     `Expected 11 durable role families, found ${Object.keys(careerData.roleFamilies).length}`);
   assert(careerData.targetRoles[0] === "full-stack-software-engineer",
@@ -169,6 +169,21 @@ function validateRoleArchitecture(data) {
       assert(Array.isArray(role.excludedSkillNames), `${role.id}.excludedSkillNames must be an array`);
       assert(new Set(role.excludedSkillNames.map(normalize)).size === role.excludedSkillNames.length,
         `${role.id}.excludedSkillNames contains duplicates`);
+    }
+
+    if (role.jobBulletLimitsByItem !== undefined) {
+      Object.entries(role.jobBulletLimitsByItem).forEach(([jobId, limit]) => {
+        assert(selectionCollections.jobIds.has(jobId),
+          `${role.id}.jobBulletLimitsByItem references unknown job ${jobId}`);
+        assert(role.selections.jobIds.includes(jobId),
+          `${role.id}.jobBulletLimitsByItem references unselected job ${jobId}`);
+        assert(Number.isInteger(limit) && limit > 0,
+          `${role.id}.jobBulletLimitsByItem.${jobId} must be a positive integer`);
+        if (Number.isInteger(role.layout?.maxJobBullets)) {
+          assert(limit <= role.layout.maxJobBullets,
+            `${role.id}.jobBulletLimitsByItem.${jobId} exceeds maxJobBullets`);
+        }
+      });
     }
 
     if (role.projectBulletLimitsByItem !== undefined) {
@@ -244,8 +259,8 @@ function validateBulletCatalog(data) {
   const canonical = bulletEntries.filter(({ bullet }) => bullet.catalogStatus === "canonical");
   const historical = bulletEntries.filter(({ bullet }) => bullet.catalogStatus === "historical-targeted");
 
-  assert(bulletEntries.length === 286, `Expected 286 preserved bullet records, found ${bulletEntries.length}`);
-  assert(canonical.length === 122, `Expected 122 canonical bullets, found ${canonical.length}`);
+  assert(bulletEntries.length === 288, `Expected 288 preserved bullet records, found ${bulletEntries.length}`);
+  assert(canonical.length === 124, `Expected 124 canonical bullets, found ${canonical.length}`);
   assert(historical.length === 164, `Expected 164 historical targeting bullets, found ${historical.length}`);
 
   const canonicalText = new Map();
@@ -577,6 +592,44 @@ function validateGeneratedResumes(data) {
         `Esri targeted preset selected historical targeting bullet ${bullet.id}`);
     });
   });
+  const automotiveRoleId = "general-automotive-automotive-technician-trainee";
+  const automotiveSelectedJobIds = new Set(careerData.roleDefaultSelections[automotiveRoleId].jobIds);
+  const automotiveUiOrderedJobIds = careerData.jobs
+    .filter((job) => automotiveSelectedJobIds.has(job.id))
+    .map((job) => job.id);
+  const automotiveUiResume = buildResume({
+    targetRole: automotiveRoleId,
+    selectedJobIds: automotiveUiOrderedJobIds,
+    currentDate: validationDate
+  });
+  const automotiveExpectedBulletCounts = new Map([
+    ["2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i", 1],
+    ["2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician", 1],
+    ["2021-04-19_2022-07-13_paul-morte-technical-services_warehouse-technician", 2],
+    ["2020-08-13_2021-04-14_mels-sewing-and-fabric-center_sewing-machine-technician", 4]
+  ]);
+  automotiveUiResume.jobs.forEach((job) => {
+    const expectedCount = automotiveExpectedBulletCounts.get(job.id);
+    assert(job.selectedBullets.length === expectedCount,
+      `General Automotive UI-order regression: ${job.id} should render ${expectedCount} bullets, found ${job.selectedBullets.length}`);
+  });
+  const automotiveUiBulletIds = new Set(
+    automotiveUiResume.jobs.flatMap((job) => job.selectedBullets.map((bullet) => bullet.id))
+  );
+  [
+    "mels-sewing-machine-service-throughput-001",
+    "mels-disassembly-cleaning-lubrication-reassembly-009",
+    "mels-calibration-soldering-tools-006",
+    "mels-shop-cleanliness-010",
+    "paul-morte-warehouse-technician-003",
+    "paul-morte-warehouse-technician-007",
+    "randstad-jr-deskside-technician-007",
+    "roth-system-engineer-i-008"
+  ].forEach((bulletId) => {
+    assert(automotiveUiBulletIds.has(bulletId),
+      `General Automotive UI-order regression is missing intended evidence bullet ${bulletId}`);
+  });
+
   const zymo = buildResume({
     targetRole: "zymo-research-junior-full-stack-web-developer",
     currentDate: validationDate

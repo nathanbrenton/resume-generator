@@ -195,6 +195,38 @@ const job20200813MelsSewingAndFabricCenterSewingMachineTechnician = {
         { category: "Equipment Support", name: "field equipment setup", weight: 6 },
         { category: "Documentation & Collaboration", name: "customer service", weight: 5 }
       ]
+    },
+    {
+      id: "mels-disassembly-cleaning-lubrication-reassembly-009",
+      text: "Disassembled sewing machines and sergers for routine service and repair, removed lint and debris with compressed air from a shop air compressor, applied appropriate machine oil and lubrication, reassembled equipment, and verified operation.",
+      printText: "Disassembled, cleaned with compressed air, oiled/lubricated, reassembled, and functionally checked sewing equipment.",
+      includeByDefault: true,
+      strength: "primary",
+      targetRoles: [
+        "electromechanical-equipment-repair-technician"
+      ],
+      skillTags: [
+        { category: "Hardware & Repair", name: "disassembly", weight: 9 },
+        { category: "Hardware & Repair", name: "reassembly", weight: 9 },
+        { category: "Hardware & Repair", name: "air compressor", weight: 8 },
+        { category: "Hardware & Repair", name: "oiling / lubrication", weight: 8 },
+        { category: "Testing & Quality", name: "functional validation", weight: 7 }
+      ]
+    },
+    {
+      id: "mels-shop-cleanliness-010",
+      text: "Maintained a clean, organized repair bench and shop work area, keeping tools, parts, and customer equipment orderly and ready for daily service work.",
+      printText: "Maintained a clean, organized repair bench and shop area with tools and equipment ready for daily service.",
+      includeByDefault: true,
+      strength: "supporting",
+      targetRoles: [
+        "electromechanical-equipment-repair-technician"
+      ],
+      skillTags: [
+        { category: "Equipment Support", name: "shop cleanliness", weight: 8 },
+        { category: "Equipment Support", name: "workbench organization", weight: 8 },
+        { category: "Documentation & Collaboration", name: "work area organization", weight: 6 }
+      ]
     }
   ],
 

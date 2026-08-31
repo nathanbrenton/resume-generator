@@ -13,6 +13,19 @@ const genericCoverLetter = Object.freeze({
 });
 
 const coverLetters = Object.freeze({
+  "general-automotive-automotive-technician-trainee": {
+    roleTitle: "Automotive Technician Trainee",
+    company: "",
+    recipientLines: [],
+    salutation: "Hi,",
+    paragraphs: [
+      "May I get into the queue for your hiring process? I’m interested in learning automotive mechanics and contributing to the General Automotive department.",
+      "My mechanical experience is limited, but I worked as a Sewing Machine Technician and have experience with electronics, including soldering components at the circuit-board level. My professional background is mainly in IT, so I can also help with office technology, website maintenance, and general technical support. I also have experience with digital media, social content, event coverage, and live sound/PA systems.",
+      "I’m mainly looking for an opportunity to learn, work hard, and become useful wherever needed. Thanks for considering me."
+    ],
+    closing: "",
+    signature: "Nathan Brenton"
+  },
   "energy-solutions-software-engineer-i-orange-ca": {
     roleTitle: "Software Engineer I",
     company: "Energy Solutions",

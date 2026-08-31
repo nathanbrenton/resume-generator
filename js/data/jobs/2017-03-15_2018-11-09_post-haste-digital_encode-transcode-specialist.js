@@ -363,7 +363,7 @@ const job20170315PostHasteDigitalEncodeTranscodeSpecialist = {
     {
       id: "post-haste-digital-encode-transcode-specialist-008",
       text: "Supported digital cinema onboarding workflows including AS-02, DCP, and IMF deliverables for HBO, Netflix, and FOX.",
-      printText: "Supported AS-02, DCP, and IMF onboarding workflows for major studio deliverables.",
+      printText: "Supported AS-02, DCP, and IMF onboarding workflows for HBO, Netflix, and FOX deliverables.",
       includeByDefault: true,
       targetRoles: [
         "Technical Coordinator",

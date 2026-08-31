@@ -216,6 +216,7 @@ const roleModifiers = {
   "model-operations": { label: "Model Operations" },
   media: { label: "Media" },
   "creative-media": { label: "Creative Media" },
+  "color-finishing": { label: "Color / Finishing" },
   transcode: { label: "Transcode" },
   "network-administration": { label: "Network Administration" },
   "endpoint-support": { label: "Endpoint Support" },
@@ -224,9 +225,12 @@ const roleModifiers = {
   "product-operations-sustainment": { label: "Product Operations / Sustainment" },
   "infotainment-quality-engineering": { label: "Infotainment Quality" },
   "hardware-repair": { label: "Hardware / Electromechanical Repair" },
+  "general-it-support": { label: "General IT Support" },
   "music-technology-support": { label: "Music Technology" },
   "music-content-protection": { label: "Music Content Protection" },
   "recorded-music-release-planning": { label: "Recorded Music Release Planning" },
+  "data-io": { label: "Data I/O / Media Transfer" },
+  "studio-delivery": { label: "Studio Delivery / Digital Cinema" },
   "build-release-engineering": { label: "Build / Release Engineering" },
   "build-release-platform": { label: "Build / Release Platform" },
   "linux-web-hosting": { label: "Linux Web Hosting" }
@@ -5461,15 +5465,24 @@ roleDefinitions.push({
   id: "tax-relief-advocates-junior-ai-data-engineer-marketing",
   label: "Tax Relief Advocates — Junior AI Data Engineer (Marketing)",
   familyId: "platform-reliability",
-  modifierIds: ["backend-application", "automation", "reliability", "applied-ai"],
+  modifierIds: [
+    "backend-application",
+    "integration",
+    "web-application-delivery",
+    "software-delivery-lifecycle",
+    "test-automation",
+    "automation",
+    "reliability",
+    "applied-ai"
+  ],
   aliases: [
     "Junior AI Data Engineer (Marketing) — Tax Relief Advocates",
     "Junior AI Data Engineer",
     "Junior Data Engineer",
     "Data Engineer — Automation & APIs"
   ],
-  headline: "JUNIOR AI DATA ENGINEER | PYTHON, SQL & FASTAPI | DATA AUTOMATION",
-  summary: "Software engineering master’s graduate and former enterprise systems engineer building Python/FastAPI/PostgreSQL data workflows with ingestion, normalization, duplicate detection, REST APIs, validation, monitoring, Dockerized services, and automated testing. Professional experience adds AWS migration support, Linux automation, service monitoring, troubleshooting, and production documentation.",
+  headline: "JUNIOR AI DATA ENGINEER | PYTHON, SQL & POSTGRESQL | DATA AUTOMATION",
+  summary: "Software engineering master’s graduate and former enterprise systems engineer building Python/FastAPI/PostgreSQL data workflows with ingestion, normalization, duplicate detection, SQL-backed retrieval, REST APIs, validation, monitoring, Dockerized services, and automated testing. Uses Git-based development workflows and brings professional AWS migration support, scheduled Linux automation, service monitoring, troubleshooting, and production documentation.",
   preferredFocusAreas: [
     "data-databases",
     "api-integration",
@@ -5508,7 +5521,7 @@ roleDefinitions.push({
     "Data & AI": 6,
     "Testing & Quality": 5,
     "Testing & QA": 4,
-    "DevOps & Tooling": 5,
+    "DevOps & Tooling": 7,
     "Cloud & Infrastructure": 3,
     "Monitoring & Support": 4,
     "Automation & Scripting": 3,
@@ -5521,7 +5534,6 @@ roleDefinitions.push({
     "ingestion pipelines": "Databases & Data",
     "normalization": "Databases & Data",
     "duplicate detection": "Databases & Data",
-    "SQL": "Programming & Scripting",
     "search APIs": "Backend & APIs",
     "API design": "Backend & APIs",
     "feed health visibility": "Monitoring & Support",
@@ -5534,7 +5546,8 @@ roleDefinitions.push({
     "LLM APIs", "OpenAI API", "HubSpot", "Salesforce", "Cake", "Zapier",
     "Google Ads", "Meta Ads", "marketing automation", "campaign operations",
     "Kubernetes", "Terraform", "Snowflake", "BigQuery", "Databricks",
-    "Redshift", "Glue", "Athena"
+    "Redshift", "Glue", "Athena", "application modernization", "rsync",
+    "dependency management", "containerized services", "SSH", "release packaging"
   ],
   preferredBulletIdsByItem: {
     "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
@@ -5544,8 +5557,8 @@ roleDefinitions.push({
     ],
     "2026-05-01_2026-06-01_signalstack": [
       "signalstack-002",
-      "signalstack-007",
-      "signalstack-010"
+      "signalstack-003",
+      "signalstack-007"
     ],
     "2026-07-xx_xxxx-xx-xx_century-solar": [
       "century-solar-full-stack-001",
@@ -5570,7 +5583,7 @@ roleDefinitions.push({
   layout: {
     maxSkillGroups: 9,
     maxSkillsPerGroup: 6,
-    maxSkillsTotal: 30,
+    maxSkillsTotal: 32,
     maxJobBullets: 3,
     maxExperienceBullets: 3,
     maxProjectBullets: 3,
@@ -6414,6 +6427,273 @@ roleDefinitions.push({
   }
 });
 
+
+roleDefinitions.push({
+  id: "application-developer-consumer-web-startup",
+  label: "Application Developer — Consumer Web Startup",
+  familyId: "software-engineering",
+  modifierIds: [
+    "full-stack",
+    "backend-application",
+    "web-application-delivery",
+    "test-automation",
+    "general-software-portfolio"
+  ],
+  aliases: [
+    "Application Developer — Consumer Web Startup",
+    "Application Developer",
+    "Full-Stack Application Developer",
+    "Web Application Developer"
+  ],
+  headline: "APPLICATION DEVELOPER | REACT, TYPESCRIPT & PYTHON | REST APIs",
+  summary: "Software engineering master’s graduate and former enterprise systems engineer building and shipping end-to-end web application features with React, TypeScript, Python/FastAPI, REST APIs, PostgreSQL, Git, Docker, and automated testing. Portfolio work includes a public consumer-facing React application, a private business-operations platform with complex workflows, and configurable application tooling; experience spans feature implementation, debugging, testing, deployment validation, documentation, and extending existing codebases.",
+  preferredFocusAreas: [
+    "software-development",
+    "api-integration",
+    "data-databases",
+    "testing-validation",
+    "deployment-change",
+    "incident-analysis",
+    "documentation",
+    "stakeholder-support"
+  ],
+  preferredBulletBoost: 115,
+  preservePreferredBulletOrder: true,
+  preserveDefaultProjectOrder: true,
+  categoryOrder: [
+    "Programming & Scripting",
+    "Frontend Development",
+    "Backend & APIs",
+    "Databases & Data",
+    "Testing & Quality",
+    "DevOps & Tooling",
+    "Application Support",
+    "Documentation & Collaboration",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "Programming & Scripting": 4,
+    "Frontend Development": 6,
+    "Backend & APIs": 5,
+    "Databases & Data": 5,
+    "Testing & Quality": 6,
+    "DevOps & Tooling": 5,
+    "Application Support": 3,
+    "Documentation & Collaboration": 3
+  },
+  skillDisplayCategoryOverrides: {
+    "responsive UI": "Frontend Development",
+    "component architecture": "Frontend Development",
+    "complex user workflows": "Frontend Development",
+    "application troubleshooting": "Application Support",
+    "deployment validation": "Testing & Quality"
+  },
+  excludedSkillNames: [
+    "Next.js", "Vue", "Angular", "Ruby", "Ruby on Rails", "GraphQL",
+    "Kubernetes", "Terraform", "Azure", "GCP", "C++", "C#", "Go", "Java", "Kotlin",
+    "scikit-learn", "sentence-transformers", "semantic embeddings", "TF-IDF", "Naive Bayes",
+    "AI-assisted development", "prompt engineering", "HLS", "hls.js", "Web Audio API", "FFmpeg",
+    "media metadata", "metadata inheritance", "publishing workflows", "SAML", "Okta",
+    "RHEL 9", "systemd", "cron", "Splunk", "capacity monitoring", "vulnerability remediation",
+    "application modernization"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-010",
+      "roth-system-engineer-i-007"
+    ],
+    "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": [
+      "hiplingo-media-platform-001",
+      "hiplingo-media-platform-002",
+      "hiplingo-media-platform-005"
+    ],
+    "2026-07-xx_xxxx-xx-xx_century-solar": [
+      "century-solar-full-stack-001",
+      "century-solar-qa-001"
+    ],
+    "2026-07-xx_xxxx-xx-xx_resume-generator": [
+      "resume-generator-001"
+    ]
+  },
+  projectBulletLimitsByItem: {
+    "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": 3,
+    "2026-07-xx_xxxx-xx-xx_century-solar": 2,
+    "2026-07-xx_xxxx-xx-xx_resume-generator": 1
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    projectIds: [
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform",
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-07-xx_xxxx-xx-xx_resume-generator"
+    ],
+    educationIds: [
+      ...sharedEducationIds,
+      "2019-01-29_2019-05-12_udacity_front-end-web-developer-nanodegree"
+    ],
+    certificationIds: []
+  },
+  layout: {
+    maxSkillGroups: 8,
+    maxSkillsPerGroup: 6,
+    maxSkillsTotal: 30,
+    maxJobBullets: 2,
+    maxExperienceBullets: 2,
+    maxProjectBullets: 3,
+    maxProjectBulletsTotal: 6
+  }
+});
+
+roleDefinitions.push({
+  id: "ai-engineer-irvine-accounting-automation",
+  label: "AI Engineer — Irvine Accounting Automation",
+  familyId: "applied-ai-automation",
+  modifierIds: [
+    "applied-ai",
+    "backend-application",
+    "integration",
+    "internal-operations-software",
+    "ai-assisted-product-development",
+    "test-automation",
+    "general-software-portfolio"
+  ],
+  aliases: [
+    "AI Engineer — Irvine Accounting Automation",
+    "AI Engineer — Irvine, CA",
+    "Applied AI Engineer — Workflow Automation",
+    "AI Automation Engineer — Accounting Operations"
+  ],
+  headline: "AI ENGINEER | PYTHON, FASTAPI & APPLIED AI | WORKFLOW AUTOMATION",
+  summary: "Software engineering master’s graduate and former enterprise systems engineer building Python/FastAPI AI applications, semantic retrieval and ML classification workflows, pretrained Hugging Face inference services, PostgreSQL-backed APIs, automated data normalization, human-in-the-loop AI validation, audit-oriented workflows, Dockerized services, and automated tests. Portfolio work spans extraction, classification, summarization, retrieval, operational workflow automation, and lightweight interfaces; professional experience adds AI-output review, Linux application operations, and AWS migration support.",
+  preferredFocusAreas: [
+    "ai-ml",
+    "automation",
+    "api-integration",
+    "data-databases",
+    "software-development",
+    "testing-validation",
+    "monitoring-observability",
+    "deployment-change",
+    "documentation"
+  ],
+  preferredBulletBoost: 125,
+  preservePreferredBulletOrder: true,
+  preserveDefaultProjectOrder: true,
+  categoryOrder: [
+    "Programming & Scripting",
+    "AI Applications",
+    "AI-First Development",
+    "Backend & APIs",
+    "Automation & Integration",
+    "Databases & Data",
+    "Human Review & Validation",
+    "Testing & Quality",
+    "DevOps & Tooling",
+    "Cloud & Infrastructure",
+    "Systems & Infrastructure",
+    "Monitoring & Support",
+    "Documentation & Collaboration",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "Programming & Scripting": 4,
+    "AI Applications": 8,
+    "AI-First Development": 3,
+    "Backend & APIs": 5,
+    "Automation & Integration": 5,
+    "Databases & Data": 5,
+    "Human Review & Validation": 4,
+    "Testing & Quality": 5,
+    "DevOps & Tooling": 5,
+    "Cloud & Infrastructure": 2,
+    "Systems & Infrastructure": 3,
+    "Monitoring & Support": 3,
+    "Documentation & Collaboration": 3
+  },
+  skillDisplayCategoryOverrides: {
+    "prompt engineering": "AI-First Development",
+    "AI-assisted development": "AI-First Development",
+    "semantic retrieval": "AI Applications",
+    "semantic search": "AI Applications",
+    "hybrid retrieval": "AI Applications",
+    "sentence-transformers": "AI Applications",
+    "semantic embeddings": "AI Applications",
+    "workflow automation": "Automation & Integration",
+    "workflow integration": "Automation & Integration",
+    "article normalization": "Databases & Data",
+    "data validation": "Human Review & Validation",
+    "audit records": "Human Review & Validation",
+    "access controls": "Human Review & Validation",
+    "AI-output validation": "Human Review & Validation"
+  },
+  excludedSkillNames: [
+    "RAG", "retrieval-augmented generation", "LangChain", "LlamaIndex",
+    "OpenAI API", "Anthropic API", "Claude", "Gemini", "AI agents",
+    "agentic workflows", "multi-agent orchestration", "tool calling",
+    "vector database", "Pinecone", "Weaviate", "Chroma", "pgvector",
+    "OCR", "document intelligence", "PDF extraction",
+    "Kubernetes", "Terraform", "Azure", "GCP", "SageMaker", "Bedrock",
+    "MLflow", "Databricks", "Apache Spark", "Airflow", "Kafka", "Snowflake",
+    "PyTorch", "TensorFlow", "Next.js", "GraphQL", "C++", "C#", "Go", "Ruby",
+    "HLS", "hls.js", "Web Audio API", "FFmpeg", "media metadata",
+    "metadata inheritance", "publishing workflows", "application modernization"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-004"
+    ],
+    "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician": [
+      "adroit-smartshelf-jr-it-support-001"
+    ],
+    "2026-05-01_2026-06-01_signalstack": [
+      "signalstack-001",
+      "signalstack-002",
+      "signalstack-004",
+      "signalstack-007"
+    ],
+    "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos": [
+      "hugging-face-tutorial-demos-001"
+    ],
+    "2026-07-xx_xxxx-xx-xx_century-solar": [
+      "century-solar-security-001"
+    ]
+  },
+  jobBulletLimitsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": 1,
+    "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician": 1
+  },
+  projectBulletLimitsByItem: {
+    "2026-05-01_2026-06-01_signalstack": 4,
+    "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos": 1,
+    "2026-07-xx_xxxx-xx-xx_century-solar": 1
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician"
+    ],
+    projectIds: [
+      "2026-05-01_2026-06-01_signalstack",
+      "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos",
+      "2026-07-xx_xxxx-xx-xx_century-solar"
+    ],
+    educationIds: sharedEducationIds,
+    certificationIds: []
+  },
+  layout: {
+    maxSkillGroups: 11,
+    maxSkillsPerGroup: 6,
+    maxSkillsTotal: 34,
+    maxJobBullets: 1,
+    maxExperienceBullets: 2,
+    maxProjectBullets: 4,
+    maxProjectBulletsTotal: 6
+  }
+});
+
+
 roleDefinitions.push({
   id: "panasonic-avionics-software-quality-engineer-i-req154478",
   label: "Panasonic Avionics — Software Quality Engineer I (REQ-154478)",
@@ -6518,6 +6798,653 @@ roleDefinitions.push({
   }
 });
 
+roleDefinitions.push({
+  id: "general-automotive-automotive-technician-trainee",
+  label: "General Automotive — Automotive Technician Trainee",
+  familyId: "technical-field",
+  modifierIds: ["hardware-repair", "general-it-support"],
+  aliases: [
+    "Automotive Technician Trainee",
+    "General Automotive Technician Trainee",
+    "Entry-Level Automotive Technician",
+    "Automotive Mechanic Trainee"
+  ],
+  headline: "AUTOMOTIVE TECHNICIAN TRAINEE | MECHANICAL & ELECTRONICS EXPERIENCE",
+  summary: "Automotive technician trainee seeking hands-on experience in general automotive repair, bringing prior work servicing and troubleshooting mechanical and electromechanical equipment, soldering, calibration, equipment disassembly/reassembly, and hardware repair. Additional professional IT support experience can help with office technology and basic web support, while prior audio and PA equipment work adds practical electronics and diagnostic experience.",
+  preferredFocusAreas: [
+    "hardware-repair",
+    "testing-validation",
+    "stakeholder-support",
+    "documentation"
+  ],
+  preferredBulletBoost: 120,
+  preservePreferredBulletOrder: true,
+  categoryOrder: [
+    "Mechanical & Electronics",
+    "Shop & Technical Support",
+    "Operating Systems",
+    "IT Support",
+    "Programming & Scripting",
+    "DevOps & Tooling",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "Mechanical & Electronics": 14,
+    "Shop & Technical Support": 6,
+    "Operating Systems": 3,
+    "IT Support": 5,
+    "Programming & Scripting": 2,
+    "DevOps & Tooling": 2
+  },
+  skillDisplayCategoryOverrides: {
+    "soldering": "Mechanical & Electronics",
+    "sewing machine repair": "Mechanical & Electronics",
+    "electromechanical troubleshooting": "Mechanical & Electronics",
+    "mechanical calibration": "Mechanical & Electronics",
+    "precision measurement tools": "Mechanical & Electronics",
+    "workbench repair": "Mechanical & Electronics",
+    "electronics diagnostics": "Mechanical & Electronics",
+    "hardware troubleshooting": "Mechanical & Electronics",
+    "calibration": "Mechanical & Electronics",
+    "audio equipment": "Mechanical & Electronics",
+    "firmware": "Mechanical & Electronics",
+    "component swapping": "Mechanical & Electronics",
+    "disassembly": "Mechanical & Electronics",
+    "reassembly": "Mechanical & Electronics",
+    "audio equipment testing": "Mechanical & Electronics",
+    "audio input/output testing": "Mechanical & Electronics",
+    "signal testing": "Mechanical & Electronics",
+    "sine sweep testing": "Mechanical & Electronics",
+    "air compressor": "Mechanical & Electronics",
+    "oiling / lubrication": "Mechanical & Electronics",
+    "shop cleanliness": "Shop & Technical Support",
+    "workbench organization": "Shop & Technical Support",
+    "work area organization": "Shop & Technical Support",
+    "Windows": "Operating Systems",
+    "macOS": "Operating Systems",
+    "Linux": "Operating Systems",
+    "web maintenance & updates": "IT Support",
+    "office technology troubleshooting": "IT Support",
+    "repair workflow management": "Shop & Technical Support",
+    "work prioritization": "Shop & Technical Support",
+    "technical documentation": "Shop & Technical Support",
+    "service manuals": "Shop & Technical Support"
+  },
+  excludedSkillNames: [
+    "Raspberry Pi", "Ubuntu", "network troubleshooting", "issue escalation",
+    "ServiceNow", "runbooks", "SOPs", "RCA documentation", "CMDB notes",
+    "handoff documentation", "Microsoft Office 365", "PowerShell",
+    "SCCM/MECM", "Active Directory", "Splunk", "JAMF", "BitLocker",
+    "keyboard replacement", "Lenovo laptops", "mainboard repair coordination",
+    "NVMe storage", "RAM upgrades", "screen replacement"
+  ],
+  excludedBulletIdsByItem: {
+    "2021-04-19_2022-07-13_paul-morte-technical-services_warehouse-technician": [
+      "paul-morte-warehouse-technician-006"
+    ]
+  },
+  jobBulletLimitsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": 1,
+    "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": 1,
+    "2021-04-19_2022-07-13_paul-morte-technical-services_warehouse-technician": 2,
+    "2020-08-13_2021-04-14_mels-sewing-and-fabric-center_sewing-machine-technician": 4
+  },
+  preferredBulletIdsByItem: {
+    "2020-08-13_2021-04-14_mels-sewing-and-fabric-center_sewing-machine-technician": [
+      "mels-sewing-machine-service-throughput-001",
+      "mels-disassembly-cleaning-lubrication-reassembly-009",
+      "mels-calibration-soldering-tools-006",
+      "mels-shop-cleanliness-010"
+    ],
+    "2021-04-19_2022-07-13_paul-morte-technical-services_warehouse-technician": [
+      "paul-morte-warehouse-technician-003",
+      "paul-morte-warehouse-technician-007"
+    ],
+    "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": [
+      "randstad-jr-deskside-technician-007"
+    ],
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-008"
+    ]
+  },
+  selections: {
+    jobIds: [
+      "2020-08-13_2021-04-14_mels-sewing-and-fabric-center_sewing-machine-technician",
+      "2021-04-19_2022-07-13_paul-morte-technical-services_warehouse-technician",
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician",
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    projectIds: [],
+    educationIds: [],
+    certificationIds: []
+  },
+  layout: {
+    maxSkillGroups: 7,
+    maxSkillsPerGroup: 7,
+    maxSkillsTotal: 28,
+    maxJobBullets: 4,
+    maxExperienceBullets: 8,
+    maxProjectBullets: 0,
+    maxProjectBulletsTotal: 0
+  }
+});
+
+
+roleDefinitions.push({
+  id: "pwc-genai-python-systems-engineer-experienced-associate-727083wd",
+  label: "PwC — GenAI Python Systems Engineer — Experienced Associate",
+  familyId: "applied-ai-automation",
+  modifierIds: [
+    "applied-ai",
+    "backend-application",
+    "integration",
+    "test-automation",
+    "general-software-portfolio"
+  ],
+  aliases: [
+    "GenAI Python Systems Engineer — Experienced Associate",
+    "GenAI Python Systems Engineer - Experienced Associate",
+    "PwC GenAI Python Systems Engineer",
+    "GenAI Python Systems Engineer"
+  ],
+  headline: "GENAI PYTHON SYSTEMS ENGINEER | PYTHON, SCIKIT-LEARN & DATA PIPELINES",
+  summary: "Software engineering master’s graduate and former enterprise systems engineer building Python AI/ML and data workflows with scikit-learn, FastAPI, PostgreSQL, Hugging Face, structured data ingestion and normalization, model evaluation, REST APIs, Docker, and automated testing. Portfolio work spans classification, semantic retrieval, data preprocessing, model-backed services, and repeatable AI experimentation; professional experience adds AWS migration support, Linux application operations, documentation, and human-in-the-loop validation of AI-generated outputs.",
+  preferredFocusAreas: [
+    "ai-ml",
+    "data-databases",
+    "software-development",
+    "api-integration",
+    "testing-validation",
+    "automation",
+    "documentation",
+    "infrastructure-operations"
+  ],
+  preferredBulletBoost: 125,
+  preservePreferredBulletOrder: true,
+  preserveDefaultProjectOrder: true,
+  categoryOrder: [
+    "Programming & Scripting",
+    "AI Applications",
+    "Databases & Data",
+    "Backend & APIs",
+    "Testing & Quality",
+    "DevOps & Tooling",
+    "Cloud & Infrastructure",
+    "Systems & Infrastructure",
+    "Documentation & Collaboration",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "Programming & Scripting": 4,
+    "AI Applications": 9,
+    "Databases & Data": 6,
+    "Backend & APIs": 5,
+    "Testing & Quality": 5,
+    "DevOps & Tooling": 4,
+    "Cloud & Infrastructure": 2,
+    "Systems & Infrastructure": 3,
+    "Documentation & Collaboration": 3
+  },
+  skillDisplayCategoryOverrides: {
+    "scikit-learn": "AI Applications",
+    "Naive Bayes": "AI Applications",
+    "TF-IDF": "AI Applications",
+    "pretrained model inference": "AI Applications",
+    "model evaluation": "AI Applications",
+    "ML classification": "AI Applications",
+    "data ingestion": "Databases & Data",
+    "data normalization": "Databases & Data"
+  },
+  excludedSkillNames: [
+    "TensorFlow", "PyTorch", "Databricks", "Snowflake", "Azure", "GCP",
+    "AWS Certified Solutions Architect", "AWS Data Engineer", "Terraform",
+    "CloudFormation", "Kubernetes", "SageMaker", "Bedrock", "MLflow",
+    "Apache Spark", "Airflow", "Kafka", "LangChain", "LlamaIndex",
+    "OpenAI API", "Anthropic API", "RAG", "AI agents", "agentic workflows",
+    "model fine-tuning", "LLM fine-tuning", "application modernization"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-004"
+    ],
+    "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician": [
+      "adroit-smartshelf-jr-it-support-001"
+    ],
+    "2026-05-01_2026-06-01_signalstack": [
+      "signalstack-001",
+      "signalstack-002",
+      "signalstack-005",
+      "signalstack-007"
+    ],
+    "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos": [
+      "hugging-face-tutorial-demos-001"
+    ]
+  },
+  maxBulletsByJobId: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": 1,
+    "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician": 1
+  },
+  projectBulletLimitsByItem: {
+    "2026-05-01_2026-06-01_signalstack": 4,
+    "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos": 1
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician"
+    ],
+    projectIds: [
+      "2026-05-01_2026-06-01_signalstack",
+      "2026-07-xx_xxxx-xx-xx_hugging-face-tutorial-demos"
+    ],
+    educationIds: sharedEducationIds,
+    certificationIds: []
+  },
+  layout: {
+    maxSkillGroups: 9,
+    maxSkillsPerGroup: 6,
+    maxSkillsTotal: 32,
+    maxJobBullets: 1,
+    maxExperienceBullets: 2,
+    maxProjectBullets: 4,
+    maxProjectBulletsTotal: 5
+  }
+});
+
+
+roleDefinitions.push({
+  id: "raytheon-software-engineer-ii-air-c2-battlefield-sensors",
+  label: "Raytheon — Software Engineer II — Air C2 / Battlefield Sensors",
+  familyId: "software-engineering",
+  modifierIds: [
+    "developer-infrastructure",
+    "automation",
+    "software-delivery-lifecycle",
+    "test-automation",
+    "web-application-delivery",
+    "reliability",
+    "general-software-portfolio"
+  ],
+  aliases: [
+    "Raytheon Software Engineer II",
+    "Software Engineer II — Air C2 / Battlefield Sensors",
+    "Software Engineer II — Air C2",
+    "Software Engineer II"
+  ],
+  headline: "SOFTWARE ENGINEER | PYTHON, RHEL & BASH | TEST & DEPLOYMENT",
+  summary: "Software engineering master’s graduate and former enterprise systems engineer with 2+ years supporting RHEL application environments and hands-on Python software development. Experience spans Bash automation, deployment and test validation, application troubleshooting, cross-team delivery, containerized FastAPI/PostgreSQL systems, automated testing, technical documentation, and AWS migration support.",
+  preferredFocusAreas: [
+    "software-development",
+    "automation",
+    "testing-validation",
+    "deployment-change",
+    "infrastructure-operations",
+    "incident-analysis",
+    "documentation",
+    "stakeholder-support"
+  ],
+  preferredBulletBoost: 125,
+  preservePreferredBulletOrder: true,
+  preserveDefaultProjectOrder: true,
+  categoryOrder: [
+    "Programming & Scripting",
+    "Systems & Infrastructure",
+    "Automation & Scripting",
+    "DevOps & Tooling",
+    "Testing & Quality",
+    "Backend & APIs",
+    "Databases & Data",
+    "Cloud & Infrastructure",
+    "Monitoring & Support",
+    "Documentation & Collaboration",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "Programming & Scripting": 4,
+    "Systems & Infrastructure": 5,
+    "Automation & Scripting": 4,
+    "DevOps & Tooling": 6,
+    "Testing & Quality": 7,
+    "Backend & APIs": 4,
+    "Databases & Data": 3,
+    "Cloud & Infrastructure": 2,
+    "Monitoring & Support": 3,
+    "Documentation & Collaboration": 4
+  },
+  skillDisplayCategoryOverrides: {
+    "RHEL 9": "Systems & Infrastructure",
+    "Linux": "Systems & Infrastructure",
+    "Bash": "Automation & Scripting",
+    "systemd": "Systems & Infrastructure",
+    "cron": "Systems & Infrastructure",
+    "deployment automation": "DevOps & Tooling",
+    "deployment validation": "Testing & Quality",
+    "automated validation": "Testing & Quality",
+    "technical documentation": "Documentation & Collaboration",
+    "Agile": "Documentation & Collaboration"
+  },
+  excludedSkillNames: [
+    "Java", "C++", "C#", "Ada", "Swing", "JavaFX",
+    "DOORS", "Bitbucket", "Jenkins", "Artifactory", "Coverity", "Collaborator", "Jira",
+    "Kubernetes", "Terraform", "Azure", "GCP", "PowerShell", "Debian 13",
+    "dependency management", "Docker Compose", "containerized services", "rsync", "SSH", "release packaging", "SQLAlchemy", "Alembic",
+    "Vitest", "Playwright", "browser testing",
+    "React", "TypeScript", "JavaScript", "Next.js", "GraphQL",
+    "scikit-learn", "sentence-transformers", "semantic embeddings", "TF-IDF", "Naive Bayes",
+    "AI-assisted development", "prompt engineering", "Hugging Face Transformers",
+    "HLS", "hls.js", "Web Audio API", "FFmpeg", "media metadata",
+    "metadata inheritance", "publishing workflows", "application modernization"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-001",
+      "roth-system-engineer-i-003",
+      "roth-system-engineer-i-010"
+    ],
+    "2026-06-xx_xxxx-xx-xx_offline-dev-lab": [
+      "offline-dev-lab-009",
+      "offline-dev-lab-005"
+    ],
+    "2026-07-xx_xxxx-xx-xx_century-solar": [
+      "century-solar-full-stack-001",
+      "century-solar-qa-001"
+    ],
+    "2026-05-01_2026-06-01_signalstack": [
+      "signalstack-007"
+    ]
+  },
+  jobBulletLimitsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": 3
+  },
+  projectBulletLimitsByItem: {
+    "2026-06-xx_xxxx-xx-xx_offline-dev-lab": 2,
+    "2026-07-xx_xxxx-xx-xx_century-solar": 2,
+    "2026-05-01_2026-06-01_signalstack": 1
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i"
+    ],
+    projectIds: [
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab",
+      "2026-07-xx_xxxx-xx-xx_century-solar",
+      "2026-05-01_2026-06-01_signalstack"
+    ],
+    educationIds: sharedEducationIds,
+    certificationIds: []
+  },
+  layout: {
+    maxSkillGroups: 10,
+    maxSkillsPerGroup: 7,
+    maxSkillsTotal: 32,
+    maxJobBullets: 3,
+    maxExperienceBullets: 3,
+    maxProjectBullets: 2,
+    maxProjectBulletsTotal: 5
+  }
+});
+
+
+roleDefinitions.push({
+  id: "radiometer-application-support-consultant-brea-ca",
+  label: "Radiometer — Application Support Consultant (Brea, CA)",
+  familyId: "application-support",
+  modifierIds: [
+    "production-support",
+    "corporate-it-operations",
+    "identity-access-management"
+  ],
+  aliases: [
+    "Radiometer Application Support Consultant",
+    "Application Support Consultant",
+    "Business Application Support Consultant",
+    "Application Support Analyst"
+  ],
+  headline: "APPLICATION SUPPORT CONSULTANT | SERVICENOW, SPLUNK & ITIL | BUSINESS SYSTEMS",
+  summary: "ITIL 4-certified application-support professional with 3+ years supporting enterprise applications and users across business-critical environments. Experience includes incident and service-request troubleshooting, application monitoring, user access and endpoint support, ServiceNow, Splunk, Active Directory, Microsoft 365, technical documentation, cross-team escalation, and operational support across test and production systems.",
+  preferredFocusAreas: [
+    "incident-analysis",
+    "customer-user-support",
+    "stakeholder-support",
+    "identity-access",
+    "monitoring-observability",
+    "documentation",
+    "infrastructure-operations",
+    "deployment-change"
+  ],
+  preferredBulletBoost: 125,
+  preservePreferredBulletOrder: true,
+  categoryOrder: [
+    "Application Support",
+    "Enterprise Support",
+    "Monitoring & Support",
+    "Identity & Access",
+    "Customer & User Support",
+    "Documentation & Collaboration",
+    "Endpoint & IT Support",
+    "Automation & Scripting",
+    "Systems & Infrastructure",
+    "DevOps & Tooling",
+    "Programming & Scripting",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "Application Support": 6,
+    "Enterprise Support": 6,
+    "Monitoring & Support": 5,
+    "Identity & Access": 5,
+    "Customer & User Support": 4,
+    "Documentation & Collaboration": 5,
+    "Endpoint & IT Support": 5,
+    "Automation & Scripting": 3,
+    "Systems & Infrastructure": 3,
+    "DevOps & Tooling": 2,
+    "Programming & Scripting": 2
+  },
+  skillDisplayCategoryOverrides: {
+    "technical documentation": "Documentation & Collaboration",
+    "runbooks": "Documentation & Collaboration",
+    "SOPs": "Documentation & Collaboration",
+    "RCA documentation": "Documentation & Collaboration",
+    "CMDB notes": "Documentation & Collaboration",
+    "handoff documentation": "Documentation & Collaboration",
+    "ticket notes": "Documentation & Collaboration",
+    "support handoffs": "Documentation & Collaboration",
+    "cross-team support": "Documentation & Collaboration",
+    "incident triage": "Application Support",
+    "incident management": "Application Support",
+    "service requests": "Application Support",
+    "SLA awareness": "Application Support",
+    "root-cause analysis": "Application Support",
+    "Microsoft Office 365": "Enterprise Support",
+    "Windows": "Endpoint & IT Support",
+    "macOS": "Endpoint & IT Support"
+  },
+  excludedSkillNames: [
+    "Oracle WebLogic", "Oracle Service Bus", "IBM MQ", "Tomcat/TomEE", "Apache HTTP Server",
+    "JDK", "Java middleware", "CyberArk", "LDAP", "service accounts", "Microsoft Office 365", "developer support",
+    "AWS", "Azure", "GCP", "Kubernetes", "Terraform", "CI/CD concepts",
+    "React", "TypeScript", "JavaScript", "FastAPI", "REST APIs", "PostgreSQL", "SQLAlchemy", "Alembic",
+    "pytest", "Vitest", "Playwright", "scikit-learn", "Hugging Face Transformers",
+    "AI-assisted development", "prompt engineering", "media validation", "transcoding", "HLS",
+    "rsync", "SSH", "release packaging", "application modernization"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-001",
+      "roth-system-engineer-i-008",
+      "roth-system-engineer-i-011"
+    ],
+    "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": [
+      "randstad-jr-deskside-technician-001",
+      "randstad-jr-deskside-technician-004",
+      "randstad-jr-deskside-technician-005"
+    ]
+  },
+  jobBulletLimitsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": 3,
+    "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": 3
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+    ],
+    projectIds: [],
+    educationIds: sharedEducationIds,
+    certificationIds: [
+      "2021-06-12_xxxx-xx-xx_peoplecert-axelos_itil-4-foundation"
+    ]
+  },
+  layout: {
+    maxSkillGroups: 9,
+    maxSkillsPerGroup: 6,
+    maxSkillsTotal: 30,
+    maxJobBullets: 3,
+    maxJobBulletsWhenTwoJobs: 3,
+    maxExperienceBullets: 6,
+    maxProjectBullets: 0,
+    maxProjectBulletsTotal: 0
+  }
+});
+
+
+roleDefinitions.push({
+  id: "fieldai-network-solutions-engineer-irvine",
+  label: "FieldAI — Network Solutions Engineer (Irvine, CA)",
+  familyId: "technical-field",
+  modifierIds: [
+    "network-administration",
+    "product-operations-sustainment"
+  ],
+  aliases: [
+    "FieldAI Network Solutions Engineer",
+    "Network Solutions Engineer",
+    "Network Solution Engineer",
+    "Field Network Engineer"
+  ],
+  headline: "NETWORK SOLUTIONS ENGINEER | LINUX, NETWORK TROUBLESHOOTING & FIELD SUPPORT",
+  summary: "Systems and support engineer with 3+ years across enterprise RHEL application operations and user-facing IT support, focused on cross-layer troubleshooting, Linux, network incidents, monitoring, automation, and clear technical communication. Professional experience includes resolving approximately 30 weekly device, software, access, and network incidents, supporting RHEL services, writing runbooks, and building Bash monitoring; independent infrastructure work adds Linux host configuration with DNS, firewall rules, and SSH deployment access.",
+  preferredFocusAreas: [
+    "incident-analysis",
+    "infrastructure-operations",
+    "monitoring-observability",
+    "customer-user-support",
+    "stakeholder-support",
+    "automation",
+    "documentation",
+    "hardware-repair"
+  ],
+  preferredBulletBoost: 125,
+  preservePreferredBulletOrder: true,
+  preserveDefaultProjectOrder: true,
+  categoryOrder: [
+    "Networking & Security",
+    "Systems & Infrastructure",
+    "Monitoring & Support",
+    "Customer & User Support",
+    "Hardware & Field Systems",
+    "Automation & Scripting",
+    "Documentation & Collaboration",
+    "Enterprise Support",
+    "DevOps & Tooling",
+    "Programming & Scripting",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "Networking & Security": 7,
+    "Systems & Infrastructure": 5,
+    "Monitoring & Support": 7,
+    "Customer & User Support": 4,
+    "Hardware & Field Systems": 3,
+    "Automation & Scripting": 4,
+    "Documentation & Collaboration": 5,
+    "Enterprise Support": 3,
+    "DevOps & Tooling": 3,
+    "Programming & Scripting": 2
+  },
+  skillDisplayCategoryOverrides: {
+    "RHEL 9": "Systems & Infrastructure",
+    "Linux": "Systems & Infrastructure",
+    "Linux server administration": "Systems & Infrastructure",
+    "Debian 13": "Systems & Infrastructure",
+    "network troubleshooting": "Networking & Security",
+    "TCP/IP": "Networking & Security",
+    "DNS": "Networking & Security",
+    "VPN": "Networking & Security",
+    "firewall configuration": "Networking & Security",
+    "SSH": "Systems & Infrastructure",
+    "Splunk": "Monitoring & Support",
+    "availability monitoring": "Monitoring & Support",
+    "capacity monitoring": "Monitoring & Support",
+    "monitoring automation": "Monitoring & Support",
+    "threshold alerting": "Monitoring & Support",
+    "incident management": "Monitoring & Support",
+    "service requests": "Monitoring & Support",
+    "hardware troubleshooting": "Hardware & Field Systems",
+    "runbooks": "Documentation & Collaboration",
+    "SOPs": "Documentation & Collaboration",
+    "RCA documentation": "Documentation & Collaboration",
+    "ticket notes": "Documentation & Collaboration",
+    "ServiceNow": "Enterprise Support"
+  },
+  excludedSkillNames: [
+    "soldering", "electronics diagnostics", "firmware", "calibration", "audio equipment", "Raspberry Pi", "Ubuntu",
+    "Windows", "macOS", "SCCM/MECM", "Active Directory", "MFA", "Microsoft Office 365",
+    "domain management", "mail forwarding", "public/private data separation", "web server configuration",
+    "Oracle WebLogic", "Oracle Service Bus", "IBM MQ", "Tomcat/TomEE", "Apache HTTP Server", "JDK", "Java middleware",
+    "AWS", "Azure", "GCP", "Kubernetes", "Terraform", "React", "TypeScript", "JavaScript", "FastAPI", "REST APIs", "PostgreSQL",
+    "pytest", "Vitest", "Playwright", "scikit-learn", "Hugging Face Transformers", "AI-assisted development", "prompt engineering",
+    "Wi-Fi", "LTE", "5G", "APN", "SIM provisioning", "VLAN", "NAT", "MAC allowlisting", "routers", "access points",
+    "PowerShell", "Docker Compose", "containerized services", "dependency management", "Git", "rsync", "deployment automation", "release packaging",
+    "deployment manifests", "release artifact validation", "rollback", "service recovery", "deployment validation",
+    "CPU monitoring", "memory monitoring", "storage monitoring", "email alerts", "threshold alerting", "capacity monitoring", "service requests"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-003",
+      "roth-system-engineer-i-012",
+      "roth-system-engineer-i-008"
+    ],
+    "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": [
+      "randstad-jr-deskside-technician-001",
+      "randstad-jr-deskside-technician-004",
+      "randstad-jr-deskside-technician-005"
+    ],
+    "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": [
+      "hiplingo-media-platform-006"
+    ]
+  },
+  jobBulletLimitsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": 3,
+    "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician": 3
+  },
+  projectBulletLimitsByItem: {
+    "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": 1
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+    ],
+    projectIds: [
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform"
+    ],
+    educationIds: sharedEducationIds,
+    certificationIds: []
+  },
+  layout: {
+    maxSkillGroups: 9,
+    maxSkillsPerGroup: 7,
+    maxSkillsTotal: 30,
+    maxJobBullets: 3,
+    maxJobBulletsWhenTwoJobs: 3,
+    maxExperienceBullets: 6,
+    maxProjectBullets: 1,
+    maxProjectBulletsTotal: 1
+  }
+});
+
 const durableRoleIds = [
   "full-stack-software-engineer",
   "qa-automation-engineer",
@@ -6533,7 +7460,301 @@ const durableRoleIds = [
   "electromechanical-equipment-repair-technician"
 ];
 
+roleDefinitions.push({
+  id: "streamland-media-picture-shop-data-io-operator",
+  label: "Picture Shop / Streamland Media — Data I/O Operator",
+  familyId: "media-systems",
+  modifierIds: ["media", "transcode", "data-io", "studio-delivery"],
+  aliases: [
+    "Picture Shop Data I/O Operator",
+    "Streamland Media Data I/O Operator",
+    "Data I/O Operator — Picture Shop",
+    "Media Data I/O Operator",
+    "Post-Production Data I/O Operator"
+  ],
+  headline: "DATA I/O OPERATOR | LINUX, MEDIA INGEST & FILE DELIVERY",
+  summary: "Post-production media operations and systems professional with experience in high-volume tape/file ingest, transcoding, DCP/IMF workflows, archival capture, media packaging, metadata and naming validation, SAN/NAS storage workflows, and major-studio delivery. Recent RHEL systems work adds Linux/Bash troubleshooting, storage-capacity monitoring, and documented operational handoffs; current Hiplingo work adds FFmpeg, SHA-256 manifests, checksum validation, SSH/rsync transfers, and guarded media packaging.",
+  preferredFocusAreas: [
+    "media-processing",
+    "infrastructure-operations",
+    "testing-validation",
+    "automation",
+    "incident-analysis",
+    "documentation",
+    "stakeholder-support",
+    "security-compliance"
+  ],
+  preferredBulletBoost: 150,
+  preservePreferredBulletOrder: true,
+  preserveDefaultProjectOrder: true,
+  categoryOrder: [
+    "Media Processing",
+    "Media I/O & Delivery",
+    "Archive & Tape Workflows",
+    "Storage & File Systems",
+    "Operating Systems & CLI",
+    "Data Integrity & Validation",
+    "Media Systems Support",
+    "Automation & Scripting",
+    "DevOps & Tooling",
+    "Documentation & Collaboration",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "Media Processing": 10,
+    "Media I/O & Delivery": 10,
+    "Archive & Tape Workflows": 7,
+    "Storage & File Systems": 7,
+    "Operating Systems & CLI": 7,
+    "Data Integrity & Validation": 7,
+    "Media Systems Support": 6,
+    "Automation & Scripting": 4,
+    "DevOps & Tooling": 5,
+    "Documentation & Collaboration": 4
+  },
+  skillDisplayCategoryOverrides: {
+    "media ingest": "Media I/O & Delivery",
+    "file movement": "Media I/O & Delivery",
+    "file packaging": "Media I/O & Delivery",
+    "deliverable formats": "Media I/O & Delivery",
+    "storage management": "Storage & File Systems",
+    "SAN": "Storage & File Systems",
+    "NAS": "Storage & File Systems",
+    "network storage workflows": "Storage & File Systems",
+    "Linux": "Operating Systems & CLI",
+    "Windows": "Operating Systems & CLI",
+    "macOS": "Operating Systems & CLI",
+    "Linux exposure": "Operating Systems & CLI",
+    "Red Hat exposure": "Operating Systems & CLI",
+    "command-line workflows": "Operating Systems & CLI",
+    "Bash": "Operating Systems & CLI",
+    "tape capture": "Archive & Tape Workflows",
+    "archival tape capture": "Archive & Tape Workflows",
+    "Sony HDCAM-SR": "Archive & Tape Workflows",
+    "metadata validation": "Data Integrity & Validation",
+    "metadata requirements": "Data Integrity & Validation",
+    "file naming conventions": "Data Integrity & Validation",
+    "quality control": "Data Integrity & Validation",
+    "automated QC": "Data Integrity & Validation",
+    "checksum validation": "Data Integrity & Validation",
+    "SHA-256 integrity validation": "Data Integrity & Validation",
+    "media validation": "Data Integrity & Validation",
+    "controlled media handling": "Data Integrity & Validation",
+    "DaVinci Resolve": "Media Processing",
+    "Digital Rapids StreamZFE": "Media Processing",
+    "DVS Clipster": "Media Processing",
+    "DCP": "Media I/O & Delivery",
+    "IMF": "Media I/O & Delivery",
+    "ProRes HQ": "Media I/O & Delivery",
+    "JPEG 2000": "Media I/O & Delivery",
+    "monitoring automation": "Operating Systems & CLI",
+    "release packaging": "Media I/O & Delivery",
+    "publishing workflows": "Media I/O & Delivery"
+  },
+  excludedSkillNames: [
+    "HLS", "hls.js", "HTML5 Audio", "Web Audio API", "waveform visualization",
+    "oscilloscope visualization", "waveform generation", "Node.js", "Canvas 2D API",
+    "responsive UI", "metadata inheritance", "atomic deployment", "rollback",
+    "deployment automation", "deployment manifests", "deployment validation",
+    "release artifact validation", "Git", "React", "TypeScript", "Vite",
+    "Fusion", "compositing", "art direction", "parallax",
+    "AI-assisted development", "prompt engineering"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-012"
+    ],
+    "2017-03-15_2018-11-09_post-haste-digital_encode-transcode-specialist": [
+      "post-haste-digital-encode-transcode-specialist-009",
+      "post-haste-digital-encode-transcode-specialist-002",
+      "post-haste-digital-encode-transcode-specialist-008",
+      "post-haste-digital-encode-transcode-specialist-001"
+    ],
+    "2012-02-01_2014-04-14_roundabout-entertainment_encoding-operator": [
+      "roundabout-entertainment-encoding-operator-001",
+      "roundabout-entertainment-encoding-operator-007",
+      "roundabout-entertainment-encoding-operator-003"
+    ],
+    "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": [
+      "hiplingo-media-platform-013"
+    ]
+  },
+  jobBulletLimitsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": 1,
+    "2017-03-15_2018-11-09_post-haste-digital_encode-transcode-specialist": 4,
+    "2012-02-01_2014-04-14_roundabout-entertainment_encoding-operator": 3
+  },
+  projectBulletLimitsByItem: {
+    "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform": 1
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2017-03-15_2018-11-09_post-haste-digital_encode-transcode-specialist",
+      "2012-02-01_2014-04-14_roundabout-entertainment_encoding-operator"
+    ],
+    projectIds: [
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform"
+    ],
+    educationIds: sharedEducationIds,
+    certificationIds: []
+  },
+  layout: {
+    maxSkillGroups: 9,
+    maxSkillsPerGroup: 7,
+    maxSkillsTotal: 40,
+    maxJobBullets: 4,
+    maxJobBulletsWhenTwoJobs: 4,
+    maxExperienceBullets: 8,
+    maxProjectBullets: 1,
+    maxProjectBulletsTotal: 1
+  }
+});
+
+roleDefinitions.push({
+  id: "streamland-media-picture-shop-color-assist",
+  label: "Picture Shop / Streamland Media — Color Assist",
+  familyId: "media-systems",
+  modifierIds: ["media", "creative-media", "transcode", "color-finishing"],
+  aliases: [
+    "Picture Shop Color Assist",
+    "Streamland Media Color Assist",
+    "Color Assist — Picture Shop",
+    "Color Assistant",
+    "Post-Production Color Assist"
+  ],
+  headline: "COLOR ASSIST | DAVINCI RESOLVE, VIDEO SCOPES & MEDIA WORKFLOWS",
+  summary: "Post-production media professional with hands-on studio experience across encoding/transcoding, file-based delivery, frame-accurate versioning, media QC, and DaVinci Resolve, with familiarity using video scopes including vectorscope, histogram, and waveform monitoring and color-space fundamentals including RGB, YUV/Y'CbCr, and Rec.709. Major-studio and platform work included client-spec deliverables, timecode/burn-in assets, controlled media handling, render-queue monitoring, and cross-team QC/delivery coordination; recent enterprise systems work adds disciplined technical troubleshooting and application support.",
+  preferredFocusAreas: [
+    "media-processing",
+    "testing-validation",
+    "incident-analysis",
+    "stakeholder-support",
+    "documentation",
+    "security-compliance"
+  ],
+  preferredBulletBoost: 160,
+  preservePreferredBulletOrder: true,
+  preserveDefaultProjectOrder: true,
+  categoryOrder: [
+    "Post-Production & Conform",
+    "Color & Signal Monitoring",
+    "Color & Broadcast Standards",
+    "Media Processing",
+    "Studio Delivery & QC",
+    "Operating Systems & CLI",
+    "Documentation & Collaboration",
+    "Programming & Scripting",
+    "DevOps & Tooling",
+    "Other"
+  ],
+  skillGroupLimits: {
+    "Post-Production & Conform": 7,
+    "Color & Signal Monitoring": 7,
+    "Color & Broadcast Standards": 7,
+    "Media Processing": 8,
+    "Studio Delivery & QC": 7,
+    "Operating Systems & CLI": 6,
+    "Documentation & Collaboration": 5,
+    "Programming & Scripting": 3,
+    "DevOps & Tooling": 3
+  },
+  skillDisplayCategoryOverrides: {
+    "DaVinci Resolve": "Post-Production & Conform",
+    "frame accuracy": "Post-Production & Conform",
+    "timecode burn-ins": "Post-Production & Conform",
+    "textless materials": "Post-Production & Conform",
+    "pseudo-textless versioning": "Post-Production & Conform",
+    "vectorscope": "Color & Signal Monitoring",
+    "histogram": "Color & Signal Monitoring",
+    "histogram monitoring": "Color & Signal Monitoring",
+    "video scopes": "Color & Signal Monitoring",
+    "waveform monitor": "Color & Signal Monitoring",
+    "video monitors": "Color & Signal Monitoring",
+    "RGB": "Color & Broadcast Standards",
+    "YUV/Y'CbCr": "Color & Broadcast Standards",
+    "Rec.709": "Color & Broadcast Standards",
+    "quality control": "Studio Delivery & QC",
+    "automated QC": "Studio Delivery & QC",
+    "Fox Spec": "Studio Delivery & QC",
+    "metadata accuracy": "Studio Delivery & QC",
+    "delivery readiness": "Studio Delivery & QC",
+    "controlled media handling": "Studio Delivery & QC",
+    "major studio deliverables": "Studio Delivery & QC",
+    "encoding": "Media Processing",
+    "transcoding": "Media Processing",
+    "AviSynth": "Media Processing",
+    "FFmpeg": "Media Processing",
+    "MediaInfo": "Media Processing",
+    "Linux": "Operating Systems & CLI",
+    "Windows": "Operating Systems & CLI",
+    "macOS": "Operating Systems & CLI",
+    "Linux exposure": "Operating Systems & CLI",
+    "Red Hat exposure": "Operating Systems & CLI",
+    "Bash": "Operating Systems & CLI",
+    "project manager coordination": "Documentation & Collaboration",
+    "QC operator coordination": "Documentation & Collaboration",
+    "deadline coordination": "Documentation & Collaboration",
+    "delivery notes": "Documentation & Collaboration"
+  },
+  excludedSkillNames: [
+    "HLS", "hls.js", "HTML5 Audio", "Web Audio API", "waveform visualization",
+    "oscilloscope visualization", "waveform generation", "Node.js", "Canvas 2D API",
+    "responsive UI", "metadata inheritance", "atomic deployment", "rollback",
+    "deployment automation", "deployment manifests", "deployment validation",
+    "release artifact validation", "Git", "React", "TypeScript", "Vite",
+    "Fusion", "compositing", "art direction", "parallax",
+    "AI-assisted development", "prompt engineering",
+    "Avid Media Composer", "Avid", "Autodesk Flame", "Flame", "Baselight",
+    "EDL", "AAF", "Dolby Vision", "DolbyVision", "HDR", "UHD", "4K",
+    "title safe", "color tracing"
+  ],
+  preferredBulletIdsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": [
+      "roth-system-engineer-i-007"
+    ],
+    "2017-03-15_2018-11-09_post-haste-digital_encode-transcode-specialist": [
+      "post-haste-digital-encode-transcode-specialist-007",
+      "post-haste-digital-encode-transcode-specialist-003",
+      "post-haste-digital-encode-transcode-specialist-005",
+      "post-haste-digital-encode-transcode-specialist-010"
+    ],
+    "2012-02-01_2014-04-14_roundabout-entertainment_encoding-operator": [
+      "roundabout-entertainment-encoding-operator-006",
+      "roundabout-entertainment-encoding-operator-007",
+      "roundabout-entertainment-encoding-operator-012"
+    ]
+  },
+  jobBulletLimitsByItem: {
+    "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i": 1,
+    "2017-03-15_2018-11-09_post-haste-digital_encode-transcode-specialist": 4,
+    "2012-02-01_2014-04-14_roundabout-entertainment_encoding-operator": 3
+  },
+  selections: {
+    jobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2017-03-15_2018-11-09_post-haste-digital_encode-transcode-specialist",
+      "2012-02-01_2014-04-14_roundabout-entertainment_encoding-operator"
+    ],
+    projectIds: [],
+    educationIds: sharedEducationIds,
+    certificationIds: []
+  },
+  layout: {
+    maxSkillGroups: 9,
+    maxSkillsPerGroup: 7,
+    maxSkillsTotal: 38,
+    maxJobBullets: 4,
+    maxJobBulletsWhenTwoJobs: 4,
+    maxExperienceBullets: 8,
+    maxProjectBullets: 0,
+    maxProjectBulletsTotal: 0
+  }
+});
+
 const targetedRoleIds = [
+  "streamland-media-picture-shop-color-assist",
+  "streamland-media-picture-shop-data-io-operator",
   "esri-arcgis-enterprise-build-release-engineer",
   "esri-arcgis-pro-generative-ai-product-engineer",
   "cityside-fiber-information-systems-developer",
@@ -6564,10 +7785,26 @@ const targetedRoleIds = [
   "black-canyon-consulting-junior-mid-full-stack-software-engineer-7715282003",
   "tevora-associate-developer-i",
   "energy-solutions-software-engineer-i-orange-ca",
-  "panasonic-avionics-software-quality-engineer-i-req154478"
+  "application-developer-consumer-web-startup",
+  "ai-engineer-irvine-accounting-automation",
+  "pwc-genai-python-systems-engineer-experienced-associate-727083wd",
+  "raytheon-software-engineer-ii-air-c2-battlefield-sensors",
+  "radiometer-application-support-consultant-brea-ca",
+  "fieldai-network-solutions-engineer-irvine",
+  "panasonic-avionics-software-quality-engineer-i-req154478",
+  "general-automotive-automotive-technician-trainee"
 ];
 
 const historicalRoleBaseMappings = {
+  "streamland-media-picture-shop-color-assist": "media-systems-technician",
+  "streamland-media-picture-shop-data-io-operator": "media-systems-technician",
+  "fieldai-network-solutions-engineer-irvine": "platform-reliability-engineer",
+  "radiometer-application-support-consultant-brea-ca": "application-production-support-engineer",
+  "raytheon-software-engineer-ii-air-c2-battlefield-sensors": "full-stack-software-engineer",
+  "pwc-genai-python-systems-engineer-experienced-associate-727083wd": "applied-ai-engineer",
+  "ai-engineer-irvine-accounting-automation": "applied-ai-engineer",
+  "application-developer-consumer-web-startup": "full-stack-software-engineer",
+  "general-automotive-automotive-technician-trainee": "electromechanical-equipment-repair-technician",
   "energy-solutions-software-engineer-i-orange-ca": "full-stack-software-engineer",
   "panasonic-avionics-software-quality-engineer-i-req154478": "qa-automation-engineer",
   "crowe-machine-learning-software-engineer-1-r71006": "applied-ai-engineer",

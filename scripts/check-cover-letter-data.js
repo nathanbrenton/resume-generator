@@ -87,4 +87,19 @@ const combinedText = letter.paragraphs.join(" ");
     `Energy Solutions cover letter must not claim unsupported technology: ${unsupported}`);
 });
 
+
+const automotiveRoleId = "general-automotive-automotive-technician-trainee";
+const automotiveLetter = coverLetters[automotiveRoleId];
+assert(automotiveLetter, `Missing cover letter for ${automotiveRoleId}`);
+assert.equal(automotiveLetter.company, "");
+assert.deepEqual(Array.from(automotiveLetter.recipientLines), []);
+assert.equal(automotiveLetter.salutation, "Hi,");
+assert(automotiveLetter.paragraphs.length >= 2 && automotiveLetter.paragraphs.length <= 3,
+  "Automotive trainee cover letter should remain brief and informal-professional");
+assert(automotiveLetter.paragraphs.join(" ").includes("Sewing Machine Technician"));
+assert(automotiveLetter.paragraphs.join(" ").includes("soldering"));
+assert(automotiveLetter.paragraphs.join(" ").includes("IT"));
+assert(automotiveLetter.paragraphs.join(" ").includes("live sound/PA systems"));
+assert.equal(automotiveLetter.signature, "Nathan Brenton");
+
 console.log("Cover letter data checks passed.");
