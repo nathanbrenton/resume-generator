@@ -140,562 +140,251 @@ const project20260501SignalStack = {
 
   bullets: [
     {
-      id: "signalstack-nakedmd-ai-application-001",
-      text: "Built a containerized Python/FastAPI/PostgreSQL AI application with API ingestion, normalization, duplicate detection, semantic retrieval, ML classification, health visibility, and tested dashboard workflows.",
-      printText: "Built a containerized Python/FastAPI/PostgreSQL AI app with ingestion, validation, semantic retrieval, ML classification, health checks, and dashboards.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: ["AI Application Developer — Secure Workflow Automation"],
-      skillTags: [
-        { category: "Full-Stack Development", name: "Python" },
-        { category: "Full-Stack Development", name: "FastAPI" },
-        { category: "APIs & Data", name: "REST APIs" },
-        { category: "APIs & Data", name: "PostgreSQL" },
-        { category: "AI & Automation", name: "semantic retrieval" },
-        { category: "AI & Automation", name: "ML classification" },
-        { category: "DevOps & Tooling", name: "Docker" }
-      ]
-    },
+          id: "signalstack-001",
+          text: "Built an AI-powered news intelligence platform with FastAPI, PostgreSQL, SQLAlchemy, Alembic, Docker, scikit-learn, sentence-transformers, and a lightweight JavaScript dashboard.",
+          printText: "Developed a FastAPI/PostgreSQL AI retrieval platform using sentence-transformer embeddings, hybrid search, and scikit-learn classification.",
+          includeByDefault: true,
+          targetRoles: [
+            "Platform Engineer",
+            "Software Engineer",
+            "AI/ML Engineer",
+            "MLOps / AI Infrastructure",
+            "Linux Administrator",
+            "Systems Administrator"
+          ],
+          focusAreas: [
+            "software-development",
+            "ai-ml",
+            "api-integration",
+            "data-databases"
+          ],
+          skillTags: [
+            { category: "Web & API Development", name: "FastAPI" },
+            { category: "Databases", name: "PostgreSQL" },
+            { category: "Databases", name: "SQLAlchemy" },
+            { category: "Databases", name: "Alembic" },
+            { category: "DevOps & Tooling", name: "Docker" },
+            { category: "AI/ML", name: "scikit-learn" },
+            { category: "AI/ML", name: "sentence-transformers" },
+            { category: "AI/ML", name: "semantic embeddings" },
+            { category: "AI/ML", name: "hybrid retrieval" }
+          ]
+        },
     {
-      id: "signalstack-ai-business-automation-001",
-      text: "Built a containerized Python/FastAPI/PostgreSQL platform with API-based ingestion, normalization, duplicate detection, semantic retrieval, ML classification, health visibility, and dashboard workflows.",
-      printText: "Built a containerized Python/FastAPI/PostgreSQL platform with API ingestion, normalization, duplicate detection, semantic retrieval, ML classification, and dashboards.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: ["AI Automation Engineer — Business Systems Integration"],
-      skillTags: [
-        { category: "Programming & APIs", name: "Python" },
-        { category: "Programming & APIs", name: "FastAPI" },
-        { category: "Programming & APIs", name: "REST APIs" },
-        { category: "Data & AI", name: "PostgreSQL" },
-        { category: "Data & AI", name: "SQL" },
-        { category: "Data & AI", name: "ingestion pipelines" },
-        { category: "Data & AI", name: "normalization" },
-        { category: "Data & AI", name: "duplicate detection" },
-        { category: "Data & AI", name: "semantic retrieval" },
-        { category: "Data & AI", name: "ML classification" },
-        { category: "DevOps & Tooling", name: "Docker" }
-      ]
-    },
+          id: "signalstack-002",
+          text: "Implemented RSS ingestion workflows that synchronize feed sources, normalize article data, detect duplicates, clean text, and expose feed health/error visibility.",
+          printText: "Implemented RSS ingestion, article normalization, duplicate detection, and feed health visibility.",
+          includeByDefault: true,
+          targetRoles: [
+            "Platform Engineer",
+            "Software Engineer",
+            "Support Engineer",
+            "Technical Coordinator",
+            "Systems Administrator"
+          ],
+          focusAreas: [
+            "automation",
+            "data-databases",
+            "monitoring-observability"
+          ],
+          skillTags: [
+            { category: "Web & API Development", name: "RSS ingestion" },
+            { category: "Databases", name: "article normalization" },
+            { category: "IT Service Management", name: "feed health visibility" },
+            { category: "Documentation", name: "operational documentation" }
+          ]
+        },
     {
-      id: "signalstack-aveva-tech-support-001",
-      text: "Built a containerized FastAPI/PostgreSQL application with SQL-backed retrieval, health visibility, REST workflows, diagnostics, and dashboard controls.",
-      printText: "Built a containerized FastAPI/PostgreSQL app with SQL-backed retrieval, health visibility, REST workflows, diagnostics, and dashboards.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: ["Technical Support Engineer — Industrial Applications"],
-      skillTags: [
-        { category: "Programming & Automation", name: "Python" },
-        { category: "Software & Databases", name: "SQL" },
-        { category: "Software & Databases", name: "PostgreSQL" },
-        { category: "Software & Databases", name: "REST APIs" },
-        { category: "Monitoring & Diagnostics", name: "health visibility" },
-        { category: "DevOps & Testing", name: "Docker" }
-      ]
-    },
+          id: "signalstack-003",
+          text: "Designed PostgreSQL-backed article search with keyword filtering, phrase search, metadata filtering, TSVECTOR full-text search, ranking, pagination, and sorting.",
+          printText: "Built full-text, semantic, hybrid, and related-article search over PostgreSQL-backed news data.",
+          includeByDefault: true,
+          targetRoles: [
+            "Platform Engineer",
+            "Software Engineer",
+            "AI/ML Engineer",
+            "Cybersecurity Analyst",
+            "Security Analyst"
+          ],
+          focusAreas: [
+            "software-development",
+            "data-databases",
+            "ai-ml"
+          ],
+          skillTags: [
+            { category: "Databases", name: "PostgreSQL" },
+            { category: "Databases", name: "full-text search" },
+            { category: "Databases", name: "TSVECTOR" },
+            { category: "Web & API Development", name: "search APIs" },
+            { category: "AI/ML", name: "hybrid retrieval" }
+          ]
+        },
     {
-      id: "signalstack-ust-infrastructure-001",
-      text: "Built a containerized FastAPI/PostgreSQL platform with automated ingestion, health visibility, API-backed workflows, diagnostics, and dashboard controls.",
-      printText: "Built a containerized FastAPI/PostgreSQL platform with automated ingestion, health visibility, diagnostics, and dashboard controls.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: ["Infrastructure Analyst — Deployment & Operations"],
-      skillTags: [
-        { category: "Programming & Automation", name: "Python" },
-        { category: "Databases & Applications", name: "FastAPI" },
-        { category: "Databases & Applications", name: "REST APIs" },
-        { category: "Databases & Applications", name: "PostgreSQL" },
-        { category: "DevOps & Tooling", name: "Docker" },
-        { category: "Monitoring & Support", name: "health checks" },
-        { category: "Monitoring & Support", name: "operational diagnostics" }
-      ]
-    },
+          id: "signalstack-004",
+          text: "Implemented semantic and hybrid retrieval workflows using local sentence-transformer embeddings, cosine similarity, related-article lookup, and keyword + semantic ranking.",
+          printText: "Generated local sentence-transformer embeddings for semantic search and similarity retrieval.",
+          includeByDefault: true,
+          targetRoles: [
+            "AI/ML Engineer",
+            "MLOps / AI Infrastructure",
+            "Software Engineer",
+            "Platform Engineer"
+          ],
+          focusAreas: [
+            "ai-ml",
+            "data-databases"
+          ],
+          skillTags: [
+            { category: "AI/ML", name: "sentence-transformers" },
+            { category: "AI/ML", name: "semantic embeddings" },
+            { category: "AI/ML", name: "cosine similarity" },
+            { category: "AI/ML", name: "semantic search" },
+            { category: "AI/ML", name: "hybrid retrieval" }
+          ]
+        },
     {
-      id: "signalstack-blizzard-reliability-001",
-      text: "Built a containerized FastAPI/PostgreSQL platform with automated ingestion, duplicate detection, retrieval, ML classification, health visibility, tested service workflows, and dashboard controls.",
-      printText: "Built a containerized FastAPI/PostgreSQL platform with automated ingestion, health visibility, tested workflows, and dashboard controls.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: ["Associate Software Engineer — Reliability"],
-      skillTags: [
-        { category: "Programming & Automation", name: "Python" },
-        { category: "Deployment & DevOps", name: "Docker" },
-        { category: "Databases & APIs", name: "FastAPI" },
-        { category: "Databases & APIs", name: "REST APIs" },
-        { category: "Databases & APIs", name: "PostgreSQL" },
-        { category: "Monitoring & Incident Management", name: "health checks" },
-        { category: "Testing & Validation", name: "integration testing" }
-      ]
-    },
+          id: "signalstack-005",
+          text: "Built an applied ML classification workflow using weak-supervision training labels, TF-IDF vectorization, Naive Bayes classification, confidence scoring, and persisted model artifacts.",
+          printText: "Built weak-label training data and trained scikit-learn Naive Bayes classifiers using TF-IDF features, persisting model artifacts.",
+          includeByDefault: true,
+          strength: "primary",
+          targetRoles: [
+            "AI/ML Engineer",
+            "MLOps / AI Infrastructure",
+            "Software Engineer"
+          ],
+          focusAreas: [
+            "ai-ml",
+            "testing-validation"
+          ],
+          skillTags: [
+            { category: "Programming & Scripting", name: "Python" },
+            { category: "AI/ML", name: "scikit-learn" },
+            { category: "AI/ML", name: "TF-IDF" },
+            { category: "AI/ML", name: "Naive Bayes" },
+            { category: "AI/ML", name: "weak-supervision labels" },
+            { category: "AI/ML", name: "persisted model artifacts" }
+          ]
+        },
     {
-      id: "signalstack-anduril-it-automation-001",
-      text: "Built a containerized FastAPI/PostgreSQL platform with automated ingestion, REST APIs, semantic retrieval, ML classification, health visibility, and dashboard controls.",
-      printText: "Built a containerized FastAPI/PostgreSQL platform with automated ingestion, REST APIs, semantic retrieval, ML classification, health visibility, and dashboards.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: ["IT Systems Engineer — Automation & Self-Service"],
-      skillTags: [
-        { category: "Programming & Scripting", name: "Python" },
-        { category: "APIs & Integrations", name: "REST APIs" },
-        { category: "APIs & Integrations", name: "FastAPI" },
-        { category: "AI-Enabled Solutions", name: "semantic retrieval" },
-        { category: "AI-Enabled Solutions", name: "ML classification" },
-        { category: "DevOps & Systems", name: "Docker" }
-      ]
-    },
+          id: "signalstack-006",
+          text: "Separated training labels from inference predictions to avoid treating model outputs as ground-truth labels.",
+          printText: "Separated training labels from model predictions to support cleaner ML lifecycle design.",
+          includeByDefault: true,
+          targetRoles: [
+            "AI/ML Engineer",
+            "MLOps / AI Infrastructure",
+            "Cybersecurity Analyst",
+            "Security Analyst",
+            "Technical Coordinator"
+          ],
+          focusAreas: [
+            "ai-ml",
+            "testing-validation",
+            "data-databases"
+          ],
+          skillTags: [
+            { category: "AI/ML", name: "training/inference separation" },
+            { category: "AI/ML", name: "ML lifecycle design" },
+            { category: "Security", name: "model output governance" }
+          ]
+        },
     {
-      id: "signalstack-api-support-001",
-      text: "Built a containerized FastAPI/PostgreSQL platform with REST/JSON workflows, RSS ingestion, normalization, SQL-backed retrieval, duplicate detection, and ML classification.",
-      printText: "Built a containerized FastAPI/PostgreSQL platform with REST/JSON workflows, ingestion, normalization, SQL-backed retrieval, duplicate detection, and ML classification.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Support Engineer — APIs & Technical Support"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "Python" },
-        { category: "API & Integration Support", name: "REST APIs" },
-        { category: "API & Integration Support", name: "JSON" },
-        { category: "API & Integration Support", name: "OpenAPI" },
-        { category: "Databases & Data", name: "SQL" },
-        { category: "Databases & Data", name: "PostgreSQL" },
-        { category: "DevOps & Tooling", name: "Docker" },
-        { category: "DevOps & Tooling", name: "containerized services" }
-      ]
-    },
+          id: "signalstack-007",
+          text: "Developed FastAPI endpoints for article search, semantic search, hybrid search, related articles, ML prediction, ML health, RSS feed operations, and dashboard statistics.",
+          printText: "Exposed FastAPI endpoints for search, ingestion, dashboard stats, RSS controls, and ML predictions.",
+          includeByDefault: true,
+          targetRoles: [
+            "Platform Engineer",
+            "Software Engineer",
+            "Middleware Engineer",
+            "Support Engineer",
+            "Systems Administrator",
+            "Technical Coordinator"
+          ],
+          focusAreas: [
+            "api-integration",
+            "software-development"
+          ],
+          skillTags: [
+            { category: "Web & API Development", name: "FastAPI" },
+            { category: "Web & API Development", name: "REST APIs" },
+            { category: "Web & API Development", name: "API design" },
+            { category: "IT Service Management", name: "ML health endpoint" },
+            { category: "IT Service Management", name: "dashboard statistics" }
+          ]
+        },
     {
-      id: "signalstack-api-support-002",
-      text: "Added health monitoring, status dashboards, and operational controls for automated ingestion and machine-learning workflows.",
-      printText: "Added health monitoring, status dashboards, and operational controls for ingestion and ML workflows.",
-      includeByDefault: true,
-      strength: "supporting",
-      targetRoles: [
-        "Support Engineer — APIs & Technical Support"
-      ],
-      skillTags: [
-        { category: "Monitoring & Operations", name: "health checks" },
-        { category: "Monitoring & Operations", name: "alert investigation" },
-        { category: "Application Support", name: "production support" },
-        { category: "Documentation & Collaboration", name: "cross-functional communication" }
-      ]
-    },
+          id: "signalstack-008",
+          text: "Created a lightweight dashboard with plain HTML, CSS, and JavaScript for live ingestion controls, RSS feed status, semantic search, hybrid search, ML prediction testing, and related article lookup.",
+          printText: "Built a lightweight JavaScript dashboard for ingestion controls, search, retrieval, and ML testing.",
+          includeByDefault: true,
+          targetRoles: [
+            "Software Engineer",
+            "AI/ML Engineer",
+            "Technical Coordinator",
+            "Digital Media Technician",
+            "Media Systems Technician",
+            "Post-Production Technician"
+          ],
+          focusAreas: [
+            "software-development",
+            "customer-user-support"
+          ],
+          skillTags: [
+            { category: "Programming & Scripting", name: "JavaScript" },
+            { category: "Web & API Development", name: "HTML" },
+            { category: "Web & API Development", name: "CSS" },
+            { category: "Web & API Development", name: "dashboard UI" },
+            { category: "AI/ML", name: "ML prediction testing" }
+          ]
+        },
     {
-      id: "signalstack-application-support-001",
-      text: "Built a containerized FastAPI/PostgreSQL platform with automated ingestion, duplicate detection, health visibility, dashboard workflows, and API-backed operational controls.",
-      printText: "Built a containerized FastAPI/PostgreSQL platform with ingestion, duplicate detection, health visibility, dashboards, and API-backed operational controls.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Application Support Analyst"
-      ],
-      skillTags: [
-        { category: "Programming & Automation", name: "Python" },
-        { category: "Application Stack", name: "FastAPI" },
-        { category: "Application Stack", name: "REST APIs" },
-        { category: "Application Stack", name: "PostgreSQL" },
-        { category: "DevOps & Tooling", name: "Docker" },
-        { category: "Testing & QA", name: "data validation" },
-        { category: "Application Support", name: "production support" }
-      ]
-    },
+          id: "signalstack-009",
+          text: "Documented architecture, setup, demo workflow, API examples, AI training/inference flow, screenshots, and project structure for portfolio review.",
+          printText: "Documented architecture, demo workflows, API examples, AI notes, screenshots, and project structure.",
+          includeByDefault: true,
+          targetRoles: [
+            "Technical Coordinator",
+            "Platform Engineer",
+            "Software Engineer",
+            "Project Coordinator"
+          ],
+          focusAreas: [
+            "documentation",
+            "stakeholder-support"
+          ],
+          skillTags: [
+            { category: "Documentation", name: "README documentation" },
+            { category: "Documentation", name: "API examples" },
+            { category: "Documentation", name: "architecture overview" },
+            { category: "Documentation", name: "screenshots" }
+          ]
+        },
     {
-      id: "signalstack-digital-workplace-platform-001",
-      text: "Built a containerized FastAPI/PostgreSQL platform with automated data ingestion, semantic retrieval, ML classification, health visibility, and dashboard workflows.",
-      printText: "Built a containerized FastAPI/PostgreSQL platform with automated ingestion, semantic retrieval, ML classification, health visibility, and dashboards.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Platform Engineer — Digital Workplace Automation"
-      ],
-      skillTags: [
-        { category: "Automation & Scripting", name: "Python" },
-        { category: "APIs & Integrations", name: "FastAPI" },
-        { category: "APIs & Integrations", name: "data feeds" },
-        { category: "Reporting & Analytics", name: "dashboards" },
-        { category: "Reporting & Analytics", name: "health metrics" },
-        { category: "AI-Enabled Solutions", name: "semantic retrieval" },
-        { category: "AI-Enabled Solutions", name: "ML classification" },
-        { category: "DevOps & Systems", name: "Docker" },
-        { category: "Databases", name: "PostgreSQL" }
-      ]
-    },
-    {
-      id: "signalstack-ai-first-001",
-      text: "Built a containerized FastAPI/PostgreSQL AI application with automated ingestion, semantic retrieval, ML classification, API endpoints, health visibility, and dashboard workflows.",
-      printText: "Built a containerized FastAPI/PostgreSQL AI app with ingestion, semantic retrieval, ML classification, APIs, health visibility, and dashboard workflows.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "AI-First Software Engineer"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "Python" },
-        { category: "Backend & APIs", name: "FastAPI" },
-        { category: "Backend & APIs", name: "REST APIs" },
-        { category: "Databases & Data", name: "PostgreSQL" },
-        { category: "Databases & Data", name: "ingestion pipelines" },
-        { category: "DevOps & Tooling", name: "Docker" },
-        { category: "AI & Automation", name: "semantic retrieval" },
-        { category: "AI & Automation", name: "ML classification" }
-      ]
-    },
-    {
-      id: "signalstack-sre-001",
-      text: "Built a containerized FastAPI/PostgreSQL platform with automated ingestion, duplicate detection, full-text and semantic retrieval, ML classification, health visibility, and dashboard controls.",
-      printText: "Built a containerized FastAPI/PostgreSQL platform with automated ingestion, duplicate detection, retrieval, ML classification, health visibility, and dashboard controls.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Site Reliability Engineer"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "Python" },
-        { category: "DevOps & Tooling", name: "Docker" },
-        { category: "Databases", name: "PostgreSQL" },
-        { category: "Monitoring & Incident Management", name: "health checks" },
-        { category: "Testing & Validation", name: "data validation" }
-      ]
-    },
-    {
-      id: "signalstack-ai-financial-operations-001",
-      text: "Built a containerized FastAPI/PostgreSQL intelligence platform with RSS ingestion, normalization, full-text and semantic retrieval, ML classification, health monitoring, and dashboard workflows.",
-      printText: "Built a containerized FastAPI/PostgreSQL platform with RSS ingestion, normalization, full-text/semantic retrieval, ML classification, health monitoring, and dashboard workflows.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "AI Automation Engineer — Financial Operations"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "Python" },
-        { category: "Backend & APIs", name: "FastAPI" },
-        { category: "Databases & Data", name: "PostgreSQL" },
-        { category: "Databases & Data", name: "SQL" },
-        { category: "Databases & Data", name: "ingestion pipelines" },
-        { category: "AI & Automation", name: "semantic retrieval" },
-        { category: "AI & Automation", name: "ML classification" },
-        { category: "DevOps & Tooling", name: "Docker" }
-      ]
-    },
-    {
-      id: "signalstack-ai-financial-operations-002",
-      text: "Implemented duplicate detection, feed and ML health visibility, and dashboard controls for monitoring automated ingestion and model workflows.",
-      printText: "Added duplicate detection, feed/ML health visibility, and dashboard controls for automated data and model workflows.",
-      includeByDefault: true,
-      strength: "supporting",
-      targetRoles: [
-        "AI Automation Engineer — Financial Operations"
-      ],
-      skillTags: [
-        { category: "Testing & Quality", name: "data validation" },
-        { category: "DevOps & Tooling", name: "health checks" },
-        { category: "AI & Automation", name: "model monitoring" },
-        { category: "Frontend Development", name: "dashboard workflows" }
-      ]
-    },
-    {
-      id: "signalstack-full-stack-001",
-      text: "Built a containerized FastAPI/PostgreSQL data platform with automated ingestion, normalization, semantic retrieval, ML classification, health visibility, and dashboard workflows.",
-      printText: "Built a containerized FastAPI/PostgreSQL platform with RSS ingestion, normalization, full-text/semantic retrieval, ML classification, health visibility, and dashboard workflows.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Software Engineer — Full Stack"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "Python" },
-        { category: "Backend & APIs", name: "FastAPI" },
-        { category: "Backend & APIs", name: "REST APIs" },
-        { category: "Databases & Data", name: "PostgreSQL" },
-        { category: "Databases & Data", name: "ingestion pipelines" },
-        { category: "DevOps & Tooling", name: "Docker" },
-        { category: "AI & Data Products", name: "semantic retrieval" },
-        { category: "AI & Data Products", name: "ML classification" }
-      ]
-    },
-    {
-      id: "signalstack-junior-operations-001",
-      text: "Built a containerized FastAPI/PostgreSQL platform that automates data ingestion, normalization, semantic retrieval, ML classification, health monitoring, and dashboard workflows.",
-      printText: "Built a containerized FastAPI/PostgreSQL platform automating ingestion, normalization, semantic retrieval, ML classification, health monitoring, and dashboard workflows.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Junior Operations Engineer"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "Python" },
-        { category: "Web & API Development", name: "FastAPI" },
-        { category: "Web & API Development", name: "REST APIs" },
-        { category: "Databases", name: "PostgreSQL" },
-        { category: "DevOps & Tooling", name: "Docker" },
-        { category: "AI & Automation", name: "workflow automation" },
-        { category: "AI & Automation", name: "semantic retrieval" },
-        { category: "Operations & Troubleshooting", name: "health visibility" }
-      ]
-    },
-    {
-      id: "signalstack-media-devops-001",
-      text: "Built a containerized FastAPI/PostgreSQL platform with automated ingestion, feed-health visibility, semantic retrieval, ML classification, and dashboard controls.",
-      printText: "Built a containerized FastAPI/PostgreSQL platform with automated ingestion, health visibility, and AI retrieval workflows.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Media DevOps Engineer"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "Python" },
-        { category: "Web & API Development", name: "FastAPI" },
-        { category: "Databases", name: "PostgreSQL" },
-        { category: "DevOps & Tooling", name: "Docker" },
-        { category: "AI/ML", name: "semantic embeddings" },
-        { category: "IT Service Management", name: "health visibility" }
-      ]
-    },
-    {
-      id: "signalstack-001",
-      text: "Built an AI-powered news intelligence platform with FastAPI, PostgreSQL, SQLAlchemy, Alembic, Docker, scikit-learn, sentence-transformers, and a lightweight JavaScript dashboard.",
-      printText: "Developed a FastAPI/PostgreSQL AI retrieval platform using sentence-transformer embeddings, hybrid search, and scikit-learn classification.",
-      includeByDefault: true,
-      targetRoles: [
-        "Platform Engineer",
-        "Software Engineer",
-        "AI/ML Engineer",
-        "MLOps / AI Infrastructure",
-        "Linux Administrator",
-        "Systems Administrator"
-      ],
-      focusAreas: [
-        "software-development",
-        "ai-ml",
-        "api-integration",
-        "data-databases"
-      ],
-      skillTags: [
-        { category: "Web & API Development", name: "FastAPI" },
-        { category: "Databases", name: "PostgreSQL" },
-        { category: "Databases", name: "SQLAlchemy" },
-        { category: "Databases", name: "Alembic" },
-        { category: "DevOps & Tooling", name: "Docker" },
-        { category: "AI/ML", name: "scikit-learn" },
-        { category: "AI/ML", name: "sentence-transformers" },
-        { category: "AI/ML", name: "semantic embeddings" },
-        { category: "AI/ML", name: "hybrid retrieval" }
-      ]
-    },
-    {
-      id: "signalstack-002",
-      text: "Implemented RSS ingestion workflows that synchronize feed sources, normalize article data, detect duplicates, clean text, and expose feed health/error visibility.",
-      printText: "Implemented RSS ingestion, article normalization, duplicate detection, and feed health visibility.",
-      includeByDefault: true,
-      targetRoles: [
-        "Platform Engineer",
-        "Software Engineer",
-        "Support Engineer",
-        "Technical Coordinator",
-        "Systems Administrator"
-      ],
-      focusAreas: [
-        "automation",
-        "data-databases",
-        "monitoring-observability"
-      ],
-      skillTags: [
-        { category: "Web & API Development", name: "RSS ingestion" },
-        { category: "Databases", name: "article normalization" },
-        { category: "IT Service Management", name: "feed health visibility" },
-        { category: "Documentation", name: "operational documentation" }
-      ]
-    },
-    {
-      id: "signalstack-003",
-      text: "Designed PostgreSQL-backed article search with keyword filtering, phrase search, metadata filtering, TSVECTOR full-text search, ranking, pagination, and sorting.",
-      printText: "Built full-text, semantic, hybrid, and related-article search over PostgreSQL-backed news data.",
-      includeByDefault: true,
-      targetRoles: [
-        "Platform Engineer",
-        "Software Engineer",
-        "AI/ML Engineer",
-        "Cybersecurity Analyst",
-        "Security Analyst"
-      ],
-      focusAreas: [
-        "software-development",
-        "data-databases",
-        "ai-ml"
-      ],
-      skillTags: [
-        { category: "Databases", name: "PostgreSQL" },
-        { category: "Databases", name: "full-text search" },
-        { category: "Databases", name: "TSVECTOR" },
-        { category: "Web & API Development", name: "search APIs" },
-        { category: "AI/ML", name: "hybrid retrieval" }
-      ]
-    },
-    {
-      id: "signalstack-004",
-      text: "Implemented semantic and hybrid retrieval workflows using local sentence-transformer embeddings, cosine similarity, related-article lookup, and keyword + semantic ranking.",
-      printText: "Generated local sentence-transformer embeddings for semantic search and similarity retrieval.",
-      includeByDefault: true,
-      targetRoles: [
-        "AI/ML Engineer",
-        "MLOps / AI Infrastructure",
-        "Software Engineer",
-        "Platform Engineer"
-      ],
-      focusAreas: [
-        "ai-ml",
-        "data-databases"
-      ],
-      skillTags: [
-        { category: "AI/ML", name: "sentence-transformers" },
-        { category: "AI/ML", name: "semantic embeddings" },
-        { category: "AI/ML", name: "cosine similarity" },
-        { category: "AI/ML", name: "semantic search" },
-        { category: "AI/ML", name: "hybrid retrieval" }
-      ]
-    },
-    {
-      id: "signalstack-005",
-      text: "Built an applied ML classification workflow using weak-supervision training labels, TF-IDF vectorization, Naive Bayes classification, confidence scoring, and persisted model artifacts.",
-      printText: "Built weak-label training data and trained scikit-learn Naive Bayes classifiers using TF-IDF features, persisting model artifacts.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "AI/ML Engineer",
-        "MLOps / AI Infrastructure",
-        "Software Engineer"
-      ],
-      focusAreas: [
-        "ai-ml",
-        "testing-validation"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "Python" },
-        { category: "AI/ML", name: "scikit-learn" },
-        { category: "AI/ML", name: "TF-IDF" },
-        { category: "AI/ML", name: "Naive Bayes" },
-        { category: "AI/ML", name: "weak-supervision labels" },
-        { category: "AI/ML", name: "persisted model artifacts" }
-      ]
-    },
-    {
-      id: "signalstack-006",
-      text: "Separated training labels from inference predictions to avoid treating model outputs as ground-truth labels.",
-      printText: "Separated training labels from model predictions to support cleaner ML lifecycle design.",
-      includeByDefault: true,
-      targetRoles: [
-        "AI/ML Engineer",
-        "MLOps / AI Infrastructure",
-        "Cybersecurity Analyst",
-        "Security Analyst",
-        "Technical Coordinator"
-      ],
-      focusAreas: [
-        "ai-ml",
-        "testing-validation",
-        "data-databases"
-      ],
-      skillTags: [
-        { category: "AI/ML", name: "training/inference separation" },
-        { category: "AI/ML", name: "ML lifecycle design" },
-        { category: "Security", name: "model output governance" }
-      ]
-    },
-    {
-      id: "signalstack-007",
-      text: "Developed FastAPI endpoints for article search, semantic search, hybrid search, related articles, ML prediction, ML health, RSS feed operations, and dashboard statistics.",
-      printText: "Exposed FastAPI endpoints for search, ingestion, dashboard stats, RSS controls, and ML predictions.",
-      includeByDefault: true,
-      targetRoles: [
-        "Platform Engineer",
-        "Software Engineer",
-        "Middleware Engineer",
-        "Support Engineer",
-        "Systems Administrator",
-        "Technical Coordinator"
-      ],
-      focusAreas: [
-        "api-integration",
-        "software-development"
-      ],
-      skillTags: [
-        { category: "Web & API Development", name: "FastAPI" },
-        { category: "Web & API Development", name: "REST APIs" },
-        { category: "Web & API Development", name: "API design" },
-        { category: "IT Service Management", name: "ML health endpoint" },
-        { category: "IT Service Management", name: "dashboard statistics" }
-      ]
-    },
-    {
-      id: "signalstack-008",
-      text: "Created a lightweight dashboard with plain HTML, CSS, and JavaScript for live ingestion controls, RSS feed status, semantic search, hybrid search, ML prediction testing, and related article lookup.",
-      printText: "Built a lightweight JavaScript dashboard for ingestion controls, search, retrieval, and ML testing.",
-      includeByDefault: true,
-      targetRoles: [
-        "Software Engineer",
-        "AI/ML Engineer",
-        "Technical Coordinator",
-        "Digital Media Technician",
-        "Media Systems Technician",
-        "Post-Production Technician"
-      ],
-      focusAreas: [
-        "software-development",
-        "customer-user-support"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "JavaScript" },
-        { category: "Web & API Development", name: "HTML" },
-        { category: "Web & API Development", name: "CSS" },
-        { category: "Web & API Development", name: "dashboard UI" },
-        { category: "AI/ML", name: "ML prediction testing" }
-      ]
-    },
-    {
-      id: "signalstack-009",
-      text: "Documented architecture, setup, demo workflow, API examples, AI training/inference flow, screenshots, and project structure for portfolio review.",
-      printText: "Documented architecture, demo workflows, API examples, AI notes, screenshots, and project structure.",
-      includeByDefault: true,
-      targetRoles: [
-        "Technical Coordinator",
-        "Platform Engineer",
-        "Software Engineer",
-        "Project Coordinator"
-      ],
-      focusAreas: [
-        "documentation",
-        "stakeholder-support"
-      ],
-      skillTags: [
-        { category: "Documentation", name: "README documentation" },
-        { category: "Documentation", name: "API examples" },
-        { category: "Documentation", name: "architecture overview" },
-        { category: "Documentation", name: "screenshots" }
-      ]
-    },
-    {
-      id: "signalstack-010",
-      text: "Used Dockerized PostgreSQL and local ML artifact loading to support an offline-capable AI retrieval architecture.",
-      printText: "Used Dockerized PostgreSQL and local ML artifacts for offline-capable AI retrieval workflows.",
-      includeByDefault: true,
-      targetRoles: [
-        "MLOps / AI Infrastructure",
-        "Platform Engineer",
-        "Linux Administrator",
-        "Systems Administrator"
-      ],
-      focusAreas: [
-        "infrastructure-operations",
-        "ai-ml",
-        "data-databases"
-      ],
-      skillTags: [
-        { category: "DevOps & Tooling", name: "Docker" },
-        { category: "DevOps & Tooling", name: "Docker Compose" },
-        { category: "Databases", name: "PostgreSQL" },
-        { category: "AI/ML", name: "local ML artifacts" },
-        { category: "Cloud & Infrastructure", name: "offline-capable AI architecture" }
-      ]
-    }
+          id: "signalstack-010",
+          text: "Used Dockerized PostgreSQL and local ML artifact loading to support an offline-capable AI retrieval architecture.",
+          printText: "Used Dockerized PostgreSQL and local ML artifacts for offline-capable AI retrieval workflows.",
+          includeByDefault: true,
+          targetRoles: [
+            "MLOps / AI Infrastructure",
+            "Platform Engineer",
+            "Linux Administrator",
+            "Systems Administrator"
+          ],
+          focusAreas: [
+            "infrastructure-operations",
+            "ai-ml",
+            "data-databases"
+          ],
+          skillTags: [
+            { category: "DevOps & Tooling", name: "Docker" },
+            { category: "DevOps & Tooling", name: "Docker Compose" },
+            { category: "Databases", name: "PostgreSQL" },
+            { category: "AI/ML", name: "local ML artifacts" },
+            { category: "Cloud & Infrastructure", name: "offline-capable AI architecture" }
+          ]
+        }
   ],
 
   skillTags: [

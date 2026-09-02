@@ -112,314 +112,204 @@ const job20170315PostHasteDigitalEncodeTranscodeSpecialist = {
 
   bullets: [
     {
-      id: "post-haste-digital-encode-transcode-specialist-trl11-video-systems-001",
-      text: "Automated and troubleshot high-volume video transcode workflows using Bash, FFmpeg, concurrent render queues, error logs, and automated quality control across five processing systems.",
-      printText: "Automated and troubleshot high-volume transcodes with Bash, FFmpeg, five concurrent systems, error logs, and automated QC.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: ["Video Systems Engineer — AI & Computer Vision Pipelines"],
-      skillTags: [
-        { category: "Video & Media Pipelines", name: "FFmpeg" },
-        { category: "Video & Media Pipelines", name: "transcoding" },
-        { category: "Video & Media Pipelines", name: "automated QC" },
-        { category: "Programming & APIs", name: "Bash" },
-        { category: "Signal & Performance", name: "concurrent processing" },
-        { category: "Linux & Application Support", name: "log analysis" }
-      ]
-    },
+          id: "post-haste-digital-encode-transcode-specialist-001",
+          text: "Encoded and transcoded video/audio from tape and file-based sources into mezzanine, archival, intermediary, and deliverable formats for major studio post-production workflows.",
+          printText: "Encoded and transcoded tape/file sources into studio mezzanine, archival, and deliverable formats.",
+          includeByDefault: true,
+          targetRoles: [
+            "Digital Media Technician",
+            "Media Systems Technician",
+            "Encoding / Transcode Technician",
+            "Post-Production Technician"
+          ],
+          skillTags: [
+            { category: "Media & Encoding", name: "encoding" },
+            { category: "Media & Encoding", name: "transcoding" },
+            { category: "Media & Encoding", name: "mezzanine formats" },
+            { category: "Media & Encoding", name: "archival formats" },
+            { category: "Media & Encoding", name: "deliverable formats" },
+            { category: "Media & Encoding", name: "tape capture" },
+            { category: "Media & Encoding", name: "file capture" }
+          ]
+        },
     {
-      id: "post-haste-digital-encode-transcode-specialist-aveva-tech-support-001",
-      text: "Monitored high-volume media-processing queues across five concurrent systems, using error logs and automated quality-control results to diagnose failures and coordinate corrective reprocessing.",
-      printText: "Monitored five concurrent processing systems, using error logs and automated QC results to diagnose failures and coordinate reprocessing.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: ["Technical Support Engineer — Industrial Applications"],
-      skillTags: [
-        { category: "Application Reliability", name: "technical production support" },
-        { category: "Monitoring & Diagnostics", name: "error-log analysis" },
-        { category: "Monitoring & Diagnostics", name: "performance monitoring" },
-        { category: "DevOps & Testing", name: "automated quality control" }
-      ]
-    },
+          id: "post-haste-digital-encode-transcode-specialist-002",
+          text: "Managed high-volume file-based workflows for features and episodics, including client-spec reformatting, file packaging, metadata requirements, naming conventions, and delivery preparation.",
+          printText: "Managed high-volume feature and episodic workflows with client specs, metadata, and packaging requirements.",
+          includeByDefault: true,
+          targetRoles: [
+            "Technical Coordinator",
+            "Digital Media Technician",
+            "Media Systems Technician",
+            "Encoding / Transcode Technician",
+            "Post-Production Technician"
+          ],
+          skillTags: [
+            { category: "Media & Encoding", name: "file packaging" },
+            { category: "Media & Encoding", name: "metadata requirements" },
+            { category: "Media & Encoding", name: "client specs" },
+            { category: "Documentation", name: "file naming conventions" },
+            { category: "Project Management", name: "deadline coordination" }
+          ]
+        },
     {
-      id: "post-haste-digital-encode-transcode-specialist-aveva-tech-support-002",
-      text: "Automated and supported technical production workflows using Bash and FFmpeg while meeting client specifications, quality requirements, and delivery deadlines.",
-      printText: "Automated technical production workflows with Bash and FFmpeg while meeting client specs, quality requirements, and deadlines.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: ["Technical Support Engineer — Industrial Applications"],
-      skillTags: [
-        { category: "Programming & Automation", name: "Bash" },
-        { category: "Programming & Automation", name: "FFmpeg" },
-        { category: "Documentation & Collaboration", name: "client specifications" },
-        { category: "DevOps & Testing", name: "quality validation" }
-      ]
-    },
+          id: "post-haste-digital-encode-transcode-specialist-003",
+          text: "Generated proxies, timecode burn-ins, overlays, watermarked clips, captioning-support files, QC-support assets, and voice-over session assets for internal departments.",
+          printText: "Generated proxies, burn-ins, overlays, watermarked clips, captioning assets, and QC-support files.",
+          includeByDefault: true,
+          targetRoles: [
+            "Digital Media Technician",
+            "Encoding / Transcode Technician",
+            "Post-Production Technician"
+          ],
+          skillTags: [
+            { category: "Media & Encoding", name: "proxies" },
+            { category: "Media & Encoding", name: "timecode burn-ins" },
+            { category: "Media & Encoding", name: "overlays" },
+            { category: "Media & Encoding", name: "watermarks" },
+            { category: "Media & Encoding", name: "captioning assets" },
+            { category: "Security", name: "NexGuard / Civolution Watermarking" }
+          ]
+        },
     {
-      id: "post-haste-digital-encode-transcode-specialist-physical-ai-compute-001",
-      text: "Automated and monitored concurrent media-processing workloads using Bash, FFmpeg, render queues, error logs, and automated quality-control systems.",
-      printText: "Automated and monitored concurrent media workloads with Bash, FFmpeg, render queues, error logs, and automated QC.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Computer Engineer — Physical AI Compute"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "Bash" },
-        { category: "Signal & Media Processing", name: "FFmpeg" },
-        { category: "Performance & Validation", name: "automated testing" },
-        { category: "Performance & Validation", name: "diagnostics" }
-      ]
-    },
+          id: "post-haste-digital-encode-transcode-specialist-004",
+          text: "Digitized archival tape assets and converted them into archival and intermediary file formats including JPEG 2000, AVI, WAV, and ProRes-related workflows.",
+          printText: "Digitized archival tapes into J2K, AVI/WAV, ProRes, and intermediary workflows.",
+          includeByDefault: true,
+          targetRoles: [
+            "Digital Media Technician",
+            "Media Systems Technician",
+            "Encoding / Transcode Technician",
+            "Post-Production Technician"
+          ],
+          skillTags: [
+            { category: "Media & Encoding", name: "archival tape digitization" },
+            { category: "Media & Encoding", name: "JPEG 2000" },
+            { category: "Media & Encoding", name: "J2K" },
+            { category: "Media & Encoding", name: "AVI" },
+            { category: "Media & Encoding", name: "WAV" },
+            { category: "Media & Encoding", name: "ProRes" }
+          ]
+        },
     {
-      id: "post-haste-digital-encode-transcode-specialist-sre-001",
-      text: "Automated and monitored high-volume media-processing queues using Bash, FFmpeg, concurrent systems, error logs, and automated quality-control workflows.",
-      printText: "Automated and monitored high-volume transcode queues with Bash, FFmpeg, error logs, automated QC, and concurrent systems.",
-      includeByDefault: true,
-      strength: "supporting",
-      targetRoles: [
-        "Site Reliability Engineer"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "Bash" },
-        { category: "Monitoring & Incident Management", name: "log analysis" },
-        { category: "Site Reliability & Operations", name: "operational readiness" },
-        { category: "Testing & Validation", name: "automated validation" }
-      ]
-    },
+          id: "post-haste-digital-encode-transcode-specialist-005",
+          text: "Maintained 4+ simultaneous transcodes while monitoring render-farm queues, error loggers, batch encoding workflows, and automated QC results.",
+          printText: "Maintained 4+ simultaneous transcodes while monitoring render queues, error loggers, and automated QC.",
+          includeByDefault: true,
+          targetRoles: [
+            "Systems Administrator",
+            "Platform Engineer",
+            "Support Engineer",
+            "Media Systems Technician",
+            "Encoding / Transcode Technician"
+          ],
+          skillTags: [
+            { category: "Media & Encoding", name: "batch encoding" },
+            { category: "Media & Encoding", name: "render-farm queues" },
+            { category: "Media & Encoding", name: "automated QC" },
+            { category: "Monitoring/logging tools", name: "error loggers" },
+            { category: "DevOps & Tooling", name: "watch folders" }
+          ]
+        },
     {
-      id: "post-haste-digital-encode-transcode-specialist-media-devops-001",
-      text: "Automated and monitored high-volume media transcode workflows using Bash, FFmpeg, concurrent render queues, error logging, and automated quality-control systems.",
-      printText: "Automated and monitored high-volume transcodes with Bash, FFmpeg, render queues, error logs, and automated QC.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Media DevOps Engineer"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "Bash" },
-        { category: "Media & Encoding", name: "FFmpeg" },
-        { category: "Media & Encoding", name: "transcoding" },
-        { category: "Media & Encoding", name: "automated QC" },
-        { category: "IT Service Management", name: "error monitoring" }
-      ]
-    },
+          id: "post-haste-digital-encode-transcode-specialist-006",
+          text: "Transcoded 30+ episodic assets per day and converted features/episodics into 22+ language versions.",
+          printText: "Transcoded 30+ episodic assets daily and supported 22+ language-version workflows.",
+          includeByDefault: true,
+          strength: "primary",
+          targetRoles: [
+            "Digital Media Technician",
+            "Media Systems Technician",
+            "Encoding / Transcode Technician",
+            "Post-Production Technician"
+          ],
+          targetRoleFamilies: ["media-systems"],
+          focusAreas: ["media-processing", "stakeholder-support"],
+          skillTags: [
+            { category: "Media & Encoding", name: "high-volume transcoding" },
+            { category: "Media & Encoding", name: "episodic workflows" },
+            { category: "Media & Encoding", name: "language versioning" },
+            { category: "Project Management", name: "workload management" }
+          ]
+        },
     {
-      id: "post-haste-digital-encode-transcode-specialist-media-devops-002",
-      text: "Managed FOX transcode workloads across five concurrent systems and supported AS-02, DCP, and IMF onboarding workflows for Netflix and HBO.",
-      printText: "Managed FOX workloads across five concurrent transcode systems and supported Netflix/HBO onboarding workflows.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Media DevOps Engineer"
-      ],
-      skillTags: [
-        { category: "Media & Encoding", name: "FOX deliverables" },
-        { category: "Media & Encoding", name: "concurrent transcode systems" },
-        { category: "Media & Encoding", name: "AS-02" },
-        { category: "Media & Encoding", name: "DCP" },
-        { category: "Media & Encoding", name: "IMF" }
-      ]
-    },
+          id: "post-haste-digital-encode-transcode-specialist-007",
+          text: "Edited textless materials into features to create pseudo-textless versions for studio deliverables.",
+          printText: "Created pseudo-textless feature versions by editing textless materials into source features.",
+          includeByDefault: true,
+          targetRoles: [
+            "Digital Media Technician",
+            "Post-Production Technician",
+            "Encoding / Transcode Technician"
+          ],
+          skillTags: [
+            { category: "Media & Encoding", name: "textless materials" },
+            { category: "Media & Encoding", name: "pseudo-textless versioning" },
+            { category: "Media & Encoding", name: "frame accuracy" },
+            { category: "Media & Encoding", name: "Final Cut Pro" },
+            { category: "Media & Encoding", name: "Adobe Premiere Pro" }
+          ]
+        },
     {
-      id: "post-haste-digital-encode-transcode-specialist-001",
-      text: "Encoded and transcoded video/audio from tape and file-based sources into mezzanine, archival, intermediary, and deliverable formats for major studio post-production workflows.",
-      printText: "Encoded and transcoded tape/file sources into studio mezzanine, archival, and deliverable formats.",
-      includeByDefault: true,
-      targetRoles: [
-        "Digital Media Technician",
-        "Media Systems Technician",
-        "Encoding / Transcode Technician",
-        "Post-Production Technician"
-      ],
-      skillTags: [
-        { category: "Media & Encoding", name: "encoding" },
-        { category: "Media & Encoding", name: "transcoding" },
-        { category: "Media & Encoding", name: "mezzanine formats" },
-        { category: "Media & Encoding", name: "archival formats" },
-        { category: "Media & Encoding", name: "deliverable formats" },
-        { category: "Media & Encoding", name: "tape capture" },
-        { category: "Media & Encoding", name: "file capture" }
-      ]
-    },
+          id: "post-haste-digital-encode-transcode-specialist-008",
+          text: "Supported digital cinema onboarding workflows including AS-02, DCP, and IMF deliverables for HBO, Netflix, and FOX.",
+          printText: "Supported AS-02, DCP, and IMF onboarding workflows for HBO, Netflix, and FOX deliverables.",
+          includeByDefault: true,
+          targetRoles: [
+            "Technical Coordinator",
+            "Digital Media Technician",
+            "Media Systems Technician",
+            "Encoding / Transcode Technician"
+          ],
+          skillTags: [
+            { category: "Media & Encoding", name: "AS-02" },
+            { category: "Media & Encoding", name: "DCP" },
+            { category: "Media & Encoding", name: "IMF" },
+            { category: "Media & Encoding", name: "MXF" },
+            { category: "Project Management", name: "major studio deliverables" }
+          ]
+        },
     {
-      id: "post-haste-digital-encode-transcode-specialist-002",
-      text: "Managed high-volume file-based workflows for features and episodics, including client-spec reformatting, file packaging, metadata requirements, naming conventions, and delivery preparation.",
-      printText: "Managed high-volume feature and episodic workflows with client specs, metadata, and packaging requirements.",
-      includeByDefault: true,
-      targetRoles: [
-        "Technical Coordinator",
-        "Digital Media Technician",
-        "Media Systems Technician",
-        "Encoding / Transcode Technician",
-        "Post-Production Technician"
-      ],
-      skillTags: [
-        { category: "Media & Encoding", name: "file packaging" },
-        { category: "Media & Encoding", name: "metadata requirements" },
-        { category: "Media & Encoding", name: "client specs" },
-        { category: "Documentation", name: "file naming conventions" },
-        { category: "Project Management", name: "deadline coordination" }
-      ]
-    },
+          id: "post-haste-digital-encode-transcode-specialist-009",
+          text: "Developed scripts to transcode, rename, and move intermediary workfiles using AVISynth, Bash, and FFmpeg-based workflows.",
+          printText: "Automated transcode, rename, and file-move workflows with AVISynth, Bash, and FFmpeg.",
+          includeByDefault: true,
+          targetRoles: [
+            "Linux Administrator",
+            "Systems Administrator",
+            "Platform Engineer",
+            "Software Engineer",
+            "Support Engineer",
+            "Encoding / Transcode Technician"
+          ],
+          skillTags: [
+            { category: "Programming & Scripting", name: "AVISynth" },
+            { category: "Programming & Scripting", name: "Bash" },
+            { category: "Programming & Scripting", name: "FFmpeg" },
+            { category: "DevOps & Tooling", name: "workflow automation" },
+            { category: "Linux & Systems Administration", name: "file movement" }
+          ]
+        },
     {
-      id: "post-haste-digital-encode-transcode-specialist-003",
-      text: "Generated proxies, timecode burn-ins, overlays, watermarked clips, captioning-support files, QC-support assets, and voice-over session assets for internal departments.",
-      printText: "Generated proxies, burn-ins, overlays, watermarked clips, captioning assets, and QC-support files.",
-      includeByDefault: true,
-      targetRoles: [
-        "Digital Media Technician",
-        "Encoding / Transcode Technician",
-        "Post-Production Technician"
-      ],
-      skillTags: [
-        { category: "Media & Encoding", name: "proxies" },
-        { category: "Media & Encoding", name: "timecode burn-ins" },
-        { category: "Media & Encoding", name: "overlays" },
-        { category: "Media & Encoding", name: "watermarks" },
-        { category: "Media & Encoding", name: "captioning assets" },
-        { category: "Security", name: "NexGuard / Civolution Watermarking" }
-      ]
-    },
-    {
-      id: "post-haste-digital-encode-transcode-specialist-004",
-      text: "Digitized archival tape assets and converted them into archival and intermediary file formats including JPEG 2000, AVI, WAV, and ProRes-related workflows.",
-      printText: "Digitized archival tapes into J2K, AVI/WAV, ProRes, and intermediary workflows.",
-      includeByDefault: true,
-      targetRoles: [
-        "Digital Media Technician",
-        "Media Systems Technician",
-        "Encoding / Transcode Technician",
-        "Post-Production Technician"
-      ],
-      skillTags: [
-        { category: "Media & Encoding", name: "archival tape digitization" },
-        { category: "Media & Encoding", name: "JPEG 2000" },
-        { category: "Media & Encoding", name: "J2K" },
-        { category: "Media & Encoding", name: "AVI" },
-        { category: "Media & Encoding", name: "WAV" },
-        { category: "Media & Encoding", name: "ProRes" }
-      ]
-    },
-    {
-      id: "post-haste-digital-encode-transcode-specialist-005",
-      text: "Maintained 4+ simultaneous transcodes while monitoring render-farm queues, error loggers, batch encoding workflows, and automated QC results.",
-      printText: "Maintained 4+ simultaneous transcodes while monitoring render queues, error loggers, and automated QC.",
-      includeByDefault: true,
-      targetRoles: [
-        "Systems Administrator",
-        "Platform Engineer",
-        "Support Engineer",
-        "Media Systems Technician",
-        "Encoding / Transcode Technician"
-      ],
-      skillTags: [
-        { category: "Media & Encoding", name: "batch encoding" },
-        { category: "Media & Encoding", name: "render-farm queues" },
-        { category: "Media & Encoding", name: "automated QC" },
-        { category: "Monitoring/logging tools", name: "error loggers" },
-        { category: "DevOps & Tooling", name: "watch folders" }
-      ]
-    },
-    {
-      id: "post-haste-digital-encode-transcode-specialist-006",
-      text: "Transcoded 30+ episodic assets per day and converted features/episodics into 22+ language versions.",
-      printText: "Transcoded 30+ episodic assets daily and supported 22+ language-version workflows.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Digital Media Technician",
-        "Media Systems Technician",
-        "Encoding / Transcode Technician",
-        "Post-Production Technician"
-      ],
-      targetRoleFamilies: ["media-systems"],
-      focusAreas: ["media-processing", "stakeholder-support"],
-      skillTags: [
-        { category: "Media & Encoding", name: "high-volume transcoding" },
-        { category: "Media & Encoding", name: "episodic workflows" },
-        { category: "Media & Encoding", name: "language versioning" },
-        { category: "Project Management", name: "workload management" }
-      ]
-    },
-    {
-      id: "post-haste-digital-encode-transcode-specialist-007",
-      text: "Edited textless materials into features to create pseudo-textless versions for studio deliverables.",
-      printText: "Created pseudo-textless feature versions by editing textless materials into source features.",
-      includeByDefault: true,
-      targetRoles: [
-        "Digital Media Technician",
-        "Post-Production Technician",
-        "Encoding / Transcode Technician"
-      ],
-      skillTags: [
-        { category: "Media & Encoding", name: "textless materials" },
-        { category: "Media & Encoding", name: "pseudo-textless versioning" },
-        { category: "Media & Encoding", name: "frame accuracy" },
-        { category: "Media & Encoding", name: "Final Cut Pro" },
-        { category: "Media & Encoding", name: "Adobe Premiere Pro" }
-      ]
-    },
-    {
-      id: "post-haste-digital-encode-transcode-specialist-008",
-      text: "Supported digital cinema onboarding workflows including AS-02, DCP, and IMF deliverables for HBO, Netflix, and FOX.",
-      printText: "Supported AS-02, DCP, and IMF onboarding workflows for HBO, Netflix, and FOX deliverables.",
-      includeByDefault: true,
-      targetRoles: [
-        "Technical Coordinator",
-        "Digital Media Technician",
-        "Media Systems Technician",
-        "Encoding / Transcode Technician"
-      ],
-      skillTags: [
-        { category: "Media & Encoding", name: "AS-02" },
-        { category: "Media & Encoding", name: "DCP" },
-        { category: "Media & Encoding", name: "IMF" },
-        { category: "Media & Encoding", name: "MXF" },
-        { category: "Project Management", name: "major studio deliverables" }
-      ]
-    },
-    {
-      id: "post-haste-digital-encode-transcode-specialist-009",
-      text: "Developed scripts to transcode, rename, and move intermediary workfiles using AVISynth, Bash, and FFmpeg-based workflows.",
-      printText: "Automated transcode, rename, and file-move workflows with AVISynth, Bash, and FFmpeg.",
-      includeByDefault: true,
-      targetRoles: [
-        "Linux Administrator",
-        "Systems Administrator",
-        "Platform Engineer",
-        "Software Engineer",
-        "Support Engineer",
-        "Encoding / Transcode Technician"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "AVISynth" },
-        { category: "Programming & Scripting", name: "Bash" },
-        { category: "Programming & Scripting", name: "FFmpeg" },
-        { category: "DevOps & Tooling", name: "workflow automation" },
-        { category: "Linux & Systems Administration", name: "file movement" }
-      ]
-    },
-    {
-      id: "post-haste-digital-encode-transcode-specialist-010",
-      text: "Coordinated with QC operators and program/project managers to support first-pass QC readiness, delivery accuracy, and on-time client deliverables.",
-      printText: "Coordinated with QC operators and project managers to support first-pass QC readiness.",
-      includeByDefault: true,
-      targetRoles: [
-        "Technical Coordinator",
-        "Support Engineer",
-        "Digital Media Technician",
-        "Media Systems Technician",
-        "Post-Production Technician"
-      ],
-      skillTags: [
-        { category: "Ticketing & Collaboration", name: "QC operator coordination" },
-        { category: "Ticketing & Collaboration", name: "project manager coordination" },
-        { category: "IT Service Management", name: "QC handoffs" },
-        { category: "Project Management", name: "deadline coordination" },
-        { category: "Documentation", name: "delivery notes" }
-      ]
-    }
+          id: "post-haste-digital-encode-transcode-specialist-010",
+          text: "Coordinated with QC operators and program/project managers to support first-pass QC readiness, delivery accuracy, and on-time client deliverables.",
+          printText: "Coordinated with QC operators and project managers to support first-pass QC readiness.",
+          includeByDefault: true,
+          targetRoles: [
+            "Technical Coordinator",
+            "Support Engineer",
+            "Digital Media Technician",
+            "Media Systems Technician",
+            "Post-Production Technician"
+          ],
+          skillTags: [
+            { category: "Ticketing & Collaboration", name: "QC operator coordination" },
+            { category: "Ticketing & Collaboration", name: "project manager coordination" },
+            { category: "IT Service Management", name: "QC handoffs" },
+            { category: "Project Management", name: "deadline coordination" },
+            { category: "Documentation", name: "delivery notes" }
+          ]
+        }
   ],
 
   skillTags: [

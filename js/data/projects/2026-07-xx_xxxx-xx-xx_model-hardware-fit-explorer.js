@@ -235,198 +235,133 @@ const project202607xxModelHardwareFitExplorer = {
 
   bullets: [
     {
-      id: "model-hardware-fit-explorer-trl11-video-systems-001",
-      text: "Built a React/Vite tool comparing Hugging Face and GGUF model architecture, quantization profiles, and qualitative CPU, GPU, and memory constraints for local deployment.",
-      printText: "Compared model architecture, quantization, and CPU/GPU/memory constraints for local deployment suitability.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: ["Video Systems Engineer — AI & Computer Vision Pipelines"],
-      skillTags: [
-        { category: "AI & Computer Vision Operations", name: "model deployment analysis" },
-        { category: "Signal & Performance", name: "CPU/GPU/memory constraints" },
-        { category: "Signal & Performance", name: "performance analysis" },
-        { category: "Programming & APIs", name: "JavaScript" }
-      ]
-    },
+          id: "model-hardware-fit-explorer-001",
+          text: "Built a static React/Vite AI model comparison dashboard that analyzes Hugging Face configuration metadata and GGUF profiles to explain qualitative local hardware-fit considerations.",
+          printText: "Compared Hugging Face and GGUF models by architecture, parameter scale, attention design, and local hardware constraints.",
+          includeByDefault: true,
+          strength: "primary",
+          targetRoles: [
+            "AI/ML Engineer",
+            "MLOps / AI Infrastructure",
+            "Platform Engineer",
+            "Software Engineer"
+          ],
+          skillTags: [
+            { category: "Web & API Development", name: "React" },
+            { category: "Web & API Development", name: "Vite" },
+            { category: "AI/ML", name: "Hugging Face" },
+            { category: "AI/ML", name: "GGUF profiles" },
+            { category: "Cloud & Infrastructure", name: "qualitative hardware-fit reasoning" }
+          ]
+        },
     {
-      id: "model-hardware-fit-explorer-blizzard-reliability-001",
-      text: "Developed a React/Vite tool comparing model architecture, parameter scale, quantization, and qualitative CPU, GPU, and memory constraints to evaluate deployment suitability.",
-      printText: "Compared model architecture, parameter scale, quantization, and CPU/GPU/memory constraints for deployment suitability.",
-      includeByDefault: true,
-      strength: "supporting",
-      targetRoles: ["Associate Software Engineer — Reliability"],
-      skillTags: [
-        { category: "Reliability Engineering", name: "capacity analysis" },
-        { category: "Reliability Engineering", name: "performance analysis" },
-        { category: "Testing & Validation", name: "deployment analysis" }
-      ]
-    },
+          id: "model-hardware-fit-explorer-002",
+          text: "Normalized transformer architecture fields across model families, including hidden size, model dimension, layer count, attention heads, vocabulary size, feed-forward dimensions, and task-specific configuration values.",
+          printText: "Normalized transformer fields including hidden size, dimensions, layers, attention heads, vocabulary, and feed-forward values.",
+          includeByDefault: true,
+          strength: "primary",
+          targetRoles: [
+            "AI/ML Engineer",
+            "MLOps / AI Infrastructure",
+            "Platform Engineer",
+            "Software Engineer"
+          ],
+          skillTags: [
+            { category: "AI/ML", name: "transformer configs" },
+            { category: "AI/ML", name: "model metadata" },
+            { category: "AI/ML", name: "architecture comparison" },
+            { category: "AI/ML", name: "parameter-scale comparison" }
+          ]
+        },
     {
-      id: "model-hardware-fit-explorer-physical-ai-compute-001",
-      text: "Built a React/Vite analysis tool comparing Hugging Face and GGUF model architectures, dimensions, context limits, quantization profiles, and qualitative local compute and memory constraints.",
-      printText: "Built a React/Vite tool comparing model architectures, dimensions, context limits, quantization profiles, and local compute/memory constraints.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Computer Engineer — Physical AI Compute"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "JavaScript" },
-        { category: "AI Systems & Compute", name: "Hugging Face Transformers" },
-        { category: "AI Systems & Compute", name: "GGUF profiles" },
-        { category: "AI Systems & Compute", name: "model metadata analysis" },
-        { category: "AI Systems & Compute", name: "quantization profiles" },
-        { category: "AI Systems & Compute", name: "compute and memory constraints" },
-        { category: "Performance & Validation", name: "deployment analysis" },
-        { category: "Application Development", name: "React" },
-        { category: "Application Development", name: "Vite" }
-      ]
-    },
+          id: "model-hardware-fit-explorer-003",
+          text: "Created structured model data and UI views to compare architecture type, task compatibility, parameter scale, sizing metrics, and local deployment considerations.",
+          printText: "Created structured model data and views for architecture, task type, sizing metrics, and deployment considerations.",
+          includeByDefault: true,
+          strength: "primary",
+          targetRoles: [
+            "AI/ML Engineer",
+            "Software Engineer",
+            "Platform Engineer"
+          ],
+          skillTags: [
+            { category: "Programming & Scripting", name: "JavaScript" },
+            { category: "Web & API Development", name: "front-end components" },
+            { category: "AI/ML", name: "model task classification" },
+            { category: "Cloud & Infrastructure", name: "model deployment feasibility" }
+          ]
+        },
     {
-      id: "model-hardware-fit-explorer-001",
-      text: "Built a static React/Vite AI model comparison dashboard that analyzes Hugging Face configuration metadata and GGUF profiles to explain qualitative local hardware-fit considerations.",
-      printText: "Compared Hugging Face and GGUF models by architecture, parameter scale, attention design, and local hardware constraints.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "AI/ML Engineer",
-        "MLOps / AI Infrastructure",
-        "Platform Engineer",
-        "Software Engineer"
-      ],
-      skillTags: [
-        { category: "Web & API Development", name: "React" },
-        { category: "Web & API Development", name: "Vite" },
-        { category: "AI/ML", name: "Hugging Face" },
-        { category: "AI/ML", name: "GGUF profiles" },
-        { category: "Cloud & Infrastructure", name: "qualitative hardware-fit reasoning" }
-      ]
-    },
+          id: "model-hardware-fit-explorer-004",
+          text: "Added GitHub README screenshots and documentation to explain model comparison workflows, sizing metrics, qualitative hardware-fit reasoning, and project usage.",
+          printText: "Documented comparison workflows, sizing metrics, screenshots, and qualitative hardware-fit guidance in GitHub README.",
+          includeByDefault: true,
+          strength: "supporting",
+          targetRoles: [
+            "Platform Engineer",
+            "Software Engineer",
+            "Technical Coordinator"
+          ],
+          skillTags: [
+            { category: "Documentation", name: "README" },
+            { category: "Documentation", name: "screenshot captions" },
+            { category: "Documentation", name: "model notes" },
+            { category: "Productivity", name: "GitHub README" }
+          ]
+        },
     {
-      id: "model-hardware-fit-explorer-002",
-      text: "Normalized transformer architecture fields across model families, including hidden size, model dimension, layer count, attention heads, vocabulary size, feed-forward dimensions, and task-specific configuration values.",
-      printText: "Normalized transformer fields including hidden size, dimensions, layers, attention heads, vocabulary, and feed-forward values.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "AI/ML Engineer",
-        "MLOps / AI Infrastructure",
-        "Platform Engineer",
-        "Software Engineer"
-      ],
-      skillTags: [
-        { category: "AI/ML", name: "transformer configs" },
-        { category: "AI/ML", name: "model metadata" },
-        { category: "AI/ML", name: "architecture comparison" },
-        { category: "AI/ML", name: "parameter-scale comparison" }
-      ]
-    },
+          id: "model-hardware-fit-explorer-005",
+          text: "Used JavaScript, React, Vite, Hugging Face model cards, and configuration files to build a model-metadata and local hardware-fit comparison application.",
+          printText: "Built an AI infrastructure support tool with JavaScript, React, Vite, Hugging Face model cards, and configs.",
+          includeByDefault: true,
+          strength: "primary",
+          targetRoles: [
+            "AI/ML Engineer",
+            "Software Engineer",
+            "MLOps / AI Infrastructure"
+          ],
+          skillTags: [
+            { category: "Programming & Scripting", name: "JavaScript" },
+            { category: "Web & API Development", name: "React" },
+            { category: "Web & API Development", name: "Vite" },
+            { category: "AI/ML", name: "Hugging Face model cards" }
+          ]
+        },
     {
-      id: "model-hardware-fit-explorer-003",
-      text: "Created structured model data and UI views to compare architecture type, task compatibility, parameter scale, sizing metrics, and local deployment considerations.",
-      printText: "Created structured model data and views for architecture, task type, sizing metrics, and deployment considerations.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "AI/ML Engineer",
-        "Software Engineer",
-        "Platform Engineer"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "JavaScript" },
-        { category: "Web & API Development", name: "front-end components" },
-        { category: "AI/ML", name: "model task classification" },
-        { category: "Cloud & Infrastructure", name: "model deployment feasibility" }
-      ]
-    },
+          id: "model-hardware-fit-explorer-006",
+          text: "Validated project quality with Vite build workflows and iterative Git commits.",
+          printText: "Validated the static front-end with Vite build workflows and iterative Git commits.",
+          includeByDefault: true,
+          strength: "supporting",
+          targetRoles: [
+            "Software Engineer",
+            "Platform Engineer"
+          ],
+          skillTags: [
+            { category: "DevOps & Tooling", name: "Vite build validation" },
+            { category: "DevOps & Tooling", name: "Git" },
+            { category: "DevOps & Tooling", name: "GitHub" }
+          ]
+        },
     {
-      id: "model-hardware-fit-explorer-004",
-      text: "Added GitHub README screenshots and documentation to explain model comparison workflows, sizing metrics, qualitative hardware-fit reasoning, and project usage.",
-      printText: "Documented comparison workflows, sizing metrics, screenshots, and qualitative hardware-fit guidance in GitHub README.",
-      includeByDefault: true,
-      strength: "supporting",
-      targetRoles: [
-        "Platform Engineer",
-        "Software Engineer",
-        "Technical Coordinator"
-      ],
-      skillTags: [
-        { category: "Documentation", name: "README" },
-        { category: "Documentation", name: "screenshot captions" },
-        { category: "Documentation", name: "model notes" },
-        { category: "Productivity", name: "GitHub README" }
-      ]
-    },
-    {
-      id: "model-hardware-fit-explorer-005",
-      text: "Used JavaScript, React, Vite, Hugging Face model cards, and configuration files to build a model-metadata and local hardware-fit comparison application.",
-      printText: "Built an AI infrastructure support tool with JavaScript, React, Vite, Hugging Face model cards, and configs.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "AI/ML Engineer",
-        "Software Engineer",
-        "MLOps / AI Infrastructure"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "JavaScript" },
-        { category: "Web & API Development", name: "React" },
-        { category: "Web & API Development", name: "Vite" },
-        { category: "AI/ML", name: "Hugging Face model cards" }
-      ]
-    },
-    {
-      id: "model-hardware-fit-explorer-006",
-      text: "Validated project quality with Vite build workflows and iterative Git commits.",
-      printText: "Validated the static front-end with Vite build workflows and iterative Git commits.",
-      includeByDefault: true,
-      strength: "supporting",
-      targetRoles: [
-        "Software Engineer",
-        "Platform Engineer"
-      ],
-      skillTags: [
-        { category: "DevOps & Tooling", name: "Vite build validation" },
-        { category: "DevOps & Tooling", name: "Git" },
-        { category: "DevOps & Tooling", name: "GitHub" }
-      ]
-    },
-    {
-      id: "model-hardware-fit-explorer-007",
-      text: "Translated raw model configuration data into readable deployment notes for users evaluating local AI workloads.",
-      printText: "Translated raw model config data into readable notes for evaluating local AI workloads.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "AI/ML Engineer",
-        "MLOps / AI Infrastructure",
-        "Support Engineer",
-        "Platform Engineer"
-      ],
-      skillTags: [
-        { category: "AI/ML", name: "model metadata" },
-        { category: "AI/ML", name: "local model deployment planning" },
-        { category: "Documentation", name: "model notes" },
-        { category: "Cloud & Infrastructure", name: "workstation hardware planning" }
-      ]
-    },
-    {
-      id: "model-hardware-fit-explorer-008",
-      text: "Created a practical bridge between AI model metadata and infrastructure planning for local development systems.",
-      printText: "Connected AI model metadata with infrastructure planning for local development systems.",
-      includeByDefault: true,
-      strength: "supporting",
-      targetRoles: [
-        "Platform Engineer",
-        "MLOps / AI Infrastructure",
-        "Systems Administrator"
-      ],
-      skillTags: [
-        { category: "AI/ML", name: "AI infrastructure tooling" },
-        { category: "AI/ML", name: "model selection support" },
-        { category: "Cloud & Infrastructure", name: "local AI infrastructure" }
-      ]
-    }
+          id: "model-hardware-fit-explorer-007",
+          text: "Translated raw model configuration data into readable deployment notes for users evaluating local AI workloads.",
+          printText: "Translated raw model config data into readable notes for evaluating local AI workloads.",
+          includeByDefault: true,
+          strength: "primary",
+          targetRoles: [
+            "AI/ML Engineer",
+            "MLOps / AI Infrastructure",
+            "Support Engineer",
+            "Platform Engineer"
+          ],
+          skillTags: [
+            { category: "AI/ML", name: "model metadata" },
+            { category: "AI/ML", name: "local model deployment planning" },
+            { category: "Documentation", name: "model notes" },
+            { category: "Cloud & Infrastructure", name: "workstation hardware planning" }
+          ]
+        }
   ],
 
   skillTags: [

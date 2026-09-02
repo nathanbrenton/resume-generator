@@ -122,387 +122,145 @@ const job20220714AdroitWorldwideMediaSmartshelfJrItSupportTechnician = {
 
   bullets: [
     {
-      id: "adroit-smartshelf-jr-it-support-trl11-video-systems-001",
-      text: "Validated AI-generated retail transactions against synchronized multi-camera footage, corrected output discrepancies, investigated edge cases, and escalated recurring computer-vision failure patterns.",
-      printText: "Validated AI outputs against multi-camera video, corrected discrepancies, and escalated recurring computer-vision failure patterns.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: ["Video Systems Engineer — AI & Computer Vision Pipelines"],
-      skillTags: [
-        { category: "AI & Computer Vision Operations", name: "multi-camera AI validation" },
-        { category: "AI & Computer Vision Operations", name: "computer vision output validation" },
-        { category: "AI & Computer Vision Operations", name: "human-in-the-loop validation" },
-        { category: "Documentation & Collaboration", name: "issue escalation" }
-      ]
-    },
+          id: "adroit-smartshelf-jr-it-support-001",
+          text: "Performed human-in-the-loop validation of AI-generated computer vision transaction results by reviewing multi-camera shopping-session footage and correcting item counts, product types, and purchase outcomes in an in-house system.",
+          printText: "Validated AI-generated computer vision transactions against multi-camera source footage, correcting item counts, product types, and purchase outcomes.",
+          includeByDefault: true,
+          strength: "primary",
+          targetRoles: [
+            "AI Operations Support",
+            "Computer Vision QA",
+            "AI/ML Engineer",
+            "Support Engineer",
+            "IT Support Specialist"
+          ],
+          skillTags: [
+            { category: "AI/ML", name: "human-in-the-loop validation" },
+            { category: "AI/ML", name: "computer vision QA" },
+            { category: "AI/ML", name: "computer vision output validation" },
+            { category: "AI/ML", name: "AI output verification" },
+            { category: "AI/ML", name: "model output correction" },
+            { category: "AI/ML", name: "model evaluation" },
+            { category: "Media & Encoding", name: "multi-camera video review" }
+          ]
+        },
     {
-      id: "adroit-smartshelf-jr-it-support-nakedmd-ai-application-001",
-      text: "Performed human-in-the-loop review of AI-generated retail transactions against multi-camera footage, corrected inaccurate outputs, and escalated recurring discrepancies.",
-      printText: "Reviewed AI-generated transactions against video, corrected inaccurate outputs, and escalated recurring discrepancies.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: ["AI Application Developer — Secure Workflow Automation"],
-      skillTags: [
-        { category: "Human Review & Guardrails", name: "human-in-the-loop validation" },
-        { category: "Human Review & Guardrails", name: "structured validation" },
-        { category: "APIs & Data", name: "data validation" },
-        { category: "AI & Automation", name: "AI-assisted workflows" }
-      ]
-    },
+          id: "adroit-smartshelf-jr-it-support-002",
+          text: "Reviewed 10+ frictionless shopping sessions per day for AI output accuracy, comparing model-generated transaction data against source video from multi-camera retail environments.",
+          printText: "Reviewed 10+ daily frictionless-shopping sessions for transaction accuracy, identifying discrepancies between recorded activity and generated transactions.",
+          includeByDefault: true,
+          strength: "primary",
+          targetRoles: [
+            "AI Operations Support",
+            "Computer Vision QA",
+            "AI/ML Engineer",
+            "Support Engineer"
+          ],
+          skillTags: [
+            { category: "AI/ML", name: "AI-assisted retail analytics" },
+            { category: "AI/ML", name: "transaction result validation" },
+            { category: "AI/ML", name: "ground-truth review support" },
+            { category: "Media & Encoding", name: "video playback" },
+            { category: "Media & Encoding", name: "footage review" }
+          ]
+        },
     {
-      id: "adroit-smartshelf-jr-it-support-ai-business-automation-001",
-      text: "Validated AI-generated retail transactions against multi-camera footage, corrected inaccurate output data, investigated discrepancies, and documented recurring issues for escalation.",
-      printText: "Validated AI-generated retail transactions against video, corrected output data, investigated discrepancies, and documented recurring issues.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: ["AI Automation Engineer — Business Systems Integration"],
-      skillTags: [
-        { category: "Data & AI", name: "human-in-the-loop validation" },
-        { category: "Automation & Integration", name: "data validation" },
-        { category: "Data & AI", name: "model output validation" },
-        { category: "Enterprise Operations", name: "technical documentation" }
-      ]
-    },
+          id: "adroit-smartshelf-jr-it-support-003",
+          text: "Supported deployed smart shelf systems across six retail locations in three countries, including environments with approximately 18 cameras per location.",
+          printText: "Supported smart shelf deployments across six locations in three countries with 18-camera environments.",
+          includeByDefault: true,
+          strength: "primary",
+          targetRoles: [
+            "Support Engineer",
+            "IT Support Specialist",
+            "Platform Engineer",
+            "Technical Coordinator"
+          ],
+          skillTags: [
+            { category: "Cloud & Infrastructure", name: "field-deployed systems" },
+            { category: "Cloud & Infrastructure", name: "multi-location retail technology" },
+            { category: "Hardware / Repair", name: "smart shelf hardware" },
+            { category: "Media & Encoding", name: "multi-camera environments" }
+          ]
+        },
     {
-      id: "awm-smart-shelf-blizzard-reliability-001",
-      text: "Investigated discrepancies in deployed AI-assisted systems, compared structured outputs against source evidence, and escalated documented findings for technical review.",
-      printText: "Investigated deployed AI-system discrepancies, compared outputs with source evidence, and escalated documented findings.",
-      includeByDefault: true,
-      strength: "supporting",
-      targetRoles: ["Associate Software Engineer — Reliability"],
-      skillTags: [
-        { category: "Reliability Engineering", name: "root-cause analysis" },
-        { category: "Testing & Validation", name: "data validation" },
-        { category: "Monitoring & Incident Management", name: "incident triage" }
-      ]
-    },
+          id: "adroit-smartshelf-jr-it-support-004",
+          text: "Monitored and escalated alerts for deployed field hardware and software systems, communicating findings and follow-up expectations through Slack and support handoffs.",
+          printText: "Escalated field hardware/software alerts through Slack with findings, handoffs, and follow-up expectations.",
+          includeByDefault: true,
+          strength: "primary",
+          targetRoles: [
+            "Support Engineer",
+            "IT Support Specialist",
+            "Systems Administrator",
+            "Technical Coordinator"
+          ],
+          skillTags: [
+            { category: "IT Service Management", name: "alert escalation" },
+            { category: "IT Service Management", name: "incident-style support" },
+            { category: "Ticketing & Collaboration", name: "Slack" },
+            { category: "Documentation", name: "handoff notes" }
+          ]
+        },
     {
-      id: "awm-smart-shelf-anduril-it-automation-001",
-      text: "Supported deployed AI-assisted systems through discrepancy investigation, structured output correction, and documented technical escalation.",
-      printText: "Supported deployed AI-assisted systems through discrepancy investigation, output correction, and documented escalation.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: ["IT Systems Engineer — Automation & Self-Service"],
-      skillTags: [
-        { category: "AI-Enabled Solutions", name: "human-in-the-loop validation" },
-        { category: "Security & Operations", name: "incident response" },
-        { category: "Documentation", name: "technical documentation" }
-      ]
-    },
+          id: "adroit-smartshelf-jr-it-support-005",
+          text: "Troubleshot Ubuntu-based Raspberry Pi devices supporting network-aware shelves, sensors, and camera systems in frictionless retail deployments.",
+          printText: "Troubleshot Ubuntu-based Raspberry Pi devices supporting network-aware shelves, sensors, and cameras.",
+          includeByDefault: true,
+          strength: "primary",
+          targetRoles: [
+            "Linux Administrator",
+            "Systems Administrator",
+            "Support Engineer",
+            "IT Support Specialist",
+            "Electronics Repair Technician"
+          ],
+          skillTags: [
+            { category: "Operating Systems", name: "Ubuntu" },
+            { category: "Operating Systems", name: "Raspberry Pi OS / Linux" },
+            { category: "Linux & Systems Administration", name: "Raspberry Pi support" },
+            { category: "Linux & Systems Administration", name: "network troubleshooting" },
+            { category: "Hardware / Repair", name: "Raspberry Pi" }
+          ]
+        },
     {
-      id: "awm-smart-shelf-api-support-001",
-      text: "Compared AI-generated transactions against multi-camera source footage, correcting discrepancies across item, product, and purchase data.",
-      printText: "Compared AI-generated transactions with multi-camera footage, correcting item, product, and purchase-data discrepancies.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Support Engineer — APIs & Technical Support"
-      ],
-      skillTags: [
-        { category: "Databases & Data", name: "data comparison" },
-        { category: "Application Support", name: "root-cause analysis" },
-        { category: "Testing & QA", name: "data validation" }
-      ]
-    },
+          id: "adroit-smartshelf-jr-it-support-006",
+          text: "Recorded remote computer evaluations using VDO.Ninja, gathered diagnostic information, and produced clear findings reports for support escalation.",
+          printText: "Recorded remote evaluations with VDO.Ninja and produced findings reports for support escalation.",
+          includeByDefault: true,
+          strength: "supporting",
+          targetRoles: [
+            "Support Engineer",
+            "IT Support Specialist",
+            "Technical Coordinator",
+            "Media Systems / Encoding Engineer"
+          ],
+          skillTags: [
+            { category: "DevOps & Tooling", name: "VDO.Ninja" },
+            { category: "Media & Encoding", name: "VDO.Ninja" },
+            { category: "Documentation", name: "findings reports" },
+            { category: "Ticketing & Collaboration", name: "Slack" }
+          ]
+        },
     {
-      id: "awm-smart-shelf-api-support-002",
-      text: "Documented findings and escalated structured application issues for further technical investigation.",
-      printText: "Documented findings and escalated structured issues for further technical investigation.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Support Engineer — APIs & Technical Support"
-      ],
-      skillTags: [
-        { category: "Application Support", name: "issue escalation" },
-        { category: "Documentation & Collaboration", name: "technical documentation" },
-        { category: "Documentation & Collaboration", name: "support handoffs" }
-      ]
-    },
-    {
-      id: "adroit-smartshelf-jr-it-support-application-support-001",
-      text: "Investigated discrepancies in deployed AI-assisted retail applications, corrected structured outputs, and escalated findings for further technical review.",
-      printText: "Investigated AI-assisted application discrepancies, corrected structured outputs, and escalated findings for technical review.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Application Support Analyst"
-      ],
-      skillTags: [
-        { category: "Application Support", name: "issue escalation" },
-        { category: "Application Support", name: "bug triage" },
-        { category: "Testing & QA", name: "data validation" },
-        { category: "Documentation & Collaboration", name: "support handoffs" }
-      ]
-    },
-    {
-      id: "adroit-smartshelf-jr-it-support-digital-workplace-platform-001",
-      text: "Supported deployed AI-assisted retail systems through discrepancy investigation, structured output correction, and documented escalation of field-system issues.",
-      printText: "Supported AI-assisted systems through discrepancy investigation, output correction, and documented escalation.",
-      includeByDefault: true,
-      strength: "supporting",
-      targetRoles: [
-        "Platform Engineer — Digital Workplace Automation"
-      ],
-      skillTags: [
-        { category: "AI-Enabled Solutions", name: "human-in-the-loop validation" },
-        { category: "Platform & Service Delivery", name: "operational controls" },
-        { category: "Reporting & Analytics", name: "operational reporting" }
-      ]
-    },
-    {
-      id: "adroit-smartshelf-jr-it-support-physical-ai-compute-001",
-      text: "Validated computer-vision model outputs against multi-camera source footage, correcting classifications and structured ground-truth records.",
-      printText: "Validated computer-vision outputs against multi-camera footage, correcting classifications and ground-truth records.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Computer Engineer — Physical AI Compute"
-      ],
-      skillTags: [
-        { category: "AI Systems & Compute", name: "computer vision validation" },
-        { category: "Performance & Validation", name: "model output validation" },
-        { category: "Performance & Validation", name: "data validation" }
-      ]
-    },
-    {
-      id: "adroit-smartshelf-jr-it-support-ai-financial-operations-001",
-      text: "Validated AI-generated retail transactions against multi-camera footage, identifying discrepancies and correcting item counts, product classifications, and purchase outcomes.",
-      printText: "Validated AI-generated retail transactions against video, correcting item counts, product classes, and outcomes.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "AI Automation Engineer — Financial Operations",
-        "AI-First Software Engineer"
-      ],
-      skillTags: [
-        { category: "AI & Automation", name: "human-in-the-loop validation" },
-        { category: "AI & Automation", name: "model output validation" },
-        { category: "Testing & Quality", name: "discrepancy investigation" }
-      ]
-    },
-    {
-      id: "adroit-smartshelf-jr-it-support-ai-financial-operations-002",
-      text: "Supported operational AI quality workflows through discrepancy investigation, structured output correction, and documented escalation of field-system issues.",
-      printText: "Supported AI quality workflows through discrepancy investigation, output correction, and documented issue escalation.",
-      includeByDefault: true,
-      strength: "supporting",
-      targetRoles: [
-        "AI Automation Engineer — Financial Operations",
-        "AI-First Software Engineer"
-      ],
-      skillTags: [
-        { category: "AI & Automation", name: "model evaluation" },
-        { category: "Testing & Quality", name: "issue investigation" },
-        { category: "Testing & Quality", name: "data validation" }
-      ]
-    },
-    {
-      id: "adroit-smartshelf-jr-it-support-full-stack-001",
-      text: "Supported deployed AI retail systems through operational review, discrepancy investigation, and structured correction of computer-vision transaction outputs.",
-      printText: "Supported deployed AI retail systems through discrepancy investigation and structured correction of model outputs.",
-      includeByDefault: true,
-      strength: "supporting",
-      targetRoles: [
-        "Software Engineer — Full Stack"
-      ],
-      skillTags: [
-        { category: "AI & Data Products", name: "AI-assisted products" },
-        { category: "AI & Data Products", name: "model output validation" },
-        { category: "Testing & Quality", name: "discrepancy investigation" }
-      ]
-    },
-    {
-      id: "adroit-smartshelf-jr-it-support-junior-operations-001",
-      text: "Validated AI-generated retail transactions against multi-camera source footage, identifying discrepancies and correcting item counts, product classifications, and purchase outcomes.",
-      printText: "Validated AI-generated retail transactions against video, correcting item counts, product classes, and outcomes.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Junior Operations Engineer"
-      ],
-      skillTags: [
-        { category: "AI & Automation", name: "human-in-the-loop validation" },
-        { category: "AI & Automation", name: "model output validation" },
-        { category: "Operations & Troubleshooting", name: "data discrepancy analysis" },
-        { category: "AI/ML", name: "computer vision QA" }
-      ]
-    },
-    {
-      id: "adroit-smartshelf-jr-it-support-junior-operations-002",
-      text: "Monitored deployed field systems and escalated hardware and software alerts with documented findings, support handoffs, and follow-up expectations.",
-      printText: "Monitored field systems and escalated hardware/software alerts with findings and support handoffs.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Junior Operations Engineer"
-      ],
-      skillTags: [
-        { category: "Operations & Troubleshooting", name: "incident triage" },
-        { category: "Operations & Troubleshooting", name: "monitoring" },
-        { category: "Documentation", name: "support handoffs" },
-        { category: "Ticketing & Collaboration", name: "Slack" }
-      ]
-    },
-    {
-      id: "adroit-smartshelf-jr-it-support-001",
-      text: "Performed human-in-the-loop validation of AI-generated computer vision transaction results by reviewing multi-camera shopping-session footage and correcting item counts, product types, and purchase outcomes in an in-house system.",
-      printText: "Validated AI-generated computer vision transactions against multi-camera source footage, correcting item counts, product types, and purchase outcomes.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "AI Operations Support",
-        "Computer Vision QA",
-        "AI/ML Engineer",
-        "Support Engineer",
-        "IT Support Specialist"
-      ],
-      skillTags: [
-        { category: "AI/ML", name: "human-in-the-loop validation" },
-        { category: "AI/ML", name: "computer vision QA" },
-        { category: "AI/ML", name: "computer vision output validation" },
-        { category: "AI/ML", name: "AI output verification" },
-        { category: "AI/ML", name: "model output correction" },
-        { category: "AI/ML", name: "model evaluation" },
-        { category: "Media & Encoding", name: "multi-camera video review" }
-      ]
-    },
-    {
-      id: "adroit-smartshelf-jr-it-support-002",
-      text: "Reviewed 10+ frictionless shopping sessions per day for AI output accuracy, comparing model-generated transaction data against source video from multi-camera retail environments.",
-      printText: "Reviewed 10+ daily frictionless-shopping sessions for transaction accuracy, identifying discrepancies between recorded activity and generated transactions.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "AI Operations Support",
-        "Computer Vision QA",
-        "AI/ML Engineer",
-        "Support Engineer"
-      ],
-      skillTags: [
-        { category: "AI/ML", name: "AI-assisted retail analytics" },
-        { category: "AI/ML", name: "transaction result validation" },
-        { category: "AI/ML", name: "ground-truth review support" },
-        { category: "Media & Encoding", name: "video playback" },
-        { category: "Media & Encoding", name: "footage review" }
-      ]
-    },
-    {
-      id: "adroit-smartshelf-jr-it-support-003",
-      text: "Supported deployed smart shelf systems across six retail locations in three countries, including environments with approximately 18 cameras per location.",
-      printText: "Supported smart shelf deployments across six locations in three countries with 18-camera environments.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Support Engineer",
-        "IT Support Specialist",
-        "Platform Engineer",
-        "Technical Coordinator"
-      ],
-      skillTags: [
-        { category: "Cloud & Infrastructure", name: "field-deployed systems" },
-        { category: "Cloud & Infrastructure", name: "multi-location retail technology" },
-        { category: "Hardware / Repair", name: "smart shelf hardware" },
-        { category: "Media & Encoding", name: "multi-camera environments" }
-      ]
-    },
-    {
-      id: "adroit-smartshelf-jr-it-support-004",
-      text: "Monitored and escalated alerts for deployed field hardware and software systems, communicating findings and follow-up expectations through Slack and support handoffs.",
-      printText: "Escalated field hardware/software alerts through Slack with findings, handoffs, and follow-up expectations.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Support Engineer",
-        "IT Support Specialist",
-        "Systems Administrator",
-        "Technical Coordinator"
-      ],
-      skillTags: [
-        { category: "IT Service Management", name: "alert escalation" },
-        { category: "IT Service Management", name: "incident-style support" },
-        { category: "Ticketing & Collaboration", name: "Slack" },
-        { category: "Documentation", name: "handoff notes" }
-      ]
-    },
-    {
-      id: "adroit-smartshelf-jr-it-support-005",
-      text: "Troubleshot Ubuntu-based Raspberry Pi devices supporting network-aware shelves, sensors, and camera systems in frictionless retail deployments.",
-      printText: "Troubleshot Ubuntu-based Raspberry Pi devices supporting network-aware shelves, sensors, and cameras.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Linux Administrator",
-        "Systems Administrator",
-        "Support Engineer",
-        "IT Support Specialist",
-        "Electronics Repair Technician"
-      ],
-      skillTags: [
-        { category: "Operating Systems", name: "Ubuntu" },
-        { category: "Operating Systems", name: "Raspberry Pi OS / Linux" },
-        { category: "Linux & Systems Administration", name: "Raspberry Pi support" },
-        { category: "Linux & Systems Administration", name: "network troubleshooting" },
-        { category: "Hardware / Repair", name: "Raspberry Pi" }
-      ]
-    },
-    {
-      id: "adroit-smartshelf-jr-it-support-006",
-      text: "Recorded remote computer evaluations using VDO.Ninja, gathered diagnostic information, and produced clear findings reports for support escalation.",
-      printText: "Recorded remote evaluations with VDO.Ninja and produced findings reports for support escalation.",
-      includeByDefault: true,
-      strength: "supporting",
-      targetRoles: [
-        "Support Engineer",
-        "IT Support Specialist",
-        "Technical Coordinator",
-        "Media Systems / Encoding Engineer"
-      ],
-      skillTags: [
-        { category: "DevOps & Tooling", name: "VDO.Ninja" },
-        { category: "Media & Encoding", name: "VDO.Ninja" },
-        { category: "Documentation", name: "findings reports" },
-        { category: "Ticketing & Collaboration", name: "Slack" }
-      ]
-    },
-    {
-      id: "adroit-smartshelf-jr-it-support-007",
-      text: "Supported camera assembly and sensor hardware workflows, including soldering and troubleshooting for field-deployed retail technology systems.",
-      printText: "Supported camera assembly, sensor workflows, soldering, and field hardware troubleshooting.",
-      includeByDefault: true,
-      strength: "supporting",
-      targetRoles: [
-        "Electronics Repair Technician",
-        "IT Support Specialist",
-        "Support Engineer",
-        "Media Systems / Encoding Engineer"
-      ],
-      skillTags: [
-        { category: "Hardware / Repair", name: "camera assembly" },
-        { category: "Hardware / Repair", name: "sensors" },
-        { category: "Hardware / Repair", name: "soldering" },
-        { category: "Hardware / Repair", name: "field hardware troubleshooting" }
-      ]
-    },
-    {
-      id: "adroit-smartshelf-jr-it-support-008",
-      text: "Contributed to AI-assisted retail analytics quality assurance by correcting model-generated outputs and supporting ground-truth review workflows.",
-      printText: "Supported AI-assisted retail analytics QA through model-output correction and ground-truth review.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "AI Operations Support",
-        "Computer Vision QA",
-        "AI/ML Engineer",
-        "Support Engineer"
-      ],
-      skillTags: [
-        { category: "AI/ML", name: "AI-assisted retail analytics" },
-        { category: "AI/ML", name: "ground-truth review support" },
-        { category: "AI/ML", name: "data annotation support" },
-        { category: "AI/ML", name: "model output correction" }
-      ]
-    }
+          id: "adroit-smartshelf-jr-it-support-007",
+          text: "Supported camera assembly and sensor hardware workflows, including soldering and troubleshooting for field-deployed retail technology systems.",
+          printText: "Supported camera assembly, sensor workflows, soldering, and field hardware troubleshooting.",
+          includeByDefault: true,
+          strength: "supporting",
+          targetRoles: [
+            "Electronics Repair Technician",
+            "IT Support Specialist",
+            "Support Engineer",
+            "Media Systems / Encoding Engineer"
+          ],
+          skillTags: [
+            { category: "Hardware / Repair", name: "camera assembly" },
+            { category: "Hardware / Repair", name: "sensors" },
+            { category: "Hardware / Repair", name: "soldering" },
+            { category: "Hardware / Repair", name: "field hardware troubleshooting" }
+          ]
+        }
   ],
 
   skillTags: [

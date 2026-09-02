@@ -4,27 +4,46 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
+const { loadBrowserSource } = require("./browser-source-loader.js");
 
 const repoRoot = path.resolve(__dirname, "..");
 const indexHtml = fs.readFileSync(path.join(repoRoot, "index.html"), "utf8");
 const appSource = fs.readFileSync(path.join(repoRoot, "js/app.js"), "utf8");
+const documentControllerSource = fs.readFileSync(
+  path.join(repoRoot, "js/document-controller.js"),
+  "utf8"
+);
+const customizationControllerSource = fs.readFileSync(
+  path.join(repoRoot, "js/customization-controller.js"),
+  "utf8"
+);
+const recordManifest = require(path.join(repoRoot, "js/data/record-script-manifest.js"));
 const rendererSource = fs.readFileSync(path.join(repoRoot, "js/render-cover-letter.js"), "utf8");
+const highlightSource = fs.readFileSync(path.join(repoRoot, "js/cover-letter-highlights.js"), "utf8");
 const cssSource = fs.readFileSync(path.join(repoRoot, "css/styles.css"), "utf8");
 
 assert(indexHtml.includes('<select id="documentType">'), "Document selector is missing");
 assert(indexHtml.includes('<option value="cover-letter">Cover Letter</option>'),
   "Cover Letter document option is missing");
-assert(indexHtml.includes('./js/data/cover-letters.js'), "Cover-letter data script is missing");
+assert(recordManifest.includes("./js/data/cover-letters.js"),
+  "Cover-letter data script is missing from the record manifest");
 assert(indexHtml.includes('./js/render-cover-letter.js'), "Cover-letter renderer script is missing");
-assert(appSource.includes('activeDocumentType === DOCUMENT_TYPES.COVER_LETTER'),
-  "App does not render cover-letter document mode");
-assert(appSource.includes('genericCoverLetter'),
-  "App/data wiring does not expose a generic cover-letter fallback");
-assert(appSource.includes('getEffectiveCustomizeMode'),
+assert(indexHtml.includes('./js/cover-letter-highlights.js'), "Cover-letter highlight helper script is missing");
+assert(indexHtml.includes('id="coverLetterHighlight1"'), "Cover-letter highlight 1 input is missing");
+assert(indexHtml.includes('id="coverLetterHighlight2"'), "Cover-letter highlight 2 input is missing");
+assert(documentControllerSource.includes("resolveHighlights"),
+  "Document controller does not resolve role-specific cover-letter highlights");
+assert(rendererSource.includes('cover-letter:highlights'), "Cover-letter renderer is missing editable highlight text");
+assert(cssSource.includes('.cover-letter-only-control'), "Cover-letter-only highlight controls are missing styling");
+assert(appSource.includes("isCoverLetter()"),
+  "App does not render cover-letter document mode through the document controller");
+assert(documentControllerSource.includes("genericCoverLetter"),
+  "Document controller does not expose a generic cover-letter fallback");
+assert(customizationControllerSource.includes("getEffectiveCustomizeMode"),
   "Cover letters must use document-aware customization behavior");
-assert(appSource.includes('`${roleId}::cover-letter`'),
+assert(customizationControllerSource.includes("`${roleId}::cover-letter`"),
   "Cover-letter session edits must be scoped separately from resume edits");
-assert(appSource.includes('input.disabled = isCoverLetter'),
+assert(customizationControllerSource.includes("input.disabled = isCoverLetter"),
   "Cover-letter mode must disable persistent/manual mode switching");
 assert(rendererSource.includes('resume-page cover-letter-page'),
   "Cover-letter renderer must reuse the printable resume page shell");
@@ -101,5 +120,49 @@ assert(automotiveLetter.paragraphs.join(" ").includes("soldering"));
 assert(automotiveLetter.paragraphs.join(" ").includes("IT"));
 assert(automotiveLetter.paragraphs.join(" ").includes("live sound/PA systems"));
 assert.equal(automotiveLetter.signature, "Nathan Brenton");
+
+const highlightContext = vm.createContext({ console, module: { exports: {} } });
+vm.runInContext(`${highlightSource}\nglobalThis.__coverLetterHighlights = resumeCoverLetterHighlights;`, highlightContext);
+const highlightHelper = highlightContext.__coverLetterHighlights;
+
+const sampleResume = {
+  skills: [
+    { category: "Endpoint & IT Support", skills: ["Windows", "macOS", "SCCM/MECM"] },
+    { category: "Enterprise Support", skills: ["ServiceNow", "Microsoft 365"] },
+    { category: "Identity & Access", skills: ["Active Directory"] }
+  ],
+  jobs: [],
+  projects: []
+};
+const sampleRole = { coverLetterHighlights: ["Active Directory", "ServiceNow"] };
+const resolved = highlightHelper.resolveHighlights(sampleResume, sampleRole);
+assert.deepEqual(Array.from(resolved.highlights), ["Active Directory", "ServiceNow"]);
+assert.equal(resolved.invalidConfigured.length, 0);
+assert.equal(
+  highlightHelper.formatHighlightSentence(resolved.highlights),
+  "Relevant strengths for this role include Active Directory and ServiceNow."
+);
+const unsupported = highlightHelper.resolveHighlights(sampleResume, {
+  coverLetterHighlights: ["Okta", "ServiceNow"]
+});
+assert.deepEqual(Array.from(unsupported.highlights), ["ServiceNow"]);
+assert.deepEqual(Array.from(unsupported.invalidConfigured), ["Okta"]);
+const manual = highlightHelper.resolveHighlights(sampleResume, {}, ["SCCM/MECM", "Intune"]);
+assert.deepEqual(Array.from(manual.highlights), ["SCCM/MECM"]);
+assert.deepEqual(Array.from(manual.invalidManual), ["Intune"]);
+
+// Validate configured role metadata against actual selected resume evidence.
+const { source: dataSource } = loadBrowserSource(repoRoot);
+const dataContext = vm.createContext({ console, Date, Map, Set });
+vm.runInContext(`${dataSource}\nglobalThis.__coverRoleTest = { careerData, buildResume, getRoleDefinition };`, dataContext);
+const { careerData, buildResume, getRoleDefinition } = dataContext.__coverRoleTest;
+careerData.roleDefinitions
+  .filter((role) => Array.isArray(role.coverLetterHighlights))
+  .forEach((role) => {
+    const resume = buildResume({ targetRole: role.id, currentDate: new Date(2026, 8, 2) });
+    const check = highlightHelper.validateHighlights(role.coverLetterHighlights, resume, role);
+    assert.equal(check.invalid.length, 0,
+      `${role.id}.coverLetterHighlights contains unsupported values: ${check.invalid.join(", ")}`);
+  });
 
 console.log("Cover letter data checks passed.");

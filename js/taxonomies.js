@@ -18,6 +18,9 @@ const skillCategoryOrder = [
   "AI Applications",
   "AI Infrastructure",
   "Human Review & Validation",
+  "Music Education",
+  "Music Performance",
+  "Music Technology",
   "Media Processing",
   "Media Systems Support",
   "Signal Processing",
@@ -68,6 +71,8 @@ const bulletFocusAreas = {
   "stakeholder-support": "Stakeholder Support",
   "customer-user-support": "Customer & User Support",
   "hardware-repair": "Hardware & Repair",
+  "music-education": "Music Education",
+  "music-performance": "Music Performance",
   "media-processing": "Media Processing",
   "ai-ml": "AI & Machine Learning"
 };
@@ -181,6 +186,21 @@ const bulletFocusAreaRules = [
     terms: [
       "hardware", "repair", "solder", "calibrat", "firmware", "device provisioning",
       "peripheral", "electromechanical"
+    ]
+  },
+  {
+    id: "music-education",
+    terms: [
+      "music instruction", "private lesson", "instrumental pedagogy", "music theory",
+      "orchestra coaching", "ensemble instruction", "substitute teaching", "strings",
+      "student coaching", "practice materials", "music notation", "music transcription"
+    ]
+  },
+  {
+    id: "music-performance",
+    terms: [
+      "perform", "performance", "cello", "guitar", "electric bass", "banjo",
+      "musical theater", "pit orchestra", "ensemble", "rehearsal"
     ]
   },
   {

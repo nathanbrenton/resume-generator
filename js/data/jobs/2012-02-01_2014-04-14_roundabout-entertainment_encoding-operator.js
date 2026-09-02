@@ -113,311 +113,249 @@ const job20120201RoundaboutEntertainmentEncodingOperator = {
 
   bullets: [
     {
-      id: "roundabout-entertainment-encoding-operator-trl11-video-systems-001",
-      text: "Operated and validated ingest, transcode, metadata, forensic-watermarking, quality-control, and delivery workflows for FOX and other media platforms.",
-      printText: "Operated and validated ingest, transcode, metadata, watermarking, QC, and delivery workflows for FOX and other media platforms.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: ["Video Systems Engineer — AI & Computer Vision Pipelines"],
-      skillTags: [
-        { category: "Video & Media Pipelines", name: "video ingest" },
-        { category: "Video & Media Pipelines", name: "transcoding" },
-        { category: "Video & Media Pipelines", name: "metadata validation" },
-        { category: "Video & Media Pipelines", name: "quality control" }
-      ]
-    },
+          id: "roundabout-entertainment-encoding-operator-001",
+          text: "Operated broadcast tape deck and file-based workflows for HDCAM-SR, Digital Betacam, D5, D2, D1, Sony 1-inch tape, dailies, archival capture, and platform deliverables.",
+          printText: "Operated tape and file-based workflows for broadcast, streaming, dailies, and archival deliverables.",
+          includeByDefault: true,
+          targetRoles: [
+            "Digital Media Technician",
+            "Media Systems Technician",
+            "Encoding / Transcode Technician",
+            "Post-Production Technician"
+          ],
+          skillTags: [
+            { category: "Media & Encoding", name: "tape capture" },
+            { category: "Media & Encoding", name: "file-based workflows" },
+            { category: "Media & Encoding", name: "broadcast deliverables" },
+            { category: "Media & Encoding", name: "streaming deliverables" },
+            { category: "Media & Encoding", name: "archival capture" },
+            { category: "Hardware / Repair", name: "Sony HDCAM-SR" },
+            { category: "Hardware / Repair", name: "Sony Digital Betacam" },
+            { category: "Hardware / Repair", name: "Panasonic D5" }
+          ]
+        },
     {
-      id: "roundabout-entertainment-encoding-operator-sre-001",
-      text: "Supported time-sensitive transcode and delivery workflows for PlayStation Network, FOX, Netflix, and international media platforms.",
-      printText: "Supported time-sensitive transcode and delivery workflows for PlayStation Network, FOX, Netflix, and international platforms.",
-      includeByDefault: true,
-      strength: "supporting",
-      targetRoles: [
-        "Site Reliability Engineer"
-      ],
-      skillTags: [
-        { category: "Site Reliability & Operations", name: "production support" },
-        { category: "Site Reliability & Operations", name: "operational readiness" },
-        { category: "Testing & Validation", name: "delivery validation" }
-      ]
-    },
+          id: "roundabout-entertainment-encoding-operator-002",
+          text: "Transcoded FOX broadcast/streaming, Xbox Live, PlayStation Network, Netflix streaming, dailies, preview, and international distribution deliverables.",
+          printText: "Transcoded FOX, Xbox Live, PlayStation Network, Netflix, dailies, and international deliverables.",
+          includeByDefault: true,
+          targetRoles: [
+            "Digital Media Technician",
+            "Media Systems Technician",
+            "Encoding / Transcode Technician",
+            "Post-Production Technician"
+          ],
+          skillTags: [
+            { category: "Media & Encoding", name: "transcoding" },
+            { category: "Media & Encoding", name: "FOX deliverables" },
+            { category: "Media & Encoding", name: "Fox Spec" },
+            { category: "Media & Encoding", name: "Xbox Live deliverables" },
+            { category: "Media & Encoding", name: "PlayStation Network deliverables" },
+            { category: "Media & Encoding", name: "Netflix streaming deliverables" },
+            { category: "Media & Encoding", name: "international distribution" }
+          ]
+        },
     {
-      id: "roundabout-entertainment-encoding-operator-media-devops-001",
-      text: "Operated and validated tape/file-based ingest, transcode, metadata, and delivery workflows for FOX and other broadcast, streaming, dailies, and archival platforms.",
-      printText: "Operated ingest, transcode, metadata, and delivery workflows for FOX and other media platforms.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Media DevOps Engineer"
-      ],
-      skillTags: [
-        { category: "Media & Encoding", name: "media ingest" },
-        { category: "Media & Encoding", name: "transcoding" },
-        { category: "Media & Encoding", name: "metadata validation" },
-        { category: "Media & Encoding", name: "media delivery" },
-        { category: "Media & Encoding", name: "FOX deliverables" }
-      ]
-    },
+          id: "roundabout-entertainment-encoding-operator-003",
+          text: "Managed dailies workflows including forensic watermarking of sensitive assets for mobile, tablet, and desktop review platforms.",
+          printText: "Managed dailies workflows including forensic watermarking for mobile, tablet, and desktop review.",
+          includeByDefault: true,
+          targetRoles: [
+            "Digital Media Technician",
+            "Encoding / Transcode Technician",
+            "Post-Production Technician",
+            "Security Analyst"
+          ],
+          skillTags: [
+            { category: "Media & Encoding", name: "dailies" },
+            { category: "Security", name: "forensic watermarking" },
+            { category: "Security", name: "NexGuard / Civolution Watermarking" },
+            { category: "Security", name: "controlled media handling" },
+            { category: "Media & Encoding", name: "review platform deliverables" }
+          ]
+        },
     {
-      id: "roundabout-entertainment-encoding-operator-media-devops-002",
-      text: "Managed dailies and forensic-watermarking workflows for mobile, tablet, desktop, and international media delivery.",
-      printText: "Managed dailies and forensic-watermarking workflows for mobile, tablet, desktop, and international delivery.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Media DevOps Engineer"
-      ],
-      skillTags: [
-        { category: "Media & Encoding", name: "dailies" },
-        { category: "Security", name: "forensic watermarking" },
-        { category: "Media & Encoding", name: "review platform deliverables" },
-        { category: "Media & Encoding", name: "international distribution" }
-      ]
-    },
+          id: "roundabout-entertainment-encoding-operator-004",
+          text: "Localized features and episodics into 10+ languages, supporting audio, captions, dub cards, slates, heads/tails, and delivery-spec conformance.",
+          printText: "Localized features and episodics into 10+ languages with audio, captions, and dub-card support.",
+          includeByDefault: true,
+          targetRoles: [
+            "Digital Media Technician",
+            "Encoding / Transcode Technician",
+            "Post-Production Technician",
+            "Technical Coordinator"
+          ],
+          skillTags: [
+            { category: "Media & Encoding", name: "localized deliverables" },
+            { category: "Media & Encoding", name: "language versioning" },
+            { category: "Media & Encoding", name: "captions" },
+            { category: "Media & Encoding", name: "dub cards" },
+            { category: "Media & Encoding", name: "5.1 audio" },
+            { category: "Media & Encoding", name: "delivery-spec conformance" }
+          ]
+        },
     {
-      id: "roundabout-entertainment-encoding-operator-001",
-      text: "Operated broadcast tape deck and file-based workflows for HDCAM-SR, Digital Betacam, D5, D2, D1, Sony 1-inch tape, dailies, archival capture, and platform deliverables.",
-      printText: "Operated tape and file-based workflows for broadcast, streaming, dailies, and archival deliverables.",
-      includeByDefault: true,
-      targetRoles: [
-        "Digital Media Technician",
-        "Media Systems Technician",
-        "Encoding / Transcode Technician",
-        "Post-Production Technician"
-      ],
-      skillTags: [
-        { category: "Media & Encoding", name: "tape capture" },
-        { category: "Media & Encoding", name: "file-based workflows" },
-        { category: "Media & Encoding", name: "broadcast deliverables" },
-        { category: "Media & Encoding", name: "streaming deliverables" },
-        { category: "Media & Encoding", name: "archival capture" },
-        { category: "Hardware / Repair", name: "Sony HDCAM-SR" },
-        { category: "Hardware / Repair", name: "Sony Digital Betacam" },
-        { category: "Hardware / Repair", name: "Panasonic D5" }
-      ]
-    },
+          id: "roundabout-entertainment-encoding-operator-005",
+          text: "Built hundreds of slates and rebuilt heads/tails to conform feature and episodic content to delivery specifications.",
+          printText: "Built hundreds of slates and rebuilt heads/tails to meet delivery specifications.",
+          includeByDefault: true,
+          targetRoles: [
+            "Digital Media Technician",
+            "Encoding / Transcode Technician",
+            "Post-Production Technician"
+          ],
+          skillTags: [
+            { category: "Media & Encoding", name: "slates" },
+            { category: "Media & Encoding", name: "heads/tails" },
+            { category: "Media & Encoding", name: "feature workflows" },
+            { category: "Media & Encoding", name: "episodic workflows" },
+            { category: "Media & Encoding", name: "delivery specifications" }
+          ]
+        },
     {
-      id: "roundabout-entertainment-encoding-operator-002",
-      text: "Transcoded FOX broadcast/streaming, Xbox Live, PlayStation Network, Netflix streaming, dailies, preview, and international distribution deliverables.",
-      printText: "Transcoded FOX, Xbox Live, PlayStation Network, Netflix, dailies, and international deliverables.",
-      includeByDefault: true,
-      targetRoles: [
-        "Digital Media Technician",
-        "Media Systems Technician",
-        "Encoding / Transcode Technician",
-        "Post-Production Technician"
-      ],
-      skillTags: [
-        { category: "Media & Encoding", name: "transcoding" },
-        { category: "Media & Encoding", name: "FOX deliverables" },
-        { category: "Media & Encoding", name: "Fox Spec" },
-        { category: "Media & Encoding", name: "Xbox Live deliverables" },
-        { category: "Media & Encoding", name: "PlayStation Network deliverables" },
-        { category: "Media & Encoding", name: "Netflix streaming deliverables" },
-        { category: "Media & Encoding", name: "international distribution" }
-      ]
-    },
+          id: "roundabout-entertainment-encoding-operator-006",
+          text: "Captured archival tape assets into intermediary media assets and monitored error logs, video monitors, histograms, and scopes for capture artifacts.",
+          printText: "Captured archival tapes while monitoring error logs, video monitors, histograms, and scopes.",
+          includeByDefault: true,
+          targetRoles: [
+            "Systems Administrator",
+            "Support Engineer",
+            "Media Systems Technician",
+            "Encoding / Transcode Technician",
+            "Post-Production Technician"
+          ],
+          skillTags: [
+            { category: "Media & Encoding", name: "archival tape capture" },
+            { category: "Media & Encoding", name: "intermediary media assets" },
+            { category: "Media & Encoding", name: "error log monitoring" },
+            { category: "Media & Encoding", name: "capture artifact monitoring" },
+            { category: "Media & Encoding", name: "histogram monitoring" },
+            { category: "Media & Encoding", name: "video scopes" },
+            { category: "Media & Encoding", name: "video monitors" }
+          ]
+        },
     {
-      id: "roundabout-entertainment-encoding-operator-003",
-      text: "Managed dailies workflows including forensic watermarking of sensitive assets for mobile, tablet, and desktop review platforms.",
-      printText: "Managed dailies workflows including forensic watermarking for mobile, tablet, and desktop review.",
-      includeByDefault: true,
-      targetRoles: [
-        "Digital Media Technician",
-        "Encoding / Transcode Technician",
-        "Post-Production Technician",
-        "Security Analyst"
-      ],
-      skillTags: [
-        { category: "Media & Encoding", name: "dailies" },
-        { category: "Security", name: "forensic watermarking" },
-        { category: "Security", name: "NexGuard / Civolution Watermarking" },
-        { category: "Security", name: "controlled media handling" },
-        { category: "Media & Encoding", name: "review platform deliverables" }
-      ]
-    },
+          id: "roundabout-entertainment-encoding-operator-007",
+          text: "Reviewed hundreds of files for file naming, metadata accuracy, Fox Spec adherence, and delivery-readiness requirements.",
+          printText: "Reviewed files for naming, metadata accuracy, Fox Spec adherence, and delivery readiness.",
+          includeByDefault: true,
+          targetRoles: [
+            "Technical Coordinator",
+            "Digital Media Technician",
+            "Media Systems Technician",
+            "Encoding / Transcode Technician",
+            "Post-Production Technician",
+            "Support Engineer"
+          ],
+          skillTags: [
+            { category: "Media & Encoding", name: "Fox Spec" },
+            { category: "Media & Encoding", name: "metadata accuracy" },
+            { category: "Media & Encoding", name: "delivery readiness" },
+            { category: "Documentation", name: "file naming notes" },
+            { category: "Documentation", name: "metadata review" },
+            { category: "Project Management", name: "client spec tracking" }
+          ]
+        },
     {
-      id: "roundabout-entertainment-encoding-operator-004",
-      text: "Localized features and episodics into 10+ languages, supporting audio, captions, dub cards, slates, heads/tails, and delivery-spec conformance.",
-      printText: "Localized features and episodics into 10+ languages with audio, captions, and dub-card support.",
-      includeByDefault: true,
-      targetRoles: [
-        "Digital Media Technician",
-        "Encoding / Transcode Technician",
-        "Post-Production Technician",
-        "Technical Coordinator"
-      ],
-      skillTags: [
-        { category: "Media & Encoding", name: "localized deliverables" },
-        { category: "Media & Encoding", name: "language versioning" },
-        { category: "Media & Encoding", name: "captions" },
-        { category: "Media & Encoding", name: "dub cards" },
-        { category: "Media & Encoding", name: "5.1 audio" },
-        { category: "Media & Encoding", name: "delivery-spec conformance" }
-      ]
-    },
+          id: "roundabout-entertainment-encoding-operator-008",
+          text: "Developed a PHP/MySQL web application to display and track task status for production workflow visibility.",
+          printText: "Developed a PHP/MySQL web app to display and track production task status.",
+          includeByDefault: true,
+          targetRoles: [
+            "Software Engineer",
+            "Linux Administrator",
+            "Systems Administrator",
+            "Platform Engineer",
+            "Technical Coordinator"
+          ],
+          skillTags: [
+            { category: "Programming & Scripting", name: "PHP" },
+            { category: "Programming & Scripting", name: "HTML" },
+            { category: "Programming & Scripting", name: "CSS" },
+            { category: "Databases", name: "MySQL" },
+            { category: "Web & API Development", name: "internal web application" },
+            { category: "Project Management", name: "task-status tracking" }
+          ]
+        },
     {
-      id: "roundabout-entertainment-encoding-operator-005",
-      text: "Built hundreds of slates and rebuilt heads/tails to conform feature and episodic content to delivery specifications.",
-      printText: "Built hundreds of slates and rebuilt heads/tails to meet delivery specifications.",
-      includeByDefault: true,
-      targetRoles: [
-        "Digital Media Technician",
-        "Encoding / Transcode Technician",
-        "Post-Production Technician"
-      ],
-      skillTags: [
-        { category: "Media & Encoding", name: "slates" },
-        { category: "Media & Encoding", name: "heads/tails" },
-        { category: "Media & Encoding", name: "feature workflows" },
-        { category: "Media & Encoding", name: "episodic workflows" },
-        { category: "Media & Encoding", name: "delivery specifications" }
-      ]
-    },
+          id: "roundabout-entertainment-encoding-operator-009",
+          text: "Supported a business relocation between buildings through equipment teardown, machine transportation, and Ethernet cable crimping.",
+          printText: "Supported building relocation with equipment teardown, machine transportation, and Ethernet cable crimping.",
+          includeByDefault: true,
+          targetRoles: [
+            "Systems Administrator",
+            "Support Engineer",
+            "IT Support Specialist",
+            "Hardware Repair Technician",
+            "Technical Coordinator"
+          ],
+          skillTags: [
+            { category: "Hardware / Repair", name: "equipment teardown" },
+            { category: "Hardware / Repair", name: "machine transportation" },
+            { category: "Networking", name: "Ethernet cable crimping" },
+            { category: "Project Management", name: "business relocation support" },
+            { category: "IT Service Management", name: "production support" }
+          ]
+        },
     {
-      id: "roundabout-entertainment-encoding-operator-006",
-      text: "Captured archival tape assets into intermediary media assets and monitored error logs, video monitors, histograms, and scopes for capture artifacts.",
-      printText: "Captured archival tapes while monitoring error logs, video monitors, histograms, and scopes.",
-      includeByDefault: true,
-      targetRoles: [
-        "Systems Administrator",
-        "Support Engineer",
-        "Media Systems Technician",
-        "Encoding / Transcode Technician",
-        "Post-Production Technician"
-      ],
-      skillTags: [
-        { category: "Media & Encoding", name: "archival tape capture" },
-        { category: "Media & Encoding", name: "intermediary media assets" },
-        { category: "Media & Encoding", name: "error log monitoring" },
-        { category: "Media & Encoding", name: "capture artifact monitoring" },
-        { category: "Media & Encoding", name: "histogram monitoring" },
-        { category: "Media & Encoding", name: "video scopes" },
-        { category: "Media & Encoding", name: "video monitors" }
-      ]
-    },
+          id: "roundabout-entertainment-encoding-operator-010",
+          text: "Coordinated with project/program managers to ensure accurate, timely delivery of features and episodics for international distribution.",
+          printText: "Coordinated with project/program managers to maintain accurate, timely media deliverables.",
+          includeByDefault: true,
+          targetRoles: [
+            "Technical Coordinator",
+            "Support Engineer",
+            "Digital Media Technician",
+            "Media Systems Technician",
+            "Post-Production Technician"
+          ],
+          skillTags: [
+            { category: "Ticketing & Collaboration", name: "project manager coordination" },
+            { category: "Ticketing & Collaboration", name: "program manager coordination" },
+            { category: "Project Management", name: "deadline coordination" },
+            { category: "Media & Encoding", name: "international distribution" },
+            { category: "Documentation", name: "delivery notes" }
+          ]
+        },
     {
-      id: "roundabout-entertainment-encoding-operator-007",
-      text: "Reviewed hundreds of files for file naming, metadata accuracy, Fox Spec adherence, and delivery-readiness requirements.",
-      printText: "Reviewed files for naming, metadata accuracy, Fox Spec adherence, and delivery readiness.",
-      includeByDefault: true,
-      targetRoles: [
-        "Technical Coordinator",
-        "Digital Media Technician",
-        "Media Systems Technician",
-        "Encoding / Transcode Technician",
-        "Post-Production Technician",
-        "Support Engineer"
-      ],
-      skillTags: [
-        { category: "Media & Encoding", name: "Fox Spec" },
-        { category: "Media & Encoding", name: "metadata accuracy" },
-        { category: "Media & Encoding", name: "delivery readiness" },
-        { category: "Documentation", name: "file naming notes" },
-        { category: "Documentation", name: "metadata review" },
-        { category: "Project Management", name: "client spec tracking" }
-      ]
-    },
+          id: "roundabout-entertainment-encoding-operator-011",
+          text: "Used AVISynth scripting to prepare video and audio for localized, platform-specific, and delivery-spec workflows.",
+          printText: "Used AVISynth scripting for localized, platform-specific, and delivery-spec media workflows.",
+          includeByDefault: true,
+          targetRoles: [
+            "Software Engineer",
+            "Linux Administrator",
+            "Systems Administrator",
+            "Platform Engineer",
+            "Encoding / Transcode Technician"
+          ],
+          skillTags: [
+            { category: "Programming & Scripting", name: "AVISynth" },
+            { category: "Media & Encoding", name: "localized deliverables" },
+            { category: "Media & Encoding", name: "platform-specific deliverables" },
+            { category: "Media & Encoding", name: "delivery-spec conformance" }
+          ]
+        },
     {
-      id: "roundabout-entertainment-encoding-operator-008",
-      text: "Developed a PHP/MySQL web application to display and track task status for production workflow visibility.",
-      printText: "Developed a PHP/MySQL web app to display and track production task status.",
-      includeByDefault: true,
-      targetRoles: [
-        "Software Engineer",
-        "Linux Administrator",
-        "Systems Administrator",
-        "Platform Engineer",
-        "Technical Coordinator"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "PHP" },
-        { category: "Programming & Scripting", name: "HTML" },
-        { category: "Programming & Scripting", name: "CSS" },
-        { category: "Databases", name: "MySQL" },
-        { category: "Web & API Development", name: "internal web application" },
-        { category: "Project Management", name: "task-status tracking" }
-      ]
-    },
-    {
-      id: "roundabout-entertainment-encoding-operator-009",
-      text: "Supported a business relocation between buildings through equipment teardown, machine transportation, and Ethernet cable crimping.",
-      printText: "Supported building relocation with equipment teardown, machine transportation, and Ethernet cable crimping.",
-      includeByDefault: true,
-      targetRoles: [
-        "Systems Administrator",
-        "Support Engineer",
-        "IT Support Specialist",
-        "Hardware Repair Technician",
-        "Technical Coordinator"
-      ],
-      skillTags: [
-        { category: "Hardware / Repair", name: "equipment teardown" },
-        { category: "Hardware / Repair", name: "machine transportation" },
-        { category: "Networking", name: "Ethernet cable crimping" },
-        { category: "Project Management", name: "business relocation support" },
-        { category: "IT Service Management", name: "production support" }
-      ]
-    },
-    {
-      id: "roundabout-entertainment-encoding-operator-010",
-      text: "Coordinated with project/program managers to ensure accurate, timely delivery of features and episodics for international distribution.",
-      printText: "Coordinated with project/program managers to maintain accurate, timely media deliverables.",
-      includeByDefault: true,
-      targetRoles: [
-        "Technical Coordinator",
-        "Support Engineer",
-        "Digital Media Technician",
-        "Media Systems Technician",
-        "Post-Production Technician"
-      ],
-      skillTags: [
-        { category: "Ticketing & Collaboration", name: "project manager coordination" },
-        { category: "Ticketing & Collaboration", name: "program manager coordination" },
-        { category: "Project Management", name: "deadline coordination" },
-        { category: "Media & Encoding", name: "international distribution" },
-        { category: "Documentation", name: "delivery notes" }
-      ]
-    },
-    {
-      id: "roundabout-entertainment-encoding-operator-011",
-      text: "Used AVISynth scripting to prepare video and audio for localized, platform-specific, and delivery-spec workflows.",
-      printText: "Used AVISynth scripting for localized, platform-specific, and delivery-spec media workflows.",
-      includeByDefault: true,
-      targetRoles: [
-        "Software Engineer",
-        "Linux Administrator",
-        "Systems Administrator",
-        "Platform Engineer",
-        "Encoding / Transcode Technician"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "AVISynth" },
-        { category: "Media & Encoding", name: "localized deliverables" },
-        { category: "Media & Encoding", name: "platform-specific deliverables" },
-        { category: "Media & Encoding", name: "delivery-spec conformance" }
-      ]
-    },
-    {
-      id: "roundabout-entertainment-encoding-operator-012",
-      text: "Performed hard patching and digital routing of monitors and scopes between the tape room and other departments.",
-      printText: "Routed monitors and scopes between tape-room systems and other post-production departments.",
-      includeByDefault: true,
-      targetRoles: [
-        "Media Systems Technician",
-        "Digital Media Technician",
-        "Support Engineer",
-        "Hardware Repair Technician",
-        "Technical Coordinator"
-      ],
-      skillTags: [
-        { category: "Networking", name: "SDI patch bays" },
-        { category: "Networking", name: "hard patching" },
-        { category: "Networking", name: "digital routing" },
-        { category: "Networking", name: "monitor/scope routing" },
-        { category: "Hardware / Repair", name: "tape room routing" }
-      ]
-    }
+          id: "roundabout-entertainment-encoding-operator-012",
+          text: "Performed hard patching and digital routing of monitors and scopes between the tape room and other departments.",
+          printText: "Routed monitors and scopes between tape-room systems and other post-production departments.",
+          includeByDefault: true,
+          targetRoles: [
+            "Media Systems Technician",
+            "Digital Media Technician",
+            "Support Engineer",
+            "Hardware Repair Technician",
+            "Technical Coordinator"
+          ],
+          skillTags: [
+            { category: "Networking", name: "SDI patch bays" },
+            { category: "Networking", name: "hard patching" },
+            { category: "Networking", name: "digital routing" },
+            { category: "Networking", name: "monitor/scope routing" },
+            { category: "Hardware / Repair", name: "tape room routing" }
+          ]
+        }
   ],
 
   skillTags: [

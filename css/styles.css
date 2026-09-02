@@ -116,6 +116,47 @@ a {
   padding: 8px;
 }
 
+.page-density-summary {
+  align-items: baseline;
+  display: flex;
+  font-size: 0.84rem;
+  justify-content: space-between;
+}
+
+.page-density-value {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.page-density-meter {
+  background: #e5e5e5;
+  border: 1px solid #c7c7c7;
+  border-radius: 999px;
+  height: 8px;
+  margin-top: 7px;
+  overflow: hidden;
+}
+
+.page-density-meter-fill {
+  background: #555;
+  display: block;
+  height: 100%;
+  transition: width 120ms ease-out;
+  width: 0;
+}
+
+.page-density-detail {
+  color: #555 !important;
+  font-size: 0.76rem;
+  line-height: 1.35;
+  margin: 7px 0 0 !important;
+}
+
+#pageDensityControls[data-density-state="overflow"] .page-density-meter-fill,
+#pageDensityControls[data-density-state="near-limit"] .page-density-meter-fill {
+  background: #333;
+}
+
 .debug-output {
   background: #f6f6f6;
   border: 1px solid #ddd;
@@ -311,26 +352,6 @@ a {
   font-size: 0.84rem;
 }
 
-.compact-cert-list {
-  display: grid;
-  font-size: 0.82rem;
-  gap: 2px 14px;
-  grid-template-columns: 1fr 1fr;
-}
-
-.compact-cert-item {
-  align-items: baseline;
-  display: grid;
-  gap: 8px;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr) auto;
-}
-
-.compact-cert-item span {
-  color: #333;
-  font-size: 0.78rem;
-  white-space: nowrap;
-}
-
 @page {
   size: Letter;
   margin: 0;
@@ -375,25 +396,7 @@ a {
 }
 
 
-.education-item {
-  align-items: baseline;
-  display: grid;
-  gap: 12px;
-  grid-template-columns: minmax(0, 1fr) auto;
-}
-
-.education-main {
-  min-width: 0;
-}
-
-.education-date {
-  color: #333;
-  font-size: 0.82rem;
-  text-align: right;
-  white-space: nowrap;
-}
-
-/* Education completion-date alignment override. */
+/* Resume education and compact certification layout. */
 .resume-section .education-item {
   align-items: baseline;
   display: grid;
@@ -414,39 +417,6 @@ a {
   white-space: nowrap;
 }
 
-/* Compact paired certification layout. */
-.resume-section .compact-cert-list {
-  column-gap: 18px;
-  display: grid;
-  font-size: 0.82rem;
-  grid-template-columns: 1fr 1fr;
-  row-gap: 2px;
-}
-
-.resume-section .compact-cert-item {
-  align-items: baseline;
-  column-gap: 8px;
-  display: grid;
-  grid-template-columns: minmax(0, max-content) max-content;
-  justify-content: center;
-  min-width: 0;
-}
-
-.resume-section .compact-cert-name {
-  font-weight: 700;
-  min-width: 0;
-  text-align: right;
-}
-
-.resume-section .compact-cert-date {
-  color: #333;
-  font-size: 0.78rem;
-  font-style: italic;
-  text-align: left;
-  white-space: nowrap;
-}
-
-/* Tidy two-pair certification grid override. */
 .resume-section .compact-cert-list {
   align-items: baseline;
   column-gap: 14px;
@@ -631,6 +601,19 @@ a {
     color: #cfd5de;
   }
 
+  html[data-theme="dark"] .page-density-detail {
+    color: #b9c0ca !important;
+  }
+
+  html[data-theme="dark"] .page-density-meter {
+    background: #303640;
+    border-color: #4b5260;
+  }
+
+  html[data-theme="dark"] .page-density-meter-fill {
+    background: #b9c0ca;
+  }
+
   html[data-theme="dark"] .resume-page {
     background: #fff;
     color: #111;
@@ -654,8 +637,40 @@ a {
   margin-top: 6px;
 }
 
+.cover-letter-only-control {
+  display: none;
+}
+
 .cover-letter-mode .resume-only-control {
   display: none;
+}
+
+.cover-letter-mode .cover-letter-only-control {
+  display: block;
+}
+
+.cover-letter-highlight-field {
+  display: block;
+  font-size: 0.82rem;
+  margin: 7px 0;
+}
+
+.cover-letter-highlight-field span {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.cover-letter-highlight-field input {
+  font: inherit;
+  padding: 5px 6px;
+  width: 100%;
+}
+
+.cover-letter-highlight-help {
+  color: #555;
+  font-size: 0.8rem;
+  margin-top: 7px;
 }
 
 .cover-letter-page-wrap,

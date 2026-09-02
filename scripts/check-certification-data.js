@@ -3,10 +3,10 @@
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
+const { loadBrowserSource } = require("./browser-source-loader.js");
 
 const repoRoot = path.resolve(__dirname, "..");
 const certificationDir = path.join(repoRoot, "js", "data", "certifications");
-const indexHtml = fs.readFileSync(path.join(repoRoot, "index.html"), "utf8");
 
 function assert(condition, message) {
   if (!condition) {
@@ -15,16 +15,7 @@ function assert(condition, message) {
 }
 
 function loadResumeData() {
-  const scriptPaths = [...indexHtml.matchAll(/<script src="\.\/(.*?)"><\/script>/g)]
-    .map((match) => match[1])
-    .filter((relativePath) => {
-      return !relativePath.endsWith("render-resume.js") &&
-        !relativePath.endsWith("app.js");
-    });
-
-  const source = scriptPaths
-    .map((relativePath) => fs.readFileSync(path.join(repoRoot, relativePath), "utf8"))
-    .join("\n\n");
+  const { source } = loadBrowserSource(repoRoot);
 
   const context = vm.createContext({ console, Date, Map, Set });
   vm.runInContext(`${source}\n\nglobalThis.__resumeTest = {\n  careerData,\n  certifications,\n  certificationKnowledge,\n  buildResume,\n  getCertificationStatus,\n  getCertificationDaysRemaining,\n  getCertificationDateText,\n  getCertificationControlLabel\n};`, context);
@@ -149,8 +140,15 @@ function main() {
       .flatMap((group) => group.skills)
       .map((skill) => skill.toLowerCase());
 
-    assert(visibleSkills.includes("python"), `${targetRole} is missing required Python visibility`);
-    assert(visibleSkills.includes("docker"), `${targetRole} is missing required Docker visibility`);
+    const role = careerData.roleDefinitions.find((candidate) => candidate.id === targetRole);
+    const family = careerData.roleFamilies[role.familyId];
+    const includePinnedResumeSkills = role.includePinnedResumeSkills ??
+      family.includePinnedResumeSkills ??
+      true;
+    if (includePinnedResumeSkills) {
+      assert(visibleSkills.includes("python"), `${targetRole} is missing required Python visibility`);
+      assert(visibleSkills.includes("docker"), `${targetRole} is missing required Docker visibility`);
+    }
   });
 
   const expiredAPlus = certifications.find((entry) => entry.name === "CompTIA A+ ce");

@@ -108,156 +108,138 @@ const project202606xxEnglishIpaTranslator = {
 
   bullets: [
     {
-      id: "english-ipa-translator-001",
-      text: "Built a full-stack English-to-IPA translator MVP with a React/Vite/TypeScript frontend and Python/FastAPI backend.",
-      printText: "Built a React/TypeScript and FastAPI English-to-IPA translator MVP.",
-      includeByDefault: true,
-      targetRoles: [
-        "Software Engineer",
-        "Platform Engineer",
-        "AI/ML Engineer",
-        "MLOps / AI Infrastructure"
-      ],
-      skillTags: [
-        { category: "Web & API Development", name: "React" },
-        { category: "Programming & Scripting", name: "TypeScript" },
-        { category: "Web & API Development", name: "Vite" },
-        { category: "Web & API Development", name: "FastAPI" },
-        { category: "Programming & Scripting", name: "Python" }
-      ]
-    },
+          id: "english-ipa-translator-001",
+          text: "Built a full-stack English-to-IPA translator MVP with a React/Vite/TypeScript frontend and Python/FastAPI backend.",
+          printText: "Built a React/TypeScript and FastAPI English-to-IPA translator MVP.",
+          includeByDefault: true,
+          targetRoles: [
+            "Software Engineer",
+            "Platform Engineer",
+            "AI/ML Engineer",
+            "MLOps / AI Infrastructure"
+          ],
+          skillTags: [
+            { category: "Web & API Development", name: "React" },
+            { category: "Programming & Scripting", name: "TypeScript" },
+            { category: "Web & API Development", name: "Vite" },
+            { category: "Web & API Development", name: "FastAPI" },
+            { category: "Programming & Scripting", name: "Python" }
+          ]
+        },
     {
-      id: "english-ipa-translator-002",
-      text: "Implemented deterministic pronunciation lookup using the pronouncing package, CMUdict-style entries, and ARPABET-to-IPA conversion.",
-      printText: "Implemented CMUdict-style pronunciation lookup with ARPABET-to-IPA conversion.",
-      includeByDefault: true,
-      targetRoles: [
-        "Software Engineer",
-        "AI/ML Engineer",
-        "Technical Coordinator",
-        "Post-Production Technician"
-      ],
-      skillTags: [
-        { category: "AI/ML", name: "CMUdict-style lookup" },
-        { category: "AI/ML", name: "ARPABET" },
-        { category: "AI/ML", name: "IPA" },
-        { category: "AI/ML", name: "pronunciation processing" },
-        { category: "Programming & Scripting", name: "Python" }
-      ]
-    },
+          id: "english-ipa-translator-002",
+          text: "Implemented deterministic pronunciation lookup using the pronouncing package, CMUdict-style entries, and ARPABET-to-IPA conversion.",
+          printText: "Implemented CMUdict-style pronunciation lookup with ARPABET-to-IPA conversion.",
+          includeByDefault: true,
+          targetRoles: [
+            "Software Engineer",
+            "AI/ML Engineer",
+            "Technical Coordinator",
+            "Post-Production Technician"
+          ],
+          skillTags: [
+            { category: "AI/ML", name: "CMUdict-style lookup" },
+            { category: "AI/ML", name: "ARPABET" },
+            { category: "AI/ML", name: "IPA" },
+            { category: "AI/ML", name: "pronunciation processing" },
+            { category: "Programming & Scripting", name: "Python" }
+          ]
+        },
     {
-      id: "english-ipa-translator-003",
-      text: "Returned structured JSON containing original input, token lists, normalized tokens, found/unknown status, ARPABET pronunciation, IPA pronunciation, and full-line IPA output.",
-      printText: "Returned structured JSON with tokens, normalized words, IPA output, and unknown-word status.",
-      includeByDefault: true,
-      targetRoles: [
-        "Software Engineer",
-        "Middleware Engineer",
-        "Platform Engineer",
-        "AI/ML Engineer"
-      ],
-      skillTags: [
-        { category: "Web & API Development", name: "REST APIs" },
-        { category: "Web & API Development", name: "structured JSON" },
-        { category: "Web & API Development", name: "Pydantic schemas" },
-        { category: "AI/ML", name: "unknown-word fallback" },
-        { category: "AI/ML", name: "text processing" }
-      ]
-    },
+          id: "english-ipa-translator-003",
+          text: "Returned structured JSON containing original input, token lists, normalized tokens, found/unknown status, ARPABET pronunciation, IPA pronunciation, and full-line IPA output.",
+          printText: "Returned structured JSON with tokens, normalized words, IPA output, and unknown-word status.",
+          includeByDefault: true,
+          targetRoles: [
+            "Software Engineer",
+            "Middleware Engineer",
+            "Platform Engineer",
+            "AI/ML Engineer"
+          ],
+          skillTags: [
+            { category: "Web & API Development", name: "REST APIs" },
+            { category: "Web & API Development", name: "structured JSON" },
+            { category: "Web & API Development", name: "Pydantic schemas" },
+            { category: "AI/ML", name: "unknown-word fallback" },
+            { category: "AI/ML", name: "text processing" }
+          ]
+        },
     {
-      id: "english-ipa-translator-004",
-      text: "Displayed full-line IPA output and word-by-word pronunciation results in a browser interface built with React, TypeScript, and plain CSS.",
-      printText: "Displayed full-line IPA and word-by-word pronunciation results in a React interface.",
-      includeByDefault: true,
-      targetRoles: [
-        "Software Engineer",
-        "Digital Media Technician",
-        "Media Systems Technician",
-        "Post-Production Technician"
-      ],
-      skillTags: [
-        { category: "Web & API Development", name: "React" },
-        { category: "Programming & Scripting", name: "TypeScript" },
-        { category: "Web & API Development", name: "plain CSS" },
-        { category: "Web & API Development", name: "frontend/backend integration" },
-        { category: "AI/ML", name: "IPA pronunciation output" }
-      ]
-    },
+          id: "english-ipa-translator-004",
+          text: "Displayed full-line IPA output and word-by-word pronunciation results in a browser interface built with React, TypeScript, and plain CSS.",
+          printText: "Displayed full-line IPA and word-by-word pronunciation results in a React interface.",
+          includeByDefault: true,
+          targetRoles: [
+            "Software Engineer",
+            "Digital Media Technician",
+            "Media Systems Technician",
+            "Post-Production Technician"
+          ],
+          skillTags: [
+            { category: "Web & API Development", name: "React" },
+            { category: "Programming & Scripting", name: "TypeScript" },
+            { category: "Web & API Development", name: "plain CSS" },
+            { category: "Web & API Development", name: "frontend/backend integration" },
+            { category: "AI/ML", name: "IPA pronunciation output" }
+          ]
+        },
     {
-      id: "english-ipa-translator-005",
-      text: "Validated backend health, service behavior, and translation API responses with pytest-based backend and API tests.",
-      printText: "Validated backend health and translation behavior with pytest service/API tests.",
-      includeByDefault: true,
-      targetRoles: [
-        "Software Engineer",
-        "Platform Engineer",
-        "Support Engineer",
-        "Systems Administrator",
-        "Linux Administrator",
-        "MLOps / AI Infrastructure"
-      ],
-      skillTags: [
-        { category: "DevOps & Tooling", name: "pytest" },
-        { category: "IT Service Management", name: "health endpoint" },
-        { category: "Web & API Development", name: "API tests" },
-        { category: "DevOps & Tooling", name: "test validation" }
-      ]
-    },
+          id: "english-ipa-translator-005",
+          text: "Validated backend health, service behavior, and translation API responses with pytest-based backend and API tests.",
+          printText: "Validated backend health and translation behavior with pytest service/API tests.",
+          includeByDefault: true,
+          targetRoles: [
+            "Software Engineer",
+            "Platform Engineer",
+            "Support Engineer",
+            "Systems Administrator",
+            "Linux Administrator",
+            "MLOps / AI Infrastructure"
+          ],
+          skillTags: [
+            { category: "DevOps & Tooling", name: "pytest" },
+            { category: "IT Service Management", name: "health endpoint" },
+            { category: "Web & API Development", name: "API tests" },
+            { category: "DevOps & Tooling", name: "test validation" }
+          ]
+        },
     {
-      id: "english-ipa-translator-006",
-      text: "Validated frontend quality and production readiness with Vite, TypeScript, npm lint, and production build workflows.",
-      printText: "Validated frontend quality with Vite, TypeScript, npm lint, and production builds.",
-      includeByDefault: true,
-      targetRoles: [
-        "Software Engineer",
-        "Platform Engineer",
-        "MLOps / AI Infrastructure",
-        "Technical Coordinator"
-      ],
-      skillTags: [
-        { category: "Web & API Development", name: "Vite" },
-        { category: "Programming & Scripting", name: "TypeScript" },
-        { category: "DevOps & Tooling", name: "npm lint" },
-        { category: "DevOps & Tooling", name: "production build validation" }
-      ]
-    },
+          id: "english-ipa-translator-006",
+          text: "Validated frontend quality and production readiness with Vite, TypeScript, npm lint, and production build workflows.",
+          printText: "Validated frontend quality with Vite, TypeScript, npm lint, and production builds.",
+          includeByDefault: true,
+          targetRoles: [
+            "Software Engineer",
+            "Platform Engineer",
+            "MLOps / AI Infrastructure",
+            "Technical Coordinator"
+          ],
+          skillTags: [
+            { category: "Web & API Development", name: "Vite" },
+            { category: "Programming & Scripting", name: "TypeScript" },
+            { category: "DevOps & Tooling", name: "npm lint" },
+            { category: "DevOps & Tooling", name: "production build validation" }
+          ]
+        },
     {
-      id: "english-ipa-translator-007",
-      text: "Documented backend setup, frontend setup, full-app local run workflow, example requests, response shape, MVP limitations, and future roadmap.",
-      printText: "Documented MVP limitations, setup workflows, example requests, output shape, and future roadmap.",
-      includeByDefault: true,
-      targetRoles: [
-        "Technical Coordinator",
-        "Software Engineer",
-        "Support Engineer",
-        "Platform Engineer"
-      ],
-      skillTags: [
-        { category: "Documentation", name: "README documentation" },
-        { category: "Documentation", name: "setup instructions" },
-        { category: "Documentation", name: "API examples" },
-        { category: "Project Management", name: "MVP scope planning" },
-        { category: "Project Management", name: "roadmap documentation" }
-      ]
-    },
-    {
-      id: "english-ipa-translator-008",
-      text: "Kept machine learning, LLMs, embeddings, database persistence, user accounts, and saved-project features outside the scoped MVP.",
-      printText: "Kept ML, LLMs, embeddings, database, and saved-project features out of the scoped MVP.",
-      includeByDefault: true,
-      targetRoles: [
-        "Technical Coordinator",
-        "Software Engineer",
-        "AI/ML Engineer",
-        "MLOps / AI Infrastructure"
-      ],
-      skillTags: [
-        { category: "Project Management", name: "MVP scope control" },
-        { category: "Project Management", name: "feature deferral" },
-        { category: "AI/ML", name: "deterministic language tooling" },
-        { category: "Documentation", name: "scope documentation" }
-      ]
-    }
+          id: "english-ipa-translator-007",
+          text: "Documented backend setup, frontend setup, full-app local run workflow, example requests, response shape, MVP limitations, and future roadmap.",
+          printText: "Documented MVP limitations, setup workflows, example requests, output shape, and future roadmap.",
+          includeByDefault: true,
+          targetRoles: [
+            "Technical Coordinator",
+            "Software Engineer",
+            "Support Engineer",
+            "Platform Engineer"
+          ],
+          skillTags: [
+            { category: "Documentation", name: "README documentation" },
+            { category: "Documentation", name: "setup instructions" },
+            { category: "Documentation", name: "API examples" },
+            { category: "Project Management", name: "MVP scope planning" },
+            { category: "Project Management", name: "roadmap documentation" }
+          ]
+        }
   ],
 
   skillTags: [

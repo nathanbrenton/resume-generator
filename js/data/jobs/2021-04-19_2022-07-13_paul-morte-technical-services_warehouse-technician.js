@@ -94,184 +94,168 @@ const job20210419PaulMorteTechnicalServicesWarehouseTechnician = {
 
   bullets: [
     {
-      id: "paul-morte-warehouse-technician-junior-operations-001",
-      text: "Coordinated inventory tracking, repair staging, order preparation, and shipment workflows in a high-volume warehouse and technical-service environment.",
-      printText: "Coordinated inventory, repair staging, order preparation, and shipment workflows in a technical warehouse.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Junior Operations Engineer"
-      ],
-      skillTags: [
-        { category: "Operations & Troubleshooting", name: "process improvement" },
-        { category: "Project Management", name: "inventory tracking" },
-        { category: "IT Service Management", name: "workflow support" },
-        { category: "Documentation", name: "inventory records" }
-      ]
-    },
+          id: "paul-morte-warehouse-technician-001",
+          text: "Evaluated Yamaha musical instruments, live sound equipment, communication equipment, and related accessories for repair, calibration, firmware updates, or shipment.",
+          printText: "Diagnosed Yamaha instruments, live sound equipment, and communication devices for repair workflows.",
+          includeByDefault: true,
+          targetRoles: [
+            "Support Engineer",
+            "Digital Media Technician",
+            "Media Systems Technician",
+            "Post-Production Technician",
+            "Electronics / Repair Technician",
+            "Hardware Repair Technician"
+          ],
+          focusAreas: ["hardware-repair", "testing-validation"],
+          skillTags: [
+            { category: "Hardware & Field Systems", name: "electronics diagnostics" },
+            { category: "Hardware & Field Systems", name: "hardware troubleshooting" },
+            { category: "Hardware & Field Systems", name: "audio equipment" },
+            { category: "Media & Encoding", name: "live sound equipment" },
+            { category: "Media & Encoding", name: "recording equipment" }
+          ]
+        },
     {
-      id: "paul-morte-warehouse-technician-001",
-      text: "Evaluated Yamaha musical instruments, live sound equipment, communication equipment, and related accessories for repair, calibration, firmware updates, or shipment.",
-      printText: "Diagnosed Yamaha instruments, live sound equipment, and communication devices for repair workflows.",
-      includeByDefault: true,
-      targetRoles: [
-        "Support Engineer",
-        "Digital Media Technician",
-        "Media Systems Technician",
-        "Post-Production Technician",
-        "Electronics / Repair Technician",
-        "Hardware Repair Technician"
-      ],
-      focusAreas: ["hardware-repair", "testing-validation"],
-      skillTags: [
-        { category: "Hardware & Field Systems", name: "electronics diagnostics" },
-        { category: "Hardware & Field Systems", name: "hardware troubleshooting" },
-        { category: "Hardware & Field Systems", name: "audio equipment" },
-        { category: "Media & Encoding", name: "live sound equipment" },
-        { category: "Media & Encoding", name: "recording equipment" }
-      ]
-    },
+          id: "paul-morte-warehouse-technician-002",
+          text: "Prepared up to 40 parcels per day for shipment using Oracle/Citrix workflows, UPS WorldShip, labels, scales, pallets, and daily pickup coordination.",
+          printText: "Prepared up to 40 daily shipments using Oracle/Citrix workflows and UPS WorldShip.",
+          includeByDefault: true,
+          targetRoles: [
+            "Technical Coordinator",
+            "Project Coordinator",
+            "Media Systems Technician",
+            "Post-Production Technician"
+          ],
+          skillTags: [
+            { category: "Middleware & Web Platforms", name: "Citrix" },
+            { category: "Middleware & Web Platforms", name: "Oracle" },
+            { category: "Middleware & Web Platforms", name: "UPS WorldShip" },
+            { category: "Project Management", name: "shipping coordination" },
+            { category: "Documentation", name: "shipping labels" }
+          ]
+        },
     {
-      id: "paul-morte-warehouse-technician-002",
-      text: "Prepared up to 40 parcels per day for shipment using Oracle/Citrix workflows, UPS WorldShip, labels, scales, pallets, and daily pickup coordination.",
-      printText: "Prepared up to 40 daily shipments using Oracle/Citrix workflows and UPS WorldShip.",
-      includeByDefault: true,
-      targetRoles: [
-        "Technical Coordinator",
-        "Project Coordinator",
-        "Media Systems Technician",
-        "Post-Production Technician"
-      ],
-      skillTags: [
-        { category: "Middleware & Web Platforms", name: "Citrix" },
-        { category: "Middleware & Web Platforms", name: "Oracle" },
-        { category: "Middleware & Web Platforms", name: "UPS WorldShip" },
-        { category: "Project Management", name: "shipping coordination" },
-        { category: "Documentation", name: "shipping labels" }
-      ]
-    },
+          id: "paul-morte-warehouse-technician-003",
+          text: "Downloaded and applied firmware updates for Yamaha electronic equipment and validated device functionality after updates.",
+          printText: "Applied firmware updates to Yamaha electronic equipment and verified functionality after updates.",
+          includeByDefault: true,
+          targetRoles: [
+            "Support Engineer",
+            "Digital Media Technician",
+            "Media Systems Technician",
+            "Encoding / Transcode Technician",
+            "Post-Production Technician",
+            "Electronics / Repair Technician",
+            "Hardware Repair Technician"
+          ],
+          focusAreas: ["hardware-repair", "testing-validation"],
+          skillTags: [
+            { category: "Media & Encoding", name: "firmware file management" },
+            { category: "Media & Encoding", name: "Yamaha THR Editor" },
+            { category: "Networking", name: "Bluetooth validation" },
+            { category: "Hardware & Field Systems", name: "firmware" }
+          ]
+        },
     {
-      id: "paul-morte-warehouse-technician-003",
-      text: "Downloaded and applied firmware updates for Yamaha electronic equipment and validated device functionality after updates.",
-      printText: "Applied firmware updates to Yamaha electronic equipment and verified functionality after updates.",
-      includeByDefault: true,
-      targetRoles: [
-        "Support Engineer",
-        "Digital Media Technician",
-        "Media Systems Technician",
-        "Encoding / Transcode Technician",
-        "Post-Production Technician",
-        "Electronics / Repair Technician",
-        "Hardware Repair Technician"
-      ],
-      focusAreas: ["hardware-repair", "testing-validation"],
-      skillTags: [
-        { category: "Media & Encoding", name: "firmware file management" },
-        { category: "Media & Encoding", name: "Yamaha THR Editor" },
-        { category: "Networking", name: "Bluetooth validation" },
-        { category: "Hardware & Field Systems", name: "firmware" }
-      ]
-    },
+          id: "paul-morte-warehouse-technician-004",
+          text: "Coordinated shipping and receiving with local freight and logistics services for parcels, pallets, repaired equipment, and incoming service items.",
+          printText: "Coordinated parcel and pallet shipping with local freight and logistics providers.",
+          includeByDefault: true,
+          targetRoles: [
+            "Technical Coordinator",
+            "Media Systems Technician",
+            "Post-Production Technician"
+          ],
+          skillTags: [
+            { category: "Project Management", name: "freight coordination" },
+            { category: "Project Management", name: "logistics coordination" },
+            { category: "IT Service Management", name: "shipment workflow support" },
+            { category: "Ticketing & Collaboration", name: "vendor communication" }
+          ]
+        },
     {
-      id: "paul-morte-warehouse-technician-004",
-      text: "Coordinated shipping and receiving with local freight and logistics services for parcels, pallets, repaired equipment, and incoming service items.",
-      printText: "Coordinated parcel and pallet shipping with local freight and logistics providers.",
-      includeByDefault: true,
-      targetRoles: [
-        "Technical Coordinator",
-        "Media Systems Technician",
-        "Post-Production Technician"
-      ],
-      skillTags: [
-        { category: "Project Management", name: "freight coordination" },
-        { category: "Project Management", name: "logistics coordination" },
-        { category: "IT Service Management", name: "shipment workflow support" },
-        { category: "Ticketing & Collaboration", name: "vendor communication" }
-      ]
-    },
+          id: "paul-morte-warehouse-technician-005",
+          text: "Tracked inventory quantities, located warehouse items, staged equipment for repair, and organized warehouse storage for efficient retrieval.",
+          printText: "Organized warehouse inventory for repair staging, shipment preparation, and item retrieval.",
+          includeByDefault: true,
+          targetRoles: [
+            "Technical Coordinator",
+            "Media Systems Technician",
+            "Post-Production Technician",
+            "Electronics / Repair Technician",
+            "Hardware Repair Technician"
+          ],
+          skillTags: [
+            { category: "Project Management", name: "inventory tracking" },
+            { category: "IT Service Management", name: "repair workflow support" },
+            { category: "Hardware / Repair", name: "repair staging" }
+          ]
+        },
     {
-      id: "paul-morte-warehouse-technician-005",
-      text: "Tracked inventory quantities, located warehouse items, staged equipment for repair, and organized warehouse storage for efficient retrieval.",
-      printText: "Organized warehouse inventory for repair staging, shipment preparation, and item retrieval.",
-      includeByDefault: true,
-      targetRoles: [
-        "Technical Coordinator",
-        "Media Systems Technician",
-        "Post-Production Technician",
-        "Electronics / Repair Technician",
-        "Hardware Repair Technician"
-      ],
-      skillTags: [
-        { category: "Project Management", name: "inventory tracking" },
-        { category: "IT Service Management", name: "repair workflow support" },
-        { category: "Hardware / Repair", name: "repair staging" }
-      ]
-    },
+          id: "paul-morte-warehouse-technician-006",
+          text: "Disassembled, reassembled, calibrated, and tuned Yamaha musical instruments and audio equipment.",
+          printText: "Disassembled, reassembled, calibrated, and tested Yamaha recording and live sound equipment.",
+          includeByDefault: true,
+          targetRoles: [
+            "Digital Media Technician",
+            "Media Systems Technician",
+            "Post-Production Technician",
+            "Electronics / Repair Technician",
+            "Hardware Repair Technician"
+          ],
+          focusAreas: ["hardware-repair", "testing-validation"],
+          skillTags: [
+            { category: "Hardware / Repair", name: "disassembly" },
+            { category: "Hardware / Repair", name: "reassembly" },
+            { category: "Hardware & Field Systems", name: "calibration" },
+            { category: "Hardware & Field Systems", name: "audio equipment" },
+            { category: "Hardware / Repair", name: "component swapping" },
+            { category: "Media & Encoding", name: "audio equipment testing" }
+          ]
+        },
     {
-      id: "paul-morte-warehouse-technician-006",
-      text: "Disassembled, reassembled, calibrated, and tuned Yamaha musical instruments and audio equipment.",
-      printText: "Disassembled, reassembled, calibrated, and tested Yamaha recording and live sound equipment.",
-      includeByDefault: true,
-      targetRoles: [
-        "Digital Media Technician",
-        "Media Systems Technician",
-        "Post-Production Technician",
-        "Electronics / Repair Technician",
-        "Hardware Repair Technician"
-      ],
-      focusAreas: ["hardware-repair", "testing-validation"],
-      skillTags: [
-        { category: "Hardware / Repair", name: "disassembly" },
-        { category: "Hardware / Repair", name: "reassembly" },
-        { category: "Hardware & Field Systems", name: "calibration" },
-        { category: "Hardware & Field Systems", name: "audio equipment" },
-        { category: "Hardware / Repair", name: "component swapping" },
-        { category: "Media & Encoding", name: "audio equipment testing" }
-      ]
-    },
+          id: "paul-morte-warehouse-technician-007",
+          text: "Performed electronic and input/output diagnostics for Yamaha recording, live sound, PA, monitor, mixer, and amplifier equipment.",
+          printText: "Performed electronic and audio input/output diagnostics using service manuals, cables, and test signals.",
+          includeByDefault: true,
+          targetRoles: [
+            "Support Engineer",
+            "Digital Media Technician",
+            "Media Systems Technician",
+            "Encoding / Transcode Technician",
+            "Post-Production Technician",
+            "Electronics / Repair Technician",
+            "Hardware Repair Technician"
+          ],
+          focusAreas: ["hardware-repair", "testing-validation"],
+          skillTags: [
+            { category: "Media & Encoding", name: "audio input/output testing" },
+            { category: "Media & Encoding", name: "sine sweep testing" },
+            { category: "Media & Encoding", name: "signal testing" },
+            { category: "Productivity", name: "service manuals" },
+            { category: "Hardware & Field Systems", name: "electronics diagnostics" },
+            { category: "Hardware & Field Systems", name: "hardware troubleshooting" },
+            { category: "Hardware & Field Systems", name: "audio equipment" }
+          ]
+        },
     {
-      id: "paul-morte-warehouse-technician-007",
-      text: "Performed electronic and input/output diagnostics for Yamaha recording, live sound, PA, monitor, mixer, and amplifier equipment.",
-      printText: "Performed electronic and audio input/output diagnostics using service manuals, cables, and test signals.",
-      includeByDefault: true,
-      targetRoles: [
-        "Support Engineer",
-        "Digital Media Technician",
-        "Media Systems Technician",
-        "Encoding / Transcode Technician",
-        "Post-Production Technician",
-        "Electronics / Repair Technician",
-        "Hardware Repair Technician"
-      ],
-      focusAreas: ["hardware-repair", "testing-validation"],
-      skillTags: [
-        { category: "Media & Encoding", name: "audio input/output testing" },
-        { category: "Media & Encoding", name: "sine sweep testing" },
-        { category: "Media & Encoding", name: "signal testing" },
-        { category: "Productivity", name: "service manuals" },
-        { category: "Hardware & Field Systems", name: "electronics diagnostics" },
-        { category: "Hardware & Field Systems", name: "hardware troubleshooting" },
-        { category: "Hardware & Field Systems", name: "audio equipment" }
-      ]
-    },
-    {
-      id: "paul-morte-warehouse-technician-008",
-      text: "Ordered replacement parts and swapped components between devices to support troubleshooting and repair workflows.",
-      printText: "Ordered replacement parts and swapped components to support repair troubleshooting.",
-      includeByDefault: true,
-      targetRoles: [
-        "Technical Coordinator",
-        "Electronics / Repair Technician",
-        "Hardware Repair Technician",
-        "Media Systems Technician"
-      ],
-      focusAreas: ["hardware-repair", "testing-validation"],
-      skillTags: [
-        { category: "Hardware / Repair", name: "component swapping" },
-        { category: "Hardware / Repair", name: "parts ordering" },
-        { category: "IT Service Management", name: "repair workflow support" }
-      ]
-    }
+          id: "paul-morte-warehouse-technician-008",
+          text: "Ordered replacement parts and swapped components between devices to support troubleshooting and repair workflows.",
+          printText: "Ordered replacement parts and swapped components to support repair troubleshooting.",
+          includeByDefault: true,
+          targetRoles: [
+            "Technical Coordinator",
+            "Electronics / Repair Technician",
+            "Hardware Repair Technician",
+            "Media Systems Technician"
+          ],
+          focusAreas: ["hardware-repair", "testing-validation"],
+          skillTags: [
+            { category: "Hardware / Repair", name: "component swapping" },
+            { category: "Hardware / Repair", name: "parts ordering" },
+            { category: "IT Service Management", name: "repair workflow support" }
+          ]
+        }
   ],
 
   skillTags: [

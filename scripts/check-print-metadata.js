@@ -9,11 +9,15 @@ const printMetadata = require("../js/print-metadata.js");
 const repoRoot = path.resolve(__dirname, "..");
 const indexHtml = fs.readFileSync(path.join(repoRoot, "index.html"), "utf8");
 const appSource = fs.readFileSync(path.join(repoRoot, "js/app.js"), "utf8");
+const documentControllerSource = fs.readFileSync(
+  path.join(repoRoot, "js/document-controller.js"),
+  "utf8"
+);
 assert(indexHtml.includes("<title>Resume_Generator</title>"),
   "Static fallback <title> must be filename-safe");
-assert(appSource.includes("resumePrintMetadata.applyToDocument(\n    document,\n    buildCurrentPrintMetadata(resume)\n  );"),
+assert(appSource.includes("resumePrintMetadata.applyToDocument(\n    document,\n    buildPrintMetadata(resume)\n  );"),
   "Selected document render must synchronize document.title immediately");
-assert(appSource.includes('documentKind: activeDocumentType === DOCUMENT_TYPES.COVER_LETTER'),
+assert(documentControllerSource.includes('documentKind: isCoverLetter() ? "Cover Letter" : "Resume"'),
   "Print metadata must distinguish resume and cover-letter output");
 assert(!appSource.includes("afterprint"),
   "Document title should remain role-specific after printing");

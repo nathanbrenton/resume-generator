@@ -1,5 +1,27 @@
 module.exports = [
   {
+    id: "music-instructor-performing-musician",
+    expectedFamily: "Music Education / Performance",
+    requiredSkills: [
+      "private music instruction", "instrumental pedagogy", "music theory",
+      "cello", "guitar", "Sibelius", "MuseScore", "Apple Logic"
+    ],
+    forbiddenSkills: ["Python", "Docker", "RHEL 9", "ServiceNow", "Active Directory"],
+    requiredJobIds: [
+      "2008-01-01_2012-06-17_st-margarets-episcopal-school_music-staff-adjunct-faculty"
+    ],
+    requiredBulletIds: [
+      "smes-music-adjunct-private-instruction-001",
+      "smes-music-adjunct-practice-materials-002",
+      "smes-music-adjunct-ensemble-classroom-support-004",
+      "smes-music-adjunct-musical-theater-performance-006"
+    ],
+    minExperienceBullets: 6,
+    minProjectBullets: 0,
+    exactExperienceBullets: 6,
+    exactProjectBullets: 0
+  },
+  {
     id: "full-stack-software-engineer",
     expectedFamily: "Software Engineering",
     requiredSkills: [
@@ -1540,6 +1562,75 @@ module.exports = [
     minProjectBullets: 0,
     exactExperienceBullets: 8,
     exactProjectBullets: 0
+  },
+
+  {
+    id: "bobs-red-mill-retail-media-specialist",
+    expectedFamily: "Media Systems / Digital Media Technology",
+    requiredSkills: [
+      "Python", "Docker", "data validation", "publishing workflows"
+    ],
+    forbiddenSkills: [
+      "Criteo", "KPM", "Walmart Connect", "Instacart", "Asana",
+      "CPG marketing", "shopper marketing", "consumer promotion",
+      "paid search", "display advertising", "campaign budget management",
+      "ROAS", "audience targeting", "media buying"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician",
+      "2022-07-14_2022-08-17_adroit-worldwide-media-smartshelf_jr-it-support-technician",
+      "2017-03-15_2018-11-09_post-haste-digital_encode-transcode-specialist"
+    ],
+    requiredProjectIds: [
+      "2026-07-xx_xxxx-xx-xx_hiplingo-media-platform"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-008",
+      "roth-system-engineer-i-002",
+      "randstad-jr-deskside-technician-005",
+      "adroit-smartshelf-jr-it-support-001",
+      "post-haste-digital-encode-transcode-specialist-006",
+      "hiplingo-media-platform-013"
+    ],
+    minExperienceBullets: 5,
+    minProjectBullets: 1,
+    exactExperienceBullets: 5,
+    exactProjectBullets: 1
+  },
+
+  {
+    id: "schoolsfirst-fcu-splunk-administrator-sre",
+    expectedFamily: "Platform / Reliability / Automation",
+    requiredSkills: [
+      "Python", "Docker", "RHEL 9", "Linux", "Splunk", "Bash",
+      "availability monitoring", "capacity monitoring", "deployment automation"
+    ],
+    forbiddenSkills: [
+      "Splunk administration", "Splunk platform administration", "Splunk Power User",
+      "SPL", "Kubernetes", "OpenShift", "Jenkins", "Ansible", "Quay",
+      "Artifactory", "IBM AIX", "Java EE", ".NET"
+    ],
+    requiredJobIds: [
+      "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i",
+      "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician"
+    ],
+    requiredProjectIds: [
+      "2026-06-xx_xxxx-xx-xx_offline-dev-lab"
+    ],
+    requiredBulletIds: [
+      "roth-system-engineer-i-012",
+      "roth-system-engineer-i-011",
+      "roth-system-engineer-i-010",
+      "roth-system-engineer-i-002",
+      "randstad-jr-deskside-technician-001",
+      "offline-dev-lab-003",
+      "offline-dev-lab-004"
+    ],
+    minExperienceBullets: 5,
+    minProjectBullets: 2,
+    exactExperienceBullets: 5,
+    exactProjectBullets: 2
   },
 
 ];

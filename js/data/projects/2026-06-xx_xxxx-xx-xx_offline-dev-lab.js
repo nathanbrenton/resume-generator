@@ -200,431 +200,219 @@ const project202606xxOfflineDevLab = {
 
   bullets: [
     {
-      id: "offline-dev-lab-aveva-tech-support-001",
-      text: "Automated startup, health checks, smoke tests, diagnostics, and synthetic transactions for a containerized FastAPI/PostgreSQL application stack.",
-      printText: "Automated startup, health checks, smoke tests, diagnostics, and synthetic transactions for a containerized FastAPI/PostgreSQL stack.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: ["Technical Support Engineer — Industrial Applications"],
-      skillTags: [
-        { category: "Programming & Automation", name: "Python" },
-        { category: "Software & Databases", name: "PostgreSQL" },
-        { category: "Software & Databases", name: "database troubleshooting" },
-        { category: "Monitoring & Diagnostics", name: "health checks" },
-        { category: "DevOps & Testing", name: "Docker" },
-        { category: "DevOps & Testing", name: "smoke testing" }
-      ]
-    },
+          id: "offline-dev-lab-001",
+          text: "Built a Debian 13 offline development lab that preserves APT packages, Python wheels, Docker images, scripts, screenshots, diagrams, and runbooks for repeatable rebuilds without internet access.",
+          printText: "Created a reproducible Debian 13 environment preserving Python wheels, Docker images, system packages, validation scripts, diagnostics, and synthetic transactions.",
+          includeByDefault: true,
+          strength: "primary",
+          targetRoles: [
+            "Linux Administrator",
+            "Systems Administrator",
+            "Platform Engineer",
+            "AI/ML Engineer",
+            "MLOps / AI Infrastructure"
+          ],
+          focusAreas: [
+            "infrastructure-operations",
+            "automation",
+            "testing-validation"
+          ],
+          skillTags: [
+            { category: "Operating Systems", name: "Debian 13" },
+            { category: "Linux & Systems Administration", name: "local APT repository" },
+            { category: "Cloud & Infrastructure", name: "Docker image archives" },
+            { category: "Documentation", name: "runbooks" },
+            { category: "Documentation", name: "diagrams" }
+          ]
+        },
     {
-      id: "offline-dev-lab-ust-infrastructure-001",
-      text: "Built a reproducible Debian 13 environment with preserved dependencies, Docker images, containerized PostgreSQL, automated startup, health checks, smoke tests, diagnostics, security checks, and synthetic transactions.",
-      printText: "Built a reproducible Debian 13 lab with containerized PostgreSQL, automated startup, health checks, smoke tests, diagnostics, and synthetic transactions.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: ["Infrastructure Analyst — Deployment & Operations"],
-      skillTags: [
-        { category: "Linux & Middleware", name: "Debian 13" },
-        { category: "Programming & Automation", name: "Python" },
-        { category: "Programming & Automation", name: "Bash" },
-        { category: "DevOps & Tooling", name: "Docker" },
-        { category: "DevOps & Tooling", name: "containerized services" },
-        { category: "Databases & Applications", name: "PostgreSQL" },
-        { category: "Monitoring & Support", name: "health checks" }
-      ]
-    },
+          id: "offline-dev-lab-002",
+          text: "Developed a FastAPI/PostgreSQL application stack with Docker Compose, local environment configuration, health-check endpoints, and database connectivity validation.",
+          printText: "Built a FastAPI/PostgreSQL stack with Docker Compose, health checks, and database connectivity validation.",
+          includeByDefault: true,
+          strength: "primary",
+          targetRoles: [
+            "Software Engineer",
+            "MLOps / AI Infrastructure"
+          ],
+          targetRoleFamilies: ["quality-engineering"],
+          focusAreas: [
+            "software-development",
+            "data-databases",
+            "testing-validation",
+            "infrastructure-operations"
+          ],
+          skillTags: [
+            { category: "Web & API Development", name: "FastAPI" },
+            { category: "Databases", name: "PostgreSQL" },
+            { category: "Cloud & Infrastructure", name: "Docker Compose" },
+            { category: "Testing & Quality", name: "health checks" },
+            { category: "Web & API Development", name: "health-check endpoint" }
+          ]
+        },
     {
-      id: "offline-dev-lab-blizzard-reliability-001",
-      text: "Built a reproducible Debian 13 environment with preserved dependencies, Docker images, containerized PostgreSQL, automated startup, health checks, security scans, diagnostics, and synthetic transactions.",
-      printText: "Built a reproducible Debian 13 lab with containerized PostgreSQL, automated startup, health checks, diagnostics, and synthetic transactions.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: ["Associate Software Engineer — Reliability"],
-      skillTags: [
-        { category: "Linux & Production Systems", name: "Debian 13" },
-        { category: "Programming & Automation", name: "Python" },
-        { category: "Programming & Automation", name: "Bash" },
-        { category: "Deployment & DevOps", name: "Docker" },
-        { category: "Deployment & DevOps", name: "containerized services" },
-        { category: "Databases & APIs", name: "PostgreSQL" },
-        { category: "Monitoring & Incident Management", name: "health checks" },
-        { category: "Testing & Validation", name: "synthetic transactions" }
-      ]
-    },
+          id: "offline-dev-lab-003",
+          text: "Automated lab validation with Bash scripts for wheelhouse verification, virtual environment setup, Docker stack startup, smoke tests, security checks, diagnostics snapshots, and synthetic database transactions.",
+          printText: "Automated wheelhouse checks, venv setup, stack startup, smoke tests, security checks, diagnostics, and synthetic transactions.",
+          includeByDefault: true,
+          strength: "primary",
+          targetRoles: [
+            "Platform Engineer",
+            "Support Engineer"
+          ],
+          targetRoleFamilies: ["quality-engineering", "platform-reliability"],
+          focusAreas: [
+            "automation",
+            "testing-validation",
+            "security-compliance"
+          ],
+          skillTags: [
+            { category: "Programming & Scripting", name: "Bash" },
+            { category: "Linux & Systems Administration", name: "shell scripting" },
+            { category: "IT Service Management", name: "smoke testing" },
+            { category: "IT Service Management", name: "diagnostics collection" },
+            { category: "Databases", name: "synthetic transactions" }
+          ]
+        },
     {
-      id: "offline-dev-lab-application-support-001",
-      text: "Automated environment startup, health checks, smoke tests, security validation, diagnostics, and synthetic transactions for a containerized FastAPI/PostgreSQL stack.",
-      printText: "Automated startup, health checks, smoke tests, security validation, diagnostics, and synthetic transactions for a containerized application stack.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Application Support Analyst"
-      ],
-      skillTags: [
-        { category: "Programming & Automation", name: "Python" },
-        { category: "Testing & QA", name: "smoke testing" },
-        { category: "Testing & QA", name: "integration testing" },
-        { category: "DevOps & Tooling", name: "Docker" },
-        { category: "Application Stack", name: "FastAPI" },
-        { category: "Application Stack", name: "PostgreSQL" }
-      ]
-    },
+          id: "offline-dev-lab-004",
+          text: "Implemented local dependency workflows using an offline APT repository, Python wheelhouse, and saved Docker image archives to support air-gapped rebuild scenarios.",
+          printText: "Built reproducible dependency and build workflows with local APT repos, Python wheelhouse installs, and Docker image archives.",
+          includeByDefault: true,
+          strength: "primary",
+          targetRoles: [
+            "Linux Administrator",
+            "Platform Engineer",
+            "Systems Administrator",
+            "MLOps / AI Infrastructure"
+          ],
+          focusAreas: [
+            "infrastructure-operations",
+            "automation"
+          ],
+          skillTags: [
+            { category: "Linux & Systems Administration", name: "package management" },
+            { category: "DevOps & Tooling", name: "dependency management" },
+            { category: "DevOps & Tooling", name: "Python wheelhouse" },
+            { category: "Cloud & Infrastructure", name: "air-gapped dependency planning" },
+            { category: "Other", name: "offline development" }
+          ]
+        },
     {
-      id: "offline-dev-lab-digital-workplace-platform-001",
-      text: "Built a reproducible Debian environment with containerized PostgreSQL, preserved dependencies, automated startup, health checks, security scans, diagnostics, and synthetic transactions.",
-      printText: "Built a reproducible Debian environment with containerized PostgreSQL, automated startup, health checks, security scans, diagnostics, and synthetic transactions.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Platform Engineer — Digital Workplace Automation"
-      ],
-      skillTags: [
-        { category: "Automation & Scripting", name: "Python" },
-        { category: "Automation & Scripting", name: "Bash" },
-        { category: "Platform & Service Delivery", name: "operational controls" },
-        { category: "Reporting & Analytics", name: "health metrics" },
-        { category: "DevOps & Systems", name: "Docker" },
-        { category: "DevOps & Systems", name: "Debian 13" },
-        { category: "Databases", name: "PostgreSQL" }
-      ]
-    },
+          id: "offline-dev-lab-005",
+          text: "Created security and quality gates using pytest, ruff, bandit, and pip-audit, including network-aware logic for online and offline execution paths.",
+          printText: "Added pytest, ruff, bandit, and pip-audit checks with online/offline execution paths.",
+          includeByDefault: true,
+          strength: "primary",
+          targetRoles: [
+            "Cybersecurity Analyst",
+            "Platform Engineer",
+            "Software Engineer",
+            "Linux Administrator"
+          ],
+          targetRoleFamilies: ["quality-engineering", "security-identity"],
+          focusAreas: [
+            "testing-validation",
+            "security-compliance",
+            "automation"
+          ],
+          skillTags: [
+            { category: "Security", name: "bandit" },
+            { category: "Security", name: "pip-audit" },
+            { category: "Security", name: "dependency vulnerability scanning" },
+            { category: "DevOps & Tooling", name: "pytest" },
+            { category: "DevOps & Tooling", name: "ruff" }
+          ]
+        },
     {
-      id: "offline-dev-lab-physical-ai-compute-001",
-      text: "Built a reproducible Debian 13 environment preserving Python packages and Docker images, with automated validation, diagnostics, security checks, and containerized PostgreSQL services.",
-      printText: "Built a reproducible Debian 13 environment preserving Python packages and Docker images with automated validation, diagnostics, and containerized PostgreSQL.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Computer Engineer — Physical AI Compute"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "Python" },
-        { category: "Programming & Scripting", name: "Bash" },
-        { category: "Linux & Systems Administration", name: "Debian 13" },
-        { category: "Linux & Systems Administration", name: "package management" },
-        { category: "DevOps & Tooling", name: "Docker" },
-        { category: "DevOps & Tooling", name: "containerized services" },
-        { category: "DevOps & Tooling", name: "reproducible environments" },
-        { category: "Performance & Validation", name: "automated testing" },
-        { category: "Performance & Validation", name: "diagnostics" }
-      ]
-    },
+          id: "offline-dev-lab-006",
+          text: "Built operational runbooks, screenshots, and PlantUML diagrams documenting validation flow, configuration flow, diagnostics evidence flow, operational scripts, runtime architecture, and application request flow.",
+          printText: "Documented validation, configuration, diagnostics, operational scripts, runtime architecture, and request flow.",
+          includeByDefault: true,
+          strength: "supporting",
+          targetRoles: [
+            "Platform Engineer",
+            "Systems Administrator",
+            "Technical Coordinator",
+            "Support Engineer"
+          ],
+          focusAreas: [
+            "documentation",
+            "infrastructure-operations"
+          ],
+          skillTags: [
+            { category: "Documentation", name: "PlantUML" },
+            { category: "Documentation", name: "README" },
+            { category: "Documentation", name: "runbooks" },
+            { category: "Documentation", name: "screenshots" },
+            { category: "Documentation", name: "architecture diagrams" }
+          ]
+        },
     {
-      id: "offline-dev-lab-sre-001",
-      text: "Built a reproducible Debian 13 environment preserving APT packages, Python wheels, and Docker images, with containerized PostgreSQL, automated startup, health checks, security scans, diagnostics, and synthetic transactions.",
-      printText: "Built a reproducible Debian 13 environment preserving APT packages, Python wheels, and Docker images, with containerized PostgreSQL, health checks, diagnostics, and synthetic transactions.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Site Reliability Engineer"
-      ],
-      skillTags: [
-        { category: "Linux & Production Systems", name: "Debian 13" },
-        { category: "Linux & Production Systems", name: "package management" },
-        { category: "Linux & Production Systems", name: "software distribution" },
-        { category: "Programming & Scripting", name: "Python" },
-        { category: "Programming & Scripting", name: "Bash" },
-        { category: "DevOps & Tooling", name: "Docker" },
-        { category: "Databases", name: "PostgreSQL" },
-        { category: "Monitoring & Incident Management", name: "health checks" },
-        { category: "Testing & Validation", name: "synthetic transactions" }
-      ]
-    },
+          id: "offline-dev-lab-007",
+          text: "Validated PostgreSQL container networking and resolved local port conflicts by mapping container database services to a non-default host port.",
+          printText: "Resolved PostgreSQL port conflicts with host/container port mapping and connectivity validation.",
+          includeByDefault: true,
+          strength: "supporting",
+          targetRoles: [
+            "Linux Administrator",
+            "Systems Administrator",
+            "Platform Engineer"
+          ],
+          focusAreas: [
+            "incident-analysis",
+            "data-databases",
+            "testing-validation"
+          ],
+          skillTags: [
+            { category: "Databases", name: "PostgreSQL" },
+            { category: "Networking", name: "port mapping" },
+            { category: "Networking", name: "host/container networking" },
+            { category: "Cloud & Infrastructure", name: "containerized services" }
+          ]
+        },
     {
-      id: "offline-dev-lab-ai-financial-operations-001",
-      text: "Built a reproducible Debian 13 environment with containerized PostgreSQL, Python/Bash automation, health checks, smoke tests, security scans, diagnostics, and synthetic transactions.",
-      printText: "Built a reproducible Debian 13 lab with containerized PostgreSQL, Python/Bash automation, health checks, security scans, diagnostics, and synthetic transactions.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "AI Automation Engineer — Financial Operations"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "Python" },
-        { category: "Programming & Scripting", name: "Bash" },
-        { category: "Databases & Data", name: "PostgreSQL" },
-        { category: "DevOps & Tooling", name: "Docker" },
-        { category: "DevOps & Tooling", name: "health checks" },
-        { category: "Testing & Quality", name: "smoke testing" },
-        { category: "Testing & Quality", name: "security testing" },
-        { category: "Linux & Systems Administration", name: "Debian 13" }
-      ]
-    },
+          id: "offline-dev-lab-008",
+          text: "Captured diagnostics snapshots including system versions, Docker state, logs, listening ports, application processes, endpoint timing, and health-check output.",
+          printText: "Captured diagnostics including versions, Docker state, logs, ports, processes, timing, and health output.",
+          includeByDefault: true,
+          strength: "supporting",
+          targetRoles: [
+            "Support Engineer",
+            "Systems Administrator",
+            "Linux Administrator",
+            "Platform Engineer"
+          ],
+          focusAreas: [
+            "monitoring-observability",
+            "incident-analysis",
+            "documentation"
+          ],
+          skillTags: [
+            { category: "IT Service Management", name: "diagnostics collection" },
+            { category: "Linux & Systems Administration", name: "process checks" },
+            { category: "Linux & Systems Administration", name: "port checks" },
+            { category: "Cloud & Infrastructure", name: "Docker" },
+            { category: "Documentation", name: "validation output" }
+          ]
+        },
     {
-      id: "offline-dev-lab-junior-operations-001",
-      text: "Built a reproducible Debian 13 environment with containerized PostgreSQL, Bash/Python automation, health checks, smoke tests, security scans, diagnostics, and synthetic transactions.",
-      printText: "Built a reproducible Debian 13 lab with containerized PostgreSQL, Bash/Python automation, health checks, smoke tests, security scans, diagnostics, and synthetic transactions.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Junior Operations Engineer"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "Python" },
-        { category: "Programming & Scripting", name: "Bash" },
-        { category: "DevOps & Tooling", name: "Docker" },
-        { category: "DevOps & Tooling", name: "smoke testing" },
-        { category: "DevOps & Tooling", name: "health checks" },
-        { category: "Linux & Systems Administration", name: "Debian 13" },
-        { category: "Databases", name: "PostgreSQL" },
-        { category: "Operations & Troubleshooting", name: "diagnostics" }
-      ]
-    },
-    {
-      id: "offline-dev-lab-media-devops-001",
-      text: "Built a reproducible Debian 13 lab with containerized PostgreSQL and Bash automation for stack startup, health checks, smoke tests, security checks, diagnostics, and synthetic transactions.",
-      printText: "Built a Debian 13 lab with containerized PostgreSQL and automated startup, health checks, testing, and diagnostics.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Media DevOps Engineer"
-      ],
-      skillTags: [
-        { category: "Operating Systems", name: "Debian 13" },
-        { category: "Programming & Scripting", name: "Bash" },
-        { category: "Programming & Scripting", name: "Python" },
-        { category: "DevOps & Tooling", name: "Docker" },
-        { category: "DevOps & Tooling", name: "Docker Compose" },
-        { category: "Databases", name: "PostgreSQL" }
-      ]
-    },
-    {
-      id: "offline-dev-lab-001",
-      text: "Built a Debian 13 offline development lab that preserves APT packages, Python wheels, Docker images, scripts, screenshots, diagrams, and runbooks for repeatable rebuilds without internet access.",
-      printText: "Created a reproducible Debian 13 environment preserving Python wheels, Docker images, system packages, validation scripts, diagnostics, and synthetic transactions.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Linux Administrator",
-        "Systems Administrator",
-        "Platform Engineer",
-        "AI/ML Engineer",
-        "MLOps / AI Infrastructure"
-      ],
-      focusAreas: [
-        "infrastructure-operations",
-        "automation",
-        "testing-validation"
-      ],
-      skillTags: [
-        { category: "Operating Systems", name: "Debian 13" },
-        { category: "Linux & Systems Administration", name: "local APT repository" },
-        { category: "Cloud & Infrastructure", name: "Docker image archives" },
-        { category: "Documentation", name: "runbooks" },
-        { category: "Documentation", name: "diagrams" }
-      ]
-    },
-    {
-      id: "offline-dev-lab-002",
-      text: "Developed a FastAPI/PostgreSQL application stack with Docker Compose, local environment configuration, health-check endpoints, and database connectivity validation.",
-      printText: "Built a FastAPI/PostgreSQL stack with Docker Compose, health checks, and database connectivity validation.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Software Engineer",
-        "MLOps / AI Infrastructure"
-      ],
-      targetRoleFamilies: ["quality-engineering"],
-      focusAreas: [
-        "software-development",
-        "data-databases",
-        "testing-validation",
-        "infrastructure-operations"
-      ],
-      skillTags: [
-        { category: "Web & API Development", name: "FastAPI" },
-        { category: "Databases", name: "PostgreSQL" },
-        { category: "Cloud & Infrastructure", name: "Docker Compose" },
-        { category: "Testing & Quality", name: "health checks" },
-        { category: "Web & API Development", name: "health-check endpoint" }
-      ]
-    },
-    {
-      id: "offline-dev-lab-003",
-      text: "Automated lab validation with Bash scripts for wheelhouse verification, virtual environment setup, Docker stack startup, smoke tests, security checks, diagnostics snapshots, and synthetic database transactions.",
-      printText: "Automated wheelhouse checks, venv setup, stack startup, smoke tests, security checks, diagnostics, and synthetic transactions.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Platform Engineer",
-        "Support Engineer"
-      ],
-      targetRoleFamilies: ["quality-engineering", "platform-reliability"],
-      focusAreas: [
-        "automation",
-        "testing-validation",
-        "security-compliance"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "Bash" },
-        { category: "Linux & Systems Administration", name: "shell scripting" },
-        { category: "IT Service Management", name: "smoke testing" },
-        { category: "IT Service Management", name: "diagnostics collection" },
-        { category: "Databases", name: "synthetic transactions" }
-      ]
-    },
-    {
-      id: "offline-dev-lab-004",
-      text: "Implemented local dependency workflows using an offline APT repository, Python wheelhouse, and saved Docker image archives to support air-gapped rebuild scenarios.",
-      printText: "Built reproducible dependency and build workflows with local APT repos, Python wheelhouse installs, and Docker image archives.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Linux Administrator",
-        "Platform Engineer",
-        "Systems Administrator",
-        "MLOps / AI Infrastructure"
-      ],
-      focusAreas: [
-        "infrastructure-operations",
-        "automation"
-      ],
-      skillTags: [
-        { category: "Linux & Systems Administration", name: "package management" },
-        { category: "DevOps & Tooling", name: "dependency management" },
-        { category: "DevOps & Tooling", name: "Python wheelhouse" },
-        { category: "Cloud & Infrastructure", name: "air-gapped dependency planning" },
-        { category: "Other", name: "offline development" }
-      ]
-    },
-    {
-      id: "offline-dev-lab-005",
-      text: "Created security and quality gates using pytest, ruff, bandit, and pip-audit, including network-aware logic for online and offline execution paths.",
-      printText: "Added pytest, ruff, bandit, and pip-audit checks with online/offline execution paths.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Cybersecurity Analyst",
-        "Platform Engineer",
-        "Software Engineer",
-        "Linux Administrator"
-      ],
-      targetRoleFamilies: ["quality-engineering", "security-identity"],
-      focusAreas: [
-        "testing-validation",
-        "security-compliance",
-        "automation"
-      ],
-      skillTags: [
-        { category: "Security", name: "bandit" },
-        { category: "Security", name: "pip-audit" },
-        { category: "Security", name: "dependency vulnerability scanning" },
-        { category: "DevOps & Tooling", name: "pytest" },
-        { category: "DevOps & Tooling", name: "ruff" }
-      ]
-    },
-    {
-      id: "offline-dev-lab-fedramp-assessment-001",
-      text: "Created repeatable security and quality checks with pytest, ruff, bandit, and pip-audit, and documented validation, configuration, diagnostics evidence, and operational flows in runbooks and diagrams.",
-      printText: "Built repeatable security checks and documented validation, diagnostics evidence, and operational flows in runbooks and diagrams.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Cybersecurity Analyst — FedRAMP Assessments"
-      ],
-      focusAreas: [
-        "security-compliance",
-        "testing-validation",
-        "documentation"
-      ],
-      skillTags: [
-        { category: "Security", name: "dependency vulnerability scanning" },
-        { category: "Security", name: "Bandit" },
-        { category: "Security", name: "pip-audit" },
-        { category: "Testing & Quality", name: "pytest" },
-        { category: "Documentation", name: "validation evidence documentation" },
-        { category: "Documentation", name: "runbooks" },
-        { category: "Documentation", name: "technical documentation" }
-      ]
-    },
-    {
-      id: "offline-dev-lab-006",
-      text: "Built operational runbooks, screenshots, and PlantUML diagrams documenting validation flow, configuration flow, diagnostics evidence flow, operational scripts, runtime architecture, and application request flow.",
-      printText: "Documented validation, configuration, diagnostics, operational scripts, runtime architecture, and request flow.",
-      includeByDefault: true,
-      strength: "supporting",
-      targetRoles: [
-        "Platform Engineer",
-        "Systems Administrator",
-        "Technical Coordinator",
-        "Support Engineer"
-      ],
-      focusAreas: [
-        "documentation",
-        "infrastructure-operations"
-      ],
-      skillTags: [
-        { category: "Documentation", name: "PlantUML" },
-        { category: "Documentation", name: "README" },
-        { category: "Documentation", name: "runbooks" },
-        { category: "Documentation", name: "screenshots" },
-        { category: "Documentation", name: "architecture diagrams" }
-      ]
-    },
-    {
-      id: "offline-dev-lab-007",
-      text: "Validated PostgreSQL container networking and resolved local port conflicts by mapping container database services to a non-default host port.",
-      printText: "Resolved PostgreSQL port conflicts with host/container port mapping and connectivity validation.",
-      includeByDefault: true,
-      strength: "supporting",
-      targetRoles: [
-        "Linux Administrator",
-        "Systems Administrator",
-        "Platform Engineer"
-      ],
-      focusAreas: [
-        "incident-analysis",
-        "data-databases",
-        "testing-validation"
-      ],
-      skillTags: [
-        { category: "Databases", name: "PostgreSQL" },
-        { category: "Networking", name: "port mapping" },
-        { category: "Networking", name: "host/container networking" },
-        { category: "Cloud & Infrastructure", name: "containerized services" }
-      ]
-    },
-    {
-      id: "offline-dev-lab-008",
-      text: "Captured diagnostics snapshots including system versions, Docker state, logs, listening ports, application processes, endpoint timing, and health-check output.",
-      printText: "Captured diagnostics including versions, Docker state, logs, ports, processes, timing, and health output.",
-      includeByDefault: true,
-      strength: "supporting",
-      targetRoles: [
-        "Support Engineer",
-        "Systems Administrator",
-        "Linux Administrator",
-        "Platform Engineer"
-      ],
-      focusAreas: [
-        "monitoring-observability",
-        "incident-analysis",
-        "documentation"
-      ],
-      skillTags: [
-        { category: "IT Service Management", name: "diagnostics collection" },
-        { category: "Linux & Systems Administration", name: "process checks" },
-        { category: "Linux & Systems Administration", name: "port checks" },
-        { category: "Cloud & Infrastructure", name: "Docker" },
-        { category: "Documentation", name: "validation output" }
-      ]
-    },
-    {
-      id: "offline-dev-lab-009",
-      text: "Built a reproducible Debian 13 technical lab using Python, Bash, Docker, health checks, and diagnostics to validate local application and system behavior.",
-      printText: "Built a Debian 13 technical lab using Python, Bash, Docker, health checks, and diagnostics for repeatable system validation.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoleFamilies: ["technical-field", "endpoint-support", "systems-middleware"],
-      focusAreas: ["infrastructure-operations", "automation", "testing-validation", "incident-analysis"],
-      skillTags: [
-        { category: "Programming & Scripting", name: "Python" },
-        { category: "Automation & Scripting", name: "Bash" },
-        { category: "DevOps & Tooling", name: "Docker" },
-        { category: "Systems & Infrastructure", name: "Debian 13" },
-        { category: "Monitoring & Support", name: "health checks" },
-        { category: "Monitoring & Support", name: "diagnostics" }
-      ]
-    },
+          id: "offline-dev-lab-009",
+          text: "Built a reproducible Debian 13 technical lab using Python, Bash, Docker, health checks, and diagnostics to validate local application and system behavior.",
+          printText: "Built a Debian 13 technical lab using Python, Bash, Docker, health checks, and diagnostics for repeatable system validation.",
+          includeByDefault: true,
+          strength: "primary",
+          targetRoleFamilies: ["technical-field", "endpoint-support", "systems-middleware"],
+          focusAreas: ["infrastructure-operations", "automation", "testing-validation", "incident-analysis"],
+          skillTags: [
+            { category: "Programming & Scripting", name: "Python" },
+            { category: "Automation & Scripting", name: "Bash" },
+            { category: "DevOps & Tooling", name: "Docker" },
+            { category: "Systems & Infrastructure", name: "Debian 13" },
+            { category: "Monitoring & Support", name: "health checks" },
+            { category: "Monitoring & Support", name: "diagnostics" }
+          ]
+        }
   ],
 
   skillTags: [

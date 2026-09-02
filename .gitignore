@@ -1,0 +1,11 @@
+# macOS metadata
+.DS_Store
+**/.DS_Store
+
+# Generated output
+output/*
+!output/.gitkeep
+
+# Local context / patch artifacts
+*.zip
+__MACOSX/

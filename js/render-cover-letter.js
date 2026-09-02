@@ -49,6 +49,9 @@ function renderCoverLetter(coverLetter, contact, targetElement, options = {}) {
           <div class="cover-letter-paragraphs">
             ${(coverLetter.paragraphs || []).map((paragraph, index) => `
               <p${editableAttributes(`cover-letter:paragraph:${index}`)}>${escapeHtml(paragraph)}</p>
+              ${index === 0 && coverLetter.highlightSentence
+                ? `<p class="cover-letter-highlight"${editableAttributes("cover-letter:highlights")}>${escapeHtml(coverLetter.highlightSentence)}</p>`
+                : ""}
             `).join("")}
           </div>
           <div class="cover-letter-closing">

@@ -3,11 +3,21 @@
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
+const { loadBrowserSource } = require("./browser-source-loader.js");
 const fixtures = require("./role-regression-fixtures.js");
 
 const repoRoot = path.resolve(__dirname, "..");
-const indexHtml = fs.readFileSync(path.join(repoRoot, "index.html"), "utf8");
 const appSource = fs.readFileSync(path.join(repoRoot, "js/app.js"), "utf8");
+const targetRolesSource = fs.readFileSync(path.join(repoRoot, "js/data/target-roles.js"), "utf8");
+const roleFamiliesSource = fs.readFileSync(path.join(repoRoot, "js/data/roles/families.js"), "utf8");
+const roleModifiersSource = fs.readFileSync(path.join(repoRoot, "js/data/roles/modifiers.js"), "utf8");
+const durableRolesSource = fs.readFileSync(path.join(repoRoot, "js/data/roles/durable.js"), "utf8");
+const historicalRolesSource = fs.readFileSync(path.join(repoRoot, "js/data/roles/historical-presets.js"), "utf8");
+const legacyMappingsSource = fs.readFileSync(path.join(repoRoot, "js/data/roles/legacy-mappings.js"), "utf8");
+const targetedApplicationsSource = fs.readFileSync(
+  path.join(repoRoot, "js/data/roles/targeted-applications.js"),
+  "utf8"
+);
 
 function assert(condition, message) {
   if (!condition) {
@@ -24,17 +34,7 @@ function normalize(value) {
 }
 
 function loadResumeData() {
-  const scriptPaths = [...indexHtml.matchAll(/<script src="\.\/(.*?)"><\/script>/g)]
-    .map((match) => match[1])
-    .filter((relativePath) => {
-      return !relativePath.endsWith("render-resume.js") &&
-        !relativePath.endsWith("app.js") &&
-        !relativePath.endsWith("customization.js");
-    });
-
-  const source = scriptPaths
-    .map((relativePath) => fs.readFileSync(path.join(repoRoot, relativePath), "utf8"))
-    .join("\n\n");
+  const { source } = loadBrowserSource(repoRoot);
 
   const context = vm.createContext({ console, Date, Map, Set });
   vm.runInContext(`${source}\n\nglobalThis.__roleTest = {
@@ -45,6 +45,8 @@ function loadResumeData() {
     getRoleDefinition,
     getRoleBaseDefinition,
     getRoleMatchLabels,
+    isKnownRoleReference,
+    roleResolutionDiagnostics,
     bulletFocusAreas,
     getBulletFocusAreas
   };`, context);
@@ -91,28 +93,81 @@ function validateRoleArchitecture(data) {
   const modifierIds = new Set(Object.keys(careerData.roleModifiers));
   const durableIds = new Set(careerData.targetRoles);
 
-  assert(careerData.targetRoles.length === 12,
-    `Expected 12 durable dropdown roles, found ${careerData.targetRoles.length}`);
-  assert(durableRoles.length === 12,
-    `Expected 12 durable role definitions, found ${durableRoles.length}`);
+  assert(careerData.targetRoles.length === 13,
+    `Expected 13 durable dropdown roles, found ${careerData.targetRoles.length}`);
+  assert(durableRoles.length === 13,
+    `Expected 13 durable role definitions, found ${durableRoles.length}`);
   assert(historicalPresets.length === 28,
     `Expected 28 hidden historical presets, found ${historicalPresets.length}`);
-  assert(targetedPresets.length === 40,
-    `Expected 40 active targeted application presets, found ${targetedPresets.length}`);
-  assert(careerData.targetedRoleIds.length === 40,
-    `Expected 40 targeted application dropdown roles, found ${careerData.targetedRoleIds.length}`);
-  assert(careerData.roleDefinitions.length === 80,
-    `Expected 80 total preserved role definitions, found ${careerData.roleDefinitions.length}`);
-  assert(Object.keys(careerData.roleFamilies).length === 11,
-    `Expected 11 durable role families, found ${Object.keys(careerData.roleFamilies).length}`);
+  assert(targetedPresets.length === careerData.targetedRoleIds.length,
+    `Targeted preset definitions (${targetedPresets.length}) do not match targetedRoleIds (${careerData.targetedRoleIds.length})`);
+  assert(roleFamiliesSource.includes("const roleFamilies = {"),
+    "Role families are not stored in the dedicated families module");
+  assert(roleModifiersSource.includes("const roleModifiers = {"),
+    "Role modifiers are not stored in the dedicated modifiers module");
+  assert(durableRolesSource.includes("const durableRoleDefinitions = ["),
+    "Durable role definitions are not stored in the dedicated durable module");
+  assert(historicalRolesSource.includes("const historicalRoleDefinitions = ["),
+    "Historical role definitions are not stored in the dedicated historical module");
+  assert(legacyMappingsSource.includes("const legacyRoleMappings = {"),
+    "Legacy compatibility mappings are not stored in the dedicated mappings module");
+  assert(targetedApplicationsSource.includes("const targetedApplicationRoleDefinitions = ["),
+    "Targeted application definitions are not stored in the dedicated role module");
+  assert(targetRolesSource.includes("...durableRoleDefinitions"),
+    "target-roles.js does not assemble durable role definitions");
+  assert(targetRolesSource.includes("...historicalRoleDefinitions"),
+    "target-roles.js does not assemble historical role definitions");
+  assert(targetRolesSource.includes("...targetedApplicationRoleDefinitions"),
+    "target-roles.js does not assemble targeted application definitions");
+  assert(targetRolesSource.includes("const targetedRoleIds = targetedApplicationRoleDefinitions.map"),
+    "targetedRoleIds must be derived from targeted application definitions");
+  assert(targetRolesSource.includes("historicalRoleDefinitions.map((role) => [role.id, role.baseRoleId])"),
+    "historicalPresetBaseMappings must be derived from historical role definitions");
+  assert(!targetRolesSource.includes("const durableRoleOverrides"),
+    "Legacy durableRoleOverrides migration layer has returned to target-roles.js");
+  assert(!targetRolesSource.includes("const durableSelectionOverrides"),
+    "Legacy durableSelectionOverrides migration layer has returned to target-roles.js");
+  assert(!targetRolesSource.includes('id: "parker-hannifin-pc-support-specialist-irvine"'),
+    "Targeted application definitions have leaked back into target-roles.js");
+  assert(!targetRolesSource.includes('id: "full-stack-software-engineer"'),
+    "Durable role definitions have leaked back into target-roles.js");
+  assert(!targetRolesSource.includes('id: "systems-administrator"'),
+    "Historical role definitions have leaked back into target-roles.js");
+  assert(Object.keys(careerData.historicalPresetBaseMappings).length === historicalPresets.length,
+    "Historical preset base mapping count must match historical preset count");
+  assert(Object.keys(careerData.targetedApplicationBaseMappings).length === targetedPresets.length,
+    "Targeted application base mapping count must match targeted preset count");
+  assert(careerData.roleDefinitions.length === durableRoles.length + historicalPresets.length + targetedPresets.length,
+    `Role definition partition mismatch: ${careerData.roleDefinitions.length} total vs ${durableRoles.length + historicalPresets.length + targetedPresets.length} classified`);
+  assert(Object.keys(careerData.roleFamilies).length === 12,
+    `Expected 12 durable role families, found ${Object.keys(careerData.roleFamilies).length}`);
   assert(careerData.targetRoles[0] === "full-stack-software-engineer",
     "Full-Stack Software Engineer must remain the canonical first/default role");
   assert(new Set(careerData.targetRoles).size === careerData.targetRoles.length,
     "Durable role IDs contain duplicates");
   assert(appSource.includes('optgroup label="Targeted Applications"'),
     "UI is missing the Targeted Applications dropdown group");
-  assert(appSource.includes("careerData.targetedRoleIds"),
-    "UI does not populate targeted application presets from career data");
+  assert(appSource.includes("careerData.activeTargetedRoleIds"),
+    "UI does not populate active targeted applications from lifecycle data");
+
+  const lifecycleStatuses = new Set(careerData.applicationLifecycleStatuses);
+  const activeTargetedRoleIds = careerData.activeTargetedRoleIds || [];
+  const pastTargetedRoleIds = careerData.pastTargetedRoleIds || [];
+  const allLifecycleRoleIds = [...activeTargetedRoleIds, ...pastTargetedRoleIds];
+
+  assert(new Set(careerData.targetedRoleIds).size === careerData.targetedRoleIds.length,
+    "Targeted role IDs contain duplicates");
+  assert(new Set(allLifecycleRoleIds).size === allLifecycleRoleIds.length,
+    "Application lifecycle role groups overlap or contain duplicates");
+  assert(allLifecycleRoleIds.length === careerData.targetedRoleIds.length,
+    "Active + past application lifecycle groups do not partition targetedRoleIds");
+  careerData.targetedRoleIds.forEach((roleId) => {
+    assert(allLifecycleRoleIds.includes(roleId), `${roleId} is missing from application lifecycle groups`);
+  });
+  assert(!activeTargetedRoleIds.includes("energy-solutions-software-engineer-i-orange-ca"),
+    "Closed Energy Solutions preset should not remain in the active dropdown");
+  assert(pastTargetedRoleIds.includes("energy-solutions-software-engineer-i-orange-ca"),
+    "Closed Energy Solutions preset should remain preserved in past applications");
 
   careerData.targetRoles.forEach((roleId) => {
     const role = getRoleDefinition(roleId);
@@ -133,9 +188,24 @@ function validateRoleArchitecture(data) {
   });
 
   targetedPresets.forEach((role) => {
+    const baseRole = getRoleBaseDefinition(role.id);
+    assert(role.baseRoleId === baseRole.id, `${role.id} must declare an explicit durable baseRoleId`);
+    const redundantModifierIds = (role.modifierIds || []).filter((modifierId) =>
+      (baseRole.modifierIds || []).includes(modifierId)
+    );
+    assert(redundantModifierIds.length === 0,
+      `${role.id} repeats base-role modifiers instead of storing a delta: ${redundantModifierIds.join(", ")}`);
     assert(role.isPrimary === false, `${role.id} targeted preset should not be a durable starting point`);
     assert(role.isTargetedPreset === true, `${role.id} is missing targeted-preset marker`);
-    assert(careerData.targetedRoleIds.includes(role.id), `${role.id} is not exposed in Targeted Applications`);
+    assert(careerData.targetedRoleIds.includes(role.id), `${role.id} is not preserved in targetedRoleIds`);
+    assert(role.application && typeof role.application === "object", `${role.id} is missing application lifecycle metadata`);
+    assert(lifecycleStatuses.has(role.application.status),
+      `${role.id} has invalid application status ${role.application.status}`);
+    const isActiveLifecycle = ["active", "applied", "interviewing", "offer"].includes(role.application.status);
+    assert(activeTargetedRoleIds.includes(role.id) === isActiveLifecycle,
+      `${role.id} active lifecycle grouping disagrees with status ${role.application.status}`);
+    assert(pastTargetedRoleIds.includes(role.id) === !isActiveLifecycle,
+      `${role.id} past lifecycle grouping disagrees with status ${role.application.status}`);
     assert(role.baseRoleId, `${role.id} is missing baseRoleId`);
     assert(durableIds.has(role.baseRoleId), `${role.id} baseRoleId is not durable: ${role.baseRoleId}`);
     assert(getRoleBaseDefinition(role.id).id === role.baseRoleId,
@@ -169,6 +239,25 @@ function validateRoleArchitecture(data) {
       assert(Array.isArray(role.excludedSkillNames), `${role.id}.excludedSkillNames must be an array`);
       assert(new Set(role.excludedSkillNames.map(normalize)).size === role.excludedSkillNames.length,
         `${role.id}.excludedSkillNames contains duplicates`);
+    }
+
+    if (role.coverLetterHighlights !== undefined) {
+      assert(Array.isArray(role.coverLetterHighlights), `${role.id}.coverLetterHighlights must be an array`);
+      assert(role.coverLetterHighlights.length >= 1 && role.coverLetterHighlights.length <= 2,
+        `${role.id}.coverLetterHighlights must contain 1-2 values`);
+      assert(role.coverLetterHighlights.every((value) => typeof value === "string" && value.trim()),
+        `${role.id}.coverLetterHighlights values must be non-empty strings`);
+      assert(new Set(role.coverLetterHighlights.map(normalize)).size === role.coverLetterHighlights.length,
+        `${role.id}.coverLetterHighlights contains duplicates`);
+    }
+
+    if (role.coverLetterHighlightEvidence !== undefined) {
+      assert(Array.isArray(role.coverLetterHighlightEvidence),
+        `${role.id}.coverLetterHighlightEvidence must be an array`);
+      assert(role.coverLetterHighlightEvidence.every((value) => typeof value === "string" && value.trim()),
+        `${role.id}.coverLetterHighlightEvidence values must be non-empty strings`);
+      assert(new Set(role.coverLetterHighlightEvidence.map(normalize)).size === role.coverLetterHighlightEvidence.length,
+        `${role.id}.coverLetterHighlightEvidence contains duplicates`);
     }
 
     if (role.jobBulletLimitsByItem !== undefined) {
@@ -254,13 +343,13 @@ function validateRoleArchitecture(data) {
 }
 
 function validateBulletCatalog(data) {
-  const { careerData, getRoleDefinition, getBulletFocusAreas } = data;
+  const { careerData, getRoleDefinition, isKnownRoleReference, getBulletFocusAreas } = data;
   const bulletEntries = collectAllBullets(careerData);
   const canonical = bulletEntries.filter(({ bullet }) => bullet.catalogStatus === "canonical");
   const historical = bulletEntries.filter(({ bullet }) => bullet.catalogStatus === "historical-targeted");
 
-  assert(bulletEntries.length === 288, `Expected 288 preserved bullet records, found ${bulletEntries.length}`);
-  assert(canonical.length === 124, `Expected 124 canonical bullets, found ${canonical.length}`);
+  assert(bulletEntries.length === 296, `Expected 296 preserved bullet records, found ${bulletEntries.length}`);
+  assert(canonical.length === 132, `Expected 132 canonical bullets, found ${canonical.length}`);
   assert(historical.length === 164, `Expected 164 historical targeting bullets, found ${historical.length}`);
 
   const canonicalText = new Map();
@@ -274,11 +363,7 @@ function validateBulletCatalog(data) {
   });
 
   collectRoleReferences(careerData).forEach(({ role, source }) => {
-    try {
-      getRoleDefinition(role);
-    } catch (error) {
-      throw new Error(`${source} references unknown role ${role}`);
-    }
+    assert(isKnownRoleReference(role), `${source} references unknown role ${role}`);
   });
 
   ["email", "daily", "maintained", "mainboards"].forEach((text) => {
@@ -368,6 +453,24 @@ function validateBulletCatalog(data) {
   });
 }
 
+function validateMusicEducationEvidence(data) {
+  const { careerData } = data;
+  const smesId = "2008-01-01_2012-06-17_st-margarets-episcopal-school_music-staff-adjunct-faculty";
+  const smes = careerData.jobs.find((item) => item.id === smesId);
+  assert(smes, "SMES adjunct-faculty work history is missing");
+  assert(smes.company === "St. Margaret's Episcopal School", "SMES employer name changed unexpectedly");
+  assert((smes.bullets || []).length === 8, `SMES should expose 8 canonical bullets, found ${smes.bullets?.length || 0}`);
+  assert((smes.bullets || []).every((bullet) => bullet.catalogStatus === "canonical"),
+    "SMES work history must remain canonical evidence");
+  const claimText = (smes.bullets || []).map((bullet) => bullet.text).join(" ");
+  assert(/cello/i.test(claimText) && /guitar/i.test(claimText) && /electric bass/i.test(claimText),
+    "SMES private-instruction instruments are incomplete");
+  assert(/Sibelius/i.test(claimText) && /MuseScore/i.test(claimText) && /Apple Logic/i.test(claimText),
+    "SMES practice-material software evidence is incomplete");
+  assert(!/Python|Docker|cybersecurity|enterprise IT/i.test(claimText),
+    "SMES work history must not absorb later technical-career claims");
+}
+
 function validateGeneratedResumes(data) {
   const { careerData, buildResume } = data;
   const validationDate = new Date(2026, 7, 8, 12, 0, 0);
@@ -442,14 +545,19 @@ function validateGeneratedResumes(data) {
       assert(selectedBulletIds.has(id), `${fixture.id} is missing expected evidence bullet ${id}`);
     });
 
+    const includePinnedResumeSkills = role.includePinnedResumeSkills ??
+      family.includePinnedResumeSkills ??
+      true;
     const pythonLocations = resume.skills.filter((group) => group.skills.includes("Python"));
     const dockerLocations = resume.skills.filter((group) => group.skills.includes("Docker"));
-    assert(pythonLocations.length === 1, `${fixture.id} must display Python exactly once`);
-    assert(dockerLocations.length === 1, `${fixture.id} must display Docker exactly once`);
-    assert(pythonLocations[0].category === "Programming & Scripting",
-      `${fixture.id} placed Python in ${pythonLocations[0].category}`);
-    assert(dockerLocations[0].category === "DevOps & Tooling",
-      `${fixture.id} placed Docker in ${dockerLocations[0].category}`);
+    if (includePinnedResumeSkills) {
+      assert(pythonLocations.length === 1, `${fixture.id} must display Python exactly once`);
+      assert(dockerLocations.length === 1, `${fixture.id} must display Docker exactly once`);
+      assert(pythonLocations[0].category === "Programming & Scripting",
+        `${fixture.id} placed Python in ${pythonLocations[0].category}`);
+      assert(dockerLocations[0].category === "DevOps & Tooling",
+        `${fixture.id} placed Docker in ${dockerLocations[0].category}`);
+    }
 
     [...resume.jobs, ...resume.projects].forEach((item) => {
       item.selectedBullets.forEach((bullet) => {
@@ -692,12 +800,15 @@ function main() {
 
   validateRoleArchitecture(data);
   validateBulletCatalog(data);
+  validateMusicEducationEvidence(data);
   validateGeneratedResumes(data);
 
   console.log("Role data checks passed.");
   console.log(`Durable dropdown roles: ${data.careerData.targetRoles.length}`);
   console.log(`Historical role presets retained: ${data.careerData.roleDefinitions.filter((role) => role.catalogStatus === "historical-preset").length}`);
-  console.log(`Targeted application presets: ${data.careerData.targetedRoleIds.length}`);
+  console.log(`Targeted application presets retained: ${data.careerData.targetedRoleIds.length}`);
+  console.log(`Active targeted applications: ${data.careerData.activeTargetedRoleIds.length}`);
+  console.log(`Past targeted applications retained: ${data.careerData.pastTargetedRoleIds.length}`);
   console.log(`Role families: ${Object.keys(data.careerData.roleFamilies).length}`);
   console.log(`Canonical bullets: ${collectAllBullets(data.careerData).filter(({ bullet }) => bullet.catalogStatus === "canonical").length}`);
   console.log(`Historical targeting bullets retained: ${collectAllBullets(data.careerData).filter(({ bullet }) => bullet.catalogStatus === "historical-targeted").length}`);

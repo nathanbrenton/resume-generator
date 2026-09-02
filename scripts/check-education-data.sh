@@ -26,11 +26,18 @@ while IFS= read -r src; do
   if [[ -f "$referenced_file" ]]; then
     echo "OK: $src"
   else
-    echo "ERROR: index.html references a missing file: $src" >&2
+    echo "ERROR: record manifest references a missing file: $src" >&2
     failed=1
   fi
 done < <(
-  sed -nE 's/.*<script[^>]*src="([^"]*js\/data\/education\/[^"]+\.js)"[^>]*>.*/\1/p' "$INDEX_FILE"
+  node - "$ROOT_DIR" <<'NODE'
+const path = require("path");
+const root = process.argv[2];
+const manifest = require(path.join(root, "js/data/record-script-manifest.js"));
+manifest
+  .filter((src) => src.includes("/js/data/education/") || src.includes("js/data/education/"))
+  .forEach((src) => console.log(src));
+NODE
 )
 
 echo

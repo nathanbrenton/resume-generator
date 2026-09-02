@@ -5,6 +5,16 @@ function numberedBulletIds(prefix, count) {
 }
 
 const canonicalBulletIdsByItem = {
+  "2008-01-01_2012-06-17_st-margarets-episcopal-school_music-staff-adjunct-faculty": [
+    "smes-music-adjunct-private-instruction-001",
+    "smes-music-adjunct-practice-materials-002",
+    "smes-music-adjunct-family-scheduling-003",
+    "smes-music-adjunct-ensemble-classroom-support-004",
+    "smes-music-adjunct-summer-orchestra-coach-005",
+    "smes-music-adjunct-musical-theater-performance-006",
+    "smes-music-adjunct-cello-section-coaching-007",
+    "smes-music-adjunct-school-service-performance-008"
+  ],
   "2024-02-05_2026-03-27_roth-staffing-companies_system-engineer-i":
     numberedBulletIds("roth-system-engineer-i", 12),
   "2022-08-18_2024-01-03_randstad-technologies_jr-deskside-technician":

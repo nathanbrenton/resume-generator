@@ -12,145 +12,6 @@ const pinnedResumeSkills = [
 
 const requiredRoleSkills = [];
 
-// Stable categories prevent a posting-specific modifier or bullet from moving a
-// familiar technology into an arbitrary section simply because that source gave
-// it a larger weight.
-const canonicalSkillCategories = {
-  "python": "Programming & Scripting",
-  "typescript": "Programming & Scripting",
-  "javascript": "Programming & Scripting",
-  "bash": "Automation & Scripting",
-  "powershell": "Automation & Scripting",
-  "react": "Frontend Development",
-  "vite": "Frontend Development",
-  "fastapi": "Backend & APIs",
-  "rest apis": "Backend & APIs",
-  "openapi": "Backend & APIs",
-  "postgresql": "Databases & Data",
-  "sql": "Databases & Data",
-  "sqlalchemy": "Databases & Data",
-  "alembic": "Databases & Data",
-  "pytest": "Testing & Quality",
-  "vitest": "Testing & Quality",
-  "playwright": "Testing & Quality",
-  "docker": "DevOps & Tooling",
-  "docker compose": "DevOps & Tooling",
-  "containerized services": "DevOps & Tooling",
-  "git": "DevOps & Tooling",
-  "dependency management": "DevOps & Tooling",
-  "application deployment": "DevOps & Tooling",
-  "deployment automation": "DevOps & Tooling",
-  "release packaging": "DevOps & Tooling",
-  "ssh": "DevOps & Tooling",
-  "deployment manifests": "Platform & Reliability",
-  "release artifact validation": "Platform & Reliability",
-  "rollback": "Platform & Reliability",
-  "release support": "Platform & Reliability",
-  "build validation": "Testing & Quality",
-  "jdk": "Middleware & Applications",
-  "java middleware": "Middleware & Applications",
-  "rhel 9": "Systems & Infrastructure",
-  "linux": "Systems & Infrastructure",
-  "debian 13": "Systems & Infrastructure",
-  "ubuntu": "Systems & Infrastructure",
-  "systemd": "Systems & Infrastructure",
-  "cron": "Systems & Infrastructure",
-  "apache tomcat": "Middleware & Applications",
-  "tomcat/tomee": "Middleware & Applications",
-  "oracle weblogic": "Middleware & Applications",
-  "oracle service bus": "Middleware & Applications",
-  "ibm mq": "Middleware & Applications",
-  "active directory": "Identity & Access",
-  "ldap": "Identity & Access",
-  "cyberark": "Identity & Access",
-  "mfa": "Identity & Access",
-  "servicenow": "Enterprise Support",
-  "sccm/mecm": "Endpoint & IT Support",
-  "jamf": "Endpoint & IT Support",
-  "bitlocker": "Endpoint & IT Support",
-  "ffmpeg": "Media Processing",
-  "mediainfo": "Media Processing",
-  "avisynth": "Media Processing",
-  "ffprobe": "Media Processing",
-  "hls": "Media Processing",
-  "hls.js": "Media Processing",
-  "html5 audio": "Media Processing",
-  "transcoding": "Media Processing",
-  "media metadata": "Media Processing",
-  "metadata inheritance": "Media Processing",
-  "publishing workflows": "Media Processing",
-  "persistent media playback": "Media Processing",
-  "web audio api": "Signal Processing",
-  "waveform visualization": "Signal Processing",
-  "oscilloscope visualization": "Signal Processing",
-  "waveform generation": "Signal Processing",
-  "canvas 2d api": "Frontend Development",
-  "responsive ui": "Frontend Development",
-  "parallax": "Frontend Development",
-  "audio-reactive ui": "Frontend Development",
-  "requestanimationframe": "Frontend Development",
-  "node.js": "Backend & APIs",
-  "ssh": "DevOps & Tooling",
-  "rsync": "DevOps & Tooling",
-  "deployment manifests": "Platform & Reliability",
-  "atomic deployment": "Platform & Reliability",
-  "rollback": "Platform & Reliability",
-  "release readiness": "Platform & Reliability",
-  "atomic writes": "Platform & Reliability",
-  "sha-256 integrity validation": "Security & Compliance",
-  "public/private data separation": "Security & Compliance",
-  "sanitized publishing": "Security & Compliance",
-  "file permission validation": "Security & Compliance",
-  "checksum validation": "Testing & Quality",
-  "integrity validation": "Testing & Quality",
-  "media validation": "Testing & Quality",
-  "audit workflows": "Testing & Quality",
-  "linux server administration": "Systems & Infrastructure",
-  "web server configuration": "Systems & Infrastructure",
-  "apache http server": "Middleware & Applications",
-  "dns": "Networking & Security",
-  "domain management": "Networking & Security",
-  "firewall configuration": "Networking & Security",
-  "mail forwarding": "Networking & Security",
-  "workflow troubleshooting": "Application Support",
-  "performance optimization": "Performance & Validation",
-  "davinci resolve": "Creative Media",
-  "fusion": "Creative Media",
-  "compositing": "Creative Media",
-  "art direction": "Creative Media",
-  "bandit": "Security Tooling",
-  "pip-audit": "Security Tooling",
-  "dependency vulnerability scanning": "Security Tooling",
-  "ruff": "Testing & Quality",
-  "synthetic transactions": "Testing & Quality",
-  "soldering": "Hardware & Field Systems",
-  "firmware": "Hardware & Field Systems",
-  "raspberry pi": "Hardware & Field Systems",
-  "hardware troubleshooting": "Hardware & Field Systems",
-  "electronics diagnostics": "Hardware & Field Systems",
-  "calibration": "Hardware & Field Systems",
-  "audio equipment": "Hardware & Field Systems",
-  "windows": "Endpoint & IT Support",
-  "macos": "Endpoint & IT Support",
-  "device provisioning": "Endpoint & IT Support"
-};
-
-const canonicalSkillNames = {
-  "apache tomcat": "Tomcat/TomEE",
-  "bandit": "Bandit",
-  "tomcat/tomee": "Tomcat/TomEE"
-};
-
-function getCanonicalSkillName(name) {
-  const normalizedName = String(name || "").trim();
-  return canonicalSkillNames[normalizedName.toLowerCase()] || normalizedName;
-}
-
-function getCanonicalSkillCategory(name, fallbackCategory) {
-  const key = getCanonicalSkillName(name).toLowerCase();
-  return canonicalSkillCategories[key] || fallbackCategory;
-}
-
 const roleFamilySkillWeights = {
   "systems-middleware": [
     weightedSkill("Systems & Infrastructure", "RHEL 9", 10),
@@ -333,6 +194,26 @@ const roleFamilySkillWeights = {
     weightedSkill("Signal Processing", "waveform visualization", 8),
     weightedSkill("Backend & APIs", "Node.js", 6),
     weightedSkill("Media Processing", "ffprobe", 10)
+  ],
+  "music-education-performance": [
+    weightedSkill("Music Education", "private music instruction", 10),
+    weightedSkill("Music Education", "instrumental pedagogy", 10),
+    weightedSkill("Music Education", "ensemble instruction", 9),
+    weightedSkill("Music Education", "music theory", 8),
+    weightedSkill("Music Education", "orchestra coaching", 8),
+    weightedSkill("Music Education", "section coaching", 8),
+    weightedSkill("Music Education", "music transcription", 7),
+    weightedSkill("Music Education", "music notation", 7),
+    weightedSkill("Music Performance", "cello", 10),
+    weightedSkill("Music Performance", "guitar", 9),
+    weightedSkill("Music Performance", "electric bass", 7),
+    weightedSkill("Music Performance", "musical theater", 8),
+    weightedSkill("Music Performance", "pit orchestra", 8),
+    weightedSkill("Music Technology", "Sibelius", 8),
+    weightedSkill("Music Technology", "MuseScore", 7),
+    weightedSkill("Music Technology", "Apple Logic", 7),
+    weightedSkill("Music Technology", "audio recording", 7),
+    weightedSkill("Documentation & Collaboration", "parent communication", 6)
   ],
   "technical-field": [
     weightedSkill("Hardware & Field Systems", "hardware troubleshooting", 10),
@@ -584,6 +465,22 @@ const roleModifierSkillWeights = {
     weightedSkill("Color & Broadcast Standards", "RGB", 4),
     weightedSkill("Color & Broadcast Standards", "YUV/Y'CbCr", 4)
   ],
+  "retail-media-transferable": [
+    weightedSkill("Digital Media & Asset Workflows", "publishing workflows", 4),
+    weightedSkill("Digital Media & Asset Workflows", "media metadata", 4),
+    weightedSkill("Analytics & Data Quality", "data validation", 4),
+    weightedSkill("Microsoft 365 & Collaboration", "Microsoft 365", 4),
+    weightedSkill("Customer & Cross-Functional Support", "customer service", 4),
+    weightedSkill("Documentation & Cross-Functional Support", "technical documentation", 3)
+  ],
+  "schoolsfirst-splunk-sre": [
+    weightedSkill("Monitoring & Support", "Splunk", 4),
+    weightedSkill("Monitoring & Support", "log analysis", 4),
+    weightedSkill("Monitoring & Support", "availability monitoring", 4),
+    weightedSkill("Monitoring & Support", "capacity monitoring", 4),
+    weightedSkill("Systems & Infrastructure", "RHEL 9", 4),
+    weightedSkill("Platform & Reliability", "production support", 4)
+  ],
   transcode: [
     weightedSkill("Media Processing", "encoding", 4),
     weightedSkill("Media Processing", "transcoding", 4),
@@ -653,6 +550,22 @@ const roleModifierSkillWeights = {
     weightedSkill("Application Support", "web maintenance & updates", 4),
     weightedSkill("Application Support", "office technology troubleshooting", 4)
   ],
+  "music-instruction": [
+    weightedSkill("Music Education", "private music instruction", 4),
+    weightedSkill("Music Education", "instrumental pedagogy", 4),
+    weightedSkill("Music Education", "ensemble instruction", 4),
+    weightedSkill("Music Education", "music theory", 3),
+    weightedSkill("Music Education", "music notation", 3),
+    weightedSkill("Documentation & Collaboration", "parent communication", 2)
+  ],
+  "music-performance": [
+    weightedSkill("Music Performance", "cello", 4),
+    weightedSkill("Music Performance", "guitar", 3),
+    weightedSkill("Music Performance", "musical theater", 4),
+    weightedSkill("Music Performance", "pit orchestra", 4),
+    weightedSkill("Music Performance", "live performance", 3),
+    weightedSkill("Music Education", "performance preparation", 3)
+  ],
   "music-technology-support": [
     weightedSkill("Hardware & Field Systems", "audio equipment", 4),
     weightedSkill("Customer & User Support", "technical support", 3),
@@ -716,10 +629,8 @@ function mergeWeightedSkills(skillGroups) {
 }
 
 function getRoleSkillInheritance(role) {
-  const baseRole = role.baseRoleId
-    ? roleDefinitions.find((candidate) => candidate.id === role.baseRoleId)
-    : role;
-  const familyId = baseRole?.familyId || role.familyId;
+  const baseRole = getRoleBaseDefinition(role.id);
+  const familyId = baseRole.familyId;
   const modifierIds = [...new Set([
     ...(baseRole?.modifierIds || []),
     ...(role.modifierIds || [])

@@ -133,21 +133,13 @@ function getBulletTextTokens(bullet) {
     .filter((token) => token.length >= 4));
 }
 
-function getRoleReferenceDefinition(roleReference) {
-  return careerData.roleDefinitions.find((role) => {
-    return getRoleMatchLabels(role.id).includes(roleReference);
-  });
-}
-
 function getBulletTargetFamilyIds(bullet) {
   const familyIds = new Set(bullet.targetRoleFamilies || []);
 
   (bullet.targetRoles || []).forEach((roleReference) => {
-    const referencedRole = getRoleReferenceDefinition(roleReference);
-
-    if (referencedRole) {
-      familyIds.add(referencedRole.familyId);
-    }
+    getEvidenceRoleReferenceFamilyIds(roleReference).forEach((familyId) => {
+      familyIds.add(familyId);
+    });
   });
 
   return familyIds;
@@ -650,7 +642,13 @@ function buildResume(options = {}) {
   const skillMap = new Map();
 
   addSkills(skillMap, careerData.roleSkillPriorities[roleContext.roleId], 1);
-  addSkills(skillMap, careerData.pinnedResumeSkills || pinnedResumeSkills, 1);
+  const includePinnedResumeSkills = roleContext.role.includePinnedResumeSkills ??
+    family.includePinnedResumeSkills ??
+    true;
+  const requiredVisibleSkillNames = includePinnedResumeSkills ? ["Python", "Docker"] : [];
+  if (includePinnedResumeSkills) {
+    addSkills(skillMap, careerData.pinnedResumeSkills || pinnedResumeSkills, 1);
+  }
 
   // Certifications are displayed as credentials, not treated as hands-on skill
   // evidence. This prevents exam-domain vocabulary from crowding out skills
@@ -766,7 +764,8 @@ function buildResume(options = {}) {
       roleContext.roleId,
       maxSkillGroups,
       maxSkillsPerGroup,
-      maxSkillsTotal
+      maxSkillsTotal,
+      requiredVisibleSkillNames
     ),
     jobs: jobsForResume.filter((job) => job.selectedBullets.length > 0),
     projects: projectsForResume.filter((project) => project.selectedBullets.length > 0),

@@ -61,83 +61,52 @@ const project202607xxResumeGenerator = {
 
   bullets: [
     {
-      id: "resume-generator-anduril-it-automation-001",
-      text: "Used AI-assisted development to build a configurable JavaScript self-service application with structured data, automated role selection, validation, printable layouts, and in-place customization.",
-      printText: "Used AI-assisted development to build a JavaScript self-service app with structured data, automated selection, validation, print layouts, and in-place customization.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: ["IT Systems Engineer — Automation & Self-Service"],
-      skillTags: [
-        { category: "IT Automation", name: "self-service tooling" },
-        { category: "IT Automation", name: "workflow automation" },
-        { category: "Programming & Scripting", name: "JavaScript" },
-        { category: "Application Development", name: "internal tools" },
-        { category: "AI-Enabled Solutions", name: "AI-assisted development" }
-      ]
-    },
+          id: "resume-generator-ai-first-001",
+          text: "Used AI-assisted development to rapidly build and refine a configurable JavaScript resume application with structured content data, role-specific selection logic, printable layouts, and role-scoped session or persistent in-place editing.",
+          printText: "Used AI-assisted development to build a configurable JavaScript resume app with structured data, role-specific selection, print layouts, and persistent in-place editing.",
+          includeByDefault: true,
+          strength: "primary",
+          targetRoles: [
+            "AI-First Software Engineer"
+          ],
+          focusAreas: [
+            "software-development",
+            "automation",
+            "ai-ml"
+          ],
+          skillTags: [
+            { category: "AI-First Development", name: "AI-assisted development" },
+            { category: "AI-First Development", name: "prompt engineering" },
+            { category: "AI-First Development", name: "rapid prototyping" },
+            { category: "AI-First Development", name: "iterative development" },
+            { category: "Programming & Scripting", name: "JavaScript" },
+            { category: "Frontend Development", name: "HTML" },
+            { category: "Frontend Development", name: "CSS" },
+            { category: "Testing & Quality", name: "validation" }
+          ]
+        },
     {
-      id: "resume-generator-digital-workplace-platform-001",
-      text: "Built a configurable JavaScript application that transforms structured career data into role-specific resumes with automated selection, printable layouts, validation, and in-place customization.",
-      printText: "Built a configurable JavaScript app with structured data, automated role selection, print layouts, validation, and in-place customization.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Platform Engineer — Digital Workplace Automation"
-      ],
-      skillTags: [
-        { category: "Automation & Scripting", name: "workflow automation" },
-        { category: "Platform & Service Delivery", name: "service delivery" },
-        { category: "AI-Enabled Solutions", name: "AI-assisted development" },
-        { category: "Reporting & Analytics", name: "operational reporting" }
-      ]
-    },
-    {
-      id: "resume-generator-ai-first-001",
-      text: "Used AI-assisted development to rapidly build and refine a configurable JavaScript resume application with structured content data, role-specific selection logic, printable layouts, and role-scoped session or persistent in-place editing.",
-      printText: "Used AI-assisted development to build a configurable JavaScript resume app with structured data, role-specific selection, print layouts, and persistent in-place editing.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "AI-First Software Engineer"
-      ],
-      focusAreas: [
-        "software-development",
-        "automation",
-        "ai-ml"
-      ],
-      skillTags: [
-        { category: "AI-First Development", name: "AI-assisted development" },
-        { category: "AI-First Development", name: "prompt engineering" },
-        { category: "AI-First Development", name: "rapid prototyping" },
-        { category: "AI-First Development", name: "iterative development" },
-        { category: "Programming & Scripting", name: "JavaScript" },
-        { category: "Frontend Development", name: "HTML" },
-        { category: "Frontend Development", name: "CSS" },
-        { category: "Testing & Quality", name: "validation" }
-      ]
-    },
-    {
-      id: "resume-generator-001",
-      text: "Built a configurable JavaScript resume application that composes structured career data through durable role families, weighted modifiers, evidence-aware bullet scoring, validation, printable layouts, and role-scoped customization.",
-      printText: "Built a JavaScript application that composes role-specific resumes from structured career data and print-ready layouts.",
-      includeByDefault: true,
-      strength: "primary",
-      targetRoles: [
-        "Software Engineer",
-        "Software Engineer — Full Stack"
-      ],
-      focusAreas: [
-        "software-development",
-        "automation",
-        "testing-validation"
-      ],
-      skillTags: [
-        { category: "Programming & Scripting", name: "JavaScript" },
-        { category: "Frontend Development", name: "HTML" },
-        { category: "Frontend Development", name: "CSS" },
-        { category: "Frontend Development", name: "complex user workflows" }
-      ]
-    }
+          id: "resume-generator-001",
+          text: "Built a configurable JavaScript resume application that composes structured career data through durable role families, weighted modifiers, evidence-aware bullet scoring, validation, printable layouts, and role-scoped customization.",
+          printText: "Built a JavaScript application that composes role-specific resumes from structured career data and print-ready layouts.",
+          includeByDefault: true,
+          strength: "primary",
+          targetRoles: [
+            "Software Engineer",
+            "Software Engineer — Full Stack"
+          ],
+          focusAreas: [
+            "software-development",
+            "automation",
+            "testing-validation"
+          ],
+          skillTags: [
+            { category: "Programming & Scripting", name: "JavaScript" },
+            { category: "Frontend Development", name: "HTML" },
+            { category: "Frontend Development", name: "CSS" },
+            { category: "Frontend Development", name: "complex user workflows" }
+          ]
+        }
   ],
 
   skillTags: [

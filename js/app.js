@@ -1,287 +1,39 @@
-let appTheme = resumeTheme.loadPreference(window.localStorage);
-resumeTheme.applyTheme(document.documentElement, appTheme);
+const {
+  getCheckedValues,
+  populateSelectionControls
+} = resumeSelectionControls;
 
-function populateAppearanceControls() {
-  const toggle = document.getElementById("darkThemeToggle");
+const {
+  populateAppearanceControls,
+  setAppTheme
+} = resumeAppearanceControls;
 
-  if (toggle) {
-    toggle.checked = appTheme === resumeTheme.THEMES.DARK;
-  }
-}
+const {
+  populateContactControls,
+  syncPreferencesFromControls,
+  applyPreferences: applyContactPreferences
+} = resumeContactControls;
 
-function setAppTheme(theme) {
-  appTheme = resumeTheme.applyTheme(document.documentElement, theme);
-  resumeTheme.savePreference(window.localStorage, appTheme);
-  populateAppearanceControls();
-}
+const {
+  setActiveDocumentType,
+  isCoverLetter,
+  setCoverLetterHighlightOverride,
+  resetCoverLetterHighlightOverride,
+  readCoverLetterHighlightInputs,
+  updateDocumentControls,
+  resolveCoverLetter,
+  buildPrintMetadata
+} = resumeDocumentController;
 
-function createCheckboxMarkup(item, checked, label) {
-  return `
-    <label class="control-checkbox">
-      <input type="checkbox" value="${item.id}" ${checked ? "checked" : ""}>
-      <span>${label}</span>
-    </label>
-  `;
-}
-
-function createCheckboxList(containerId, items, selectedIds, labelCallback) {
-  const container = document.getElementById(containerId);
-
-  container.innerHTML = items.map((item) => {
-    return createCheckboxMarkup(
-      item,
-      selectedIds.includes(item.id),
-      labelCallback(item)
-    );
-  }).join("");
-}
-
-function getCheckedValues(containerId) {
-  return [...document.querySelectorAll(`#${containerId} input[type="checkbox"]:checked`)]
-    .map((input) => input.value);
-}
-
-function getDefaultSelectionIds(items) {
-  return items
-    .filter((item) => item.includeByDefault !== false)
-    .map((item) => item.id);
-}
-
-let contactDisplayPreferences = resumeContactDisplay.loadPreferences(window.localStorage);
-
-function displayContactValue(value) {
-  return String(value || "")
-    .replace(/^https?:\/\//, "")
-    .replace(/^www\./, "")
-    .replace(/\/$/, "");
-}
-
-function createContactRadioMarkup(value, checked, label) {
-  return `
-    <label class="contact-radio-option">
-      <input type="radio" name="contactLocationMode" value="${value}" ${checked ? "checked" : ""}>
-      <span>${label}</span>
-    </label>
-  `;
-}
-
-function populateContactControls() {
-  const contact = careerData.contactInfo;
-  const locationOptions = [
-    {
-      value: resumeContactDisplay.LOCATION_MODES.GENERAL,
-      label: `General — ${contact.generalLocation || contact.city || "Not configured"}`
-    },
-    {
-      value: resumeContactDisplay.LOCATION_MODES.SPECIFIC,
-      label: `Specific — ${contact.specificLocation || contact.city || "Not configured"}`
-    },
-    { value: resumeContactDisplay.LOCATION_MODES.HIDDEN, label: "Hidden" }
-  ];
-
-  document.getElementById("contactLocationControls").innerHTML = locationOptions
-    .map((option) => createContactRadioMarkup(
-      option.value,
-      contactDisplayPreferences.locationMode === option.value,
-      option.label
-    ))
-    .join("");
-
-  const detailOptions = [
-    { id: "email", label: `Email — ${contact.email}` },
-    { id: "phone", label: `Phone — ${contact.phone}` },
-    { id: "website", label: `Personal site — ${displayContactValue(contact.website)}` },
-    { id: "linkedin", label: `LinkedIn — ${displayContactValue(contact.linkedin)}` },
-    { id: "github", label: `GitHub — ${displayContactValue(contact.github)}` }
-  ];
-
-  document.getElementById("contactDetailControls").innerHTML = detailOptions
-    .map((option) => createCheckboxMarkup(
-      option,
-      contactDisplayPreferences[option.id],
-      option.label
-    ))
-    .join("");
-}
-
-function getContactDisplayPreferencesFromControls() {
-  const selectedLocation = document.querySelector(
-    '#contactLocationControls input[name="contactLocationMode"]:checked'
-  );
-  const details = new Set(getCheckedValues("contactDetailControls"));
-
-  return resumeContactDisplay.normalizePreferences({
-    locationMode: selectedLocation?.value,
-    email: details.has("email"),
-    phone: details.has("phone"),
-    website: details.has("website"),
-    linkedin: details.has("linkedin"),
-    github: details.has("github")
-  });
-}
-
-function getRoleSelectionIds(targetRole, selectionKey, items) {
-  const role = getRoleDefinition(targetRole);
-  const roleSelections = careerData.roleDefaultSelections?.[role.id];
-  const selectedIds = roleSelections?.[selectionKey];
-
-  return Array.isArray(selectedIds)
-    ? selectedIds
-    : getDefaultSelectionIds(items);
-}
-
-function createCertificationControls(targetRole, currentDate = new Date()) {
-  const container = document.getElementById("certificationControls");
-  const configuredIds = getRoleSelectionIds(
-    targetRole,
-    "certificationIds",
-    careerData.certifications
-  );
-
-  const role = getRoleDefinition(targetRole);
-  const minDaysRemaining = role.certificationMinDaysRemaining || 0;
-  const selectedIds = configuredIds.filter((id) => {
-    const certification = careerData.certifications.find((entry) => entry.id === id);
-    if (!certification || getCertificationStatus(certification, currentDate) === "expired") {
-      return false;
-    }
-
-    const daysRemaining = getCertificationDaysRemaining(certification, currentDate);
-    return daysRemaining === null || daysRemaining >= minDaysRemaining;
-  });
-
-  const currentCertifications = careerData.certifications.filter((certification) => {
-    return getCertificationStatus(certification, currentDate) !== "expired";
-  });
-
-  const expiredCertifications = careerData.certifications.filter((certification) => {
-    return getCertificationStatus(certification, currentDate) === "expired";
-  });
-
-  const currentMarkup = currentCertifications.map((certification) => {
-    return createCheckboxMarkup(
-      certification,
-      selectedIds.includes(certification.id),
-      getCertificationControlLabel(certification, currentDate)
-    );
-  }).join("");
-
-  const expiredMarkup = expiredCertifications.length
-    ? `
-      <details class="certification-disclosure">
-        <summary>Expired certifications (${expiredCertifications.length})</summary>
-        <div class="certification-disclosure-body">
-          ${expiredCertifications.map((certification) => {
-            return createCheckboxMarkup(
-              certification,
-              false,
-              getCertificationControlLabel(certification, currentDate)
-            );
-          }).join("")}
-        </div>
-      </details>
-    `
-    : "";
-
-  container.innerHTML = currentMarkup + expiredMarkup;
-}
-
-function populateSelectionControls(targetRole) {
-  createCheckboxList(
-    "jobControls",
-    careerData.jobs,
-    getRoleSelectionIds(targetRole, "jobIds", careerData.jobs),
-    (job) => `${job.resumeTitle || job.title} — ${job.company}`
-  );
-
-  createCheckboxList(
-    "projectControls",
-    careerData.projects,
-    getRoleSelectionIds(targetRole, "projectIds", careerData.projects),
-    (project) => project.name
-  );
-
-  createCheckboxList(
-    "educationControls",
-    careerData.education,
-    getRoleSelectionIds(targetRole, "educationIds", careerData.education),
-    (entry) => entry.resumeDisplay?.name || entry.shortName || entry.program
-  );
-
-  createCertificationControls(targetRole);
-}
-
-const DOCUMENT_TYPES = Object.freeze({
-  RESUME: "resume",
-  COVER_LETTER: "cover-letter"
-});
-
-let activeDocumentType = DOCUMENT_TYPES.RESUME;
-
-function getGenericCoverLetterRoleTitle(role) {
-  const headlineTitle = String(role?.headline || "")
-    .split("|")[0]
-    .trim();
-
-  return headlineTitle || String(role?.label || "Application").trim() || "Application";
-}
-
-function getCoverLetterForRole(roleOrId) {
-  const role = typeof roleOrId === "string" ? getRoleDefinition(roleOrId) : roleOrId;
-  const specificLetter = role?.id ? careerData.coverLetters?.[role.id] : null;
-
-  if (specificLetter) {
-    return specificLetter;
-  }
-
-  return {
-    ...careerData.genericCoverLetter,
-    roleTitle: getGenericCoverLetterRoleTitle(role)
-  };
-}
-
-function roleHasSpecificCoverLetter(roleId) {
-  return Boolean(careerData.coverLetters?.[roleId]);
-}
-
-function updateDocumentControls(roleId) {
-  const select = document.getElementById("documentType");
-  const coverLetterOption = select?.querySelector('option[value="cover-letter"]');
-  const help = document.getElementById("documentTypeHelp");
-  const hasSpecificCoverLetter = roleHasSpecificCoverLetter(roleId);
-
-  if (coverLetterOption) {
-    coverLetterOption.disabled = false;
-  }
-
-  if (select) {
-    select.value = activeDocumentType;
-  }
-
-  document.body.classList.toggle(
-    "cover-letter-mode",
-    activeDocumentType === DOCUMENT_TYPES.COVER_LETTER
-  );
-
-  if (help) {
-    help.textContent = hasSpecificCoverLetter
-      ? "Switch between the generated resume and the role-specific one-page cover letter."
-      : "A generic one-page cover letter is available for this role and can be edited for this session.";
-  }
-
-  const printButton = document.getElementById("printButton");
-  if (printButton) {
-    printButton.textContent = activeDocumentType === DOCUMENT_TYPES.COVER_LETTER
-      ? "Print / Save Cover Letter PDF"
-      : "Print / Save Resume PDF";
-  }
-}
+let renderedRoleId = null;
+let renderedResume = null;
 
 function populateControls() {
   const targetRoleSelect = document.getElementById("targetRole");
 
   const durableRoles = careerData.targetRoles.map((roleId) => getRoleDefinition(roleId));
-  const targetedRoles = (careerData.targetedRoleIds || []).map((roleId) => getRoleDefinition(roleId));
+  const targetedRoles = (careerData.activeTargetedRoleIds || careerData.targetedRoleIds || [])
+    .map((roleId) => getRoleDefinition(roleId));
   const createRoleOptions = (roles) => roles
     .map((role) => `<option value="${role.id}">${role.label}</option>`)
     .join("");
@@ -299,20 +51,12 @@ function populateControls() {
   updateDocumentControls(targetRoleSelect.value);
 }
 
-function buildCurrentPrintMetadata(resume) {
-  return resumePrintMetadata.buildMetadata(resume, {
-    documentKind: activeDocumentType === DOCUMENT_TYPES.COVER_LETTER
-      ? "Cover Letter"
-      : "Resume"
-  });
-}
-
 function updateDebug(resume) {
   const debug = document.getElementById("debugOutput");
-  const printMetadata = buildCurrentPrintMetadata(resume);
+  const printMetadata = buildPrintMetadata(resume);
 
   debug.textContent = [
-    `Document: ${activeDocumentType === DOCUMENT_TYPES.COVER_LETTER ? "Cover Letter" : "Resume"}`,
+    `Document: ${isCoverLetter() ? "Cover Letter" : "Resume"}`,
     `Target role: ${resume.targetRoleLabel}`,
     `Role family: ${resume.roleFamily}`,
     `Jobs: ${resume.jobs.length}`,
@@ -329,304 +73,23 @@ function updateDebug(resume) {
   ].join("\n");
 }
 
-const CUSTOMIZE_MODE_STORAGE_KEY = "resumeGenerator.customizeMode.v1";
-const sessionCustomizationState = resumeCustomization.createEmptyState();
-let persistentCustomizationState = resumeCustomization.loadPersistentState(window.localStorage);
-
-function getInitialCustomizeMode() {
-  try {
-    return window.localStorage.getItem(CUSTOMIZE_MODE_STORAGE_KEY) ===
-      resumeCustomization.MODES.PERSISTENT
-      ? resumeCustomization.MODES.PERSISTENT
-      : resumeCustomization.MODES.OFF;
-  } catch (error) {
-    console.warn("Unable to load the customization mode preference.", error);
-    return resumeCustomization.MODES.OFF;
-  }
-}
-
-function saveCustomizeModePreference(mode) {
-  try {
-    if (mode === resumeCustomization.MODES.PERSISTENT) {
-      window.localStorage.setItem(CUSTOMIZE_MODE_STORAGE_KEY, mode);
-    } else {
-      window.localStorage.removeItem(CUSTOMIZE_MODE_STORAGE_KEY);
-    }
-  } catch (error) {
-    console.warn("Unable to save the customization mode preference.", error);
-  }
-}
-
-let activeCustomizeMode = getInitialCustomizeMode();
-let customizationBaseline = new Map();
-let renderedRoleId = null;
-let renderedResume = null;
-
-function getCustomizationState(mode) {
-  if (mode === resumeCustomization.MODES.SESSION) {
-    return sessionCustomizationState;
-  }
-
-  if (mode === resumeCustomization.MODES.PERSISTENT) {
-    return persistentCustomizationState;
-  }
-
-  return null;
-}
-
-function getEffectiveCustomizeMode() {
-  return activeDocumentType === DOCUMENT_TYPES.COVER_LETTER
-    ? resumeCustomization.MODES.SESSION
-    : activeCustomizeMode;
-}
-
-function getCustomizationScopeId(roleId = renderedRoleId) {
-  if (!roleId) {
-    return null;
-  }
-
-  return activeDocumentType === DOCUMENT_TYPES.COVER_LETTER
-    ? `${roleId}::cover-letter`
-    : roleId;
-}
-
-function sanitizeManualHtml(html) {
-  const template = document.createElement("template");
-  template.innerHTML = String(html || "");
-
-  template.content
-    .querySelectorAll("script, style, iframe, object, embed, link, meta")
-    .forEach((element) => element.remove());
-
-  template.content.querySelectorAll("*").forEach((element) => {
-    [...element.attributes].forEach((attribute) => {
-      const attributeName = attribute.name.toLowerCase();
-      const attributeValue = attribute.value.trim().toLowerCase();
-
-      if (
-        attributeName.startsWith("on") ||
-        attributeName === "contenteditable" ||
-        attributeName === "data-edit-key" ||
-        (attributeName === "href" && attributeValue.startsWith("javascript:"))
-      ) {
-        element.removeAttribute(attribute.name);
-      }
-    });
-  });
-
-  return template.innerHTML;
-}
-
-function getEditableElements() {
-  return [...document.querySelectorAll("#resumePreview [data-edit-key]")];
-}
-
-function captureCustomizationBaseline() {
-  customizationBaseline = new Map(
-    getEditableElements().map((element) => [element.dataset.editKey, element.innerHTML])
-  );
-}
-
-function savePersistentCustomizations() {
-  persistentCustomizationState = resumeCustomization.normalizeState(
-    persistentCustomizationState
-  );
-  resumeCustomization.savePersistentState(
-    window.localStorage,
-    persistentCustomizationState
-  );
-}
-
-function captureManualEdits(mode = getEffectiveCustomizeMode(), roleId = renderedRoleId) {
-  const state = getCustomizationState(mode);
-  const scopeId = getCustomizationScopeId(roleId);
-
-  if (!state || !scopeId) {
-    return;
-  }
-
-  getEditableElements().forEach((element) => {
-    const editKey = element.dataset.editKey;
-    const baselineHtml = customizationBaseline.get(editKey);
-
-    if (baselineHtml === undefined) {
-      return;
-    }
-
-    if (element.innerHTML === baselineHtml) {
-      resumeCustomization.removeRoleEdit(state, scopeId, editKey);
-      return;
-    }
-
-    resumeCustomization.setRoleEdit(
-      state,
-      scopeId,
-      editKey,
-      sanitizeManualHtml(element.innerHTML)
-    );
-  });
-
-  if (mode === resumeCustomization.MODES.PERSISTENT) {
-    savePersistentCustomizations();
-  }
-
-  updateCustomizeUi();
-}
-
-function applyManualEdits(mode = getEffectiveCustomizeMode(), roleId = renderedRoleId) {
-  const state = getCustomizationState(mode);
-  const scopeId = getCustomizationScopeId(roleId);
-
-  if (!state || !scopeId) {
-    return;
-  }
-
-  const edits = resumeCustomization.getRoleEdits(state, scopeId);
-
-  getEditableElements().forEach((element) => {
-    const savedHtml = edits[element.dataset.editKey];
-
-    if (typeof savedHtml === "string") {
-      element.innerHTML = sanitizeManualHtml(savedHtml);
-    }
-  });
-}
-
-function getCustomizeHelpText(mode) {
-  if (mode === resumeCustomization.MODES.SESSION) {
-    return "Edits save automatically for this one-off page session and survive role or selection changes. Reloading the page clears them.";
-  }
-
-  if (mode === resumeCustomization.MODES.PERSISTENT) {
-    return "Edits save automatically in this browser and survive role or selection changes, page reloads, browser restarts, and computer reboots. Each target role has its own saved draft.";
-  }
-
-  return "Generated content is shown without manual overrides. Choose a manual-editing mode to edit text and lists directly in the preview.";
-}
-
-function updateCustomizeUi() {
-  const resumePage = document.querySelector("#resumePreview .resume-page");
-  const isCoverLetter = activeDocumentType === DOCUMENT_TYPES.COVER_LETTER;
-  const effectiveMode = getEffectiveCustomizeMode();
-  const isEditing = effectiveMode !== resumeCustomization.MODES.OFF;
-  const help = document.getElementById("customizeHelp");
-  const resetButton = document.getElementById("resetCustomizeButton");
-  const state = getCustomizationState(effectiveMode);
-  const scopeId = getCustomizationScopeId();
-
-  document.querySelectorAll('input[name="customizeMode"]').forEach((input) => {
-    input.disabled = isCoverLetter;
-    input.checked = input.value === effectiveMode;
-  });
-
-  if (resumePage) {
-    resumePage.contentEditable = isEditing ? "true" : "false";
-    resumePage.spellcheck = isEditing;
-    resumePage.classList.toggle("is-customizing", isEditing);
-    resumePage.classList.toggle(
-      "is-customizing-session",
-      effectiveMode === resumeCustomization.MODES.SESSION
-    );
-    resumePage.classList.toggle(
-      "is-customizing-persistent",
-      effectiveMode === resumeCustomization.MODES.PERSISTENT
-    );
-    const documentLabel = isCoverLetter ? "cover letter" : "resume";
-    resumePage.setAttribute(
-      "aria-label",
-      isEditing ? `Editable ${documentLabel} preview` : `${documentLabel[0].toUpperCase()}${documentLabel.slice(1)} preview`
-    );
-  }
-
-  if (help) {
-    help.textContent = isCoverLetter
-      ? "Cover letters are always editable as one-off session drafts. Changes survive role/document switches during this page session and clear on reload; they are never stored in the browser."
-      : getCustomizeHelpText(effectiveMode);
-  }
-
-  if (resetButton) {
-    resetButton.textContent = isCoverLetter
-      ? "Reset cover letter edits"
-      : "Reset this role's edits";
-    resetButton.disabled = !(
-      isEditing &&
-      state &&
-      scopeId &&
-      resumeCustomization.hasRoleEdits(state, scopeId)
-    );
-  }
-}
-
-function changeCustomizeMode(nextMode) {
-  if (activeDocumentType === DOCUMENT_TYPES.COVER_LETTER) {
-    updateCustomizeUi();
-    return;
-  }
-
-  const validModes = Object.values(resumeCustomization.MODES);
-
-  if (!validModes.includes(nextMode) || nextMode === activeCustomizeMode) {
-    updateCustomizeUi();
-    return;
-  }
-
-  const previousMode = activeCustomizeMode;
-  const previousState = getCustomizationState(previousMode);
-
-  if (previousState && renderedRoleId) {
-    captureManualEdits(previousMode, renderedRoleId);
-  }
-
-  const previousEdits = previousState && renderedRoleId
-    ? { ...resumeCustomization.getRoleEdits(previousState, renderedRoleId) }
-    : {};
-
-  activeCustomizeMode = nextMode;
-  saveCustomizeModePreference(nextMode);
-
-  const nextState = getCustomizationState(nextMode);
-
-  if (
-    nextState &&
-    renderedRoleId &&
-    Object.keys(previousEdits).length &&
-    !resumeCustomization.hasRoleEdits(nextState, renderedRoleId)
-  ) {
-    resumeCustomization.replaceRoleEdits(nextState, renderedRoleId, previousEdits);
-
-    if (nextMode === resumeCustomization.MODES.PERSISTENT) {
-      savePersistentCustomizations();
-    }
-  }
-
-  renderCurrentResume();
-}
-
 function renderCurrentResume() {
   const targetRole = document.getElementById("targetRole").value;
   const role = getRoleDefinition(targetRole);
-  const family = careerData.roleFamilies[role.familyId];
   const resume = buildResume({
     targetRole,
     selectedJobIds: getCheckedValues("jobControls"),
     selectedProjectIds: getCheckedValues("projectControls"),
     selectedEducationIds: getCheckedValues("educationControls"),
-    selectedCertificationIds: getCheckedValues("certificationControls"),
-    maxJobBullets: role.layout?.maxJobBullets ?? 2,
-    maxProjectBullets: role.layout?.maxProjectBullets ?? 1,
-    maxSkillGroups: role.layout?.maxSkillGroups ?? family.defaultMaxSkillGroups ?? 6,
-    maxSkillsPerGroup: role.layout?.maxSkillsPerGroup ?? 6
+    selectedCertificationIds: getCheckedValues("certificationControls")
   });
 
-  resume.contact = resumeContactDisplay.applyPreferences(
-    resume.contact,
-    contactDisplayPreferences
-  );
+  resume.contact = applyContactPreferences(resume.contact);
 
   const preview = document.getElementById("resumePreview");
-  const coverLetter = getCoverLetterForRole(role);
+  const coverLetter = resolveCoverLetter(resume, role);
 
-  if (activeDocumentType === DOCUMENT_TYPES.COVER_LETTER) {
+  if (isCoverLetter()) {
     renderCoverLetter(coverLetter, resume.contact, preview);
   } else {
     renderResume(resume, preview);
@@ -637,14 +100,17 @@ function renderCurrentResume() {
   updateDocumentControls(role.id);
   resumePrintMetadata.applyToDocument(
     document,
-    buildCurrentPrintMetadata(resume)
+    buildPrintMetadata(resume)
   );
   updateDebug(resume);
-  captureCustomizationBaseline();
-  applyManualEdits();
-  updateCustomizeUi();
+  resumeCustomizationController.captureCustomizationBaseline();
+  resumeCustomizationController.applyManualEdits(renderedRoleId);
+  resumePageDensity.schedule(
+    preview,
+    isCoverLetter() ? null : role
+  );
+  resumeCustomizationController.updateCustomizeUi(renderedRoleId);
 }
-
 
 function syncPrintMetadata() {
   if (!renderedResume) {
@@ -653,7 +119,7 @@ function syncPrintMetadata() {
 
   resumePrintMetadata.applyToDocument(
     document,
-    buildCurrentPrintMetadata(renderedResume)
+    buildPrintMetadata(renderedResume)
   );
 }
 
@@ -668,15 +134,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (event.target.name === "customizeMode") {
-      changeCustomizeMode(event.target.value);
+      if (resumeCustomizationController.changeCustomizeMode(event.target.value, renderedRoleId)) {
+        renderCurrentResume();
+      }
       return;
     }
 
-    captureManualEdits();
+    if (event.target.closest("#coverLetterHighlightControls")) {
+      resumeCustomizationController.captureManualEdits(renderedRoleId);
+      const roleId = document.getElementById("targetRole").value;
+      setCoverLetterHighlightOverride(roleId, readCoverLetterHighlightInputs());
+      renderCurrentResume();
+      return;
+    }
+
+    resumeCustomizationController.captureManualEdits(renderedRoleId);
 
     if (event.target.closest("#contactInfoControls")) {
-      contactDisplayPreferences = getContactDisplayPreferencesFromControls();
-      resumeContactDisplay.savePreferences(window.localStorage, contactDisplayPreferences);
+      syncPreferencesFromControls();
     }
 
     if (event.target.id === "targetRole") {
@@ -685,9 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (event.target.id === "documentType") {
-      activeDocumentType = event.target.value === DOCUMENT_TYPES.COVER_LETTER
-        ? DOCUMENT_TYPES.COVER_LETTER
-        : DOCUMENT_TYPES.RESUME;
+      setActiveDocumentType(event.target.value);
       updateDocumentControls(document.getElementById("targetRole").value);
     }
 
@@ -695,12 +168,16 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("resumePreview").addEventListener("input", () => {
-    captureManualEdits();
+    resumeCustomizationController.captureManualEdits(renderedRoleId);
+    resumePageDensity.schedule(
+      document.getElementById("resumePreview"),
+      renderedRoleId ? getRoleDefinition(renderedRoleId) : null
+    );
   });
 
   document.getElementById("resumePreview").addEventListener("click", (event) => {
     if (
-      getEffectiveCustomizeMode() !== resumeCustomization.MODES.OFF &&
+      resumeCustomizationController.getEffectiveCustomizeMode() !== resumeCustomization.MODES.OFF &&
       event.target.closest("a")
     ) {
       event.preventDefault();
@@ -708,25 +185,28 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("resetCustomizeButton").addEventListener("click", () => {
-    const effectiveMode = getEffectiveCustomizeMode();
-    const state = getCustomizationState(effectiveMode);
-    const scopeId = getCustomizationScopeId();
-
-    if (!state || !scopeId) {
-      return;
+    if (resumeCustomizationController.resetCurrentEdits(renderedRoleId)) {
+      renderCurrentResume();
     }
+  });
 
-    resumeCustomization.resetRoleEdits(state, scopeId);
-
-    if (effectiveMode === resumeCustomization.MODES.PERSISTENT) {
-      savePersistentCustomizations();
-    }
-
+  document.getElementById("resetCoverLetterHighlightsButton").addEventListener("click", () => {
+    const roleId = document.getElementById("targetRole").value;
+    resetCoverLetterHighlightOverride(roleId);
     renderCurrentResume();
   });
 
   window.addEventListener("beforeunload", () => {
-    captureManualEdits();
+    resumeCustomizationController.captureManualEdits(renderedRoleId);
+  });
+
+  window.addEventListener("resize", () => {
+    if (!isCoverLetter()) {
+      resumePageDensity.schedule(
+        document.getElementById("resumePreview"),
+        renderedRoleId ? getRoleDefinition(renderedRoleId) : null
+      );
+    }
   });
 
   window.addEventListener("beforeprint", syncPrintMetadata);
